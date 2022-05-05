@@ -20,12 +20,12 @@
           %b マイページ
       %li
         = link_to "#", class: 'nav-link text-dark heaedr-link' do
-          %i.fas.fa-cheese
-          %b 商品一覧
+          %i.fas.fa-horse-head
+          %b 投稿一覧
       %li
         = link_to "#", class: 'nav-link text-dark heaedr-link news_cart_item' do
-          %i.fas.fa-shopping-cart
-          %b カート
+          %i.fas.fa-hat-cowboy
+          %b ユーザー一覧
       %li
         = link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-sign-in-alt
@@ -33,12 +33,12 @@
     - else
       %li
         = link_to about_path, class: 'nav-link text-dark heaedr-link' do
-          %i.fas.fa-exclamation-circle
+          %i.fas.fa-question-circle
           %b About
       %li
         = link_to "#", class: 'nav-link text-dark heaedr-link' do
-          %i.fas.fa-cheese
-          %b 商品一覧
+          %i.fas.fa-horse-head
+          %b 投稿一覧
       %li
         = link_to new_user_registration_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-user-plus
@@ -50,8 +50,7 @@
     %ul.navbar-nav
       = form_with url: "#", method: :get do |f|
         .h-100
-          .d-flex.h-100
-            .searchbar
-              = f.text_field :search_text, class: "search_input", placeholder: "ユーザー・タグを検索..."
-              = f.button :type => "submit", style: 'border-style: none; background: none;', class: "search_icon" do
-                %i.fas.fa-search
+          .searchbar
+            = f.text_field :search_text, class: "search_input", placeholder: "ユーザー・タグを検索..."
+            = f.button :type => "submit", style: 'border-style: none; background: none;', class: "search_icon" do
+              %i.fas.fa-search
