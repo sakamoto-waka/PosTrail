@@ -1,0 +1,53 @@
+%a.navbar-brand{href: "/admin"}
+  .img
+    
+%button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
+  %span.navbar-toggler-icon
+#navbarNavDropdown.collapse.navbar-collapse
+  %ul.navbar-nav.ml-auto
+    - if admin_signed_in?
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-cheese
+          %b 商品一覧
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-user-friends
+          %b 会員一覧
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-clipboard-check
+          %b 注文履歴一覧
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-folder-open
+          %b ジャンル一覧
+      %li
+        = link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-sign-in-alt
+          %b ログアウト
+    - else
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-exclamation-circle
+          %b About
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-cheese
+          %b 商品一覧
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-user-plus
+          %b 新規登録
+      %li
+        = link_to new_admin_session_path, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-sign-in-alt
+          %b ログイン
+  %ul.navbar-nav
+    = form_with url: "#", method: :get do |f|
+      .container.h-100
+        .d-flex.justify-content-center.h-100
+          .searchbar
+            = f.text_field :search_text, class: "search_input", placeholder: "ユーザー・タグ検索..."
+            = f.button :type => "submit", style: 'border-style: none; background: none;', class: "search_icon" do
+              %i.fas.fa-search
