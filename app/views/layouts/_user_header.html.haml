@@ -1,0 +1,57 @@
+
+%a.navbar-brand{href: "/"}
+  .img_wrap
+  
+- if user_signed_in?
+  .login_customer_disp_name
+    %i.fas.fa-door-open
+    %b.custo
+      　～ようこそ、
+      \#{current_user.email}
+      さん！～
+%button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
+  %span.navbar-toggler-icon
+#navbarNavDropdown.collapse.navbar-collapse
+  %ul.navbar-nav.ml-auto
+    - if user_signed_in?
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-user-circle
+          %b マイページ
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-cheese
+          %b 商品一覧
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link news_cart_item' do
+          %i.fas.fa-shopping-cart
+          %b カート
+      %li
+        = link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-sign-in-alt
+          %b ログアウト
+    - else
+      %li
+        = link_to about_path, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-exclamation-circle
+          %b About
+      %li
+        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-cheese
+          %b 商品一覧
+      %li
+        = link_to new_user_registration_path, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-user-plus
+          %b 新規登録
+      %li
+        = link_to new_user_session_path, class: 'nav-link text-dark heaedr-link' do
+          %i.fas.fa-sign-in-alt
+          %b ログイン
+    %ul.navbar-nav
+      = form_with url: "#", method: :get do |f|
+        .container.h-100
+          .d-flex.justify-content-center.h-100
+            .searchbar
+              = f.text_field :search_text, class: "search_input", placeholder: "ユーザー・タグを検索..."
+              = f.button :type => "submit", style: 'border-style: none; background: none;', class: "search_icon" do
+                %i.fas.fa-search
