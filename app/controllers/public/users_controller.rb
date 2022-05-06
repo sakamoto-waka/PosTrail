@@ -21,8 +21,8 @@ class Public::UsersController < ApplicationController
     end
   end
   
-  # user_paramsはapplication_controllerにあり
   private
+    # user_paramsはapplication_controllerにあり
     
     def ensure_correct_user
       @user = User.find(params[:id])
