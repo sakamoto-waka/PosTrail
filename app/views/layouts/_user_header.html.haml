@@ -7,7 +7,7 @@
     %i.fas.fa-door-open
     %b.custo
       　～ようこそ、
-      \#{current_user.email}
+      \#{current_user.name}
       さん！～
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
@@ -15,15 +15,15 @@
   %ul.navbar-nav.ml-auto
     - if user_signed_in?
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to user_path(current_user), class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-user-circle
           %b マイページ
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to posts_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-horse-head
           %b 投稿一覧
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link news_cart_item' do
+        = link_to users_path, class: 'nav-link text-dark heaedr-link news_cart_item' do
           %i.fas.fa-hat-cowboy
           %b ユーザー一覧
       %li
@@ -36,7 +36,7 @@
           %i.fas.fa-question-circle
           %b About
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to posts_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-horse-head
           %b 投稿一覧
       %li
