@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
       flash[:success] = "投稿しました"
     else
       @posts = Post.all
-      render :index
+      render :new
     end
   end
 
@@ -39,7 +39,7 @@ class Public::PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    redirect_to request.refferer
+    redirect_to request.referer
   end
   
   private
