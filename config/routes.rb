@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :public do
+    get 'notifications/index'
+  end
+  namespace :public do
     get 'posts/index'
     get 'posts/new'
     get 'posts/show'
