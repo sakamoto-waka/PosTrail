@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
   end
   
-  namespace :adimin do
+  namespace :admin do
     root 'homes#top' #usersのindex代わり
     resources :users, only: [:show, :edit, :destroy]
     resources :posts, only: [:index, :show, :destroy]
