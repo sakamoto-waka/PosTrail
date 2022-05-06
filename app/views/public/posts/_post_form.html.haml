@@ -1,0 +1,9 @@
+= form_with model: post do |f|
+  .form_group
+    = f.label :クラブ名
+    = f.text_field :trail_place, class: "form_control"
+  .form_group
+    = f.label :投稿文
+    = f.text_area :body, class: "form_control"
+  .form_group
+    = f.submit '投稿', class: "btn btn-success"
