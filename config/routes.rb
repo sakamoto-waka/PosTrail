@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'activities/index'
+  end
+  namespace :public do
+    get 'notifications/index'
+  end
+  namespace :public do
+    get 'posts/index'
+    get 'posts/new'
+    get 'posts/show'
+    get 'posts/edit'
+  end
+  namespace :public do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+  end
   namespace :admin do
     get 'posts/index'
     get 'posts/show'
