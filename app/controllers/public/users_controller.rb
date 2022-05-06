@@ -14,6 +14,7 @@ class Public::UsersController < ApplicationController
   
   def update
     @user.update(user_params)
+    redirect_to user_path(@user)
   end
   
   private
