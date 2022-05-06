@@ -1,29 +1,5 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'activities/index'
-  end
-  namespace :public do
-    get 'notifications/index'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/new'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :admin do
-    get 'users/show'
-    get 'users/edit'
-  end
+  
   devise_for :users, skip: [:passwords], controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions'
@@ -35,6 +11,17 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
+    resources :users, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
+    end
+    resources :notifications, only: :index
+    resources :activities, only: :index
   end
   
   namespace :admin do
