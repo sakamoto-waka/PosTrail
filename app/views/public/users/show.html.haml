@@ -1,2 +1,13 @@
-%h1 Public::Users#show
-%p Find me in app/views/public/users/show.html.haml
+- if user_signed_in? && current_user == @user
+  %h1 マイページ
+  = @user.name
+  = @user.introduction
+  // 後でpartial化してrender
+  - @user.posts.each do |post|
+    = post.body 
+  
+- else
+  %h1 #{@user.name}さんの詳細ページ
+  = @user.name
+  = @user.introduction
+  = @user.posts
