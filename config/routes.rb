@@ -37,8 +37,11 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
   end
   
-  namespace :admin do
-    root 'homes#top'
+  namespace :adimin do
+    root 'homes#top' #usersのindex代わり
+    resources :users, only: [:show, :edit, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :comments, only: [:destroy]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
