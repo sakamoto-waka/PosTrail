@@ -43,10 +43,7 @@ class Public::PostsController < ApplicationController
   end
   
   private
-    def post_params
-      params.require(:post).permit(:body, :trail_place)
-    end
-    
+  
     def ensure_correct_user
       @post = Post.find(params[:id])
       redirect_to post_path(@post) if @post.user != current_user
