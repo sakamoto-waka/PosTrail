@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :ensure_user, only: [:edit, :update]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
   
   def index
     @posts = Post.all
@@ -32,6 +32,12 @@ class Public::PostsController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  
+  def destroy
+    @post.destroy
+    redirect_to request.refferer
   end
   
   private
