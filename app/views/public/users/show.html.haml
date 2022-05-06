@@ -1,2 +1,7 @@
-%h1 Public::Users#show
-%p Find me in app/views/public/users/show.html.haml
+- if user_signed_in? && current_user == @user
+  %h1 マイページ
+
+- else
+  %h1 #{@user.name}さんの詳細ページ
+
+
