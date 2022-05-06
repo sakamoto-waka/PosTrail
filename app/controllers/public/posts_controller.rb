@@ -12,7 +12,8 @@ class Public::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to post_path(@post), flash[:success] = "投稿しました"
+      redirect_to post_path(@post)
+      flash[:success] = "投稿しました"
     else
       @posts = Post.all
       render :index
@@ -28,7 +29,8 @@ class Public::PostsController < ApplicationController
   
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), flash[:success] = "投稿内容を更新しました"
+      redirect_to post_path(@post)
+      flash[:success] = "投稿内容を更新しました"
     else
       render :edit
     end
@@ -42,7 +44,7 @@ class Public::PostsController < ApplicationController
   
   private
     def post_params
-      params.require(:posts).permit(:body, :trail_place)
+      params.require(:post).permit(:body, :trail_place)
     end
     
     def ensure_correct_user
