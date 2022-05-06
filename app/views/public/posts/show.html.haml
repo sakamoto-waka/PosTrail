@@ -1,2 +1,6 @@
 %h1 Public::Posts#show
-%p Find me in app/views/public/posts/show.html.haml
+
+%div
+  = @post.user.email
+  = @post.trail_place
+  = @post.body
