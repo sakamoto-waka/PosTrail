@@ -9,7 +9,7 @@
       = post.user.email
       = post.body
       = render 'public/likes/like_btn', post: post
-      // コメント表示
+      // コメント用アイコン
       = link_to post_path(post) do
         %i.far.fa-comment-dots
         = post.comments.count

@@ -1,13 +1,13 @@
-- if user_signed_in? && current_user == @user
-  %h1 マイページ
-  = @user.name
-  = @user.introduction
-  // 後でpartial化してrender
-  - @user.posts.each do |post|
-    = post.body 
-  
-- else
-  %h1 #{@user.name}さんの詳細ページ
-  = @user.name
-  = @user.introduction
-  = @user.posts
+= (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんの詳細ページ")
+= @user.name
+= @user.introduction
+%p follows
+= link_to @user.followings.count, user_followings_path(@user)
+
+%p followers
+= link_to @user.followers.count, user_followers_path(@user)
+
+// ⚠いいねしたら投稿一覧に飛ぶ問題発生中
+%h2 投稿
+= render 'public/posts/posts_index', posts: @user.posts
+

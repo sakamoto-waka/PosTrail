@@ -4,7 +4,8 @@
     = user.name
     = user.email
     = user.introduction
-    = render 'public/relationships/follow_btn', user: user
     = link_to '詳細', user_path(user)
     - if user == current_user
       = link_to '編集', edit_user_path(user)
+    - else  
+      = render 'public/relationships/follow_btn', user: user
