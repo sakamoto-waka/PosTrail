@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one_attached :trail_image
+  has_many :notifications, dependent: :des
 
   validates :body, presence: true, length: { maximum: 200 }
 
