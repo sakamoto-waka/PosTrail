@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :no_post_user_deleted, only: [:show]
   
   def index
     @posts = Post.all
@@ -43,10 +44,12 @@ class Public::PostsController < ApplicationController
   end
   
   private
-    def post_params
-      params.require(:post).permit(:body, :trail_place)
+    # url直打ち対策
+    def no_post_user_deleted
+      @post = Post.find(params[:id])
+      redirect_to posts_path if @post.user.is_deleted == true
     end
-    
+  
     def ensure_correct_user
       @post = Post.find(params[:id])
       redirect_to post_path(@post) if @post.user != current_user

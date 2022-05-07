@@ -22,11 +22,8 @@ class Public::UsersController < ApplicationController
   end
   
   private
-  
-    def user_params
-      params.require(:user).permit(:name, :introduction)
-    end
-  
+    # user_paramsはapplication_controllerにあり
+    
     def ensure_correct_user
       @user = User.find(params[:id])
       redirect_to user_path(@user) if @user != current_user

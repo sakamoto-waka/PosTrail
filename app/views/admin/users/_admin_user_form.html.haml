@@ -1,0 +1,18 @@
+= form_with model: user, url: admin_user_path do |f|
+  .form_group
+    = f.label :ユーザー名
+    = f.text_field :name, class: "form_control"
+  .form_group
+    = f.label :プロフィール
+    = f.text_field :introduction, class: "form_control"
+  .form_group
+    = f.label :会員ステータス
+    .custom-control.custom-radio
+      = f.radio_button :is_deleted, false
+      = f.label :有効, class: "mr-3"
+      = f.radio_button :is_deleted, true
+      = f.label :退会
+  
+  
+  .form_group
+    = f.submit '更新', class: "btn btn-success"
