@@ -1,7 +1,9 @@
 - if user_signed_in?
   - if post.liked_by?(current_user)
-    = link_to post_likes_path(post), method: :delete, class: "text_danger" do
-    = post.likes.count
+    = link_to post_likes_path(post), method: :delete, class: "text-danger" do
+      %i.fas.fa-heart
+      = post.likes.count
   - else
-    = link_to post_likes_path(post), method: :post do
-    = post.likes.count
+    = link_to post_likes_path(post), method: :post, class: "text-danger" do
+      %i.far.fa-heart
+      = post.likes.count
