@@ -1,12 +1,4 @@
 %h1 ユーザー一覧
 
-- @users.each do |user|
-  - if user.is_deleted == false
-    = image_tag user.get_account_image(100, 100)
-    = user.name
-    = user.email
-    = user.introduction
-    = link_to '詳細', user_path(user)
-    - if user == current_user
-      = link_to '編集', edit_user_path(user)
+= render 'public/users/user_index', users: @users
       
