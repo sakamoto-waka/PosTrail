@@ -1,4 +1,8 @@
 = form_with model: post do |f|
+
+  .form_group
+    = f.label :ベストショット
+    = f.file_field :trail_image, accept: 'image/*'
   .form_group
     = f.label :クラブ名
     = f.text_field :trail_place, class: "form_control"
