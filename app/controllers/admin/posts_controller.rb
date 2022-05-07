@@ -1,22 +1,17 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :post_find_from_params, only: [:show, :destroy]
+  
+  def index
+    @posts = Post.all
+  end
   
   def show
-    @post = Post.find(params[:id])
   end
   
-  def edit
-    @post = Post.find(params[:id])
-  end
-  
-  def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to post_path(@post)
-      flash[:success] = "投稿内容を更新しました"
-    else
-      render :edit
-    end
+  def destroy
+    @post.destroy
+    redirect_to request.referer
   end
   
 end
