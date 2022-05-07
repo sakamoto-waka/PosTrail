@@ -1,9 +1,10 @@
 %h1 ユーザー一覧
 
 - @users.each do |user|
-  = user.name
-  = user.email
-  = user.introduction
-  = link_to '詳細', user_path(user)
-  - if user == current_user
-    = link_to '編集', edit_user_path(user)
+  - if user.is_deleted == false
+    = user.name
+    = user.email
+    = user.introduction
+    = link_to '詳細', user_path(user)
+    - if user == current_user
+      = link_to '編集', edit_user_path(user)

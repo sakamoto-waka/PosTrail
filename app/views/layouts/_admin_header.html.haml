@@ -1,22 +1,22 @@
 %a.navbar-brand{href: "/admin"}
   .img
-  
+
 .to_user_message
   %i.fas.fa-exclamation-triangle
   %span
     %b 管理者用ページです
-    
+
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbarNavDropdown.collapse.navbar-collapse
   %ul.navbar-nav.ml-auto
     - if admin_signed_in?
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to admin_root_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-users
           %b ユーザー一覧
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to admin_posts_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-user-friends
           %b 投稿一覧
       %li
@@ -33,7 +33,7 @@
           %i.fas.fa-question-circle
           %b About
       %li
-        = link_to "#", class: 'nav-link text-dark heaedr-link' do
+        = link_to posts_path, class: 'nav-link text-dark heaedr-link' do
           %i.fas.fa-horse-head
           %b 投稿一覧
       %li

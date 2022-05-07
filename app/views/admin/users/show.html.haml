@@ -1,2 +1,6 @@
-%h1 Admin::Users#show
-%p Find me in app/views/admin/users/show.html.haml
+%h1 管理者用ユーザー詳細
+
+= @user.name
+= @user.introduction
+- if @user.is_deleted == false
+  = @user.email
