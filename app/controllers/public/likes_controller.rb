@@ -6,6 +6,8 @@ class Public::LikesController < ApplicationController
     like = current_user.likes.new(post_id: @post.id)
     like.save
     redirect_to posts_path
+    # 通知として保存
+    @post.create_notification_like(current_user)
   end
 
   def destroy
