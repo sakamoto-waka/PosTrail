@@ -1,0 +1,15 @@
+- post.comments.each do |comment|
+  #comment_error
+    = render "layouts/errors", obj: comment
+  %tr
+    %td
+      = link_to(comment.user) do
+        = image_tag comment.user.get_account_image(100, 100)
+        %br/
+        = comment.user.name
+    %td.p-2
+    // コメントテーブルのコメントカラム    
+    = comment.comment
+    - if comment.user == current_user
+      %td
+      = link_to 'Destroy', post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger btn-sm"  
