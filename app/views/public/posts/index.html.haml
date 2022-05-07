@@ -1,6 +1,8 @@
 %h1 投稿一覧
 
-= render 'public/posts/posts_index', posts: @posts
-
-
-= link_to '新規投稿', new_post_path
+- if user_signed_in?
+  = render 'public/posts/posts_index', posts: @posts
+  // (仮)
+  = link_to '新規投稿', new_post_path
+- else  
+  = render 'public/posts/guest_posts_index', posts: @posts

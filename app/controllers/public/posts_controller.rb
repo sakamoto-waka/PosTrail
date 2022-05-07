@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :no_post_user_deleted, only: [:show]
-  
+
   def index
     @posts = Post.all
   end
@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
@@ -23,11 +23,12 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
   end
-  
+
   def update
     if @post.update(post_params)
       redirect_to post_path(@post)
@@ -36,20 +37,20 @@ class Public::PostsController < ApplicationController
       render :edit
     end
   end
-  
-  
+
+
   def destroy
     @post.destroy
     redirect_to request.referer
   end
-  
+
   private
     # url直打ち対策
     def no_post_user_deleted
       @post = Post.find(params[:id])
       redirect_to posts_path if @post.user.is_deleted == true
     end
-  
+
     def ensure_correct_user
       @post = Post.find(params[:id])
       redirect_to post_path(@post) if @post.user != current_user

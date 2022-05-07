@@ -1,0 +1,9 @@
+- posts.each do |post|
+  // ユーザーが退会していないかチェック
+  - if post.user.active_for_authentication?
+    - if post.trail_image.attached?
+      = image_tag post.get_trail_image(100, 100)
+      
+    = post.trail_place
+    = post.user.email
+    = post.body
