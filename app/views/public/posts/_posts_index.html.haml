@@ -1,9 +1,14 @@
 %div
   - posts.each do |post|
+    // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
+      - if post.trail_image.attached?
+        = image_tag post.get_trail_image(100, 100)
+        
       = post.trail_place
       = post.user.email
       = post.body
+      // admin用のルーティングと分岐
       = admin_signed_in? ? (link_to '詳細', admin_post_path(post)) : (link_to '詳細', post_path(post))
       - if admin_signed_in?
         = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}

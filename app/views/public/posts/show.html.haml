@@ -1,6 +1,4 @@
 %h1 Public::Posts#show
 
 %div
-  = @post.user.email
-  = @post.trail_place
-  = @post.body
+  = render 'puclic/posts/post_show', post: @post
