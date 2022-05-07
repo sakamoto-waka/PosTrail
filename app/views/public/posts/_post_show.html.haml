@@ -1,0 +1,8 @@
+- if post.trail_image.attached?
+  = image_tag post.get_trail_image(100, 100)
+= post.user.email
+= post.trail_place
+= post.body
+
+= render 'public/comments/comment_form', post: post, comment: comment
+= render 'public/comments/post_comment', post: post
