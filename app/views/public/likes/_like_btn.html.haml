@@ -7,3 +7,6 @@
     = link_to post_likes_path(post), method: :post, class: "text-danger" do
       %i.far.fa-heart
       = post.likes.count
+- else
+  %i.fas.fa-heart.text-danger
+  = post.likes.count
