@@ -14,8 +14,4 @@ class ApplicationController < ActionController::Base
       params.require(:post).permit(:body, :trail_place)
     end
     
-    def post_find_from_params
-      @post = Post.find(params[:id])
-    end
-    
 end
