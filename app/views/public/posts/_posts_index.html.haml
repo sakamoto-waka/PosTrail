@@ -8,6 +8,15 @@
       = post.trail_place
       = post.user.email
       = post.body
+      - if user_signed_in?
+        - if post.liked_by?(current_user)
+          = link_to post_likes_path(post), method: :delete, class: "text_danger" do
+            %i.fas.fa-horse
+            = post.likes.count
+        - else
+          = link_to post_likes_path(post), method: :post do
+            %i.fas.fa-horse
+            = post.likes.count
       // admin用のルーティングと分岐
       = admin_signed_in? ? (link_to '詳細', admin_post_path(post)) : (link_to '詳細', post_path(post))
       - if admin_signed_in?

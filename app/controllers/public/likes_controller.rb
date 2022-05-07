@@ -4,14 +4,14 @@ class Public::LikesController < ApplicationController
     @post = Post.find(params[:post_id])
     like = current_user.likes.new(post_id: @post.id)
     like.save
-    redirect_back(fallback_locaiton: posts_path)
+    redirect_to posts_path
   end
   
   def destroy
     @post = Post.find(params[:post_id])
     like = current_user.likes.find_by(post_id: @post.id)
     like.destroy
-    redirect_back(fallback_locaiton: posts_path)
+    redirect_to posts_path
   end
   
 end
