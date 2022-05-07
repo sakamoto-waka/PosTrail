@@ -2,12 +2,17 @@
 = @user.name
 = @user.introduction
 %p follows
-= link_to @user.followings.count, user_followings_path(@user)
+= link_to "#{@user.followings.count}人", user_followings_path(@user)
 
 %p followers
-= link_to @user.followers.count, user_followers_path(@user)
+= link_to "#{@user.followers.count}人", user_followers_path(@user)
+
+= link_to '詳細', user_path(@user)
+- if @user == current_user
+  = link_to '編集', edit_user_path(@user)
+- elsif user_signed_in?
+  = render 'public/relationships/follow_btn', user: @user
 
 // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
 %h2 投稿
 = render 'public/posts/posts_index', posts: @user.posts
-

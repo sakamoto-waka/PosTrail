@@ -1,6 +1,5 @@
 class Public::RelationshipsController < ApplicationController
-  
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:followers, :followings]
   
   def create
     current_user.follow(params[:user_id])
