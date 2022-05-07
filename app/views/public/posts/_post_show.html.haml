@@ -1,0 +1,5 @@
+- if post.trail_image.attached?
+  = image_tag post.get_trail_image(100, 100)
+= post.user.email
+= post.trail_place
+= post.body
