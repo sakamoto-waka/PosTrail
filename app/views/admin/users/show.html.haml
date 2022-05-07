@@ -2,4 +2,5 @@
 
 = @user.name
 = @user.introduction
-= @user.email
+- if @user.is_deleted == false
+  = @user.email
