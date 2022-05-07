@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   private
   
     def user_params
-      params.require(:user).permit(:name, :introduction, :is_deleted)
+      params.require(:user).permit(:name, :introduction, :is_deleted, :account_image)
     end
     
     def user_find_from_params
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
   
     def post_params
-      params.require(:post).permit(:body, :trail_place)
+      params.require(:post).permit(:body, :trail_place, :trail_image)
     end
     
 end
