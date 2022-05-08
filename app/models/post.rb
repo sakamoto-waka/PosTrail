@@ -59,5 +59,24 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+  
+  # タグ用のメソッド
+  def save_tag(sent_tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - sent_tags
+    new_tags = sent_tags - current_tags
+    
+    old_tags.each do |old_tag|
+      self.tags.delete
+      # いらないと思う
+      # Tag.find_by(name: old_tag)
+    end
+    
+    # 重複していないタグをtagsの中に代入（保存）
+    new_tags.each do |new_tag|
+      new_post_tag = Tag.find_or_create_by(name: new_tag)
+      self.tags << new_post_tag
+    end
+  end
 
 end

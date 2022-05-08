@@ -4,7 +4,13 @@ class Public::PostsController < ApplicationController
   before_action :no_post_user_deleted, only: [:show]
 
   def index
-    @posts = Post.all
+    @tags_list = Tag.all
+    if params[:tag_id]
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.page(params[:page]).per(20)
+    else  
+      @posts = Post.all
+    end
   end
 
   def new
@@ -13,11 +19,14 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    tag_list = params[:post][:name].split(',')
     if @post.save
+      @post.save_tag(tag_list)
       redirect_to post_path(@post)
       flash[:success] = "投稿しました"
     else
       @posts = Post.all
+      @tag_list = Tag.all
       render :new
     end
   end
