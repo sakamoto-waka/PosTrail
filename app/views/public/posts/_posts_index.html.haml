@@ -1,5 +1,5 @@
-%div
-  - posts.each do |post|
+- posts.each do |post|
+  %div
     // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
       - if post.trail_image.attached?
@@ -7,10 +7,10 @@
         
       = post.trail_place
       = post.user.email
-      = post.body
+      = simple_format(post.body)
       %i.fas.fa-tag
-        // 一つ一つを:name型にして取り出す
-        = post.tags.map(&:name).join('')
+      // 一つ一つを:name型にして取り出す
+      = post.tags.map(&:name).join(',')
       = render 'public/likes/like_btn', post: post
       // コメント用アイコン
       = link_to post_path(post) do

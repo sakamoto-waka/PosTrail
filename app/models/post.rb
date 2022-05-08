@@ -63,10 +63,10 @@ class Post < ApplicationRecord
   # タグ用のメソッド
   def save_tag(sent_tags)
     # タグをスペース区切りで分割して配列にする＋連続した空白にも対応
-    tag_list = tags.split(/[[:blank:]]+/)
+    tag_list = sent_tags.split(/[[:blank:]]+/)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
     
     old_tags.each do |old_tag|
       self.tags.delete
