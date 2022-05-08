@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
-    else  
+    else
       @posts = Post.all
     end
   end
