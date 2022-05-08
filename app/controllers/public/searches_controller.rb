@@ -1,11 +1,11 @@
 class Public::SearchesController < ApplicationController
 
   def search
-    content = params[:content]
+    @content = params[:content]
     # @records = Post.looks(content) && User.looks(content).where("is_deleted = ?", false)
 
-    @posts = Post.looks(content).page(params[:page]).per(3)
-    @users = User.looks(content).where("is_deleted = ?", false).page(params[:page]).per(10)
+    @posts = Post.looks(@content).page(params[:page]).per(3)
+    @users = User.looks(@content).where("is_deleted = ?", false).page(params[:page]).per(10)
 
     # if users.present? and posts.present?
     # @records = users + posts
