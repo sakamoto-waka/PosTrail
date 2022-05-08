@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
       params.require(:user).permit(:name, :introduction, :is_deleted, :account_image)
     end
     
-    def user_find_from_params
+    def set_user
       @user = User.find(params[:id])
     end
   

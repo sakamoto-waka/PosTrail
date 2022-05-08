@@ -1,6 +1,5 @@
 = (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんの詳細ページ")
-= @user.name
-= @user.introduction
+= render 'user_show', user: @user
 %p follows
 = link_to "#{@user.followings.count}人", user_followings_path(@user)
 
@@ -14,6 +13,8 @@
   = render 'public/notifications/bell_mark'
 - elsif user_signed_in?
   = render 'public/relationships/follow_btn', user: @user
+  
+= link_to 'いいね一覧', likes_user_path(@user)  
 
 // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
 %h2 投稿

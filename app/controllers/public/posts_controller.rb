@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
 
   private
     # url直打ち対策
-    def no_post_user_deleted
+    def no_post_when_user_deleted
       @post = Post.find(params[:id])
       redirect_to posts_path if @post.user.is_deleted == true
     end
