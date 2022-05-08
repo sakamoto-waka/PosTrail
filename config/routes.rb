@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'tags/index'
+    get 'tags/show'
+  end
   get 'tags/index'
   get 'tags/show'
   devise_for :users, skip: [:passwords], controllers: {
