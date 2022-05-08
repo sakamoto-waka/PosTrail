@@ -10,7 +10,8 @@
       = simple_format(post.body)
       %i.fas.fa-tag
       // 一つ一つを:name型にして取り出す
-      = post.tags.map(&:name).join(',')
+      - post.tags.each do |tag|
+        = link_to tag.name, posts_path(tag_id: tag.id)
       = render 'public/likes/like_btn', post: post
       // コメント用アイコン
       = link_to post_path(post) do
