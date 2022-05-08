@@ -8,8 +8,10 @@
     
 - if @posts.present?
   = render 'public/posts/posts_index', posts: @posts
+  = paginate @posts
 - if @users.present?
   = render 'public/users/user_index', users: @users
+  = paginate @users
   
     
     
