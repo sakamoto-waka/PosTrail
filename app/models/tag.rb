@@ -3,4 +3,9 @@ class Tag < ApplicationRecord
   has_many :posts, through: :post_tags
   
   validates :name, presence: true, uniqueness: true
+  
+  def self.looks(content)
+    Tag.where("name LIKE ?", "%#{content}%")
+  end
+  
 end

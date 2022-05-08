@@ -1,6 +1,5 @@
 = (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんの詳細ページ")
-= @user.name
-= @user.introduction
+= render 'user_show', user: @user
 %p follows
 = link_to "#{@user.followings.count}人", user_followings_path(@user)
 

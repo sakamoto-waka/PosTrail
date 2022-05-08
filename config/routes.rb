@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :tags, only: %w[index destroy]
     resources :notifications, only: :index
     resources :activities, only: :index
+    get 'search' => 'searches#search'
   end
   
   namespace :admin do
