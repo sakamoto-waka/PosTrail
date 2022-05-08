@@ -1,10 +1,11 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_user_deleted, only: [:show]
+  before_action :no_post_when_user_deleted, only: [:show]
 
   def index
-    @tags_list = Tag.all.page(params[:page]).per(5)
+    tags_list = Post.find(PostTag.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @tags_list = tags_list
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
@@ -59,7 +60,7 @@ class Public::PostsController < ApplicationController
 
   private
     # url直打ち対策
-    def no_post_user_deleted
+    def no_post_when_user_deleted
       @post = Post.find(params[:id])
       redirect_to posts_path if @post.user.is_deleted == true
     end
