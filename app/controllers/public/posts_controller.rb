@@ -4,7 +4,13 @@ class Public::PostsController < ApplicationController
   before_action :no_post_user_deleted, only: [:show]
 
   def index
-    @posts = Post.all
+    @tags_list = Tag.all.page(params[:page]).per(5)
+    if params[:tag_id]
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.page(params[:page]).per(20)
+    else
+      @posts = Post.all
+    end
   end
 
   def new
@@ -14,6 +20,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
+      @post.save_tag(params[:post][:tag])
       redirect_to post_path(@post)
       flash[:success] = "投稿しました"
     else
@@ -32,6 +39,11 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      old_tags = PostTag.where("post_id = ?", @post.id)
+      old_tags.each do |old_tag|
+        old_tag.delete
+      end
+      @post.save_tag(params[:post][:tag])
       redirect_to post_path(@post)
       flash[:success] = "投稿内容を更新しました"
     else
