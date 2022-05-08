@@ -1,12 +1,10 @@
 .col-md-6.mx-auto
   - notifications_except_me.each do |notification|
-    - visitor = notification.visitor
-    - visited = notification.visited
     .form-inline
       %span
-        = link_to user_path(visitor) do
+        = link_to user_path(notification.visitor) do
           %strong
-            = visitor.name
+            = notification.visitor.name
         = 'さんが'
 
         - case notification.action
@@ -16,8 +14,7 @@
           = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
           = 'にいいねしました'
         - when 'comment' then
-          // ここ変える
-          - if notification.post.user_id == visited.id
+          - if notification.post.user_id == notification.visited.id
             = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
           - else
             %span
