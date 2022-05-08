@@ -1,17 +1,18 @@
 - posts.each do |post|
   %div
+    - post.tags.each do |tag|
+      = link_to tag.name, posts_path(tag_id: tag.id)
+    = paginate @tags_list  
     // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
+      %i.fas.fa-tag
+      // 一つ一つを:name型にして取り出す
       - if post.trail_image.attached?
         = image_tag post.get_trail_image(100, 100)
         
       = post.trail_place
       = post.user.email
       = simple_format(post.body)
-      %i.fas.fa-tag
-      // 一つ一つを:name型にして取り出す
-      - post.tags.each do |tag|
-        = link_to tag.name, posts_path(tag_id: tag.id)
       = render 'public/likes/like_btn', post: post
       // コメント用アイコン
       = link_to post_path(post) do

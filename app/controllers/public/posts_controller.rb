@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
   before_action :no_post_user_deleted, only: [:show]
 
   def index
-    @tags_list = Tag.all
+    @tags_list = Tag.all.page(params[:page]).per(5)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
