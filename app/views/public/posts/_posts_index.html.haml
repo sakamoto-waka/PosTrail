@@ -8,6 +8,9 @@
       = post.trail_place
       = post.user.email
       = post.body
+      %i.fas.fa-tag
+        // 一つ一つを:name型にして取り出す
+        = post.tags.map(&:name).join('')
       = render 'public/likes/like_btn', post: post
       // コメント用アイコン
       = link_to post_path(post) do
