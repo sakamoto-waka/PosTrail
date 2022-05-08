@@ -19,14 +19,12 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    tag_list = params[:post][:name].split(',')
     if @post.save
-      @post.save_tag(tag_list)
+      @post.save_tag(params[:post][:tag])
       redirect_to post_path(@post)
       flash[:success] = "投稿しました"
     else
       @posts = Post.all
-      @tag_list = Tag.all
       render :new
     end
   end
@@ -41,6 +39,11 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      old_tags = PostTag.where("post_id = ?", @post.id)
+      old_tags.each do |old_tag|
+        old_tag.delete
+      end
+      @post.save_tag(params[:post][:tag])
       redirect_to post_path(@post)
       flash[:success] = "投稿内容を更新しました"
     else
