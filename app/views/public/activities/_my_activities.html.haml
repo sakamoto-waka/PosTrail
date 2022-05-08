@@ -1,0 +1,30 @@
+.form_inline
+  - activities.each do |activity|
+    %span      
+      - case activity.action
+      - when 'following' then
+        = link_to user_path(activity.visited) do
+          %strong
+            = activity.visited.name
+        = "さんをフォローしました"
+      - when 'like' then
+        %span
+          = link_to post_path(activity.post) do
+            %strong
+              = "#{activity.post.user.name}さんの投稿"
+        = "にいいねしました"
+      - when 'comment' then
+        - if activity.post.user_id == activity.visitor.id
+          = link_to "あなたの投稿", activity.post, style: "font-weight: bold;"
+        - else
+          %span
+            = link_to post_path(activity.post) do
+              %strong
+                = activity.post.user.name + 'さんの投稿'
+        = "にコメントしました"
+        %p.text-muted.mb-0
+          = truncate(Comment.find_by(id: activity.comment_id)&.comment, length:15)
+
+    .small.text-muted.text-right
+      = "#{time_ago_in_words(activity.created_at).upcase}前"
+    %hr

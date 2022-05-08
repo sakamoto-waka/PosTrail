@@ -1,2 +1,6 @@
-%h1 Public::Activities#index
-%p Find me in app/views/public/activities/index.html.haml
+.col-md-6.mx-auto
+  - if @activities.exists?
+    = render 'my_activities', activities: @activities
+  - else
+    %p.text-center
+      アクティビティはありません
