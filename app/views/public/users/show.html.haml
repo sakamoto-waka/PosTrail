@@ -10,6 +10,8 @@
 = link_to '詳細', user_path(@user)
 - if @user == current_user
   = link_to '編集', edit_user_path(@user)
+  // 通知用ベルマーク
+  = render 'public/notifications/bell_mark'
 - elsif user_signed_in?
   = render 'public/relationships/follow_btn', user: @user
 

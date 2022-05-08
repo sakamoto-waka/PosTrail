@@ -6,6 +6,8 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = @post.id
     if @comment.save
+      # 通知として保存
+      @post.create_notification_comment(current_user, @comment.id)
       flash.now[:success] = "コメントを送信しました"
       redirect_to @post
     else

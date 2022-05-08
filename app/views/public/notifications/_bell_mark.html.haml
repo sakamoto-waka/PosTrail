@@ -1,0 +1,11 @@
+= link_to notifications_path do
+  - if unchecked_notifications.any?
+    %span.fa-stack.fa-xs
+      %i.far.fa-bell.fa-stack-2x
+      %i.fas.fa-circle.n-circle.fa-stack-1x
+  - else
+    %span.fa-stack.fa-xs
+      %i.far.fa-bell.fa-stack-2x.no-message
+.activities
+  = link_to activities_path do
+    %i.fas.fa-chart-bar.my-activity
