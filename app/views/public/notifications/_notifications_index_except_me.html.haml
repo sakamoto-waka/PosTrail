@@ -7,7 +7,7 @@
         = link_to user_path(visitor) do
           %strong
             = visitor.name
-          = 'さんが'
+        = 'さんが'
 
         - case notification.action
         - when 'following' then
@@ -16,7 +16,7 @@
           = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
           = 'にいいねしました'
         - when 'comment' then
-        // ここ
+          // ここ変える
           - if notification.post.user_id == visited.id
             = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
           - else
@@ -32,6 +32,6 @@
     .small.text-muted.text-right
       %i.fas.fa-history
       = "#{time_ago_in_words(notification.created_at).upcase}前"
-    %span.border-top //horizon rule: 水平線
-  .d-flex.justify-content-center  
-    = paginate notifications_except_me, theme: 'twitter-bootstrap-4'
+    %hr
+  .d-flex.justify-content-center
+    = paginate notifications_except_me
