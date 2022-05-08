@@ -1,11 +1,10 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_when_user_deleted, only: [:show]
+  before_action :no_post_user_deleted, only: [:show]
 
   def index
-    tags_list = Post.find(PostTag.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-    @tags_list = tags_list
+    @tags_list = Tag.all.page(params[:page]).per(5)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
