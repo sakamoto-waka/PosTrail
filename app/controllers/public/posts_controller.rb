@@ -1,15 +1,16 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_user_deleted, only: [:show]
+  before_action :no_post_when_user_deleted, only: [:show]
 
   def index
-    @tags_list = Tag.all.page(params[:page]).per(5)
+    tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
+    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:@age]).per(20)
     end
   end
 
@@ -59,13 +60,13 @@ class Public::PostsController < ApplicationController
 
   private
     # url直打ち対策
-    def no_post_user_deleted
+    def no_post_when_user_deleted
       @post = Post.find(params[:id])
       redirect_to posts_path if @post.user.is_deleted == true
     end
 
     def ensure_correct_user
       @post = Post.find(params[:id])
-      redirect_to post_path(@post) if @post.user != current_user
+      redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in?
     end
 end

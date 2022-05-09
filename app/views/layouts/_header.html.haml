@@ -2,7 +2,7 @@
   %header.Header
     %nav.navbar.navbar-expand-lg.navbar-light.p-3{style: "background-color:#fffacd;"}
       .container
-        -if request.path.match(/\/admin(\/)?/)
+        -if request.path.match(/\/admin(\/)?/) || admin_signed_in?
           = render 'layouts/admin_header'
         -else
           = render 'layouts/user_header'

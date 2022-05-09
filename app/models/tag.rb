@@ -3,4 +3,11 @@ class Tag < ApplicationRecord
   has_many :posts, through: :post_tags
   
   validates :name, presence: true, uniqueness: true
+  
+  def self.looks(content)
+    tags = Tag.where("name LIKE ?", "%#{content}%")
+    # 一つずつ取得し、後ろの計算をしてまた一つ取得、計算を繰り返す
+    return tags.inject(init = []) { |result, tag| result + tag.books }
+  end
+  
 end

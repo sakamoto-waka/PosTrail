@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  
+  default_scope -> { order(created_at: :desc) }
+  
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -30,7 +33,7 @@ class Post < ApplicationRecord
                                                              action: "like")
       # 自分がした自分へのいいねは通知済みにする
       if notification.visitor_id == notification.visited_id
-        notification.checked == true
+        notification.checked = true
       end
       notification.save if notification.valid?
     end
@@ -63,7 +66,7 @@ class Post < ApplicationRecord
   # タグ用のメソッド
   def save_tag(sent_tags)
     # タグをスペース区切りで分割して配列にする＋連続した空白にも対応
-    tag_list = sent_tags.split(',')
+    tag_list = sent_tags.split(/[[:blank:]]+/)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
@@ -73,12 +76,15 @@ class Post < ApplicationRecord
       # tag_idを検索？
       Tag.find_by(name: old_tag)
     end
-    
     # 重複していないタグをtagsの中に代入（保存）
     new_tags.each do |new_tag|
       new_post_tag = Tag.find_or_create_by(name: new_tag)
       self.tags << new_post_tag
     end
+  end
+  
+  def self.looks(content)
+    Post.where("trail_place LIKE ? OR body LIKE ?", "%#{content}%", "%#{content}%")
   end
 
 end

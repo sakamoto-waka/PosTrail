@@ -1,0 +1,8 @@
+
+%h1 タグ一覧
+
+- @tags.each do |tag|
+  = tag.name
+  = "(#{tag.posts.count})"
+  - if admin_signed_in?
+    = link_to '削除', tags_list_destroy_admin_post_path(tag.id), method: :delete, class: "btn btn-danger"

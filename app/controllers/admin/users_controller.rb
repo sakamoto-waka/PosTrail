@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :user_find_from_params
+  before_action :set_user
   
   def show
     @user = User.find(params[:id])
