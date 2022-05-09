@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
   before_action :no_post_when_user_deleted, only: [:show]
 
   def index
-    tags_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(25).pluck(:tag_id))
+    tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
