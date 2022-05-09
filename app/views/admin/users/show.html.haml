@@ -1,6 +1,3 @@
 %h1 管理者用ユーザー詳細
 
-= @user.name
-= @user.introduction
-- if @user.is_deleted == false
-  = @user.email
+= render 'public/users/user_show', user: @user

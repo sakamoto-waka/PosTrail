@@ -1,2 +1,5 @@
-%h1 いいねした投稿一覧
-= render 'public/posts/posts_index', posts: @like_posts
+- if @like_posts.present?
+  %h1 いいねした投稿一覧
+  = render 'public/posts/posts_index', posts: @like_posts
+- else  
+  %p 通知はありません
