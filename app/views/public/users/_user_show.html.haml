@@ -8,10 +8,16 @@
 %p followers
 = link_to "#{@user.followers.count}人", user_followers_path(user)
 
-= link_to '詳細', user_path(user)
+= admin_signed_in? ? (link_to '管理者用詳細', admin_user_path(user)) : (link_to '詳細', user_path(user))
 - if user == current_user
   = link_to '編集', edit_user_path(user)
   // 通知用ベルマーク
   = render 'public/notifications/bell_mark'
 - elsif user_signed_in?
   = render 'public/relationships/follow_btn', user: user
+  
+= link_to 'いいね一覧', likes_user_path(@user)  
+
+// ⚠いいねしたら投稿一覧に飛ぶ問題発生中
+%h2 投稿
+= render 'public/posts/posts_index', posts: @user.posts, tags_list: @tags_list  
