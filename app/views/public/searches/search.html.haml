@@ -1,10 +1,10 @@
 // 検索結果をタブ表示で分岐
 %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
-  %li.nav-item.w-50.bg-light.active{role: "presentation"}
+  %li.nav-item.col-4.bg-light.active{role: "presentation"}
     %a#post-tab.nav-link.active.link-text{"aria-controls" => "post", "data-toggle" => "tab", href: "#post", role: "tab"} 投稿
-  %li.nav-item.w-50.bg-light.active{role: "presentation"}
+  %li.nav-item.col-4.bg-light.active{role: "presentation"}
     %a#tag-tab.nav-link.link-text{"aria-controls" => "tag", "data-toggle" => "tab", href: "#tag", role: "tab"} タグ
-  %li.nav-item.w-50.bg-light.active{role: "presentation"}
+  %li.nav-item.col-4.bg-light.active{role: "presentation"}
     %a#user-tab.nav-link.link-text{"aria-controls" => "user", "data-toggle" => "tab", href: "#user", role: "tab"} ユーザー
   
 #myTabContent.tab-content
@@ -16,9 +16,10 @@
       - else
         = "「#{@content}」に該当するワードはありませんでした"
         
-  #post.tab-pane.fade.show.active{"aria-labelledby" => "tag-tab", role: "tabpanel"}
+  #tag.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
-      - if @tags.present?
+      // 配列の中身が空じゃなかったら
+      - if !@tags.empty?
         = render 'public/posts/posts_index', posts: @tags
         = paginate @tags
       - else
