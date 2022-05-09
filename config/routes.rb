@@ -33,7 +33,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top' #usersのindex代わり
     resources :users, only: %w[show edit update destroy]
-    resources :posts, only: %w[index show destroy]
+    resources :posts, only: %w[index show destroy] do
+      collection do
+        get 'tags_list' => 'posts#tags_list'
+      end
+      member do
+        delete 'tags_list_destroy' => 'posts#tags_list_destroy' 
+      end
+    end
     resources :comments, only: :destroy
   end
   
