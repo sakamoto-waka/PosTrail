@@ -6,7 +6,7 @@
         = image_tag post.get_trail_image(100, 100)
         
       = post.trail_place
-      = post.user.email
+      = post.user.name
       // 投稿内容の表示を改行ありにする
       = simple_format(post.body) 
       %i.fas.fa-tag
