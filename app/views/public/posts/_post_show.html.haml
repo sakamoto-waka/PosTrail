@@ -1,6 +1,6 @@
 - if post.trail_image.attached?
   = image_tag post.get_trail_image(100, 100)
-= post.user.email
+= link_to post.user.name, user_path(post.user)
 = post.trail_place
 = simple_format(post.body)
 
