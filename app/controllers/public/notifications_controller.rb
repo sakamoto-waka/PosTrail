@@ -1,4 +1,6 @@
 class Public::NotificationsController < ApplicationController
+  before_action authenticate_user!
+  
   def index
     notifications = current_user.passive_notifications
     # 通知を一回したら確認済みに変更
