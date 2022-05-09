@@ -9,10 +9,13 @@
         = "さんをフォローしました"
       - when 'like' then
         %span
-          = link_to post_path(activity.post) do
-            %strong
-              = "#{activity.post.user.name}さんの投稿"
-        = "にいいねしました"
+          - if activity.post.user_id == activity.visitor.id
+            = link_to "あなたの投稿", activity.post, style: "font-weight: bold;"
+          - else  
+            = link_to post_path(activity.post) do
+              %strong
+                = "#{activity.post.user.name}さんの投稿"
+          = "にいいねしました"
       - when 'comment' then
         - if activity.post.user_id == activity.visitor.id
           = link_to "あなたの投稿", activity.post, style: "font-weight: bold;"

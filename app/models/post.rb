@@ -33,7 +33,7 @@ class Post < ApplicationRecord
                                                              action: "like")
       # 自分がした自分へのいいねは通知済みにする
       if notification.visitor_id == notification.visited_id
-        notification.checked == true
+        notification.checked = true
       end
       notification.save if notification.valid?
     end

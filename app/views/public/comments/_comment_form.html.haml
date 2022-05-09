@@ -1,3 +1,4 @@
 = form_with model: [post, comment] do |f|
-  = f.text_area :comment
+  // ログインしないとコメントできないことを伝えてる
+  = user_signed_in? ? (f.text_area :comment) : (f.text_area :comment, placeholder: "ログイン後に送信できます")
   = f.submit '送信'

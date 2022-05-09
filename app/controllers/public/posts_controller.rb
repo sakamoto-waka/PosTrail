@@ -1,10 +1,11 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_user_deleted, only: [:show]
+  before_action :no_post_when_user_deleted, only: [:show]
 
   def index
-    @tags_list = Tag.all.page(params[:page]).per(5)
+    tags_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(25).pluck(:tag_id))
+    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
