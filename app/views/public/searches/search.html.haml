@@ -1,26 +1,20 @@
-// - @records.each do |record|
-//   - if record.class == Post
-//     = render 'public/posts/post_show', post: record
-//     = paginate @records
-//   - elsif record.class == User
-//     = render 'public/users/user_show', user: record
-//     = paginate record
-    
-// - if @posts.present?
-//   = render 'public/posts/posts_index', posts: @posts
-//   = paginate @posts
-// - if @users.present?
-//   = render 'public/users/user_index', users: @users
-//   = paginate @users
-    
+// 検索結果をタブ表示で分岐
 %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
   %li.nav-item.w-50.bg-light.active{role: "presentation"}
-    %a#user-tab.nav-link.active.link-text{"aria-controls" => "user", "data-toggle" => "tab", href: "#user", role: "tab"} ユーザー
+    %a#post-tab.nav-link.active.link-text{"aria-controls" => "user", "data-toggle" => "tab", href: "#post", role: "tab"} 投稿
   %li.nav-item.w-50.bg-light.active{role: "presentation"}
-    %a#post-tab.nav-link.link-text{"aria-controls" => "post", "data-toggle" => "tab", href: "#post", role: "tab"} 投稿
+    %a#user-tab.nav-link.link-text{"aria-controls" => "post", "data-toggle" => "tab", href: "#user", role: "tab"} ユーザー
   
 #myTabContent.tab-content
-  #user.tab-pane.fade.show.active{"aria-labelledby" => "user-tab", role: "tabpanel"}
+  #post.tab-pane.fade.show.active{"aria-labelledby" => "user-tab", role: "tabpanel"}
+    .ml-1.mt-5.mb-2
+      - if @posts.present?
+        = render 'public/posts/posts_index', posts: @posts
+        = paginate @posts
+      - else
+        = "「#{@content}」に該当するワードはありませんでした"
+
+  #user.mb-5.tab-pane.fade{"aria-labelledby" => "post-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
       - if @users.present?
         = render 'public/users/user_index', users: @users
@@ -28,10 +22,4 @@
       - else
         = "「#{@content}」に該当するワードはありませんでした"
 
-  #post.mb-5.tab-pane.fade{"aria-labelledby" => "post-tab", role: "tabpanel"}
-    .ml-1.mt-5.mb-2
-      - if @posts.present?
-        = render 'public/posts/posts_index', posts: @posts
-        = paginate @posts
-      - else
-        = "「#{@content}」に該当するワードはありませんでした"
+

@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:@age]).per(20)
     end
   end
 

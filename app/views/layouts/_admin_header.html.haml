@@ -46,7 +46,7 @@
           %i.fas.fa-sign-in-alt
           %b ログイン
   %ul.navbar-nav
-    = form_with url: "#", method: :get do |f|
+    = form_with url: search_path, method: :get do |f|
       .h-100
         .searchbar
           = f.text_field :search_text, class: "search_input", placeholder: "ユーザー・タグ検索..."

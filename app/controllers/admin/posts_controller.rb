@@ -7,7 +7,7 @@ class Admin::PostsController < ApplicationController
   end
   
   def tags_list
-    @tags = Tag.all
+    @tags = Tag.includes(:posts).sort { |key, val| key.posts.size <=> val.posts.size }
   end
 
   def show
