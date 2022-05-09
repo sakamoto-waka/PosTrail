@@ -14,9 +14,11 @@
       %header
         = render 'layouts/header'
       %main
-        #background_image
-          .container
-            = yield
+        #notice
+          = render "layouts/notice"
+          #background_image
+            .container
+              = yield
     %footer
       = render 'layouts/footer'
       
