@@ -7,7 +7,8 @@
         
       = post.trail_place
       = post.user.email
-      = simple_format(post.body)
+      // 投稿内容の表示を改行ありにする
+      = simple_format(post.body) 
       %i.fas.fa-tag
       // 一つ一つを:name型にして取り出す
       - post.tags.each do |tag|
@@ -18,7 +19,7 @@
         %i.far.fa-comment-dots
         = post.comments.count
       // admin用のルーティングと分岐
-      = admin_signed_in? ? (link_to '詳細', admin_post_path(post)) : (link_to '詳細', post_path(post))
+      = link_to '詳細', post_path(post) unless admin_signed_in?
       - if admin_signed_in?
         = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
         = link_to '詳細', admin_post_path(post)

@@ -1,6 +1,4 @@
 - post.comments.each do |comment|
-  #comment_error
-    = render "layouts/errors", obj: comment
   %tr
     %td
       = link_to(comment.user) do
@@ -8,8 +6,10 @@
         %br/
         = comment.user.name
     %td.p-2
-    // コメントテーブルのコメントカラム    
+    // コメントテーブルのコメントカラム
     = comment.comment
-    - if comment.user == current_user
+    - if (comment.user == current_user) || admin_signed_in?
       %td
-      = link_to 'Destroy', post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger btn-sm"  
+      = link_to 'Destroy', post_comment_path(comment.post, comment), method: :delete,
+                                                                     data: { :confirm => "コメントを削除しますか？" },
+                                                                     class: "btn btn-danger btn-sm"
