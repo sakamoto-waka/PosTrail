@@ -1,0 +1,17 @@
+$main-color: desaturate(#DEB887, 0%);
+$accent-color: adjust-hue($main-color, 200);
+$base-color: #fff;
+$text-color: #4a2d08;
+
+header {
+  background-color: $main-color;
+  color: #eee;
+}
+
+div {
+  color: $text-color;
+}
+
+.btn {
+  color: $accent-color;
+}

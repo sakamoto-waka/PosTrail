@@ -15,36 +15,36 @@
   %ul.navbar-nav.ml-auto
     - if user_signed_in?
       %li
-        = link_to user_path(current_user), class: 'nav-link text-dark heaedr-link' do
+        = link_to user_path(current_user), class: 'nav-link header-link' do
           %i.fas.fa-user-circle
           %b マイページ
       %li
-        = link_to posts_path, class: 'nav-link text-dark heaedr-link' do
+        = link_to posts_path, class: 'nav-link header-link' do
           %i.fas.fa-horse-head
           %b 投稿一覧
       %li
-        = link_to users_path, class: 'nav-link text-dark heaedr-link news_cart_item' do
+        = link_to users_path, class: 'nav-link header-link' do
           %i.fas.fa-hat-cowboy
           %b ユーザー一覧
       %li
-        = link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark heaedr-link' do
+        = link_to destroy_user_session_path, method: :delete, class: 'nav-link header-link' do
           %i.fas.fa-sign-in-alt
           %b ログアウト
     - else
       %li
-        = link_to about_path, class: 'nav-link text-dark heaedr-link' do
+        = link_to about_path, class: 'nav-link header-link' do
           %i.fas.fa-question-circle
           %b About
       %li
-        = link_to posts_path, class: 'nav-link text-dark heaedr-link' do
+        = link_to posts_path, class: 'nav-link header-link' do
           %i.fas.fa-horse-head
           %b 投稿一覧
       %li
-        = link_to new_user_registration_path, class: 'nav-link text-dark heaedr-link' do
+        = link_to new_user_registration_path, class: 'nav-link header-link' do
           %i.fas.fa-user-plus
           %b 新規登録
       %li
-        = link_to new_user_session_path, class: 'nav-link text-dark heaedr-link' do
+        = link_to new_user_session_path, class: 'nav-link header-link' do
           %i.fas.fa-sign-in-alt
           %b ログイン
     %ul.navbar-nav
