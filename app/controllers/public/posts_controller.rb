@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       @post.save_tag(params[:post][:tag])
       redirect_to post_path(@post)
-      flash[:success] = "投稿しました"
+      flash[:notice] = "投稿しました"
     else
       @posts = Post.all
       render :new
@@ -56,6 +56,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to request.referer
+    flash[:info] = "投稿を削除しました"
   end
 
   private

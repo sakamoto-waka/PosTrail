@@ -21,10 +21,9 @@ class Admin::PostsController < ApplicationController
   end
   
   def tags_list_destroy
-    # debugger
     tag = Tag.find(params[:id])
     tag.destroy 
-    flash[:success] = "タグを消去しました"
+    flash[:notice] = "タグを消去しました"
     redirect_to tags_list_admin_posts_path
   end
   

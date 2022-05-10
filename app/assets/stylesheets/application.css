@@ -16,8 +16,7 @@
 
 @import "color";
 
-
-#background_image {
+#background-image {
   background-image: url(crossword.png);
 }
 

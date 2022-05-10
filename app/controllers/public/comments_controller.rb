@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user! && :authenticate_admin!
+  before_action :authenticate_user! || :authenticate_admin!
   
   def create
     @post = Post.find(params[:post_id])
@@ -8,8 +8,8 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       # 通知として保存
       @post.create_notification_comment(current_user, @comment.id)
-      flash.now[:success] = "コメントを送信しました"
       redirect_to @post
+      flash[:success] = "コメントを送信しました"
     else
       # 非同期化時に変更
       redirect_to post_path(@post)
@@ -20,6 +20,7 @@ class Public::CommentsController < ApplicationController
     Comment.find(params[:id]).destroy
     @post = Post.find(params[:post_id])
     redirect_to @post
+    flash[:info] = "コメントを削除しました"
   end
   
   private

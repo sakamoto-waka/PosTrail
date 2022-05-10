@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
-      flash[:success] = "#{@user.name}さんのユーザー情報を更新しました"
+      flash[:notice] = "#{@user.name}さんのユーザー情報を更新しました"
     else
       render :edit
     end

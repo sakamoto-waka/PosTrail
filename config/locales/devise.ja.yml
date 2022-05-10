@@ -27,7 +27,7 @@ ja:
         remember_me: "次回から自動的にログイン"
     models:
       user: "ユーザー"
-  devise:
+  users:
     confirmations:
       new:
         resend_confirmation_instructions: "アカウント確認メール再送"
