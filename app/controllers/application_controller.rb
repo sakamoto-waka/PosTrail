@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   
   private
+    
+    add_flash_types :success, :info, :warning, :danger
   
     def user_params
       params.require(:user).permit(:name, :introduction, :is_deleted, :account_image)

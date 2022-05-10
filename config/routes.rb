@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :users, only: %w[show edit update destroy]
     resources :posts, only: %w[index show destroy] do
       collection do
-        get 'tags_list' => 'posts#tags_list'
+        get 'tags_index' => 'posts#tags_list'
       end
       member do
         delete 'tags_list_destroy' => 'posts#tags_list_destroy' 

@@ -14,4 +14,9 @@
  *= require_self
  */
 
+@import "color";
+
+#background-image {
+  background-image: url(crossword.png);
+}
 

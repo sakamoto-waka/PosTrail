@@ -1,0 +1,30 @@
+$main-color: desaturate(#DEB887, 0%);
+$accent-color: adjust-hue($main-color, 200);
+$base-color: #fff;
+$text-color: #4a2d08;
+$white: #fff;
+$side_blue_dark: #253141;
+$side_blue_light: #2f3e51;
+$light_blue: #38AEF0;
+$light_gray: #999;
+$black: #434a54;
+$alert_orange: desaturate(red, 30%);
+
+header {
+  background-color: $main-color;
+  color: #eee;
+}
+
+.alert {
+  text-align: center;
+//   &-notice {
+//     background-color: $light-blue;
+//     color: $white;
+//   }
+
+//   &-alert {
+//     background-color: $alert-orange;
+//     color: $white;
+//     opacity: .6;
+//   }
+}

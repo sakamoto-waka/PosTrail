@@ -10,9 +10,15 @@
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header
-      = render 'layouts/header'
-    = yield
+    .min-vh-100
+      %header
+        = render 'layouts/header'
+      %main
+        #flash-message
+          = render "layouts/notice"
+          #background-image
+            .container
+              = yield
     %footer
       = render 'layouts/footer'
       
