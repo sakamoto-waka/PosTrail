@@ -1,8 +1,8 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user! || admin_signed_in?
-  before_action :ensure_correct_user
+  before_action :authenticate_user!, only: :create
+  before_action :ensure_correct_user, only: :destroy
 
-  
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -17,23 +17,26 @@ class Public::CommentsController < ApplicationController
       redirect_to post_path(@post)
     end
   end
-  
+
   def destroy
     @comment.destroy
     @post = Post.find(params[:post_id])
     redirect_to @post
-    flash[:info] = "コメントを削除しました"
-  end
-  
-  private
-  
-    def ensure_correct_user
-      @comment = Comment.find(params[:id]) || admin_signed_in?
-      redirect_to post_path("comment_id = ?", @comment.id)
-    end
     
+    admin_signed_in? ? flash[:danger] = "コメントを削除しました" : flash[:info] = "コメントを削除しました"
+  end
+
+  private
+
+    def ensure_correct_user
+      @comment = Comment.find(params[:id])
+      unless @comment.post.user == current_user || admin_signed_in?
+        redirect_to post_path("comment_id = ?", @comment.id)
+      end
+    end
+
     def comment_params
       params.require(:comment).permit(:comment)
     end
-  
+
 end
