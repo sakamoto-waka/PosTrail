@@ -1,9 +1,9 @@
 %h1 投稿一覧
 = link_to '新規投稿', new_post_path, class: "btn btn-outline-dark form-button-common"
 .row
-  .col-4.tags_list
+  .tags_list.w-25
     = render 'tags_list', tags_list: @tags_list
-  .col-7
+  .col-8
   
     = render 'public/posts/posts_index', posts: @posts
   // (仮)

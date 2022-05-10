@@ -46,7 +46,8 @@ li {
   list-style: none;
 }
 
-h1 {
+// 見出しの下に線
+h1, h3 {
   position: relative;
   padding: 1.5rem;
   text-align: center;
@@ -57,6 +58,17 @@ h1:before {
   bottom: -5px;
   left: calc(50% - 30px);
   width: 60px;
+  height: 5px;
+  content: '';
+  border-radius: 3px;
+  background: $main-color;
+}
+
+h3:before {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 15px);
+  width: 30px;
   height: 5px;
   content: '';
   border-radius: 3px;
