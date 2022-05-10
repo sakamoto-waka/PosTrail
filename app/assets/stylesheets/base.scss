@@ -1,0 +1,70 @@
+$main-color: desaturate(#DEB887, 0%);
+$accent-color: adjust-hue($main-color, 200);
+$base-color: #fff;
+$text-color: #4a2d08;
+$white: #fff;
+$side_blue_dark: #253141;
+$side_blue_light: #2f3e51;
+$light_blue: #38AEF0;
+$light_gray: #999;
+$black: #434a54;
+$alert_orange: desaturate(red, 30%);
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Helvetica Neue",
+               Arial
+               "ヒラギノ角ゴ ProN W3",
+               "Hiragino Kaku Gothic ProN",
+               "Hiragino Sans",
+               Meiryo,
+               sans-serif;
+}
+
+.content {
+  flex: 1;
+  background-image: url(crossword.png);
+}
+
+header, footer {
+  width: 100%;
+  background-color: $main-color;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  position: relative;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+h1:before {
+  position: absolute;
+  bottom: -5px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 5px;
+  content: '';
+  border-radius: 3px;
+  background: $main-color;
+}
+
+
+.alert {
+  text-align: center;
+  font-weight: bold;
+}

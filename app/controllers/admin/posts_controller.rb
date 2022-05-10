@@ -18,13 +18,14 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to request.referer
+    flash[:danger] = "投稿を削除しました"
   end
   
   def tags_list_destroy
     tag = Tag.find(params[:id])
     tag.destroy 
-    flash[:notice] = "タグを消去しました"
     redirect_to tags_list_admin_posts_path
+    flash[:danger] = "タグを消去しました"
   end
   
   private

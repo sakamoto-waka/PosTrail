@@ -1,7 +1,10 @@
 %h3 タグ一覧
-= link_to 'すべての投稿', posts_path
-- if tags_list.present?
-  - tags_list.each do |tag_list|
-    = link_to tag_list.name, posts_path(tag_id: tag_list.id)
-    =  "(#{tag_list.posts.count} )"
-  = paginate tags_list
+%ul
+  %li
+    = link_to 'すべての投稿', posts_path
+  - if tags_list.present?
+    - tags_list.each do |tag_list|
+      %li  
+        = link_to tag_list.name, posts_path(tag_id: tag_list.id)
+        =  "(#{tag_list.posts.count} )"
+      = paginate tags_list
