@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
       flash[:success] = "コメントを送信しました"
     else
       # 非同期化時に変更
-      redirect_to post_path(@post)
+      render "public/posts/show"
     end
   end
 
@@ -22,7 +22,6 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     @post = Post.find(params[:post_id])
     redirect_to @post
-    
     admin_signed_in? ? flash[:danger] = "コメントを削除しました" : flash[:info] = "コメントを削除しました"
   end
 
