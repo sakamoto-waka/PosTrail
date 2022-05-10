@@ -41,7 +41,6 @@ Rails.application.routes.draw do
         delete 'tags_index_destroy' => 'posts#tags_list_destroy'
       end
     end
-    resources :comments, only: :destroy
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

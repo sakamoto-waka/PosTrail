@@ -53,15 +53,18 @@ h1, h3 {
   text-align: center;
 }
 
-h1:before {
-  position: absolute;
-  bottom: -5px;
-  left: calc(50% - 30px);
-  width: 60px;
-  height: 5px;
-  content: '';
-  border-radius: 3px;
-  background: $main-color;
+h1 {
+  margin-bottom: 50px!important;
+  &:before {
+    position: absolute;
+    bottom: -5px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 5px;
+    content: '';
+    border-radius: 3px;
+    background: $main-color;
+  }
 }
 
 h3:before {
