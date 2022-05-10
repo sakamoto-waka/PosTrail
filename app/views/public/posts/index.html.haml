@@ -1,7 +1,10 @@
 %h1 投稿一覧
 = link_to '新規投稿', new_post_path, class: "btn btn-outline-dark form-button-common"
-
-= render 'tags_list', tags_list: @tags_list
-= render 'public/posts/posts_index', posts: @posts
-// (仮)
-= paginate @posts
+.row
+  .tags_list.w-25
+    = render 'tags_list', tags_list: @tags_list
+  .col-8
+  
+    = render 'public/posts/posts_index', posts: @posts
+  // (仮)
+  = paginate @posts

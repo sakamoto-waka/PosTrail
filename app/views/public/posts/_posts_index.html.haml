@@ -2,22 +2,28 @@
   %div
     // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
-      - if post.trail_image.attached?
-        = image_tag post.get_trail_image(100, 100)
-        
-      = post.trail_place
-      = post.user.name
-      // 投稿内容の表示を改行ありにする
-      = simple_format(post.body) 
-      %i.fas.fa-tag
-      // 一つ一つを:name型にして取り出す
-      - post.tags.each do |tag|
-        = link_to tag.name, posts_path(tag_id: tag.id)
-      = render 'public/likes/like_btn', post: post
-      // コメント用アイコン
-      = link_to post_path(post) do
-        %i.far.fa-comment-dots
-        = post.comments.count
+      .card
+        = post.user.name
+        .inline-block
+          = post.trail_place
+        - if post.trail_image.attached?
+          = image_tag post.get_trail_image(100, 100)
+
+        .card-body
+          // 投稿内容の表示を改行ありにする
+          = simple_format(post.body)
+          %i.fas.fa-tag
+          // 一つ一つを:name型にして取り出す
+          - post.tags.each do |tag|
+            = link_to tag.name, posts_path(tag_id: tag.id)
+          = render 'public/likes/like_btn', post: post
+          // コメント用アイコン
+          = link_to post_path(post) do
+            %i.far.fa-comment-dots
+            = post.comments.count
+
+
+
       // admin用のルーティングと分岐
       = link_to '詳細', post_path(post) unless admin_signed_in?
       - if admin_signed_in?
