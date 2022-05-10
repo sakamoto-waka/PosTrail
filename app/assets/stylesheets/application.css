@@ -14,5 +14,4 @@
  *= require_self
  */
 
-@import "base";
-
+@import url("base.scss");
