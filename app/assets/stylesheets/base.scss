@@ -83,3 +83,42 @@ h3:before {
   text-align: center;
   font-weight: bold;
 }
+
+#search-wrap {
+  position: absolute;/*絶対配置にして*/
+  z-index: 2;/*最前面に設定。数字は変更可*/
+  top:13px;
+  right:30px;
+  .fa-search {
+    color: #555;
+  }
+}
+
+/*テキスト入力input設定*/
+ #search-text{
+  position: relative;
+  right: -35px;
+  -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  height: 45px;
+  border: none;
+  opacity: 0;
+  background:$main-color url("https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/7-2-3/img/icon_search.svg") no-repeat 17px center;;
+  background-size: 25px 25px;
+  transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
+  outline: none;
+  cursor: pointer;/*カーソルを指マークに*/
+  &:focus {
+    z-index: -1;
+    opacity: 1;
+    background: #eee;
+    width: 250px;/*テキスト入力エリアが伸びる後の横幅*/
+    padding-left: 20px;
+    box-shadow: 0 2px $main-color;
+    border-radius: 15px;
+  }
+}
+// #search-wrap {
+//   z-index: 2;
+// }
+
