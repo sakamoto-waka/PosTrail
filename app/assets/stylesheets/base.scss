@@ -92,6 +92,7 @@ h3:before {
   width: 1px;
   .search-submit {
     width: 50px;
+    height: 25px;
     border-style: none;
     background: no-repeat url("search-icon.png") 17px center;
     background-size: 20px 20px;
@@ -124,9 +125,6 @@ h3:before {
     border-radius: 15px;
   }
 }
-
-
-
 
 .header-link {
 transition: .4s;
