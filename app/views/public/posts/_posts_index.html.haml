@@ -2,33 +2,40 @@
   %div
     // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
-      .card.post-card
-        = post.user.name
-        .inline-block
-          = post.trail_place
+      .card.post-card.mb-3
+        .card-header
+          .col-11
+            .row.justify-content-between
+              .inline-block
+                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+                = post.user.name
+              .inline-block.my-auto
+                = "クラブ名：#{post.trail_place}" if post.trail_place.present?
         - if post.trail_image.attached?
           = image_tag post.get_trail_image(100, 100)
 
         .card-body
-          // 投稿内容の表示を改行ありにする
-          = simple_format(post.body)
+          .col-11.mx-auto
+            // 投稿内容の表示を改行ありにする
+            = simple_format(post.body)
+        .card-footer    
           %i.fas.fa-tag
-          // 一つ一つを:name型にして取り出す
+          // 一つ一つのタグを:name型にして取り出す
           - post.tags.each do |tag|
             = link_to tag.name, posts_path(tag_id: tag.id)
-          = render 'public/likes/like_btn', post: post
-          // コメント用アイコン
-          = link_to post_path(post) do
-            %i.far.fa-comment-dots
-            = post.comments.count
-
-
-
-      // admin用のルーティングと分岐
-      = link_to '詳細', post_path(post) unless admin_signed_in?
-      - if admin_signed_in?
-        = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
-        = link_to '詳細', admin_post_path(post)
-      - elsif user_signed_in? && post.user.id == current_user.id
-        = link_to '編集', edit_post_path(post)
-        = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+          .inline-block
+            = render 'public/likes/like_btn', post: post
+            // コメント用アイコン
+            = link_to post_path(post) do
+              %i.far.fa-comment-dots
+              = post.comments.count
+  
+          // admin用のルーティングと分岐
+          .flex
+            = link_to '詳細', post_path(post) unless admin_signed_in?
+            - if admin_signed_in?
+              = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+              = link_to '詳細', admin_post_path(post)
+            - elsif user_signed_in? && post.user.id == current_user.id
+              = link_to '編集', edit_post_path(post)
+              = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
