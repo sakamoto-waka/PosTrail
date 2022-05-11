@@ -48,8 +48,6 @@
           %b ログイン
     %ul.navbar-nav
       = form_with url: search_path, method: :get do |f|
-        .h-100.pt-1
-          #search-wrap
-            // %span.search-icon-cover
-            = f.text_field :content, id: "search-text", placeholder: "投稿・ユーザー検索..."
-            = f.submit '', class: "search-submit"
+        #search-wrap
+          = f.text_field :content, id: "search-text", placeholder: "投稿・ユーザー検索..."
+          = f.submit '', class: "search-submit"
