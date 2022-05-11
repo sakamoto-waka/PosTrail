@@ -9,8 +9,10 @@ class Public::PostsController < ApplicationController
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
+    elsif params[:trail_place]
+      @posts = Post.where("trail_place = ?", params[:trail_place])
     else
-      @posts = Post.all.page(params[:@age]).per(20)
+      @posts = Post.all.page(params[:page]).per(20)
     end
   end
 
@@ -60,6 +62,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
+    # post_paramsはapplication_controllerに記述
     # url直打ち対策
     def no_post_when_user_deleted
       @post = Post.find(params[:id])
