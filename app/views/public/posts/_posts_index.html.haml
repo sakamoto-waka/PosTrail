@@ -10,14 +10,14 @@
               = post.user.name
             .inline-block
               = "クラブ名：#{post.trail_place}" if post.trail_place.present?
-              
+
         - if post.trail_image.attached?
           = image_tag post.trail_image, class: ".card-img-top p-3"
-          
+
         .card-body
           // 投稿内容の表示を改行ありにする
           = simple_format(post.body)
-        .card-footer    
+        .card-footer
           %i.fas.fa-tag
           // 一つ一つのタグを:name型にして取り出す
           - post.tags.each do |tag|
@@ -28,7 +28,7 @@
             = link_to post_path(post) do
               %i.far.fa-comment-dots
               = post.comments.count
-  
+
           // admin用のルーティングと分岐
           .flex
             = link_to '詳細', post_path(post) unless admin_signed_in?
