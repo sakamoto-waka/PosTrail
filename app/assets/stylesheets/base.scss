@@ -238,9 +238,3 @@ background-color: rgba(250, 250, 250, 0.5) ;
 //     /*アニメーションの指定*/
 //     transition:.3s ease-out;
 // }
-.hober-complete-characters {
-  text-overflow: ellipse;
-  &:hover {
-    text-overflow: clip;
-  }
-}
