@@ -51,5 +51,4 @@
         .h-100.pt-1
           #search-wrap
             = f.text_field :content, id: "search-text", placeholder: "投稿・ユーザー検索..."
-            = f.button :type => "submit", style: 'border-style: none; background: none;' do
-              %i.fas.fa-search
+            = f.submit '', class: "search-submit"

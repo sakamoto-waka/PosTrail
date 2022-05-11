@@ -58,5 +58,5 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 - IDE：Cloud9
 
 ## 使用素材
-- フリーアイコン（商用可） https://icooon-mono.com/
-- 
+- 馬画像 ICOOOON MONO https://icooon-mono.com/
+- 虫眼鏡アイコン IFN 1048 FREE ICONS https://illustration-free.net/
