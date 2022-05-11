@@ -89,23 +89,18 @@ h3:before {
   z-index: 2;/*最前面に設定。数字は変更可*/
   top: 18px;
   right: 10px;
-  // .search-icon-cover {
-  //   width: 50px;
-  //   z-index: 2;
-  //   background: $main-color;
-  // }
   .search-submit {
     width: 50px;
     border-style: none;
-    background: no-repeat url("magnifying-glass-icon.png") 17px center;
-    background-size: 30px 30px;
+    background: no-repeat url("search-icon.png") 17px center;
+    background-size: 20px 20px;
   }
 }
 
 /*テキスト入力input設定*/
  #search-text{
   position: relative;
-  right: -50px;
+  right: -60px;
   bottom: 5px;
   -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
   width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
@@ -117,14 +112,8 @@ h3:before {
   transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
   outline: none;
   cursor: pointer;/*カーソルを指マークに*/
-  // &::after {
-  //   content: "";
-  //   width: 50px;
-  //   height: 50px;
-  //   background: #eee;
-  // }
   &:focus {
-    right: -20px;
+    right: -15px;
     z-index: -1;
     opacity: 1;
     background: #eee;

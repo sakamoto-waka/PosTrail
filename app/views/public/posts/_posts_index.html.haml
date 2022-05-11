@@ -10,7 +10,7 @@
                 = image_tag post.user.get_account_image(50, 50), class: "mr-2"
                 = link_to post.user.name, user_path(post.user)
             .inline-block.my-auto
-              - if post.trail_place.present?              
+              - if post.trail_place.present?
                 %span クラブ名：
                 = link_to post.trail_place, posts_path(trail_place: post.trail_place)
 
@@ -27,9 +27,9 @@
           - post.tags.each do |tag|
             = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
           // .inline-block
-          
+
           .flex
-            .row.justify-content-between.px-3  
+            .row.justify-content-between.px-3
               = render 'public/likes/like_btn', post: post
               // コメント用アイコン
               = link_to post_path(post) do
@@ -37,7 +37,7 @@
                 = post.comments.count
               // admin用のルーティングと分岐
               = link_to '詳細', post_path(post) unless admin_signed_in?
-  
+
               - if admin_signed_in?
                 = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
                 = link_to '詳細', admin_post_path(post)
