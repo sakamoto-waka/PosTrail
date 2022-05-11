@@ -2,7 +2,7 @@
   %div
     // ユーザーが退会していないかチェック
     - if post.user.active_for_authentication?
-      .card
+      .card.post-card
         = post.user.name
         .inline-block
           = post.trail_place
