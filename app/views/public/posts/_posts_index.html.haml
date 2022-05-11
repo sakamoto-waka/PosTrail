@@ -30,17 +30,19 @@
 
           .flex
             .row.justify-content-between.px-3
-              = render 'public/likes/like_btn', post: post
-              // コメント用アイコン
-              = link_to post_path(post) do
-                %i.far.fa-comment-dots
-                = post.comments.count
-              // admin用のルーティングと分岐
-              = link_to '詳細', post_path(post) unless admin_signed_in?
-
-              - if admin_signed_in?
-                = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
-                = link_to '詳細', admin_post_path(post)
-              - elsif user_signed_in? && post.user.id == current_user.id
-                = link_to '編集', edit_post_path(post)
-                = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+              %span
+                = render 'public/likes/like_btn', post: post
+                // コメント用アイコン
+                = link_to post_path(post) do
+                  %i.far.fa-comment-dots
+                  = post.comments.count
+              %span
+                // admin用のルーティングと分岐
+                = link_to '詳細', post_path(post) unless admin_signed_in?
+  
+                - if admin_signed_in?
+                  = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+                  = link_to '詳細', admin_post_path(post)
+                - elsif user_signed_in? && post.user.id == current_user.id
+                  = link_to '編集', edit_post_path(post)
+                  = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}

@@ -87,7 +87,9 @@ h3:before {
 #search-wrap {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
+  right: 60px;
   bottom: 18px;
+  width: 1px;
   .search-submit {
     width: 50px;
     border-style: none;
@@ -99,7 +101,7 @@ h3:before {
 /*テキスト入力input設定*/
  #search-text{
   position: relative;
-  right: 5px;
+  right: 1px;
   top: 35px;
   -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
   width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
