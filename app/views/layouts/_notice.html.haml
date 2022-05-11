@@ -1,6 +1,5 @@
 - flash.each do |key, value|
   - if bootstrap_alert(key).present?
-    = content_tag(:p, value, class: "alert alert-#{bootstrap_alert(key)}")
+    = content_tag(:div, value, class: "alert alert-#{bootstrap_alert(key)}")
   - else
-    = content_tag(:p, value, class: "alert alert-#{key}")
-  
+    = content_tag(:div, value, class: "alert alert-#{key}")

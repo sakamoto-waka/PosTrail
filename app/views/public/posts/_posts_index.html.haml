@@ -4,20 +4,18 @@
     - if post.user.active_for_authentication?
       .card.post-card.mb-3
         .card-header
-          .col-11
-            .row.justify-content-between
-              .inline-block
-                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-                = post.user.name
-              .inline-block.my-auto
-                = "クラブ名：#{post.trail_place}" if post.trail_place.present?
+          .row.justify-content-between.px-3
+            .inline-block
+              = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+              = post.user.name
+            .inline-block
+              = "クラブ名：#{post.trail_place}" if post.trail_place.present?
         - if post.trail_image.attached?
           = image_tag post.get_trail_image(100, 100)
 
         .card-body
-          .col-11.mx-auto
-            // 投稿内容の表示を改行ありにする
-            = simple_format(post.body)
+          // 投稿内容の表示を改行ありにする
+          = simple_format(post.body)
         .card-footer    
           %i.fas.fa-tag
           // 一つ一つのタグを:name型にして取り出す
