@@ -25,7 +25,6 @@ body {
                "Hiragino Sans",
                Meiryo,
                sans-serif;
-}
 
 .content {
   flex: 1;
@@ -33,6 +32,7 @@ body {
 }
 
 header, footer {
+}
   width: 100%;
   background-color: $main-color;
 }
@@ -95,7 +95,7 @@ h3:before {
     height: 50px;
     right: 100px;
     border-style: none;
-    background: no-repeat url("search-icon.png") 12px center;
+    background: no-repeat image-url("search_icon.png") 12px center;
     background-size: 20px 20px;
   }
 }
@@ -135,6 +135,34 @@ border-radius: 10px
 .header-link:hover {
 transition: .4s;
 background-color: rgba(250, 250, 250, 0.5) ;
+}
+
+.about-image {
+  width: 150px;
+  height: 130px;
+  order: 1;
+  &.image1 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+  &.image3 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+}
+// ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+.about-image {
+  width: 150px;
+  height: 130px;
+  &.image2 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+// 画像をabout-textの左側に配置させる
+.about-text-right {
+  order: 2;
 }
 
 .post-card:hover {
@@ -203,7 +231,7 @@ background-color: rgba(250, 250, 250, 0.5) ;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  
+
 }
 
 // /*hoverした際の形状*/

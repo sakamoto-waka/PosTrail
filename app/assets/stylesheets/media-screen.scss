@@ -13,6 +13,25 @@
     display: inline;
     margin: -6px 0 0 260px;
   }
+  
+  .about-image {
+    width: 150px;
+    height: 130px;
+    order: 1;
+    &.image1 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+    }
+    &.image3 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+    }
+    &.image2 {
+      background: no-repeat image-url("horse_no_image.png") 5px center;
+      background-size: 120px 80px;
+    }
+  }
+  
 }
 
 @media screen and (max-width: 959px) {
