@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     registrations: 'public/registrations',
     sessions: 'public/sessions'
   }
-  devise_scope :public do
-    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  devise_scope :user do
+    post 'guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
   
   devise_for :admin, skip: %w[registrations passwords], controllers: {
     sessions: 'admin/sessions'

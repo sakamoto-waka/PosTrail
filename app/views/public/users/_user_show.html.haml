@@ -8,15 +8,17 @@
 %p followers
 = link_to "#{@user.followers.count}人", user_followers_path(user)
 
-- if user == current_user || admin_signed_in?
-  = admin_signed_in? ? (link_to '管理者用編集', edit_admin_user_path(user)) : (link_to '編集', edit_user_path(user))
-  // 通知用ベルマーク：adminには見えない
-  = render 'public/notifications/bell_mark' unless admin_signed_in?
-- elsif user_signed_in?
-  = render 'public/relationships/follow_btn', user: user
+- unless user.name == "ゲストユーザー"
+  - if user == current_user || admin_signed_in?
+    = admin_signed_in? ? (link_to '管理者用編集', edit_admin_user_path(user)) : (link_to '編集', edit_user_path(user))
+    // 通知用ベルマーク：adminには見えない
+    = render 'public/notifications/bell_mark' unless admin_signed_in?
+  - elsif user_signed_in? && current_user.name != "ゲストユーザー"
+    = render 'public/relationships/follow_btn', user: user
   
-= link_to 'いいね一覧', likes_user_path(@user)  
+
+= link_to 'いいね一覧', likes_user_path(user)  
 
 // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
 %h2 投稿
-= render 'public/posts/posts_index', posts: @user.posts, tags_list: @tags_list  
+= render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list
