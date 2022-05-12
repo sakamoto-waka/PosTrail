@@ -1,6 +1,11 @@
 // スマホ
 @media screen and (max-width: 480px) {
-  .login_customer_disp_name {
+  
+  h1 {
+    padding-top: 0;
+  }
+  
+  .login_name_display {
     display: none;
   }
 
@@ -11,13 +16,13 @@
 }
 
 @media screen and (max-width: 959px) {
-  input.search-submit {
-    // width: 80px;
-    // height: 60px;
-  }
   /*押し間違い防止でログアウトに要素をかける*/
   #search-text{
-    // width: 200px;
-    // right: 80px;
+    width: 80px;
+    right: 27px;
+  }
+  
+  .card-deck.card {
+    min-width: 220px;
   }
 }
