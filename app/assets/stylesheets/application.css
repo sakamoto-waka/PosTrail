@@ -14,5 +14,11 @@
  *= require_self
  */
 
-@import "base";
+@import url("base.scss");
+@import url("media-screen.scss");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

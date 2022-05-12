@@ -1,0 +1,28 @@
+// スマホ
+@media screen and (max-width: 480px) {
+  
+  h1 {
+    padding-top: 0;
+  }
+  
+  .login_name_display {
+    display: none;
+  }
+
+  button.navbar-toggler {
+    display: inline;
+    margin: -6px 0 0 260px;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  /*押し間違い防止でログアウトに要素をかける*/
+  #search-text{
+    width: 80px;
+    right: 27px;
+  }
+  
+  .card-deck.card {
+    min-width: 220px;
+  }
+}

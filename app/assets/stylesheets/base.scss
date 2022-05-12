@@ -29,7 +29,7 @@ body {
 
 .content {
   flex: 1;
-  background-image: url(crossword.png);
+  background-image: image-url("crossword.png");
 }
 
 header, footer {
@@ -53,15 +53,18 @@ h1, h3 {
   text-align: center;
 }
 
-h1:before {
-  position: absolute;
-  bottom: -5px;
-  left: calc(50% - 30px);
-  width: 60px;
-  height: 5px;
-  content: '';
-  border-radius: 3px;
-  background: $main-color;
+h1 {
+  margin-bottom: 50px!important;
+  &:before {
+    position: absolute;
+    bottom: -5px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 5px;
+    content: '';
+    border-radius: 3px;
+    background: $main-color;
+  }
 }
 
 h3:before {
@@ -80,3 +83,167 @@ h3:before {
   text-align: center;
   font-weight: bold;
 }
+
+#search-wrap {
+  position: absolute;/*絶対配置にして*/
+  z-index: 2;/*最前面に設定。数字は変更可*/
+  right: 55px;
+  bottom: 5px;
+  width: 1px;
+  .search-submit {
+    width: 50px;
+    height: 50px;
+    right: 100px;
+    border-style: none;
+    background: no-repeat url("search-icon.png") 12px center;
+    background-size: 20px 20px;
+  }
+}
+
+/*テキスト入力input設定*/
+ #search-text{
+  position: relative;
+  right: 7px;
+  top: 47px;
+  -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  height: 45px;
+  border: none;
+  opacity: 0;
+  background: $main-color;
+  background-size: 25px 25px;
+  transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
+  outline: none;
+  cursor: pointer;/*カーソルを指マークに*/
+  &:focus {
+    right: 245px;
+    z-index: -1;
+    opacity: 1;
+    background: #eee;
+    width: 250px;/*テキスト入力エリアが伸びる後の横幅*/
+    padding-left: 20px;
+    box-shadow: 0 2px $main-color;
+    border-radius: 15px;
+  }
+}
+
+.header-link {
+transition: .4s;
+border-radius: 10px
+}
+
+.header-link:hover {
+transition: .4s;
+background-color: rgba(250, 250, 250, 0.5) ;
+}
+
+.card-height {
+  // height: 500px;
+}
+
+.post-card {
+  // height: 100%;
+  // margin-bottom: 25px;
+  // transition: all 0.2s ease;
+}
+
+
+.post-card:hover {
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  taransform: (1.03);
+}
+
+.card_body {
+  pointer-events: none;
+  text-decoration:none;
+  color:#000000;
+}
+
+.form-button-common {
+  border: 2px solid #555;
+}
+
+.btn-style{
+  /*アニメーションの起点とするためrelativeを指定*/
+  position: relative;
+  overflow: hidden;
+    /*ボタンの形状*/
+  text-decoration: none;
+  display: inline-block;
+    height: 45px;
+    border: 2px solid #555;/* ボーダーの色と太さ */
+    padding: 10px 30px;
+    text-align: center;
+    outline: none;
+    /*アニメーションの指定*/
+    transition: ease .2s;
+}
+
+/*ボタン内spanの形状*/
+.btn-style span {
+  position: relative;
+  z-index: 3;/*z-indexの数値をあげて文字を背景よりも手前に表示*/
+  color:#333;
+}
+
+/*#########大元のボタンスタイルは変更しないでください##### */
+.btn-style:hover span{
+  color:#fff;
+}
+
+/*== 背景が流れる（上から下） */
+.bgtop:before {
+  content: '';
+    /*絶対配置で位置を指定*/
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 2;
+    /*色や形状*/
+  background:  #333;/*背景色*/
+  width: 100%;
+  height: 0;
+    /*アニメーション*/
+  transition:.3s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+}
+
+// /*hoverした際の形状*/
+// .bgtop:hover:before{
+//   height: 100%;
+//   background-color: #333;
+// }
+
+
+// .btnchangeradius1{
+//     /*ボタンの形状*/
+//   display:inline-block;
+//     background: #f5deb3;
+//     color: #696969;
+//     padding: 10px 20px;
+
+//   border: 1px solid #555;
+//     text-decoration: none;
+//     outline: none;
+//     /*アニメーションの指定*/
+//     transition:.3s ease-out;
+// }
+
+// /*hoverした際の角丸のアニメーション*/
+// .btnchangeradius1:hover{
+//   background:#fffacd;
+//   border-radius:20px;
+// }
+
+// .btnchangeradius2{
+//     /*ボタンの形状*/
+//   display:inline-block;
+//     background: #fffacd;
+//     color: #696969;
+//     padding: 10px 20px;
+
+//   // border: 1px solid #555;
+//     text-decoration: none;
+//     outline: none;
+//     /*アニメーションの指定*/
+//     transition:.3s ease-out;
+// }

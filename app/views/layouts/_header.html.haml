@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.px-5-lg.navbar-light.p-3
+%nav.navbar.navbar-expand-lg.navbar-light.py-3.px-5
   // urlの中にadminが含まれていたら
   -if request.path.match(/\/admin(\/)?/) || admin_signed_in?
     = render 'layouts/admin_header'

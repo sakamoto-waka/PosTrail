@@ -1,6 +1,8 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user! || :authenticate_admin!
-  
+  before_action :authenticate_user!, only: :create
+  before_action :ensure_correct_user, only: :destroy
+
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -12,21 +14,28 @@ class Public::CommentsController < ApplicationController
       flash[:success] = "コメントを送信しました"
     else
       # 非同期化時に変更
-      redirect_to post_path(@post)
+      render "public/posts/show"
     end
   end
-  
+
   def destroy
-    Comment.find(params[:id]).destroy
+    @comment.destroy
     @post = Post.find(params[:post_id])
     redirect_to @post
-    flash[:info] = "コメントを削除しました"
+    admin_signed_in? ? flash[:danger] = "コメントを削除しました" : flash[:info] = "コメントを削除しました"
   end
-  
+
   private
-  
+
+    def ensure_correct_user
+      @comment = Comment.find(params[:id])
+      unless @comment.post.user == current_user || admin_signed_in?
+        redirect_to post_path("comment_id = ?", @comment.id)
+      end
+    end
+
     def comment_params
       params.require(:comment).permit(:comment)
     end
-  
+
 end
