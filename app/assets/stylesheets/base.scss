@@ -29,7 +29,7 @@ body {
 
 .content {
   flex: 1;
-  background-image: image-url("crossword.png");
+  background-image: image-url("background_image.png");
 }
 
 header, footer {
@@ -194,6 +194,16 @@ background-color: rgba(250, 250, 250, 0.5) ;
   height: 0;
     /*アニメーション*/
   transition:.3s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+}
+
+.top_page_image {
+  width: auto;
+  height: 400px;
+  background-image: image-url("top_page_image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  
 }
 
 // /*hoverした際の形状*/
