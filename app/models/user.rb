@@ -67,5 +67,12 @@ class User < ApplicationRecord
   def self.looks(content)
     User.where("name LIKE ?", "%#{content}%")    
   end
+  
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
 
 end

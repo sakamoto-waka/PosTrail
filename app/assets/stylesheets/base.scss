@@ -88,7 +88,7 @@ h3:before {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
   right: 55px;
-  bottom: 5px;
+  bottom: 6px;
   width: 1px;
   .search-submit {
     width: 50px;
@@ -136,17 +136,6 @@ border-radius: 10px
 transition: .4s;
 background-color: rgba(250, 250, 250, 0.5) ;
 }
-
-.card-height {
-  // height: 500px;
-}
-
-.post-card {
-  // height: 100%;
-  // margin-bottom: 25px;
-  // transition: all 0.2s ease;
-}
-
 
 .post-card:hover {
   box-shadow: 5px 6px 6px 2px #e9ecef;
