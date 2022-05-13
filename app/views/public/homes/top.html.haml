@@ -26,5 +26,7 @@
     %span.no-text-phone
       「〇〇って外乗施設に行こうか悩んでる。」<br>
       「実際に行ったことある人の感想が知りたい！」
-.text-center
-  = link_to "こんな時にはぜひこのサイトをご活用ください！→", posts_path, class: "button-border"
+= link_to posts_path do
+  .button-border.text-center
+    ぜひこちらのサイトをご活用ください
+    %i.far.fa-hand-point-right

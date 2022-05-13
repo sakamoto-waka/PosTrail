@@ -10,8 +10,7 @@
               = link_to post.user.name, user_path(post.user)
           .inline-block.my-auto
             - if post.trail_place.present?
-              %span クラブ名：
-              = link_to post.trail_place, posts_path(trail_place: post.trail_place)
+              = link_to "クラブ名：#{post.trail_place}", posts_path(trail_place: post.trail_place)
             - else   
 
 

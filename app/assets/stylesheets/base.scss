@@ -28,6 +28,17 @@ body {
                sans-serif;
 }
 
+a:not(.form-button-common, .nav-link) {
+  color: $text-color!important;
+  text-decoration: none!important;
+  &:hover {
+    // color: darken(#4a2d08, 30%)!important;
+    transition: 0.3s!important;
+    background-color: rgba($main-color, 0.1);
+  }
+}
+
+
 .content {
   color: $text-color;
   flex: 1;
@@ -188,7 +199,7 @@ h4 {
 
 .balloon2 {
   @include balloon;
-  
+
   &:before {
     content: "";
     position: absolute;
@@ -270,6 +281,7 @@ h4 {
   right: 55px;
   bottom: 6px;
   width: 1px;
+  filter: brightness(0.5);
   .search-submit {
     width: 50px;
     height: 50px;
@@ -347,7 +359,7 @@ h4 {
 
 /*#########大元のボタンスタイルは変更しないでください##### */
 .btn-style:hover span{
-  color:#fff;
+  color:#eee;
 }
 
 /*== 背景が流れる（上から下） */
