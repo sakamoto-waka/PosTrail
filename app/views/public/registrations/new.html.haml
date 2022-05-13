@@ -1,25 +1,28 @@
+= render "layouts/errors", obj: resource
 %h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "public/shared/error_messages", resource: resource
-  .field
-    = f.label :ユーザーネーム
-    %br/
-    = f.text_field :name, autofocus: true, autocomplete: "name"
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length}文字以上)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "public/shared/links"
+.col-6.mx-auto
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    .field.divise-form
+      %i.fa.fa-user
+      = f.label :ユーザーネーム
+      %br/
+      = f.text_field :name, autofocus: true, autocomplete: "name"
+    .field.divise-form
+      %i.far.fa-envelope
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field.divise-form
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length}文字以上)
+      %br/
+      = f.password_field :password, autocomplete: "new-password"
+    .field.divise-form
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .actions
+      = f.submit "Sign up"
+  = render "public/shared/links"
