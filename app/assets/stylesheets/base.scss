@@ -1,5 +1,6 @@
 $main-color: desaturate(#DEB887, 0%);
-$accent-color: adjust-hue($main-color, 200);
+// $accent-color: adjust-hue($main-color, 200);
+$accent-color: #c4a589;
 $base-color: #fff;
 $text-color: #4a2d08;
 $white: #fff;
@@ -169,7 +170,7 @@ h4 {
     content: "";
     position: absolute;
     bottom: -24px;
-    left: 9%;
+    left: 8.9%;
     border: 12px solid transparent;
     border-top: 12px solid #FFF;
     z-index: 2;
@@ -228,6 +229,11 @@ h4 {
     background: no-repeat image-url("horse_no_image.png") 5px center;
     background-size: 120px 80px;
   }
+}
+
+.top-last-text {
+  background-color: lighten($accent-color, 25%);
+  height: 30px;
 }
 
 

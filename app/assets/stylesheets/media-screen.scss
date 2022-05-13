@@ -8,6 +8,10 @@
     }
   }
   
+  .login_name_display {
+    display: none;
+  }
+  
   .no-text-phone {
     display: none;
   }
@@ -25,10 +29,6 @@
     margin-top: 0px;
   }
   
-  .login_name_display {
-    display: none;
-  }
-
   button.navbar-toggler {
     display: inline;
     margin: -6px 0 0 260px;
