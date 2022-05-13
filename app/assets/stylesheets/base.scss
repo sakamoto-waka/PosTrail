@@ -31,7 +31,7 @@ body {
 a:not(.form-button-common, .nav-link) {
   color: $text-color!important;
   text-decoration: none!important;
-  &:hover {
+  &:hover:not(.devise-link) {
     // color: darken(#4a2d08, 30%)!important;
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);

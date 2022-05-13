@@ -22,6 +22,8 @@
         %i.fas.fa-unlock-alt
         = f.label :password_confirmation
       = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
-    .actions
-      = f.submit "Sign up"
-  = render "public/shared/links"
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "circle-push-button" do
+        新規登録
+        %i.fas.fa-horse
+= render "public/shared/links"
