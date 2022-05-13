@@ -1,28 +1,27 @@
 = render "layouts/errors", obj: resource
 %h2 Sign up
-.col-6.mx-auto
+.col-md-9.col-lg-7.mx-auto
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .field.divise-form
-      %i.fa.fa-user
-      = f.label :ユーザーネーム
-      %br/
-      = f.text_field :name, autofocus: true, autocomplete: "name"
-    .field.divise-form
-      %i.far.fa-envelope
-      = f.label :email
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field.divise-form
-      = f.label :password
-      - if @minimum_password_length
-        %em
-          (#{@minimum_password_length}文字以上)
-      %br/
-      = f.password_field :password, autocomplete: "new-password"
-    .field.divise-form
-      = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fa.fa-user
+        = f.label :ユーザーネーム
+      = f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.far.fa-envelope
+        = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-unlock-alt
+        = f.label :password
+      = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-unlock-alt
+        = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
     .actions
       = f.submit "Sign up"
   = render "public/shared/links"

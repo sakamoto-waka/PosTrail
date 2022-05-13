@@ -1,5 +1,5 @@
 // スマホ
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 507px) {
 
   .top-image-position {
     width: 150px!important;
@@ -7,6 +7,13 @@
       margin-left: 20px!important;
     }
   }
+  
+  .divise-form {
+    display: block;
+  	.devise-label {
+  	  margin-top: 12px
+  	} 
+	}
   
   .login_name_display {
     display: none;
