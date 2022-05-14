@@ -1,8 +1,10 @@
 - if controller_name != 'sessions'
-  .devise-link.col-md-8.col-lg-6.mx-auto.mt-5
-    = link_to new_session_path(resource_name), class: "devise-link-a" do
-      %i.fas.fa-carrot
+  = link_to new_session_path(resource_name) do
+    .devise-link.col-md-8.col-lg-6.mx-auto.mt-5
+      %i.fas.fa-apple-alt
       <strong>既にユーザーの方はこちら
 - if devise_mapping.registerable? && controller_name != 'registrations'
-  = link_to "Sign up", new_registration_path(resource_name), class: "devise-link"
-  %br/
+  = link_to new_registration_path(resource_name) do
+    .devise-link.col-md-8.col-lg-6.mx-auto.mt-5
+      %i.fas.fa-horse
+      <strong>新規登録はこちら
