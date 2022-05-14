@@ -37,5 +37,7 @@
   
   
   - unless current_page?(search_path)
-    = render 'public/comments/comment_form', post: post, comment: comment unless admin_signed_in?
-    = render 'public/comments/post_comment', post: post
+    .comment-respond
+      .comment-form
+        = render 'public/comments/comment_form', post: post, comment: comment unless admin_signed_in?
+      = render 'public/comments/post_comment', post: post
