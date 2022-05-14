@@ -38,7 +38,35 @@ $text-color: #4a2d08;
 	}
 }
 
-/* --カギカッコが伸びるタイプ-- */
+/* --ただの大きめなカギカッコ-- */
+
+.under-stripe-line {
+  position: relative;
+  padding: 1em 2em;
+  text-align: center;
+  &:before, &:after {
+    position: absolute;
+    content: '';
+  }
+  &:after {
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+  }
+  &:before {
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* --カギカッコが伸びるタイプのボタン-- */
 .button-border{
   position: relative;
   align-items: center;

@@ -36,7 +36,6 @@ a:not(.form-button-common, .nav-link, .fa-heart) {
   }
 }
 
-
 .content {
   color: $text-color;
   flex: 1;
@@ -112,33 +111,25 @@ h4 {
   border-bottom: solid 3px $main-color;/*下線*/
 }
 
-.under-stripe-line {
-  position: relative;
-  padding: 1em 2em;
-  text-align: center;
-  &:before, &:after {
-    position: absolute;
-    content: '';
+/*-- kaminariのデザイン変更 --*/
+
+.pagination>li>a {          
+  border: none;    
+  color: $text-color!important;
+  .pagination>li>a:hover {        
+    border-radius: 15px;
   }
 }
-
-.under-stripe-line:after {
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  border-top: 2px solid #000;
-  border-left: 2px solid #000;
+.pagination>.active>a {     
+  background: $button-color!important;  
+  border-radius: 15px;
 }
 
-.under-stripe-line:before {
-  right: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000;
-}
+/* ==================================================
+
+              トップページ＋アバウトページ
+
+===================================================== */
 
 .top_page_image {
   width: auto;
@@ -148,6 +139,8 @@ h4 {
   background-size: contain;
   background-position: center;
 }
+
+/* --会話風-- */
 
 @mixin balloon {
   position: relative;
@@ -212,6 +205,8 @@ h4 {
   }
 }
 
+/* --アバウトページ写真左右に-- */
+
 @mixin image-position {
   width: 170px;
   height: 130px;
@@ -261,11 +256,17 @@ h4 {
   }
 }
 
-// 画像をabout-textの左側に配置させる
+/* --画像をabout-textの左側に配置させる-- */
+
 .about-text-right {
   order: 2;
 }
 
+/* ==================================================
+
+                    検索バー
+
+===================================================== */
 
 #search-wrap {
   position: absolute;/*絶対配置にして*/
