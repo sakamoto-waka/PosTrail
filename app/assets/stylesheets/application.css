@@ -15,7 +15,9 @@
  */
 
 @import url("base.scss");
+@import url("designs");
 @import url("media-screen.scss");
+
 
 * {
   margin: 0;

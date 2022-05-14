@@ -1,0 +1,234 @@
+$main-color: desaturate(#DEB887, 0%);
+$accent-color: #c4a589;
+// $button-color: rgba(#3f77af, 0.5);
+$button-color: #c7aeae;
+$button-accent-color: darken($button-color, 15%);
+$text-color: #4a2d08;
+
+.divise-form {
+  display: flex;
+	position: relative;
+	margin: 20px 0;
+	.devise-label {
+	  margin-top: 12px
+	}
+  input {
+  	font: 15px/24px sans-serif;
+  	box-sizing: border-box;
+  	width: 100%;
+  	margin: 8px 0;
+  	padding: 0.3em;
+  	transition: 0.3s;
+  	border: 1px solid $text-color;
+  	border-radius: 4px;
+  	outline: none;
+    &:focus {
+    	border-color: darken($button-color, 25%);
+    }
+  }
+}
+
+// カギカッコが伸びるタイプ
+.button-border{
+  position: relative;
+  align-items: center;
+  margin: 30px auto 10px;
+  max-width: 450px;
+  padding: 10px 25px;
+  // color: #313131;
+  transition: 0.3s ease-in-out;
+  // font-weight: 600;
+  &:after,&:before{
+    content: '';
+  	width: 18px;
+  	height: 18px;
+  	border-color: $accent-color;
+  	box-sizing: border-box;
+  	border-style :solid;
+  	display: block;
+  	position: absolute;
+  	transition: all 0.3s ease-in-out;
+    }
+  &:after{
+    bottom: -6px;
+  	right: -6px;
+  	border-width: 0 2px 2px 0;
+  }
+  &:before{
+    top: -6px;
+  	left: -6px;
+  	border-width: 2px 0 0 2px;
+  	z-index: 5;
+  }
+  &:hover{
+    color: #fff;
+  	background-color: darken($accent-color, 7%);
+  	border-color: $accent-color;
+    &:before,&:after{
+      width: calc(100% + 12px);
+    	height: calc(100% + 12px);
+    	border-color: $accent-color;
+    }
+  }
+}
+
+.circle-push-button {
+  background: $button-color;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  &:hover {
+    background:#fff;
+    color: $button-accent-color;
+  }
+  &:before, &:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: $button-accent-color;
+    transition:400ms ease all;
+  }
+  &:after {
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  &:hover:before, &:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+  svg {
+    margin-bottom: 2px;
+  }
+}
+
+.devise-link {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 2rem 1.5rem 80px;
+  border: 3px solid $text-color;
+  border-radius: 100vh;
+  text-align: center;
+  &:hover {
+    background-color: lighten($button-color, 20%);
+    transition:300ms ease all;
+    .fa-carrot {
+    transition:300ms ease all;
+    color: orange;
+    }
+    .fa-horse {
+      color: #e2d06e;
+      transition:300ms ease all;
+    }
+    .fa-apple-alt {
+      color: lighten(#F24E29, 10%);
+      transition:300ms ease all;
+    }
+  }
+  svg {
+    font-size: 30px;
+    font-size: 3rem;
+    line-height: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    border-radius: 50%;
+    background: $text-color;
+    &.fa-carrot {
+      padding: 8px 7px 11px 9px;
+      right: 10px;
+    }
+    &.fa-horse {
+      padding: 10px 6px 10px 4px;
+      left: 10px;
+    }
+    &.fa-apple-alt {
+      padding: 7px 3px 10px 3px;
+      width: 50px;
+    }
+  }
+}
+
+
+
+.tags_list ul li {
+  position: relative;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  background: lighten($accent-color, 25%);
+  vertical-align: middle;
+  color: #505050;
+  border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
+  &:before{
+    display:inline-block;
+    vertical-align: unset;
+    padding-top: 2px;
+    /*以下白丸つくる*/
+    content:'';
+    width:1em;
+    height: 1em;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+}
+
+
+
+.tag-container {
+  /* Used to position the arrow */
+  position: relative;
+  /* Show the arrow and content and restore pointer events when hovering the trigger element */
+  &:hover .tag-content, &:hover .tag-name-flow {
+    opacity: 1;
+    pointer-events: initial;
+  }
+  .tag-content {
+    opacity: 0;
+    width: 175px;
+    height: 70px;
+    pointer-events: none;
+    background-color: lighten($button-color, 11%);
+    border-radius: 2px;
+    bottom: -55%;
+    left: 115%;
+    position: absolute;
+    transform: translate(-50%, -8px);
+    z-index: 10;
+    padding: 9px;
+    text-align: center;
+    border: 2px solid lighten($button-color, 9%);
+  }
+  .tag-name-flow {
+    // 変更加えてる↓
+    opacity: 0;
+    pointer-events: none;
+    border: 17px solid transparent;
+    border-right-color: lighten($button-color, 11%);
+    bottom: 28%;
+    left: 80%;
+    position: absolute;
+    transform: translate(-50%, 8px);
+    height: 0;
+    width: 0;
+    z-index: 10;
+  }
+}
+
+
+
+

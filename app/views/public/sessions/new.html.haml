@@ -1,15 +1,23 @@
 %h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  .actions
-    = f.submit "Log in"
+.col-md-9.col-lg-7.mx-auto
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .divise-form
+      .devise-label.col-md-4
+        %i.far.fa-envelope
+        = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-unlock-alt
+        = f.label :password
+      = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "circle-push-button" do
+        ログイン
+        %i.fas.fa-apple-alt
 // ゲストログインボタン
-= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post    
+= link_to guest_sign_in_path, method: :post do
+  .devise-link.col-md-8.col-lg-6.mx-auto.mt-5
+    %strong ゲストログイン（閲覧用）
+    %i.fas.fa-carrot
 = render "public/shared/links"

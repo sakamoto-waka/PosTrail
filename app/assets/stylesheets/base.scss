@@ -1,5 +1,6 @@
 $main-color: desaturate(#DEB887, 0%);
-$accent-color: adjust-hue($main-color, 200);
+// $accent-color: adjust-hue($main-color, 200);
+$accent-color: #c4a589;
 $base-color: #fff;
 $text-color: #4a2d08;
 $white: #fff;
@@ -27,9 +28,24 @@ body {
                sans-serif;
 }
 
+a:not(.form-button-common, .nav-link, .fa-heart) {
+  color: $text-color!important;
+  text-decoration: none!important;
+  &:hover:not(.devise-link) {
+    // color: darken(#4a2d08, 30%)!important;
+    transition: 0.3s!important;
+    background-color: rgba($main-color, 0.1);
+  }
+  &:focus {
+    outline: none!important;
+  }
+}
+
+
 .content {
+  color: $text-color;
   flex: 1;
-  background-image: image-url("crossword.png");
+  background-image: image-url("background_image.png");
 }
 
 header, footer {
@@ -42,12 +58,27 @@ header, footer {
   padding-bottom: 50px;
 }
 
+.alert {
+  text-align: center;
+  font-weight: bold;
+}
+
 li {
   list-style: none;
 }
 
+.header-link {
+transition: .4s;
+border-radius: 10px
+}
+
+.header-link:hover {
+transition: .4s;
+background-color: rgba(250, 250, 250, 0.5) ;
+}
+
 // 見出しの下に線
-h1, h3 {
+h1, h2, h3 {
   position: relative;
   padding: 1.5rem;
   text-align: center;
@@ -67,7 +98,7 @@ h1 {
   }
 }
 
-h3:before {
+h2:before, h3:before {
   position: absolute;
   bottom: 10px;
   left: calc(50% - 15px);
@@ -78,11 +109,174 @@ h3:before {
   background: $main-color;
 }
 
-
-.alert {
-  text-align: center;
-  font-weight: bold;
+h4 {
+  margin: 30px auto!important;
+  padding: 0.5em;/*文字周りの余白*/
+  color: $text-color;/*文字色*/
+  background: rgba($main-color, 0.1);/*背景色*/
+  border-bottom: solid 3px $main-color;/*下線*/
 }
+
+.under-stripe-line {
+  position: relative;
+  padding: 1em 2em;
+  text-align: center;
+  &:before, &:after {
+    position: absolute;
+    content: '';
+  }
+}
+
+.under-stripe-line:after {
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+}
+
+.under-stripe-line:before {
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+
+
+
+
+
+
+.top_page_image {
+  width: auto;
+  height: 400px;
+  background-image: image-url("top_page_image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+@mixin balloon {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 2px #555;
+  box-sizing: border-box;
+  p {
+    margin: 0;
+    padding: 3px;
+  }
+}
+
+.balloon1 {
+  @include balloon;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    left: 8.9%;
+    border: 12px solid transparent;
+    border-top: 12px solid #FFF;
+    z-index: 2;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 8.5%;
+    border: 14px solid transparent;
+    border-top: 14px solid #555;
+    z-index: 1;
+  }
+}
+
+.balloon2 {
+  @include balloon;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -23px;
+    left: 83.5%;
+    border: 12px solid transparent;
+    border-bottom: 12px solid #FFF;
+    z-index: 2;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: -28px;
+    left: 83%;
+    border: 14px solid transparent;
+    border-bottom: 14px solid #555;
+    z-index: 1;
+  }
+}
+
+@mixin image-position {
+  width: 170px;
+  height: 130px;
+}
+
+.top-image-position {
+  @include image-position;
+  order: 1;
+  &.top-image1 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+.top-image-position {
+  @include image-position;
+  &.top-image2 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+.top-last-text {
+  background-color: lighten($accent-color, 25%);
+  height: 30px;
+}
+
+
+.image-position {
+  @include image-position;
+  order: 1;
+  &.image1 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+  &.image3 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+}
+// ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+.image-position {
+  @include image-position;
+  &.image2 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+// 画像をabout-textの左側に配置させる
+.about-text-right {
+  order: 2;
+}
+
 
 #search-wrap {
   position: absolute;/*絶対配置にして*/
@@ -90,12 +284,13 @@ h3:before {
   right: 55px;
   bottom: 6px;
   width: 1px;
+  filter: brightness(0.5);
   .search-submit {
     width: 50px;
     height: 50px;
     right: 100px;
     border-style: none;
-    background: no-repeat url("search-icon.png") 12px center;
+    background: no-repeat image-url("search_icon.png") 12px center;
     background-size: 20px 20px;
   }
 }
@@ -125,16 +320,6 @@ h3:before {
     box-shadow: 0 2px $main-color;
     border-radius: 15px;
   }
-}
-
-.header-link {
-transition: .4s;
-border-radius: 10px
-}
-
-.header-link:hover {
-transition: .4s;
-background-color: rgba(250, 250, 250, 0.5) ;
 }
 
 .post-card:hover {
@@ -177,7 +362,7 @@ background-color: rgba(250, 250, 250, 0.5) ;
 
 /*#########大元のボタンスタイルは変更しないでください##### */
 .btn-style:hover span{
-  color:#fff;
+  color:#eee;
 }
 
 /*== 背景が流れる（上から下） */
@@ -195,6 +380,7 @@ background-color: rgba(250, 250, 250, 0.5) ;
     /*アニメーション*/
   transition:.3s cubic-bezier(0.8, 0, 0.2, 1) 0s;
 }
+
 
 // /*hoverした際の形状*/
 // .bgtop:hover:before{
