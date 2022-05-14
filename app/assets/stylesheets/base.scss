@@ -23,7 +23,7 @@ body {
                sans-serif;
 }
 
-a:not(.form-button-common, .nav-link, .fa-heart) {
+a:not(#search-text, .form-button-common, .nav-link, .fa-heart) {
   color: $text-color!important;
   text-decoration: none!important;
   &:hover:not(.devise-link) {
@@ -71,7 +71,7 @@ transition: .4s;
 background-color: rgba(250, 250, 250, 0.5) ;
 }
 
-// 見出しの下に線
+/* --見出しの下に線-- */
 h1, h2, h3 {
   position: relative;
   padding: 1.5rem;
@@ -121,7 +121,7 @@ h4 {
   }
 }
 .pagination>.active>a {     
-  background: $button-color!important;  
+  background: lighten($button-color, 10%)!important;  
   border-radius: 15px;
 }
 
