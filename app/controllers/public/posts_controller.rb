@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
     elsif params[:trail_place]
       @posts = Post.where("trail_place = ?", params[:trail_place])
     else
-      @posts = Post.all.page(params[:page]).per(20)
+      @posts = Post.all.page(params[:page]).per(3)
     end
   end
 
