@@ -5,8 +5,13 @@
         すべての投稿
       - if tags_list.present?
         - tags_list.each do |tag_list|
-          = link_to posts_path(tag_id: tag_list.id) do
-            %li
-              = tag_list.name.truncate(10)
-              = "(#{tag_list.posts.count} )"
+          .tag-container
+            = link_to posts_path(tag_id: tag_list.id) do
+              - if tag_list.name.size >= 10
+                .tag-content
+                  = tag_list.name
+                .tag-name-flow
+              %li
+                = tag_list.name.truncate(10)
+                = "(#{tag_list.posts.count} )"
             = paginate tags_list

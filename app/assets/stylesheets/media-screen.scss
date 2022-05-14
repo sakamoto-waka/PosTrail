@@ -86,7 +86,7 @@
 
   
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1199px) {
   /*押し間違い防止でログアウトに要素をかける*/
   #search-text{
     width: 80px;
@@ -114,5 +114,16 @@
   //   background: no-repeat image-url("horse_no_image.png") 5px center;
   //   background-size: 120px 80px;
   }
+  
+  .tag-container {
+    .tag-content {
+      left: 130%;
+    }
+    .tag-name-flow {
+      // 変更加えてる↓
+      left: 88%;
+    }  
+  }
+
 
 }

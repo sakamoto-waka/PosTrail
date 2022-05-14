@@ -27,7 +27,7 @@ $text-color: #4a2d08;
     	border-color: darken($button-color, 25%);
     }
   }
-  
+
 }
 
 // lighten($accent-color, 25%)
@@ -174,7 +174,7 @@ $text-color: #4a2d08;
     // &:hover:before {
     //   width: 100%;
     // }
-  }  
+  }
 }
 
 
@@ -201,4 +201,49 @@ $text-color: #4a2d08;
     margin-right: 8px;
   }
 }
+
+
+
+.tag-container {
+  /* Used to position the arrow */
+  position: relative;
+  /* Show the arrow and content and restore pointer events when hovering the trigger element */
+  &:hover .tag-content, &:hover .tag-name-flow {
+    opacity: 1;
+    pointer-events: initial;
+  }
+  .tag-content {
+    opacity: 0;
+    width: 175px;
+    height: 70px;
+    pointer-events: none;
+    background-color: lighten($button-color, 11%);
+    border-radius: 2px;
+    bottom: -55%;
+    left: 115%;
+    position: absolute;
+    transform: translate(-50%, -8px);
+    z-index: 10;
+    padding: 9px;
+    text-align: center;
+    border: 2px solid lighten($button-color, 9%);
+  }
+  .tag-name-flow {
+    // 変更加えてる↓
+    opacity: 0;
+    pointer-events: none;
+    border: 17px solid transparent;
+    border-right-color: lighten($button-color, 11%);
+    bottom: 28%;
+    left: 80%;
+    position: absolute;
+    transform: translate(-50%, 8px);
+    height: 0;
+    width: 0;
+    z-index: 10;
+  }
+}
+
+
+
 
