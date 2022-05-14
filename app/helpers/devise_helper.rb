@@ -4,7 +4,7 @@ module DeviseHelper
     when "alert"
       "danger"
     when "notice"
-      "success"
+      "info"
     when "error"
       "danger"
     end

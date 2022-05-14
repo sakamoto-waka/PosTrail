@@ -1,9 +1,43 @@
-- if post.trail_image.attached?
-  = image_tag post.get_trail_image(100, 100)
-= link_to post.user.name, user_path(post.user)
-= post.trail_place
-= simple_format(post.body)
-
-- unless current_page?(search_path)
-  = render 'public/comments/comment_form', post: post, comment: comment unless admin_signed_in?
-  = render 'public/comments/post_comment', post: post
+.col-lg-9.mx-auto  
+  .card.post-card.mb-5
+    .card-header
+      .row.justify-content-between.px-3
+        .inline-block
+          = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+          = link_to post.user.name, user_path(post.user)
+        .inline-block.my-auto
+          - if post.trail_place.present?
+            %span クラブ名：
+            = link_to post.trail_place, posts_path(trail_place: post.trail_place)
+  
+    = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+  
+    .card-body
+      // 投稿内容の表示を改行ありにする
+      = simple_format(post.body)
+      .small.text-muted.text-right
+        %i.fas.fa-history
+        = "#{time_ago_in_words(post.created_at)}前"
+    .card-footer
+      %i.fas.fa-tag
+      - post.tags.each do |tag|
+        = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+  
+      .flex
+        .row.justify-content-between.px-3
+          %span
+            = render 'public/likes/like_btn', post: post
+            // コメント用アイコン
+            %i.far.fa-comment-dots.ml-2
+            = post.comments.count
+          %span
+            - if user_signed_in? && post.user.id == current_user.id
+              = link_to '編集', edit_post_path(post)
+              = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+  
+  
+  - unless current_page?(search_path)
+    .comment-respond
+      .comment-form
+        = render 'public/comments/comment_form', post: post, comment: comment unless admin_signed_in?
+      = render 'public/comments/post_comment', post: post

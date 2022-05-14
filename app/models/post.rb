@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
+  validates :trail_place, length: { maximum: 25 }
   validates :body, presence: true, length: { maximum: 200 }
 
   def get_trail_image(width, height)

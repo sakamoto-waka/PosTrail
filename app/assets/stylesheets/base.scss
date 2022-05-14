@@ -1,14 +1,10 @@
 $main-color: desaturate(#DEB887, 0%);
-$accent-color: adjust-hue($main-color, 200);
-$base-color: #fff;
+// $accent-color: adjust-hue($main-color, 200);
+$accent-color: #c4a589;
+$button-color: #c7aeae;
+$button-accent-color: darken($button-color, 15%);
 $text-color: #4a2d08;
 $white: #fff;
-$side_blue_dark: #253141;
-$side_blue_light: #2f3e51;
-$light_blue: #38AEF0;
-$light_gray: #999;
-$black: #434a54;
-$alert_orange: desaturate(red, 30%);
 
 html {
   height: 100%;
@@ -27,9 +23,23 @@ body {
                sans-serif;
 }
 
+a:not(#search-text, .form-button-common, .nav-link, .fa-heart) {
+  color: $text-color!important;
+  text-decoration: none!important;
+  &:hover:not(.devise-link) {
+    // color: darken(#4a2d08, 30%)!important;
+    transition: 0.3s!important;
+    background-color: rgba($main-color, 0.1);
+  }
+  &:focus {
+    outline: none!important;
+  }
+}
+
 .content {
+  color: $text-color;
   flex: 1;
-  background-image: image-url("crossword.png");
+  background-image: image-url("background_image.png");
 }
 
 header, footer {
@@ -42,29 +52,47 @@ header, footer {
   padding-bottom: 50px;
 }
 
+.alert {
+  text-align: center;
+  font-weight: bold;
+}
+
 li {
   list-style: none;
 }
 
-// 見出しの下に線
-h1, h3 {
+.header-link {
+transition: .4s;
+border-radius: 10px
+}
+
+.header-link:hover {
+transition: .4s;
+background-color: rgba(250, 250, 250, 0.5) ;
+}
+
+/* --見出しの下に線-- */
+h1, h2, h3 {
   position: relative;
   padding: 1.5rem;
   text-align: center;
 }
 
-h1:before {
-  position: absolute;
-  bottom: -5px;
-  left: calc(50% - 30px);
-  width: 60px;
-  height: 5px;
-  content: '';
-  border-radius: 3px;
-  background: $main-color;
+h1 {
+  margin-bottom: 50px!important;
+  &:before {
+    position: absolute;
+    bottom: -5px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 5px;
+    content: '';
+    border-radius: 3px;
+    background: $main-color;
+  }
 }
 
-h3:before {
+h2:before, h3:before {
   position: absolute;
   bottom: 10px;
   left: calc(50% - 15px);
@@ -75,8 +103,336 @@ h3:before {
   background: $main-color;
 }
 
+h4 {
+  margin: 30px auto!important;
+  padding: 0.5em;/*文字周りの余白*/
+  color: $text-color;/*文字色*/
+  background: rgba($main-color, 0.1);/*背景色*/
+  border-bottom: solid 3px $main-color;/*下線*/
+}
 
-.alert {
-  text-align: center;
-  font-weight: bold;
+/*-- kaminariのデザイン変更 --*/
+
+.pagination>li>a {          
+  border: none;    
+  color: $text-color!important;
+  .pagination>li>a:hover {        
+    border-radius: 15px;
+  }
+}
+.pagination>.active>a {     
+  background: lighten($button-color, 10%)!important;  
+  border-radius: 15px;
+}
+
+/* ==================================================
+
+              トップページ＋アバウトページ
+
+===================================================== */
+
+.top_page_image {
+  width: auto;
+  height: 400px;
+  background-image: image-url("top_page_image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* --会話風-- */
+
+@mixin balloon {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 2px #555;
+  box-sizing: border-box;
+  p {
+    margin: 0;
+    padding: 3px;
+  }
+}
+
+.balloon1 {
+  @include balloon;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    left: 8.9%;
+    border: 12px solid transparent;
+    border-top: 12px solid #FFF;
+    z-index: 2;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 8.5%;
+    border: 14px solid transparent;
+    border-top: 14px solid #555;
+    z-index: 1;
+  }
+}
+
+.balloon2 {
+  @include balloon;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -23px;
+    left: 83.5%;
+    border: 12px solid transparent;
+    border-bottom: 12px solid #FFF;
+    z-index: 2;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: -28px;
+    left: 83%;
+    border: 14px solid transparent;
+    border-bottom: 14px solid #555;
+    z-index: 1;
+  }
+}
+
+/* --アバウトページ写真左右に-- */
+
+@mixin image-position {
+  width: 170px;
+  height: 130px;
+}
+
+.top-image-position {
+  @include image-position;
+  order: 1;
+  &.top-image1 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+.top-image-position {
+  @include image-position;
+  &.top-image2 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+.top-last-text {
+  background-color: lighten($accent-color, 25%);
+  height: 30px;
+}
+
+
+.image-position {
+  @include image-position;
+  order: 1;
+  &.image1 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+  &.image3 {
+  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background-size: 120px 80px;
+  }
+}
+// ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+.image-position {
+  @include image-position;
+  &.image2 {
+    background: no-repeat image-url("horse_no_image.png") 5px center;
+    background-size: 120px 80px;
+  }
+}
+
+/* --画像をabout-textの左側に配置させる-- */
+
+.about-text-right {
+  order: 2;
+}
+
+/* ==================================================
+
+                    検索バー
+
+===================================================== */
+
+#search-wrap {
+  position: absolute;/*絶対配置にして*/
+  z-index: 2;/*最前面に設定。数字は変更可*/
+  right: 55px;
+  bottom: 6px;
+  width: 1px;
+  filter: brightness(0.5);
+  .search-submit {
+    width: 50px;
+    height: 50px;
+    right: 100px;
+    border-style: none;
+    background: no-repeat image-url("search_icon.png") 12px center;
+    background-size: 20px 20px;
+  }
+}
+
+/*テキスト入力input設定*/
+ #search-text{
+  position: relative;
+  right: 7px;
+  top: 47px;
+  -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  height: 45px;
+  border: none;
+  opacity: 0;
+  background: $main-color;
+  background-size: 25px 25px;
+  transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
+  outline: none;
+  cursor: pointer;/*カーソルを指マークに*/
+  &:focus {
+    right: 245px;
+    z-index: -1;
+    opacity: 1;
+    background: #eee;
+    width: 250px;/*テキスト入力エリアが伸びる後の横幅*/
+    padding-left: 20px;
+    box-shadow: 0 2px $main-color;
+    border-radius: 15px;
+  }
+}
+
+/* ==================================================
+
+                      投稿関係
+
+===================================================== */
+
+
+/*--投稿一覧--*/
+
+.post-card:hover {
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  taransform: (1.03);
+}
+
+.card_body {
+  pointer-events: none;
+  text-decoration:none;
+  color:#000000;
+}
+
+/*--投稿フォーム---*/
+
+
+/*--投稿詳細＋コメント欄--*/
+
+.comment-respond { /*入力欄全体の枠*/
+  // border: 2px solid $button-accent-color;
+  margin-top: -2px;
+  padding: 10px 0;
+  background-color: rgba($button-color, 0.1);
+  p {
+    margin: 1em 0;
+  }
+  .comment-form { /*フォーム部分の枠*/
+    padding: 20px;
+    input[type="text"], textarea { /*入力スペースの装飾*/
+      padding: 11px;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      width: 100%;
+      height: 150px;
+      background: lighten(grey, 70%); /*入力スペースの背景色*/
+      &:focus {
+        outline: none!important;
+        border: 2px solid $text-color;
+      }
+    }
+    input[type="submit"] { /*送信ボタンの装飾*/
+      -webkit-appearance: none;
+      padding: 11px;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+      background: lighten($button-color, 7%);
+      color: $text-color;
+      border: none;
+      font-size: 16px;
+      transition: 0.3s;
+      &:hover {
+        color: #fff;
+        background: $button-accent-color;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+.message-balloon {
+  display: flex;
+  align-items: flex-start;
+  max-width: 90%;
+  margin: 20px auto;
+  img {
+    margin: 5px 10px 0 0;
+    padding: 5px;
+  }
+}
+.message-text {
+  flex-grow: 1;
+  padding: 15px 30px;
+  color: #454545;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0px 0px 10px 0px #a7a7a7;
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: solid 6px transparent;
+    border-bottom: solid 6px transparent;
+    position: absolute;
+    top: 25px;
+  }
+}
+
+/* アイコン右 */
+.current-user-comment {
+  margin-top: 20px;
+  flex-direction: row-reverse;
+  img {
+    margin: 5px 0 0 10px;
+  }
+  .message-text {
+    background: #f5f5f5;
+    &::after {
+      border-left: solid 12px #f5f5f5;
+      right: -12px;
+    }
+  }
+}
+
+/* アイコン左 */
+.other-user-comment {
+  .message-text {
+    background: #ece9e3;
+    &::after {
+      border-right: solid 12px #ece9e3;
+      left: -12px;
+    }
+  }
 }

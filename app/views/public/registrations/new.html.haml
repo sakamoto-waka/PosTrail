@@ -1,25 +1,29 @@
+= render "layouts/errors", obj: resource
 %h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "public/shared/error_messages", resource: resource
-  .field
-    = f.label :ユーザーネーム
-    %br/
-    = f.text_field :name, autofocus: true, autocomplete: "name"
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length}文字以上)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
+.col-md-9.col-lg-7.mx-auto
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    .divise-form
+      .devise-label.col-md-4
+        %i.fa.fa-user
+        = f.label :ユーザーネーム
+      = f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.far.fa-envelope
+        = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-unlock-alt
+        = f.label :password
+      = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-unlock-alt
+        = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "col-md-8"
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "circle-push-button" do
+        新規登録
+        %i.fas.fa-horse
 = render "public/shared/links"

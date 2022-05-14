@@ -7,7 +7,7 @@ class Admin::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
     @posts = Post.all
   end
-  
+
   def tags_index
     @tags = Tag.includes(:posts).sort { |key, val| key.posts.size <=> val.posts.size }
   end
@@ -20,16 +20,16 @@ class Admin::PostsController < ApplicationController
     redirect_to request.referer
     flash[:danger] = "投稿を削除しました"
   end
-  
+
   def tags_list_destroy
     tag = Tag.find(params[:id])
-    tag.destroy 
-    redirect_to tags_list_admin_posts_path
-    flash[:danger] = "タグを消去しました"
+    tag.destroy
+    redirect_to tags_index_admin_posts_path
+    flash[:danger] = "'#{tag.name}'タグを消去しました"
   end
-  
+
   private
-  
+
     def post_find_from_params
       @post = Post.find(params[:id])
     end

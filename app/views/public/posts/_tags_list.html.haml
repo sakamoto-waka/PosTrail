@@ -1,11 +1,16 @@
-.card
-  %h3.text-center タグ一覧
-  %ul
-    %li
-      = link_to 'すべての投稿', posts_path
-    - if tags_list.present?
-      - tags_list.each do |tag_list|
-        %li  
-          = link_to tag_list.name, posts_path(tag_id: tag_list.id)
-          =  "(#{tag_list.posts.count} )"
-        = paginate tags_list
+= link_to posts_path do
+  .tags_list
+    %ul
+      %li
+        すべての投稿
+      - if tags_list.present?
+        - tags_list.each do |tag_list|
+          .tag-container
+            = link_to posts_path(tag_id: tag_list.id) do
+              - if tag_list.name.size >= 10
+                .tag-content
+                  = tag_list.name
+                .tag-name-flow
+              %li
+                = tag_list.name.truncate(10)
+                = "(#{tag_list.posts.count} )"
