@@ -1,17 +1,25 @@
 = form_with model: post do |f|
   = render 'layouts/errors', obj: post
-  .form_group
-    = f.label :ベストショット
-    = f.file_field :trail_image, accept: 'image/*'
-  .form_group
-    = f.label :クラブ名
-    = f.text_field :trail_place, class: "form_control"
-  .form_group
-    = f.label :投稿文
-    = f.text_area :body, class: "form_control"
-  .form_group
-    = f.label :タグ
-    = f.text_field :tag, value: post.tags.pluck(:name), class: "form_control"
-
-  .form_group
-    = f.submit '投稿', class: "btn btn-outline-dark font-weight-bold form-button-common mr-5"
+  .col-md-9.col-lg-7.mx-auto
+    .form_group
+      = f.label :ベストショット
+      = f.file_field :trail_image, accept: 'image/*'
+      
+    .divise-form
+      .devise-label.col-md-4
+        %i.fa.fa-user    
+        = f.label :クラブ名
+      = f.text_field :trail_place, class: "form_control"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fa.fa-user
+        = f.label :投稿文
+      = f.text_area :body, class: "form_control"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fa.fa-user
+        = f.label :タグ
+      = f.text_field :tag, value: post.tags.pluck(:name), class: "form_control"
+    
+    .form_group
+      = f.submit '投稿', class: "btn btn-outline-dark font-weight-bold form-button-common mr-5"
