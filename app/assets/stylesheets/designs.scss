@@ -4,6 +4,14 @@ $button-color: #c7aeae;
 $button-accent-color: darken($button-color, 15%);
 $text-color: #4a2d08;
 
+/* ==================================================
+
+                    formやボタン
+
+===================================================== */
+
+/* --様々なformで使用中-- */
+
 .divise-form {
   display: flex;
 	position: relative;
@@ -11,7 +19,7 @@ $text-color: #4a2d08;
 	.devise-label {
 	  margin-top: 12px
 	}
-  input {
+  textarea, input:not(.image-select-box) {
   	font: 15px/24px sans-serif;
   	box-sizing: border-box;
   	width: 100%;
@@ -25,9 +33,12 @@ $text-color: #4a2d08;
     	border-color: darken($button-color, 25%);
     }
   }
+	textarea#post_body {
+	  height: 200px;
+	}
 }
 
-// カギカッコが伸びるタイプ
+/* --カギカッコが伸びるタイプ-- */
 .button-border{
   position: relative;
   align-items: center;
@@ -71,6 +82,8 @@ $text-color: #4a2d08;
   }
 }
 
+/* --ゲストログインで使用してるボタンスタイル-- */
+
 .circle-push-button {
   background: $button-color;
   color:#fff;
@@ -110,6 +123,12 @@ $text-color: #4a2d08;
     margin-bottom: 2px;
   }
 }
+
+.form-button-common {
+  border: 2px solid #555;
+}
+
+/* --fontawesome混ぜ込んだボタン-- */
 
 .devise-link {
   position: relative;
@@ -161,7 +180,31 @@ $text-color: #4a2d08;
   }
 }
 
+.basic-button { /*送信ボタンの装飾*/
+  -webkit-appearance: none;
+  padding: 11px;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  background: lighten($button-color, 7%);
+  color: $text-color;
+  border: none;
+  font-size: 16px;
+  transition: 0.3s;
+  &:hover {
+    color: #fff;
+    background: $button-accent-color;
+    transition: 0.3s;
+  }  
+}
 
+/* ==================================================
+
+                    投稿機能
+
+===================================================== */
+
+/* --タグ-- */
 
 .tags_list ul li {
   position: relative;
@@ -186,7 +229,7 @@ $text-color: #4a2d08;
   }
 }
 
-
+/* --タグ用ツールチップ-- */
 
 .tag-container {
   /* Used to position the arrow */
@@ -227,7 +270,5 @@ $text-color: #4a2d08;
     z-index: 10;
   }
 }
-
-
 
 

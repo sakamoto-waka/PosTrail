@@ -8,16 +8,9 @@
     }
   }
   
-  .divise-form {
-    display: block;
-  	.devise-label {
-  	  margin-top: 12px
-  	} 
-	}
   
-  .login_name_display {
-    display: none;
-  }
+  
+
   
   .no-text-phone {
     display: none;
@@ -80,6 +73,17 @@
     &.top-image2 {
       margin-left: 150px;
     }
+  }
+  
+  .divise-form {
+    display: block;
+  	.devise-label {
+  	  margin-top: 12px
+  	} 
+	}
+	
+  .login_name_display {
+    display: none;
   }
   
 }
