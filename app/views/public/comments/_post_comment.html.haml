@@ -1,15 +1,39 @@
 - post.comments.each do |comment|
-  %tr
-    %td
-      = link_to(comment.user) do
-        = image_tag comment.user.get_account_image(100, 100)
-        %br/
-        = comment.user.name
-    %td.p-2
-    // コメントテーブルのコメントカラム
-    = comment.comment
-    - if (comment.user == current_user) || admin_signed_in?
-      %td
-      = link_to 'Destroy', post_comment_path(comment.post, comment), method: :delete,
-                                                                     data: { :confirm => "コメントを削除しますか？" },
-                                                                     class: "btn btn-danger btn-sm"
+  .onebox
+  - if comment.user == current_user
+    .message-balloon.current-user-comment
+      .user-image
+        = link_to(comment.user) do
+          = image_tag comment.user.get_account_image(50, 50)
+      .message-text
+        %span.text-muted.small
+          投稿者
+        %br
+        = comment.comment
+  - else
+    .message-balloon.other-user-comment
+      .user-image
+        = link_to(comment.user) do
+          = image_tag comment.user.get_account_image(50, 50)
+      .message-text
+        %span.text-muted.small
+          = comment.user.name
+        %br
+        = comment.comment
+
+
+
+  // %tr
+  //   %td
+  //     = link_to(comment.user) do
+  //       = image_tag comment.user.get_account_image(100, 100)
+  //       %br/
+  //       = comment.user.name
+  //   %td.p-2
+  //   // それぞれのコメント表示
+  //   = comment.comment
+  //   - if (comment.user == current_user) || admin_signed_in?
+  //     %td
+  //     = link_to 'Destroy', post_comment_path(comment.post, comment), method: :delete,
+  //                                                                   data: { :confirm => "コメントを削除しますか？" },
+  //                                                                   class: "btn btn-danger btn-sm"

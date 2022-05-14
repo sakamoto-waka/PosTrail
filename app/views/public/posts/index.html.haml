@@ -1,9 +1,16 @@
-%h1 投稿一覧
-= link_to '新規投稿', new_post_path, class: "btn btn-outline-dark form-button-common"
 .row
-  .tags_list.w-25.d-none.d-lg-block
-    = render 'tags_list', tags_list: @tags_list
+  .mx-auto
+    %h1 投稿一覧
+  .new-post-button
+    = link_to new_post_path do
+      %i.fas.fa-plus
+.row
+  .w-25.d-none.d-lg-block
+    .tags_list
+      = render 'tags_list', tags_list: @tags_list
+    .w-75.mx-auto
+      = paginate @tags_list
   .col-xs-sm-md-11.col-lg-8.ml-lg-4.ml-xl-5
     = render 'public/posts/posts_index', posts: @posts
-  // (仮)
-  // = paginate @posts
+    .col-4.mx-auto
+      = paginate @posts

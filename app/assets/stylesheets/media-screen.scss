@@ -8,20 +8,11 @@
     }
   }
   
-  .divise-form {
-    display: block;
-  	.devise-label {
-  	  margin-top: 12px
-  	} 
-	}
-  
-  .login_name_display {
-    display: none;
-  }
-  
   .no-text-phone {
     display: none;
   }
+  
+  
 
 }
 
@@ -82,6 +73,17 @@
     }
   }
   
+  .divise-form {
+    display: block;
+  	.devise-label {
+  	  margin-top: 12px
+  	} 
+	}
+	
+  .login_name_display {
+    display: none;
+  }
+  
 }
 
   
@@ -117,7 +119,7 @@
   
   .tag-container {
     .tag-content {
-      left: 130%;
+      left: 130.8%;
     }
     .tag-name-flow {
       // 変更加えてる↓

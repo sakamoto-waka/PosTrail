@@ -4,15 +4,16 @@ class Public::PostsController < ApplicationController
   before_action :no_post_when_user_deleted, only: [:show]
 
   def index
+    # 投稿数が多い順に取得する
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
-    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
+    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(20)
     elsif params[:trail_place]
       @posts = Post.where("trail_place = ?", params[:trail_place])
     else
-      @posts = Post.all.page(params[:page]).per(20)
+      @posts = Post.all.page(params[:page]).per(15)
     end
   end
 

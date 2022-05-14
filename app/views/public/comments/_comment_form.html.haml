@@ -1,6 +1,6 @@
 = form_with model: [post, comment] do |f|
   #comment_error
     = render "layouts/errors", obj: comment
-  // ログインしないとコメントできないことをプレースホルダー示してる
-  = user_signed_in? ? (f.text_area :comment) : (f.text_area :comment, placeholder: "ログイン後に送信できます")
-  = f.submit '送信'
+  // ログインしないとコメントできないことをプレースホルダーで示してる
+  = user_signed_in? ? (f.text_area :comment, placeholder: "コメントを打つ") : (f.text_area :comment, placeholder: "ログイン後に送信できます")
+  = f.submit '送信', class: "font-weight-bold"

@@ -1,15 +1,10 @@
 $main-color: desaturate(#DEB887, 0%);
 // $accent-color: adjust-hue($main-color, 200);
 $accent-color: #c4a589;
-$base-color: #fff;
+$button-color: #c7aeae;
+$button-accent-color: darken($button-color, 15%);
 $text-color: #4a2d08;
 $white: #fff;
-$side_blue_dark: #253141;
-$side_blue_light: #2f3e51;
-$light_blue: #38AEF0;
-$light_gray: #999;
-$black: #434a54;
-$alert_orange: desaturate(red, 30%);
 
 html {
   height: 100%;
@@ -28,7 +23,7 @@ body {
                sans-serif;
 }
 
-a:not(.form-button-common, .nav-link, .fa-heart) {
+a:not(#search-text, .form-button-common, .nav-link, .fa-heart) {
   color: $text-color!important;
   text-decoration: none!important;
   &:hover:not(.devise-link) {
@@ -40,7 +35,6 @@ a:not(.form-button-common, .nav-link, .fa-heart) {
     outline: none!important;
   }
 }
-
 
 .content {
   color: $text-color;
@@ -77,7 +71,7 @@ transition: .4s;
 background-color: rgba(250, 250, 250, 0.5) ;
 }
 
-// 見出しの下に線
+/* --見出しの下に線-- */
 h1, h2, h3 {
   position: relative;
   padding: 1.5rem;
@@ -117,39 +111,25 @@ h4 {
   border-bottom: solid 3px $main-color;/*下線*/
 }
 
-.under-stripe-line {
-  position: relative;
-  padding: 1em 2em;
-  text-align: center;
-  &:before, &:after {
-    position: absolute;
-    content: '';
+/*-- kaminariのデザイン変更 --*/
+
+.pagination>li>a {          
+  border: none;    
+  color: $text-color!important;
+  .pagination>li>a:hover {        
+    border-radius: 15px;
   }
 }
-
-.under-stripe-line:after {
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  border-top: 2px solid #000;
-  border-left: 2px solid #000;
+.pagination>.active>a {     
+  background: lighten($button-color, 10%)!important;  
+  border-radius: 15px;
 }
 
-.under-stripe-line:before {
-  right: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000;
-}
+/* ==================================================
 
+              トップページ＋アバウトページ
 
-
-
-
-
+===================================================== */
 
 .top_page_image {
   width: auto;
@@ -159,6 +139,8 @@ h4 {
   background-size: contain;
   background-position: center;
 }
+
+/* --会話風-- */
 
 @mixin balloon {
   position: relative;
@@ -223,6 +205,8 @@ h4 {
   }
 }
 
+/* --アバウトページ写真左右に-- */
+
 @mixin image-position {
   width: 170px;
   height: 130px;
@@ -272,11 +256,17 @@ h4 {
   }
 }
 
-// 画像をabout-textの左側に配置させる
+/* --画像をabout-textの左側に配置させる-- */
+
 .about-text-right {
   order: 2;
 }
 
+/* ==================================================
+
+                    検索バー
+
+===================================================== */
 
 #search-wrap {
   position: absolute;/*絶対配置にして*/
@@ -322,6 +312,15 @@ h4 {
   }
 }
 
+/* ==================================================
+
+                      投稿関係
+
+===================================================== */
+
+
+/*--投稿一覧--*/
+
 .post-card:hover {
   box-shadow: 5px 6px 6px 2px #e9ecef;
   taransform: (1.03);
@@ -333,92 +332,107 @@ h4 {
   color:#000000;
 }
 
-.form-button-common {
-  border: 2px solid #555;
-}
+/*--投稿フォーム---*/
 
-.btn-style{
-  /*アニメーションの起点とするためrelativeを指定*/
+
+/*--投稿詳細＋コメント欄--*/
+
+.comment-respond { /*入力欄全体の枠*/
+  // border: 2px solid $button-accent-color;
+  margin-top: -2px;
+  padding: 10px 0;
+  background-color: rgba($button-color, 0.1);
+  p {
+    margin: 1em 0;
+  }
+  .comment-form { /*フォーム部分の枠*/
+    padding: 20px;
+    input[type="text"], textarea { /*入力スペースの装飾*/
+      padding: 11px;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      width: 100%;
+      height: 150px;
+      background: lighten(grey, 70%); /*入力スペースの背景色*/
+      &:focus {
+        outline: none!important;
+        border: 2px solid $text-color;
+      }
+    }
+    input[type="submit"] { /*送信ボタンの装飾*/
+      -webkit-appearance: none;
+      padding: 11px;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+      background: lighten($button-color, 7%);
+      color: $text-color;
+      border: none;
+      font-size: 16px;
+      transition: 0.3s;
+      &:hover {
+        color: #fff;
+        background: $button-accent-color;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+.message-balloon {
+  display: flex;
+  align-items: flex-start;
+  max-width: 90%;
+  margin: 20px auto;
+  img {
+    margin: 5px 10px 0 0;
+    padding: 5px;
+  }
+}
+.message-text {
+  flex-grow: 1;
+  padding: 15px 30px;
+  color: #454545;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  border-radius: 4px;
   position: relative;
-  overflow: hidden;
-    /*ボタンの形状*/
-  text-decoration: none;
-  display: inline-block;
-    height: 45px;
-    border: 2px solid #555;/* ボーダーの色と太さ */
-    padding: 10px 30px;
-    text-align: center;
-    outline: none;
-    /*アニメーションの指定*/
-    transition: ease .2s;
+  box-shadow: 0px 0px 10px 0px #a7a7a7;
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: solid 6px transparent;
+    border-bottom: solid 6px transparent;
+    position: absolute;
+    top: 25px;
+  }
 }
 
-/*ボタン内spanの形状*/
-.btn-style span {
-  position: relative;
-  z-index: 3;/*z-indexの数値をあげて文字を背景よりも手前に表示*/
-  color:#333;
+/* アイコン右 */
+.current-user-comment {
+  margin-top: 20px;
+  flex-direction: row-reverse;
+  img {
+    margin: 5px 0 0 10px;
+  }
+  .message-text {
+    background: #f5f5f5;
+    &::after {
+      border-left: solid 12px #f5f5f5;
+      right: -12px;
+    }
+  }
 }
 
-/*#########大元のボタンスタイルは変更しないでください##### */
-.btn-style:hover span{
-  color:#eee;
+/* アイコン左 */
+.other-user-comment {
+  .message-text {
+    background: #ece9e3;
+    &::after {
+      border-right: solid 12px #ece9e3;
+      left: -12px;
+    }
+  }
 }
-
-/*== 背景が流れる（上から下） */
-.bgtop:before {
-  content: '';
-    /*絶対配置で位置を指定*/
-  position: absolute;
-  top:0;
-  left: 0;
-  z-index: 2;
-    /*色や形状*/
-  background:  #333;/*背景色*/
-  width: 100%;
-  height: 0;
-    /*アニメーション*/
-  transition:.3s cubic-bezier(0.8, 0, 0.2, 1) 0s;
-}
-
-
-// /*hoverした際の形状*/
-// .bgtop:hover:before{
-//   height: 100%;
-//   background-color: #333;
-// }
-
-
-// .btnchangeradius1{
-//     /*ボタンの形状*/
-//   display:inline-block;
-//     background: #f5deb3;
-//     color: #696969;
-//     padding: 10px 20px;
-
-//   border: 1px solid #555;
-//     text-decoration: none;
-//     outline: none;
-//     /*アニメーションの指定*/
-//     transition:.3s ease-out;
-// }
-
-// /*hoverした際の角丸のアニメーション*/
-// .btnchangeradius1:hover{
-//   background:#fffacd;
-//   border-radius:20px;
-// }
-
-// .btnchangeradius2{
-//     /*ボタンの形状*/
-//   display:inline-block;
-//     background: #fffacd;
-//     color: #696969;
-//     padding: 10px 20px;
-
-//   // border: 1px solid #555;
-//     text-decoration: none;
-//     outline: none;
-//     /*アニメーションの指定*/
-//     transition:.3s ease-out;
-// }

@@ -1,17 +1,27 @@
 = form_with model: post do |f|
   = render 'layouts/errors', obj: post
-  .form_group
-    = f.label :ベストショット
-    = f.file_field :trail_image, accept: 'image/*'
-  .form_group
-    = f.label :クラブ名
-    = f.text_field :trail_place, class: "form_control"
-  .form_group
-    = f.label :投稿文
-    = f.text_area :body, class: "form_control"
-  .form_group
-    = f.label :タグ
-    = f.text_field :tag, value: post.tags.pluck(:name), class: "form_control"
+  .col-md-9.col-lg-7.mx-auto
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-camera-retro
+        = f.label :ベストショット
+      = f.file_field :trail_image, accept: 'image/*', class: "image-select-box mt-3"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-horse-head
+        = f.label :クラブ名
+      = f.text_field :trail_place, placeholder: "任意"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-edit
+        = f.label :投稿文
+      = f.text_area :body, placeholder: "どんな体験ができましたか？"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-tags
+        = f.label :タグ
+      = f.text_field :tag, value: post.tags.pluck(:name), placeholder: "複数の場合は空白で区切ってください"
 
-  .form_group
-    = f.submit '投稿', class: "btn btn-outline-dark font-weight-bold form-button-common mr-5"
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
+        = post.present? ? '編集する' : '投稿する'
