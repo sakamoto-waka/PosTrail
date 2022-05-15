@@ -40,11 +40,3 @@
             - elsif admin_signed_in?
               = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
                 %i.fas.fa-trash-alt
-
-
-
-  - unless current_page?(search_path)
-    .comment-respond
-      .comment-form
-        = render 'public/comments/comment_form', post: post, comment: comment unless admin_signed_in?
-      = render 'public/comments/post_comment', post: post

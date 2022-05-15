@@ -1,25 +1,25 @@
-- post.comments.each do |comment|
+- comments.each do |comment|
   .onebox
-  - if comment.user == current_user
-    .message-balloon.current-user-comment
-      .user-image
-        = link_to(comment.user) do
-          = image_tag comment.user.get_account_image(50, 50)
-      .message-text
-        %span.text-muted.small
-          投稿者
-        %br
-        = comment.comment
-  - else
-    .message-balloon.other-user-comment
-      .user-image
-        = link_to(comment.user) do
-          = image_tag comment.user.get_account_image(50, 50)
-      .message-text
-        %span.text-muted.small
-          = comment.user.name
-        %br
-        = comment.comment
+    - if comment.user == current_user
+      .message-balloon.current-user-comment
+        .user-image
+          = link_to(comment.user) do
+            = image_tag comment.user.get_account_image(50, 50)
+        .message-text
+          %span.text-muted.small
+            投稿者
+          %br
+          = comment.comment
+    - else
+      .message-balloon.other-user-comment
+        .user-image
+          = link_to(comment.user) do
+            = image_tag comment.user.get_account_image(50, 50)
+        .message-text
+          %span.text-muted.small
+            = comment.user.name
+          %br
+          = comment.comment
 
 
 
