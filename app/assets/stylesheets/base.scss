@@ -27,7 +27,7 @@ a:not(#search-text, .form-button-common,
       .nav-link, .fa-heart, .delete-button) {
   color: $text-color!important;
   text-decoration: none!important;
-  &:hover:not(.devise-link) {
+  &:hover:not(.devise-link, .post-trash-button, .post-edit-button) {
     // color: darken(#4a2d08, 30%)!important;
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);

@@ -269,21 +269,21 @@ $text-color: #4a2d08;
   svg {
     color: #fff;
   }
-  /*--削除ボタン---*/
-  &, .post-trash-button {
-    background-color: #e05d6f;
-    border: double 4px #9b0846;
-    &:hover {
-      background-color: darken(#e05d6f, 10%);
-    }
+}
+/*--削除ボタン---*/
+.post-trash-button {
+  background-color: #e05d6f;
+  border: double 4px #9b0846;
+  &:hover {
+    background-color: darken(#e05d6f, 10%);
   }
-  /*--編集ボタン---*/
-  &, .post-edit-button {
-    background-color: #e05d6f;
-    border: double 4px #9b0846;
-    &:hover {
-      background-color: darken(#e05d6f, 10%);
-    }
+}
+/*--編集ボタン---*/
+.post-edit-button {
+  background-color: #38ac82;
+  border: double 4px #32532d;
+  &:hover {
+    background-color: darken(#38ac82, 10%);
   }
 }
 
