@@ -5,14 +5,28 @@
       .card-header
         .row.justify-content-between.px-3
           .inline-block
-            = link_to user_path(post.user) do
-              = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-              = link_to post.user.name, user_path(post.user)
+            - if admin_signed_in?
+              = link_to admin_user_path(post.user) do
+                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+                = link_to post.user.name, user_path(post.user)
+            - else
+              = link_to user_path(post.user) do
+                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+                = link_to post.user.name, user_path(post.user)
           .inline-block.my-auto
             = link_to "クラブ名：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
-
-      = link_to post_path(post) do
-        = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+      - if admin_signed_in?
+        = link_to admin_post_path(post) do
+          = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+          .card-body
+            // 投稿内容の表示を改行ありにする
+            = simple_format(post.body)
+            .small.text-muted.text-right
+              %i.fas.fa-history
+              = "#{time_ago_in_words(post.created_at)}前"
+      - else    
+        = link_to post_path(post) do
+          = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
 
         .card-body
           // 投稿内容の表示を改行ありにする
