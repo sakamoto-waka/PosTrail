@@ -34,7 +34,6 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    # debugger
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page])

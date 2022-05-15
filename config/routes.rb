@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       collection do
         get 'tags_index' => 'posts#tags_index'
       end
-      collection do
+      member do
         delete 'tags_index_destroy' => 'posts#tags_list_destroy'
       end
     end

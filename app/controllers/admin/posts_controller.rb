@@ -32,7 +32,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def tags_list_destroy
-    Tag.find(params[:id]).destroy
+    tag = Tag.find(params[:id])
+    tag.destroy
     redirect_to tags_index_admin_posts_path
     flash[:danger] = "'#{tag.name}'タグを消去しました"
   end
