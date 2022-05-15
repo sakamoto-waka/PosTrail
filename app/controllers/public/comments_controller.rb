@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
     @comment.post_id = @post.id
     if @comment.save
       # 通知として保存
@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
       flash[:success] = "コメントを送信しました"
     else
       @post = Post.find(params[:post_id])
-      @comments = @post.comments
+      @comments = @post.comments.page(params[:page])
       # 非同期化時に変更
       render "public/posts/show"
     end
@@ -24,7 +24,7 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     @post = Post.find(params[:post_id])
     @comments = @post.comments.page(params[:page])
-    render "public/posts/show"
+    redirect_to request.referer
     admin_signed_in? ? flash[:danger] = "コメントを削除しました" : flash[:info] = "コメントを削除しました"
   end
 
@@ -38,7 +38,7 @@ class Public::CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:comment)
+      params.require(:comment).permit(:comment, :post_id)
     end
 
 end

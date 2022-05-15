@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  # before_action :no_post_when_user_deleted, only: [:show]
+  before_action :no_post_when_user_deleted, only: :show
 
   def index
     # 投稿数が多い順に取得する
@@ -35,8 +35,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
     @comments = @post.comments.page(params[:page])
+    @comment = current_user.comments.new
   end
 
   def edit
@@ -67,10 +67,10 @@ class Public::PostsController < ApplicationController
   private
     # post_paramsはapplication_controllerに記述
     # url直打ち対策
-    # def no_post_when_user_deleted
-    #   @post = Post.find(params[:id])
-    #   redirect_to posts_path if @post.user.is_deleted == true
-    # end
+    def no_post_when_user_deleted
+      @post = Post.find(params[:id])
+      redirect_to posts_path if @post.user.is_deleted == true
+    end
 
     def ensure_correct_user
       @post = Post.find(params[:id])
