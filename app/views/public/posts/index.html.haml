@@ -11,6 +11,8 @@
     .w-75.mx-auto
       = paginate @tags_list
   .col-xs-sm-md-11.col-lg-8.ml-lg-4.ml-xl-5
-    = render 'public/posts/posts_index', posts: @posts
+    #post_lists
+      = render 'public/posts/posts_index', posts: @posts
     .col-4.mx-auto
-      = paginate @posts
+      .more
+        = link_to_next_page @posts, 'もっと見る', remote: true, id: "more_posts" unless params == params[:tag_id] || params[:trail_place]

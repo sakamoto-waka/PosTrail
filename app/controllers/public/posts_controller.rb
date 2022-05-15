@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_when_user_deleted, only: [:show]
+  # before_action :no_post_when_user_deleted, only: [:show]
 
   def index
     # 投稿数が多い順に取得する
@@ -9,11 +9,11 @@ class Public::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.page(params[:page]).per(20)
+      @posts = @tag.posts.page(params[:page])
     elsif params[:trail_place]
       @posts = Post.where("trail_place = ?", params[:trail_place])
     else
-      @posts = Post.all.page(params[:page]).per(20)
+      @posts = Post.all.page(params[:page])
     end
   end
 
@@ -34,6 +34,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    # debugger
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page])
@@ -58,6 +59,7 @@ class Public::PostsController < ApplicationController
 
 
   def destroy
+    @post.tags.destroy_all
     @post.destroy
     redirect_to request.referer
     flash[:info] = "投稿を削除しました"
@@ -66,10 +68,10 @@ class Public::PostsController < ApplicationController
   private
     # post_paramsはapplication_controllerに記述
     # url直打ち対策
-    def no_post_when_user_deleted
-      @post = Post.find(params[:id])
-      redirect_to posts_path if @post.user.is_deleted == true
-    end
+    # def no_post_when_user_deleted
+    #   @post = Post.find(params[:id])
+    #   redirect_to posts_path if @post.user.is_deleted == true
+    # end
 
     def ensure_correct_user
       @post = Post.find(params[:id])

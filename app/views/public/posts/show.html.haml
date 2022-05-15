@@ -1,14 +1,12 @@
 %h1 投稿詳細
-
-%div
-  = render 'public/posts/post_show', post: @post, comment: @comment
-  
 .col-lg-9.mx-auto
+  = render 'public/posts/post_show', post: @post, comment: @comment
   - unless current_page?(search_path)
     .comment-respond
       .comment-form
         = render 'public/comments/comment_form', post: @post, comment: @comment unless admin_signed_in?
       #comment_lists  
         = render 'public/comments/post_comment', comments: @comments
-      .more
-        = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more"
+        .col-4.mx-auto.more-comments
+          = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more", 
+                                         class: "basic-button" unless @comment.comment == ""

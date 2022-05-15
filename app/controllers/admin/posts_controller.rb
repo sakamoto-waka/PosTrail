@@ -1,6 +1,5 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :post_find_from_params, only: [:show, :destroy]
 
   def index
     # 投稿数が多い順に取得する
@@ -21,25 +20,22 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    post = Post.find(params[:id])
+    post.tags.destroy_all
+    post.destroy
     redirect_to admin_posts_path
     flash[:danger] = "投稿を削除しました"
   end
 
   def tags_list_destroy
-    tag = Tag.find(params[:id])
-    tag.destroy
+    Tag.find(params[:id]).destroy
     redirect_to tags_index_admin_posts_path
     flash[:danger] = "'#{tag.name}'タグを消去しました"
   end
 
-  private
-
-    def post_find_from_params
-      @post = Post.find(params[:id])
-    end
 
 end

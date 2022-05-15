@@ -1,7 +1,8 @@
 $main-color: desaturate(#DEB887, 0%);
 $accent-color: #c4a589;
 $button-color: #c7aeae;
-$button-accent-color: darken($button-color, 15%);
+$button-accent-color: darken($button-color, 5%);
+$button-text: #f5f2ee;
 $text-color: #4a2d08;
 
 /* ==================================================
@@ -247,8 +248,8 @@ $text-color: #4a2d08;
 /*-- 削除ボタン --*/
 
 .delete-button {
-  display: inline-block;
   padding: 0.3em 1.0em;
+  display: inline-block;
   border: double 4px #9b0846;
   border-radius: 3px;
   transition: .4s;
@@ -261,17 +262,18 @@ $text-color: #4a2d08;
   }
 }
 
-.post-button {
+@mixin action-button {
   display: inline-block;
   padding: 0.3em 1.0em;
   border-radius: 3px;
   transition: .4s;
   svg {
-    color: #fff;
+    color: $button-text;;
   }
 }
 /*--削除ボタン---*/
 .post-trash-button {
+  @include action-button;
   background-color: #e05d6f;
   border: double 4px #9b0846;
   &:hover {
@@ -280,10 +282,21 @@ $text-color: #4a2d08;
 }
 /*--編集ボタン---*/
 .post-edit-button {
+  @include action-button;
   background-color: #38ac82;
   border: double 4px #32532d;
   &:hover {
-    background-color: darken(#38ac82, 10%);
+    background-color: darken(#38ac82, 7%);
+  }
+}
+
+.user-edit-button {
+  @include action-button;
+  padding: 0.3em 1em;
+  background-color: #38ac82;
+  border: double 4px #32532d;
+  &:hover {
+    background-color: darken(#38ac82, 7%);
   }
 }
 

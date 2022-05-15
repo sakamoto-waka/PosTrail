@@ -12,7 +12,7 @@
             = tag.name.truncate(20)
             = "(#{tag.posts.count})"
           %td
-            = link_to tags_index_destroy_admin_post_path(tag.id),　method: :delete, 
+            = link_to tags_index_destroy_admin_posts_path,　method: :delete, 
                       data: { confirm: "本当に削除しますか？"}, class: "delete-button tag-delete" do
               %i.fas.fa-trash-alt
 

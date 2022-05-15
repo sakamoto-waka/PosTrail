@@ -3,6 +3,7 @@ $main-color: desaturate(#DEB887, 0%);
 $accent-color: #c4a589;
 $button-color: #c7aeae;
 $button-accent-color: darken($button-color, 15%);
+$button-text: #f5f2ee;
 $text-color: #4a2d08;
 $white: #fff;
 
@@ -23,12 +24,12 @@ body {
                sans-serif;
 }
 
-a:not(#search-text, .form-button-common, 
+a:not(#search-text, .form-button-common,
       .nav-link, .fa-heart, .delete-button) {
   color: $text-color!important;
   text-decoration: none!important;
-  &:hover:not(.devise-link, .post-trash-button, .post-edit-button) {
-    // color: darken(#4a2d08, 30%)!important;
+  &:hover:not(.devise-link, .post-trash-button, .post-edit-button,
+              #view_more, .user-edit-button, .basic-button) {
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);
   }
@@ -114,15 +115,15 @@ h4 {
 
 /*-- kaminariのデザイン変更 --*/
 
-.pagination>li>a {          
-  border: none;    
+.pagination>li>a {
+  border: none;
   color: $text-color!important;
-  .pagination>li>a:hover {        
+  .pagination>li>a:hover {
     border-radius: 15px;
   }
 }
-.pagination>.active>a {     
-  background: lighten($button-color, 10%)!important;  
+.pagination>.active>a {
+  background: lighten($button-color, 10%)!important;
   border-radius: 15px;
 }
 
@@ -391,7 +392,7 @@ h4 {
 }
 .message-text {
   flex-grow: 1;
-  padding: 15px 30px;
+  padding: 0 30px;
   color: #454545;
   font-size: 0.875rem;
   line-height: 1.375rem;
@@ -437,6 +438,12 @@ h4 {
   }
 }
 
+/*-- コメントのもっと見るボタン --*/
+
+.more-comments {
+  text-align: center;
+}
+
 /* ==================================================
 
                     adminのタグ一覧
@@ -449,3 +456,33 @@ table {
     background-color: lighten($button-color, 15);
   }
 }
+
+
+/* ==================================================
+
+                    テーブル
+
+===================================================== */
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  tr{
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba($button-color, 0.1);
+    }
+  }
+  th, td{
+    text-align: center;
+    width: 10%;
+    padding: 15px 0;
+  }
+  .word-henshuu {
+    color: $button-text;
+  }
+}
+
+

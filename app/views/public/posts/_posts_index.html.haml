@@ -6,42 +6,27 @@
         .row.justify-content-between.px-3
           .inline-block
             // ユーザー詳細へのリンクをadminと分岐
-            - if admin_signed_in?
-              = link_to admin_user_path(post.user) do
-                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-                = link_to post.user.name, user_path(post.user)
-            - else
-              = link_to user_path(post.user) do
-                = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-                = link_to post.user.name, user_path(post.user)
+            = link_to user_path(post.user) do
+              = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+              = link_to post.user.name, user_path(post.user)
           .inline-block.my-auto
             = link_to "クラブ名：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
-      - if admin_signed_in?
-        = link_to admin_post_path(post) do
-          = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-          .card-body
-            // 投稿内容の表示を改行ありにする
-            = simple_format(post.body)
-            .small.text-muted.text-right
-              %i.fas.fa-history
-              = "#{time_ago_in_words(post.created_at)}前"
-      - else
-        = link_to post_path(post) do
-          = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-          .card-body
-            // 投稿内容の表示を改行ありにする
-            = simple_format(post.body)
-            .small.text-muted.text-right
-              %i.fas.fa-history
-              = "#{time_ago_in_words(post.created_at)}前"
+      = link_to post_path(post) do
+        = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+        .card-body
+          // 投稿内容の表示を改行ありにする
+          = simple_format(post.body)
+          .small.text-muted.text-right
+            %i.fas.fa-history
+            = "#{time_ago_in_words(post.created_at)}前"
       .card-footer
         .flex
           .row.justify-content-between.px-3
-            .col-sm-4.col-md-lg-9
+            .col-sm-7.col-md-lg-9
               %div
-                %i.fas.fa-tag
                 - post.tags.each do |tag|
-                  = admin_signed_in? ? (link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)) : (link_to tag.name.truncate(10), posts_path(tag_id: tag.id))
+                  %i.fas.fa-tag
+                  = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
               %div
                 = render 'public/likes/like_btn', post: post
                 = link_to post_path(post) do
@@ -50,8 +35,8 @@
             %div
               - if user_signed_in? && post.user.id == current_user.id
                 // 編集ボタン
-                = link_to edit_post_path(post), class: "post-button post-edit-button mr-3" do
+                = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
                   %i.fas.fa-pen
                 // 削除ボタン
-                = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "post-button post-trash-button" do
+                = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
                   %i.fas.fa-trash-alt

@@ -1,15 +1,19 @@
 - comments.each do |comment|
   .onebox
-    - if comment.user == current_user
+    - if comment.user == current_user || admin_signed_in?
       .message-balloon.current-user-comment
         .user-image
           = link_to(comment.user) do
             = image_tag comment.user.get_account_image(50, 50)
         .message-text
           %span.text-muted.small
-            投稿者
+            自分
           %br
-          = comment.comment
+            = comment.comment
+            .row.justify-content-end
+              = link_to post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" },
+                                                                  class: "post-delete-button" do
+                %i.fas.fa-trash-alt
     - else
       .message-balloon.other-user-comment
         .user-image
@@ -20,7 +24,6 @@
             = comment.user.name
           %br
           = comment.comment
-
 
 
   // %tr
