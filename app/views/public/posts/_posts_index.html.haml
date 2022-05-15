@@ -12,10 +12,7 @@
             = link_to "クラブ名：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
 
       = link_to post_path(post) do
-        - if post.trail_image.attached?
-          = image_tag post.trail_image, class: "card-img-top p-3"
-        - else
-          %div
+        = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
 
         .card-body
           // 投稿内容の表示を改行ありにする
@@ -26,7 +23,7 @@
       .card-footer
         %i.fas.fa-tag
         - post.tags.each do |tag|
-          = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+          = admin_signed_in? ? (link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)) : (link_to tag.name.truncate(10), posts_path(tag_id: tag.id))
 
         .flex
           .row.justify-content-between.px-3

@@ -2,7 +2,7 @@
   .card-group
     - posts.each do |post|
       .mb-5.col-lg-4
-      
+
         // ユーザーが退会していないかチェック
         - if post.user.active_for_authentication?
           .card.post-card.h-auto
@@ -29,7 +29,7 @@
             .card-footer
               %i.fas.fa-tag
               - post.tags.each do |tag|
-                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+                = link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)
               .flex
                 .row.justify-content-between.px-3
                   %span

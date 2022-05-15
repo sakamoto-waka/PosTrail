@@ -5,7 +5,14 @@ class Admin::PostsController < ApplicationController
   def index
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
-    @posts = Post.all
+    if params[:tag_id]
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.page(params[:page]).per(20)
+    elsif params[:trail_place]
+      @posts = Post.where("trail_place = ?", params[:trail_place])
+    else
+      @posts = Post.all.page(params[:page]).per(15)
+    end
   end
 
   def tags_index
