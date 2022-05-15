@@ -23,7 +23,8 @@ body {
                sans-serif;
 }
 
-a:not(#search-text, .form-button-common, .nav-link, .fa-heart) {
+a:not(#search-text, .form-button-common, 
+      .nav-link, .fa-heart, .delete-button) {
   color: $text-color!important;
   text-decoration: none!important;
   &:hover:not(.devise-link) {
@@ -332,8 +333,7 @@ h4 {
   color:#000000;
 }
 
-/*--投稿フォーム---*/
-
+/*--投稿フォームはdesigns.scssにある --*/
 
 /*--投稿詳細＋コメント欄--*/
 
@@ -434,5 +434,18 @@ h4 {
       border-right: solid 12px #ece9e3;
       left: -12px;
     }
+  }
+}
+
+/* ==================================================
+
+                    adminのタグ一覧
+
+===================================================== */
+
+table {
+  background-color: rgba($button-color, 0.1);
+  thead {
+    background-color: lighten($button-color, 15);
   }
 }

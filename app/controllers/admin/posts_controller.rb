@@ -3,15 +3,16 @@ class Admin::PostsController < ApplicationController
   before_action :post_find_from_params, only: [:show, :destroy]
 
   def index
+    # 投稿数が多い順に取得する
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
-    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(10)
+    @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.page(params[:page]).per(20)
+      @posts = @tag.posts.page(params[:page]).per(30)
     elsif params[:trail_place]
       @posts = Post.where("trail_place = ?", params[:trail_place])
     else
-      @posts = Post.all.page(params[:page]).per(15)
+      @posts = Post.all.page(params[:page]).per(30)
     end
   end
 
@@ -23,8 +24,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to request.referer
+    Post.find(params[:id]).destroy
+    redirect_to admin_posts_path
     flash[:danger] = "投稿を削除しました"
   end
 

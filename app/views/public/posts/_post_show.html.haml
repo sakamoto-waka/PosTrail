@@ -1,4 +1,4 @@
-.col-lg-9.mx-auto  
+.col-lg-9.mx-auto
   .card.post-card.mb-5
     .card-header
       .row.justify-content-between.px-3
@@ -9,9 +9,9 @@
           - if post.trail_place.present?
             %span クラブ名：
             = link_to post.trail_place, posts_path(trail_place: post.trail_place)
-  
+
     = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-  
+
     .card-body
       // 投稿内容の表示を改行ありにする
       = simple_format(post.body)
@@ -21,8 +21,8 @@
     .card-footer
       %i.fas.fa-tag
       - post.tags.each do |tag|
-        = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
-  
+        = admin_signed_in? ? (link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)) : (link_to tag.name.truncate(10), posts_path(tag_id: tag.id))
+
       .flex
         .row.justify-content-between.px-3
           %span
@@ -32,10 +32,17 @@
             = post.comments.count
           %span
             - if user_signed_in? && post.user.id == current_user.id
-              = link_to '編集', edit_post_path(post)
-              = link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
-  
-  
+              = link_to edit_post_path(post), class: "border" do
+                編集
+                %i.fas.fa-pen
+              = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
+                %i.fas.fa-trash-alt
+            - elsif admin_signed_in?
+              = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
+                %i.fas.fa-trash-alt
+
+
+
   - unless current_page?(search_path)
     .comment-respond
       .comment-form
