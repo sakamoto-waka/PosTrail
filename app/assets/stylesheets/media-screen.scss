@@ -16,7 +16,7 @@
     justify-content: end;
   }
   
-  .user-profile-table .word-edit {
+  .user-profile-table .button-text {
     display: none;
   }
 
@@ -87,6 +87,12 @@
 	}
 
   .login_name_display {
+    display: none;
+  }
+  
+  /*-- ボタンの中身の文字消す --*/
+  
+  .button-text {
     display: none;
   }
   

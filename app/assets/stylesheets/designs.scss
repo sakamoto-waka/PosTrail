@@ -271,7 +271,7 @@ $text-color: #4a2d08;
     color: $button-text;;
   }
 }
-/*--削除ボタン---*/
+/*-- 削除ボタン --*/
 .post-trash-button {
   @include action-button;
   background-color: #e05d6f;
@@ -280,7 +280,7 @@ $text-color: #4a2d08;
     background-color: darken(#e05d6f, 10%);
   }
 }
-/*--編集ボタン---*/
+/*-- 編集ボタン --*/
 .post-edit-button {
   @include action-button;
   background-color: #38ac82;
@@ -288,6 +288,11 @@ $text-color: #4a2d08;
   &:hover {
     background-color: darken(#38ac82, 7%);
   }
+}
+
+/*-- ボタンの中身の文字色 --*/
+.button-text {
+  color: #fff;
 }
 
 .user-edit-button {
@@ -298,10 +303,35 @@ $text-color: #4a2d08;
   &:hover {
     background-color: darken(#38ac82, 7%);
   }
-  .word-edit {
-    color: #fff;
+  &.user-index-edit {
+    width: 80%;
   }
 }
+
+.unfollow-button {
+  @include action-button;
+  width: 80%;
+  padding: 0.3em 1em;
+  background-color: #a4a19f;
+  border: double 4px #70665b;
+  &:hover {
+    background-color: darken(#a4a19f, 7%);
+  }
+}
+
+.follow-button {
+  @include action-button;
+  width: 80%;
+  padding: 0.3em 1em;
+  background-color: #6b9edf;
+  border: double 4px #13488a;
+  &:hover {
+    background-color: darken(#6b9edf, 7%);
+  }
+}
+
+
+
 
 
 /* ==================================================

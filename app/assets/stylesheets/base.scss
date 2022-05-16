@@ -29,7 +29,8 @@ a:not(#search-text, .form-button-common,
   color: $text-color!important;
   text-decoration: none!important;
   &:hover:not(.devise-link, .post-trash-button, .post-edit-button,
-              #view_more, .user-edit-button, .basic-button) {
+              #view_more, .user-edit-button, .basic-button,
+              .follow-button, .unfollow-button) {
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);
   }
