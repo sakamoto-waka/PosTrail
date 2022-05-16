@@ -1,5 +1,9 @@
 - if @like_posts.present?
   %h1 いいねした投稿一覧
-  = render 'public/posts/posts_index', posts: @like_posts
+  - if admin_signed_in?
+    = render 'admin/posts/admin_posts_index', posts: @like_posts
+  - else
+    .col-md-10.col-lg-8.mx-auto
+      = render 'public/posts/posts_index', posts: @like_posts
 - else
   %p.text-center  まだいいねをしていません

@@ -36,7 +36,7 @@
   %h2.mb-4 投稿
   
   - if user.posts.present? 
-    = render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list
+    = render 'public/posts/posts_index', posts: user.posts
   - else
     .text-center まだ投稿はありません
 

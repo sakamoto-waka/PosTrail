@@ -4,25 +4,24 @@
       - users.each do |user|
         - if user.is_deleted == false && user.name != "ゲストユーザー"
           %tr.text-align-center
-            = link_to user_path(user) do
-              %td
-                = link_to user_path(user) do
-                  = image_tag user.get_account_image(50, 50)
-              %td
-                = link_to user.name, user_path(user)
-              %td.w-25.user-introduction
-                = link_to user.introduction.truncate(30), user_path(user) if user.introduction.present?
-              %td
-                - if user == current_user
-                  = link_to edit_user_path(user), class: "user-edit-button user-index-edit" do
-                    %i.fas.fa-user-cog
-                    %span.button-text.small 編集
-                - elsif user_signed_in? && user.name != "ゲストユーザー"
-                  = render 'public/relationships/follow_btn', user: user
-              %td
-                = link_to '詳細', user_path(user), class: "basic-button my-4"
-  
-  
+            %td
+              = link_to user_path(user) do
+                = image_tag user.get_account_image(50, 50)
+            %td
+              = link_to user.name, user_path(user)
+            %td.w-25.user-introduction
+              = link_to user.introduction.truncate(30), user_path(user) if user.introduction.present?
+            %td
+              - if user == current_user
+                = link_to edit_user_path(user), class: "user-edit-button user-index-edit" do
+                  %i.fas.fa-user-cog
+                  %span.button-text.small 編集
+              - elsif user_signed_in? && user.name != "ゲストユーザー"
+                = render 'public/relationships/follow_btn', user: user
+            %td
+              = link_to '詳細', user_path(user), class: "basic-button my-4"
+
+
   
   
   
