@@ -1,22 +1,35 @@
-= image_tag user.get_account_image(100, 100)
-= user.name
-= user.introduction
-
-%p フォロー／フォロワー
-= link_to user_followings_path(user) do
-  = "フォロー：#{@user.followings.count}人 フォロワー：#{@user.followers.count}人"
-
-- unless user.name == "ゲストユーザー"
-  - if user == current_user || admin_signed_in?
-    = admin_signed_in? ? (link_to '管理者用編集', edit_admin_user_path(user)) : (link_to '編集', edit_user_path(user))
-    // 通知用ベルマーク：adminには見えない
-    = render 'public/notifications/bell_mark' unless admin_signed_in?
-  - elsif user_signed_in? && current_user.name != "ゲストユーザー"
-    = render 'public/relationships/follow_btn', user: user
+.col-lg-8.mx-auto
+  .profile-area
+    .profile-content
+      .profile-image
+        = image_tag user.get_account_image(100, 100)
+      .h3.font-weight-bold.text-center 
+        = user.name
+      .text-center   
+        = simple_format(user.introduction)
   
-
-= link_to 'いいね一覧', likes_user_path(user)  
-
-// ⚠いいねしたら投稿一覧に飛ぶ問題発生中
-%h2 投稿
-= render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list
+      %div
+        // - unless current_user.name == "ゲストユーザー"
+        = link_to user_followings_path(user) do
+          = "フォロー：#{@user.followings.count}人 フォロワー：#{@user.followers.count}人"
+        
+      %div
+        - if (user == current_user || admin_signed_in?) && current_user.name != "ゲストユーザー"
+          - if admin_signed_in?
+            link_to '管理者用編集', edit_admin_user_path(user)
+          - else  
+            = link_to edit_user_path(user), class: "user-edit-button" do
+              %i.fas.fa-user-edit
+              %span.word-henshuu 編集
+              
+            // 通知用ベルマーク：adminには見えない
+            = render 'public/notifications/bell_mark'
+        - elsif user_signed_in? && current_user.name != "ゲストユーザー"
+          = render 'public/relationships/follow_btn', user: user
+        
+      %div
+        = link_to 'いいね一覧', likes_user_path(user)  
+      
+  // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
+  %h2 投稿
+  = render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list

@@ -29,7 +29,6 @@ class Public::UsersController < ApplicationController
 
   private
     # user_paramsはapplication_controllerにあり
-
     def ensure_correct_user
       @user = User.find(params[:id])
       if @user != current_user || @user.name == "ゲストユーザー"

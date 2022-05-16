@@ -1,6 +1,6 @@
-= (user_signed_in? && current_user == @user) ? (content_tag :h1, 'プロフィール') : (content_tag :h1, "#{@user.name}さんのプロフィール")
-- if current_user.name == "ゲストユーザー"
-
-- else
-  = render 'user_show', user: @user, tags_list: @tags_list
+// - if current_user.name == "ゲストユーザー"
+//   .text-center 
+//     ゲストユーザーなのでプロフィールはありません
+// - else
+= render 'user_show', user: @user, tags_list: @tags_list
   

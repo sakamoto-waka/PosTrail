@@ -12,16 +12,16 @@
   // 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
   #myTabContent.tab-content
     #notifications.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
-      %h3.mb-4 通知
+      %h3 通知
       - if notifications.present?
         = render 'notifications_index_except_me', notifications_except_me: notifications
       - else
         %p.text-center 通知はありません
   
     #activities.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
-      // .col-md-10.col-lg-8.mx-auto
       %h3.mb-4 アクティビティ
       - if activities.present?
         = render 'public/activities/my_activities', activities: activities
       - else
         %p.text-center アクティビティはありません
+        
