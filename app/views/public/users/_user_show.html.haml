@@ -2,11 +2,9 @@
 = user.name
 = user.introduction
 
-%p follows
-= link_to "#{@user.followings.count}人", user_followings_path(user)
-
-%p followers
-= link_to "#{@user.followers.count}人", user_followers_path(user)
+%p フォロー／フォロワー
+= link_to user_followings_path(user) do
+  = "フォロー：#{@user.followings.count}人 フォロワー：#{@user.followers.count}人"
 
 - unless user.name == "ゲストユーザー"
   - if user == current_user || admin_signed_in?
