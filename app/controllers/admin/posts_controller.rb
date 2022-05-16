@@ -9,7 +9,7 @@ class Admin::PostsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.page(params[:page]).per(30)
     elsif params[:trail_place]
-      @posts = Post.where("trail_place = ?", params[:trail_place])
+      @posts = Post.where("trail_place = ?", params[:trail_place]).page(params[:page]).per(30)
     else
       @posts = Post.all.page(params[:page]).per(30)
     end

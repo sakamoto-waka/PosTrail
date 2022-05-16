@@ -17,8 +17,12 @@
   #post.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
       - if @posts.present?
-        = render 'public/posts/posts_index', posts: @posts
-        = paginate @posts
+        .col-md-10.col-lg-8.mx-auto
+          - if admin_signed_in?
+            = render 'admin/posts/admin_posts_index_vertical', posts: @posts
+          - else  
+            = render 'public/posts/posts_index', posts: @posts
+            = paginate @posts
       - else
         %p.text-center
           = "「#{@content}」に該当するワードはありませんでした"
@@ -27,8 +31,12 @@
     .ml-1.mt-5.mb-2
       // 配列の中身が空じゃなかったら
       - if !@tags.empty?
-        = render 'public/posts/posts_index', posts: @tags
-        = paginate @tags
+        .col-md-10.col-lg-8.mx-auto
+          - if admin_signed_in?
+            = render 'admin/posts/admin_posts_index_vertical', posts: @tags
+          - else  
+            = render 'public/posts/posts_index', posts: @tags
+            = paginate @tags
       - else
         %p.text-center
           = "「#{@content}」に該当するワードはありませんでした"
@@ -36,8 +44,11 @@
   #user.mb-5.tab-pane.fade{"aria-labelledby" => "user-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
       - if @users.present?
-        = render 'public/users/user_index', users: @users
-        = paginate @users
+        - if admin_signed_in?
+          = render 'admin/homes/admin_users_index', users: @users
+        - else  
+          = render 'public/users/user_index', users: @users
+          = paginate @users
       - else
         %p.text-center
           = "「#{@content}」に該当するワードはありませんでした"
