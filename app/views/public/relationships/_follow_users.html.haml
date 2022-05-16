@@ -1,64 +1,30 @@
-%h2 「#{@content}」に対する検索結果
+%h2 フォロー／フォロワー
 
 // フォロワーとフォロしてる人をタブ表示
 %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
-  %li.nav-item.col-4.p-0{role: "presentation"}
-    %a#user-tab.nav-link.link-text{"aria-controls" => "following", "data-toggle" => "tab", href: "#followings", role: "tab"} 
+  %li.nav-item.col-6.p-0{role: "presentation"}
+    %a#followings-tab.nav-link.link-text{"aria-controls" => "followings", "data-toggle" => "tab", href: "#followings", role: "tab"} 
       = "フォロー(#{user.followings.count}人)"
   
-  %li.nav-item.col-4.p-0{role: "presentation"}
-    %a#user-tab.nav-link.link-text{"aria-controls" => "followers", "data-toggle" => "tab", href: "#followers", role: "tab"} 
-      = "フォロワー(#{user.followers.count}件)"
+  %li.nav-item.col-6.p-0{role: "presentation"}
+    %a#followers-tab.nav-link.link-text{"aria-controls" => "followers", "data-toggle" => "tab", href: "#followers", role: "tab"} 
+      = "フォロワー(#{user.followers.count}人)"
 
 // 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
 #myTabContent.tab-content
-  #post.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
+  #followings.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
-      - if @posts.present?
-        = render 'public/posts/posts_index', posts: @posts
-        = paginate @posts
+      - if user.followings.present?
+        = render 'public/users/user_index', users: user.followings
+        // = paginate @users
       - else
-        = "「#{@content}」に該当するワードはありませんでした"
+        %p.text-center まだ誰もフォローしていません
 
-  #tag.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
+  #followers.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
       // 配列の中身が空じゃなかったら
-      - if !@tags.empty?
-        = render 'public/posts/posts_index', posts: @tags
-        = paginate @tags
+      - if user.followers.present?
+        = render 'public/users/user_index', users: user.followers
+        // = paginate @users
       - else
-        = "「#{@content}」に該当するワードはありませんでした"
-
-  #user.mb-5.tab-pane.fade{"aria-labelledby" => "user-tab", role: "tabpanel"}
-    .ml-1.mt-5.mb-2
-      - if @users.present?
-        = render 'public/users/user_index', users: @users
-        = paginate @users
-      - else
-        = "「#{@content}」に該当するワードはありませんでした"
-
-
-
-
-
-- if users.empty?
-  %p ユーザーはいません
-- else
-  %table.table
-    %thead
-      %tr
-        %th image
-        %th name
-        %th
-        %th
-        %th
-    %tbody
-      - users.each do |user|
-        %tr
-          %th= image_tag user.get_account_image(50, 50)
-          %th= user.name
-          %td
-            フォロー数: #{user.followings.count}
-          %td
-            フォロワー数: #{user.followers.count}
-          %td= link_to 'Show', user, class: "user_#{user.id}"
+        %p.text-center まだフォロワーはいません
