@@ -1,30 +1,27 @@
-%h2 通知／自分のアクティビティ
-
-// フォロワーとフォロしてる人をタブ表示
-%ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
-  %li.nav-item.col-6.p-0{role: "presentation"}
-    %a#notifications-tab.nav-link.link-text{"aria-controls" => "notifications", "data-toggle" => "tab", href: "#notifications", role: "tab"} 
-      = 通知
+.col-md-10.col-lg-8.mx-auto
+  // フォロワーとフォロしてる人をタブ表示
+  %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
+    %li.nav-item.col-6.p-0{role: "presentation"}
+      %a#notifications-tab.nav-link.link-text{"aria-controls" => "notifications", "data-toggle" => "tab", href: "#notifications", role: "tab"}
+        通知
   
-  %li.nav-item.col-6.p-0{role: "presentation"}
-    %a#activities-tab.nav-link.link-text{"aria-controls" => "activities", "data-toggle" => "tab", href: "#activities", role: "tab"} 
-      = アクティビティ
-
-// 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
-#myTabContent.tab-content
-  #notifications.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
-    .ml-1.mt-5.mb-2
-      - if user.followings.present?
-        = render 'public/users/user_index', users: user.followings
-        // = paginate @users
+    %li.nav-item.col-6.p-0{role: "presentation"}
+      %a#activities-tab.nav-link.link-text{"aria-controls" => "activities", "data-toggle" => "tab", href: "#activities", role: "tab"}
+        アクティビティ
+  
+  // 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
+  #myTabContent.tab-content
+    #notifications.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
+      %h3.mb-4 通知
+      - if notifications.present?
+        = render 'notifications_index_except_me', notifications_except_me: notifications
       - else
-        %p.text-center まだ誰もフォローしていません
-
-  #activities.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
-    .ml-1.mt-5.mb-2
-      // 配列の中身が空じゃなかったら
-      - if user.followers.present?
-        = render 'public/users/user_index', users: user.followers
-        // = paginate @users
+        %p.text-center 通知はありません
+  
+    #activities.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
+      // .col-md-10.col-lg-8.mx-auto
+      %h3.mb-4 アクティビティ
+      - if activities.present?
+        = render 'public/activities/my_activities', activities: activities
       - else
-        %p.text-center まだフォロワーはいません
+        %p.text-center アクティビティはありません

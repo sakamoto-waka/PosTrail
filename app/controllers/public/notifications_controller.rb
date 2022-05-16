@@ -7,7 +7,7 @@ class Public::NotificationsController < ApplicationController
     notifications.where(checked: false).each do |notification|
       notification.update_attribute(:checked, true)
     end
-    @notifications_except_me = notifications.where.not("visitor_id = ?", current_user.id).page(params[:page]).per(20)
-    @activities = current_user.active_notifications.page(params[:page]).per(20)
+    @notifications_except_me = notifications.where.not("visitor_id = ?", current_user.id).limit(25)
+    @activities = current_user.active_notifications.limit(20)
   end
 end
