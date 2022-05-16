@@ -20,7 +20,8 @@
         = render 'public/posts/posts_index', posts: @posts
         = paginate @posts
       - else
-        = "「#{@content}」に該当するワードはありませんでした"
+        %p.text-center
+          = "「#{@content}」に該当するワードはありませんでした"
 
   #tag.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
@@ -29,7 +30,8 @@
         = render 'public/posts/posts_index', posts: @tags
         = paginate @tags
       - else
-        = "「#{@content}」に該当するワードはありませんでした"
+        %p.text-center
+          = "「#{@content}」に該当するワードはありませんでした"
 
   #user.mb-5.tab-pane.fade{"aria-labelledby" => "user-tab", role: "tabpanel"}
     .ml-1.mt-5.mb-2
@@ -37,6 +39,7 @@
         = render 'public/users/user_index', users: @users
         = paginate @users
       - else
-        = "「#{@content}」に該当するワードはありませんでした"
+        %p.text-center
+          = "「#{@content}」に該当するワードはありませんでした"
 
 
