@@ -464,56 +464,33 @@ table {
 ===================================================== */
 
 
-
-/* =================================
-
-            テーブル
-
-==================================== */
-
-/*-- ユーザー一覧で使用 --*/
-
-table{
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  tr{
-    border-bottom: solid 1px #eee;
-    cursor: pointer;
-    &:hover{
-      background-color: rgba($button-color, 0.1);
-    }
-  }
-  th, td{
-    text-align: center;
-    width: 10%;
-    padding: 15px 0;
-  }
-  .word-henshuu {
-    color: $button-text;
-  }
-}
-
 /*-- プロフィール部分 --*/
 
 .profile-area {
-   padding: 32px 0 64px;
-  background-color: #54B1E5;
-}
-
-.profile-content {
-  margin: 0 auto;
-  padding: 16px;
-  background-color: #fff;
-}
-
-.profile-image {
-  margin: 16px 0 0;
-  text-align: center;
-}
-
-.profile-image img {
-  width: 150px;
-  height: auto;
-  border-radius: 50%;
+  padding: 0 0 64px;
+  .profile-content {
+    margin: 0 auto;
+    padding: 16px;
+  }
+  .profile-image {
+    margin-bottom: 30px;
+    text-align: center;
+    & img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: lighten($button-color, 20%);
+    }
+  }
+  .user-under-line {
+    padding: 1rem 2rem;
+    border-bottom: 0.5px solid #000;
+  }
+  /* ベルマークを小さく */
+  svg {
+    font-size: large;
+    .fa-circle {
+      font-size: small;
+    }
+  }
 }

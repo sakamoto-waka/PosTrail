@@ -298,6 +298,9 @@ $text-color: #4a2d08;
   &:hover {
     background-color: darken(#38ac82, 7%);
   }
+  .word-edit {
+    color: #fff;
+  }
 }
 
 
@@ -369,6 +372,40 @@ $text-color: #4a2d08;
     height: 0;
     width: 0;
     z-index: 10;
+  }
+}
+
+
+
+/* ==================================================
+
+                        テーブル
+
+===================================================== */
+
+/*-- ユーザー一覧で使用 --*/
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  tr{
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba($button-color, 0.1);
+    }
+  }
+  th, td{
+    text-align: center;
+    width: 10%;
+    padding: 15px 0;
+  }
+  .word-henshuu {
+    color: $button-text;
+  }
+  .user-profile-page:hover {
+    background-color: rgba($button-color, 0);
   }
 }
 

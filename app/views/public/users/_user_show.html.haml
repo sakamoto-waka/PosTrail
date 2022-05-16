@@ -2,34 +2,76 @@
   .profile-area
     .profile-content
       .profile-image
-        = image_tag user.get_account_image(100, 100)
-      .h3.font-weight-bold.text-center 
+        = image_tag user.get_account_image(200, 200)
+      .h3.font-weight-bold.text-center
         = user.name
-      .text-center   
+      .text-center
         = simple_format(user.introduction)
-  
-      %div
-        // - unless current_user.name == "ゲストユーザー"
-        = link_to user_followings_path(user) do
-          = "フォロー：#{@user.followings.count}人 フォロワー：#{@user.followers.count}人"
-        
-      %div
-        - if (user == current_user || admin_signed_in?) && current_user.name != "ゲストユーザー"
-          - if admin_signed_in?
-            link_to '管理者用編集', edit_admin_user_path(user)
-          - else  
-            = link_to edit_user_path(user), class: "user-edit-button" do
-              %i.fas.fa-user-edit
-              %span.word-henshuu 編集
-              
-            // 通知用ベルマーク：adminには見えない
-            = render 'public/notifications/bell_mark'
-        - elsif user_signed_in? && current_user.name != "ゲストユーザー"
-          = render 'public/relationships/follow_btn', user: user
-        
-      %div
-        = link_to 'いいね一覧', likes_user_path(user)  
-      
+      %table.user-profile-table
+        %tbody
+          %tr.text-align-center.user-profile-page
+            %td.w-25
+              = link_to user_followings_path(user) do
+                .table-link
+                  = "フォロー(#{user.followings.count}人)"
+                .table-link
+                  = "フォロワー(#{user.followers.count}人)"
+            %td.w-25
+              = link_to likes_user_path(user) do
+                %i.fas.fa-heart
+                いいね一覧
+            %td.w-25
+              - if (user == current_user || admin_signed_in?) && current_user.name != "ゲストユーザー"
+                - if admin_signed_in?
+                  link_to '管理者用編集', edit_admin_user_path(user)
+                - else
+                  = link_to edit_user_path(user), class: "user-edit-button" do
+                    %i.fas.fa-user-edit
+                    %span.word-edit 編集
+                  // 通知用ベルマーク：adminには見えない
+                  = render 'public/notifications/bell_mark'
+              - elsif user_signed_in? && current_user.name != "ゲストユーザー"
+                = render 'public/relationships/follow_btn', user: user
   // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
-  %h2 投稿
-  = render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list
+  %h2.mb-4 投稿
+  
+  - if user.posts.present? 
+    = render 'public/posts/posts_index', posts: user.posts, tags_list: tags_list
+  - else
+    .text-center まだ投稿はありません
+
+
+
+
+
+
+
+//       %td.w-50.user-introduction
+//         = link_to user.introduction.truncate(30), user_path(user) if user.introduction.present?
+//       %td
+//         = link_to '詳細', user_path(user), class: "basic-button my-4"
+
+
+
+// .user-under-line.text-center
+//   // - unless current_user.name == "ゲストユーザー"
+//   = link_to user_followings_path(user) do
+//     = "フォロー：#{@user.followings.count}人 フォロワー：#{@user.followers.count}人"
+
+// .mt-3.user-under-line.text-center
+//   - if (user == current_user || admin_signed_in?) && current_user.name != "ゲストユーザー"
+//     - if admin_signed_in?
+//       link_to '管理者用編集', edit_admin_user_path(user)
+//     - else
+//       = link_to edit_user_path(user), class: "user-edit-button" do
+//         %i.fas.fa-user-edit
+//         %span.word-edit 編集
+
+//       // 通知用ベルマーク：adminには見えない
+//       = render 'public/notifications/bell_mark'
+//   - elsif user_signed_in? && current_user.name != "ゲストユーザー"
+//     = render 'public/relationships/follow_btn', user: user
+
+
+// .mt-3.user-under-line.text-center
+//   = link_to 'いいね一覧', likes_user_path(user)

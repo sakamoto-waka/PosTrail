@@ -1,3 +1,4 @@
+= (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんのプロフィール")
 // - if current_user.name == "ゲストユーザー"
 //   .text-center 
 //     ゲストユーザーなのでプロフィールはありません
