@@ -13,15 +13,21 @@
 #myTabContent.tab-content
   #followings.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
     %h3.mb-4 フォロー
-    - if user.followings.present?
-      = render 'public/users/user_index', users: user.followings
-    - else
-      %p.text-center まだ誰もフォローしていません
+    - if admin_signed_in?
+      = render 'admin/homes/admin_users_index', users: user.followings
+    - else  
+      - if user.followings.present?
+        = render 'public/users/user_index', users: user.followings
+      - else
+        %p.text-center まだ誰もフォローしていません
 
   #followers.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     %h3.mb-4 フォロワー
-    // 配列の中身が空じゃなかったら
-    - if user.followers.present?
-      = render 'public/users/user_index', users: user.followers
+    - if admin_signed_in?
+      = render 'admin/homes/admin_users_index', users: user.followings
     - else
-      %p.text-center まだフォロワーはいません
+      // 配列の中身が空じゃなかったら
+      - if user.followers.present?
+        = render 'public/users/user_index', users: user.followers
+      - else
+        %p.text-center まだフォロワーはいません
