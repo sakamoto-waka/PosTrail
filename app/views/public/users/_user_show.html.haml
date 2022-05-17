@@ -14,7 +14,7 @@
               = link_to user_followings_path(user) do
                 .table-link
                   = "フォロー(#{user.followings.count}人)"
-                .table-link
+                .table-link{ :id => "follow-count_#{user.id} }
                   = "フォロワー(#{user.followers.count}人)"
             %td.w-25
               = link_to likes_user_path(user) do
@@ -31,7 +31,8 @@
                   // 通知用ベルマーク：adminには見えない
                   = render 'public/notifications/bell_mark'
               - elsif user_signed_in? && current_user.name != "ゲストユーザー"
-                = render 'public/relationships/follow_btn', user: user
+                %span{ :id => "follow_ajax_#{user.id}" }
+                  = render 'public/relationships/follow_btn', user: user
   // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
   %h2.mb-4 投稿
   

@@ -1,8 +1,8 @@
 - if current_user.following?(user)
-  = link_to user_relationships_path(user), method: :delete, class: "unfollow-button" do
+  = link_to user_relationships_path(user), method: :delete, remote: true, data: {'turbolinks' => false}, class: "unfollow-button" do
     %i.fas.fa-user
     %span.small.button-text フォロー中
 - else
-  = link_to user_relationships_path(user), method: :post, class: "follow-button" do
+  = link_to user_relationships_path(user), method: :post, remote: true, data: {'turbolinks' => false}, class: "follow-button" do
     %i.fas.fa-user-plus
     %span.small.button-text フォロー
