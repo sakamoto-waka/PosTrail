@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :users, only: %w[index show edit update] do
       resource :relationships, only: %w[create destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
-      # get 'followers' => 'relationships#followers', as: 'followers'
       member do
         get :likes
       end
@@ -42,7 +41,7 @@ Rails.application.routes.draw do
         get 'tags_index' => 'posts#tags_index'
       end
       member do
-        delete 'tags_index_destroy' => 'posts#tags_list_destroy'
+        delete 'tags_index_destroy' => 'posts#tags_index_destroy'
       end
     end
   end

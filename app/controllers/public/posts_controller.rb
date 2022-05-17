@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post.tags.destroy_all
     @post.destroy
-    render :index
+    redirect_to request.referer
     flash[:info] = "投稿を削除しました"
   end
 

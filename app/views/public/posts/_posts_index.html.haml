@@ -20,24 +20,25 @@
             %i.fas.fa-history
             = "#{time_ago_in_words(post.created_at)}前"
       .card-footer
-        .flex
-          .row.justify-content-between.px-3
-            .col-sm-7.col-md-lg-9
-              %div
-                - post.tags.each do |tag|
-                  %i.fas.fa-tag
-                  = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
-              %div
-                %span{ :id => "like_button_#{ post.id }"}
-                  = render 'public/likes/like_btn', post: post
-                = link_to post_path(post) do
-                  %i.far.fa-comment-dots
-                  = post.comments.count
+        .row.justify-content-between.px-3
+          .col-sm-7.col-md-lg-9
             %div
-              - if user_signed_in? && post.user.id == current_user.id
-                // 編集ボタン
-                = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
-                  %i.fas.fa-pen
-                // 削除ボタン
-                = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, remote: true, class: "action-button post-trash-button" do
-                  %i.fas.fa-trash-alt
+              - post.tags.each do |tag|
+                %i.fas.fa-tag
+                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+            %div
+              %span{ :id => "like_button_#{ post.id }"}
+                = render 'public/likes/like_btn', post: post
+              = link_to post_path(post) do
+                %i.far.fa-comment-dots
+                = post.comments.count
+          .edit-and-delete-buttons
+            - if user_signed_in? && post.user.id == current_user.id
+              // 編集ボタン
+              = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
+                %i.fas.fa-pen
+                %span.button-text.small 編集
+              // 削除ボタン
+              = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
+                %i.fas.fa-trash-alt
+                %span.button-text.small 削除

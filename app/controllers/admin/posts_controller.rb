@@ -32,7 +32,7 @@ class Admin::PostsController < ApplicationController
     flash[:danger] = "投稿を削除しました"
   end
 
-  def tags_list_destroy
+  def tags_index_destroy
     tag = Tag.find(params[:id])
     tag.destroy
     redirect_to tags_index_admin_posts_path

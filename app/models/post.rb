@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :trail_place, length: { maximum: 25 }
   validates :body, presence: true, length: { maximum: 200 }
   
-  paginates_per 20
+  paginates_per 30
 
   def get_trail_image(width, height)
     trail_image.variant(resize_to_limit: [width, height]).processed
