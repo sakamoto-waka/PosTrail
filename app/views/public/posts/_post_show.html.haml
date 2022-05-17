@@ -23,18 +23,41 @@
 
     .flex
       .row.justify-content-between.px-3
-        %span
-          = render 'public/likes/like_btn', post: post
-          // コメント用アイコン
-          %i.far.fa-comment-dots.ml-2
-          = post.comments.count
-        %span
+        .col-sm-7.col-md-lg-9
+          %div
+            - post.tags.each do |tag|
+              %i.fas.fa-tag
+              = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+          %div
+            %span{ :id => "like_button_#{ post.id }"}
+              = render 'public/likes/like_btn', post: post
+            = link_to post_path(post) do
+              %i.far.fa-comment-dots
+              = post.comments.count
+        %div
           - if user_signed_in? && post.user.id == current_user.id
-            = link_to edit_post_path(post), class: "border" do
-              編集
+            // 編集ボタン
+            = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
               %i.fas.fa-pen
-            = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
+              %span.button-text.small 編集
+            // 削除ボタン
+            = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
               %i.fas.fa-trash-alt
-          - elsif admin_signed_in?
-            = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
-              %i.fas.fa-trash-alt
+              %span.button-text.small 削除
+
+      // .row.justify-content-between.px-3
+      //   %span
+      //     = render 'public/likes/like_btn', post: post
+      //     // コメント用アイコン
+      //     %i.far.fa-comment-dots.ml-2
+      //     = post.comments.count
+      //   %span
+      //     - if user_signed_in? && post.user.id == current_user.id
+      //       = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
+      //         %i.fas.fa-pen
+      //         編集
+      //       = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
+      //         %i.fas.fa-trash-alt
+      //     - elsif admin_signed_in?
+      //       = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"} do
+      //         %i.fas.fa-trash-alt

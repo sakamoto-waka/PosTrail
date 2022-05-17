@@ -4,6 +4,7 @@ $button-color: #c7aeae;
 $button-accent-color: darken($button-color, 5%);
 $button-text: #f5f2ee;
 $text-color: #4a2d08;
+$edit-button-color: #4b957a;
 
 /* ==================================================
 
@@ -278,19 +279,19 @@ $text-color: #4a2d08;
 /*-- 削除ボタン --*/
 .post-trash-button {
   @include action-button;
-  background-color: #e05d6f;
+  background-color: #d66b7a;
   border: double 4px #9b0846;
   &:hover {
-    background-color: darken(#e05d6f, 10%);
+    background-color: darken(#d66b7a, 10%);
   }
 }
 /*-- 編集ボタン --*/
 .post-edit-button {
   @include action-button;
-  background-color: #38ac82;
+  background-color: $edit-button-color;
   border: double 4px #32532d;
   &:hover {
-    background-color: darken(#38ac82, 7%);
+    background-color: darken($edit-button-color, 7%);
   }
 }
 
@@ -302,10 +303,10 @@ $text-color: #4a2d08;
 .user-edit-button {
   @include action-button;
   padding: 0.3em 1em;
-  background-color: #38ac82;
+  background-color: $edit-button-color;
   border: double 4px #32532d;
   &:hover {
-    background-color: darken(#38ac82, 7%);
+    background-color: darken($edit-button-color, 7%);
   }
   &.user-index-edit {
     width: 80%;
@@ -327,10 +328,10 @@ $text-color: #4a2d08;
   @include action-button;
   width: 80%;
   padding: 0.3em 1em;
-  background-color: #6b9edf;
+  background-color: #608bc1;
   border: double 4px #13488a;
   &:hover {
-    background-color: darken(#6b9edf, 7%);
+    background-color: darken(#608bc1, 7%);
   }
 }
 

@@ -39,5 +39,5 @@
                 = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
                   %i.fas.fa-pen
                 // 削除ボタン
-                = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
+                = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, remote: true, class: "action-button post-trash-button" do
                   %i.fas.fa-trash-alt
