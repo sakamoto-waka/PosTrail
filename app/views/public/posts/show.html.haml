@@ -9,7 +9,7 @@
   - unless current_page?(search_path)
     .comment-respond
       .comment-form
-        = render 'public/comments/comment_form', post: @post, comment: @comment unless admin_signed_in? || current_user.name == "ゲストユーザー"
+        = render 'public/comments/comment_form', post: @post, comment: @comment unless admin_signed_in?
       #comment_lists
         = render 'public/comments/post_comment', comments: @comments, comment: @comment
         .col-4.mx-auto.more-comments

@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :no_post_when_user_deleted, only: :show
+  before_action :no_guest_post, only: [:new, :post, :edit, :update, :destroy]
 
   def index
     # 投稿数が多い順に取得する
@@ -74,6 +75,13 @@ class Public::PostsController < ApplicationController
 
     def ensure_correct_user
       @post = Post.find(params[:id])
-      redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in?
+      redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in? || current_user.name == "ゲストユーザー"
+    end
+
+    def no_guest_post
+      if current_user.email == "guest@example.com"
+        flash[:danger] = "この機能はユーザー登録後に使えます"
+        redirect_to request.referer 
+      end
     end
 end
