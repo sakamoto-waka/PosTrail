@@ -28,7 +28,8 @@
                   %i.fas.fa-tag
                   = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
               %div
-                = render 'public/likes/like_btn', post: post
+                %span{ :id => "like_button_#{ post.id }"}
+                  = render 'public/likes/like_btn', post: post
                 = link_to post_path(post) do
                   %i.far.fa-comment-dots
                   = post.comments.count

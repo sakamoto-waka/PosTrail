@@ -1,22 +1,35 @@
 = form_with model: user, url: admin_user_path do |f|
+  = render 'layouts/errors', obj: user
+  .col-md-9.col-lg-7.mx-auto
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-camera-retro
+        = f.label :アカウント画像
+      = f.file_field :trail_image, accept: 'image/*', class: "image-select-box mt-3"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-user
+        = f.label :ユーザー名
+      = f.text_field :name, placeholder: "20文字以内"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-edit
+        = f.label :プロフィール
+      = f.text_area :introduction, placeholder: "どんな体験ができましたか？"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-tags
+        = f.label :会員ステータス
+      .custom-control.custom-radio
+        .row
+          .radio-inline
+            = f.radio_button :is_deleted, false
+            = f.label :有効, class: "mr-3"
+          .radio-inline
+            = f.radio_button :is_deleted, true
+            = f.label :退会
 
-  .form_group
-    = f.label :アカウント画像
-    = f.file_field :account_image, accept: 'image/*'
-  .form_group
-    = f.label :ユーザー名
-    = f.text_field :name, class: "form_control"
-  .form_group
-    = f.label :プロフィール
-    = f.text_field :introduction, class: "form_control"
-  .form_group
-    = f.label :会員ステータス
-    .custom-control.custom-radio
-      = f.radio_button :is_deleted, false
-      = f.label :有効, class: "mr-3"
-      = f.radio_button :is_deleted, true
-      = f.label :退会
-  
-  
-  .form_group
-    = f.submit '更新', class: "btn btn-success"
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
+        = '更新する'
+

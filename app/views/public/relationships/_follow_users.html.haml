@@ -17,17 +17,19 @@
       - if admin_signed_in?
         = render 'admin/homes/admin_users_index', users: user.followings
       - else
-        = render 'public/users/user_index', users: user.followings
+        .col-10.mx-auto
+          = render 'public/users/user_index', users: user.followings
     - else
       %p.text-center まだ誰もフォローしていません
 
   #followers.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     %h3.mb-4 フォロワー
-      // 配列の中身が空じゃなかったら
+    // 配列の中身が空じゃなかったら
     - if user.followers.present?
       - if admin_signed_in?
         = render 'admin/homes/admin_users_index', users: user.followings
       - else
-        = render 'public/users/user_index', users: user.followers
+        .col-10.mx-auto
+          = render 'public/users/user_index', users: user.followers
     - else
       %p.text-center まだフォロワーはいません
