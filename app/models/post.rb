@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  # 都道府県用のアソシエーション
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
   
   default_scope -> { order(created_at: :desc) }
   

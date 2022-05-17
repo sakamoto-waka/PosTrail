@@ -9,6 +9,11 @@
     .divise-form
       .devise-label.col-md-4
         %i.fas.fa-horse-head
+        = f.label :都道府県
+      = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, include_blank: "選択してください", class: "prefecture-select-box")
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-horse-head
         = f.label :クラブ名
       = f.text_field :trail_place, placeholder: "任意"
     .divise-form
