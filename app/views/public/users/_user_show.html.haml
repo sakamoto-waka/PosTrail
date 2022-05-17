@@ -14,7 +14,7 @@
               = link_to user_followings_path(user) do
                 .table-link
                   = "フォロー(#{user.followings.count}人)"
-                .table-link{ :id => "follow-count_#{user.id} }
+                %div{ :id => "follow-count_#{user.id}", :class => "table-link" }
                   = "フォロワー(#{user.followers.count}人)"
             %td.w-25
               = link_to likes_user_path(user) do
