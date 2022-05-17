@@ -487,11 +487,16 @@ table {
     padding: 1rem 2rem;
     border-bottom: 0.5px solid #000;
   }
-  /* ベルマークを小さく */
+  /*-- ベルマークを小さく --*/
   svg {
     font-size: large;
-    .fa-circle {
-      font-size: small;
-    }
+  }
+  
+  /*-- 通知の丸を小さく --*/
+  .fa-circle {
+    color: #ec8f51;
+    font-size: 12px;
+    bottom: 16px;
+    left: 24px;
   }
 }
