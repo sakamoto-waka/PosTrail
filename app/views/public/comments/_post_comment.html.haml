@@ -15,7 +15,7 @@
           %br
             = comment.comment
             .row.justify-content-end
-              = link_to post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" }, class: "post-delete-button" do
+              = link_to post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" }, remote: true, class: "post-delete-button" do
                 %i.fas.fa-trash-alt
     - else
       .message-balloon.other-user-comment
