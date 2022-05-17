@@ -227,20 +227,24 @@ $text-color: #4a2d08;
 /*-- 新規登録ボタン用 --*/
 
 .new-post-button {
-  font-size: 45px;
   position: relative;
+  right: 20px;
   cursor: pointer;
   -webkit-user-select: none;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  align-items: normal;
-  margin-top: 23px;
+  margin-top: 37px;
   svg {
-    background-color: lighten($button-color, 7%);
-    font-size: 45px;
+    padding: 5px 3px;
+    background-color: #836034;
+    font-size: 50px;
+    width: 50px;
+    height: 43px;
+    color: #fff;
+    border-radius: 50%;
     &:hover {
-      background-color: $button-accent-color;
-      color: lighten($button-color, 18%);
+      background-color: darken(#836034, 7%);
+      // color: lighten($button-color, 18%);
     }
   }
 }

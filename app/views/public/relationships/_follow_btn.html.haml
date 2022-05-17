@@ -1,6 +1,6 @@
 - if current_user.following?(user)
   = link_to user_relationships_path(user), method: :delete, class: "unfollow-button" do
-    %i.fas.fa-user-minus
+    %i.fas.fa-user
     %span.small.button-text フォロー中
 - else
   = link_to user_relationships_path(user), method: :post, class: "follow-button" do
