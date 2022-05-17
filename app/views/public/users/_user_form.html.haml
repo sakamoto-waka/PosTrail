@@ -15,12 +15,7 @@
       .devise-label.col-md-4
         %i.fas.fa-edit
         = f.label :プロフィール
-      = f.text_area :introduction, placeholder: "どんな体験ができましたか？"
-    .divise-form
-      .devise-label.col-md-4
-        %i.fas.fa-tags
-        = f.label :タグ
-      = f.text_field :tag, value: post.tags.pluck(:name), placeholder: "複数の場合は空白で区切ってください"
+      = f.text_area :introduction, placeholder: "最大200文字"
 
     .actions.text-center.mt-5
       = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do

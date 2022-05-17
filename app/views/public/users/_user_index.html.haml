@@ -17,7 +17,8 @@
                   %i.fas.fa-user-cog
                   %span.button-text.small 編集
               - elsif user_signed_in? && user.name != "ゲストユーザー"
-                = render 'public/relationships/follow_btn', user: user
+                %span{ :id => "follow_ajax_#{user.id}" }
+                  = render 'public/relationships/follow_btn', user: user
             %td
               = link_to '詳細', user_path(user), class: "basic-button my-4"
 

@@ -1,4 +1,9 @@
-%h1 投稿詳細
+.row
+  .mx-auto
+    %h1 投稿詳細
+  .new-post-button
+    = link_to new_post_path do
+      %i.fas.fa-plus
 .col-lg-9.mx-auto
   = render 'public/posts/post_show', post: @post, comment: @comment
   - unless current_page?(search_path)

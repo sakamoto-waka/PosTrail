@@ -1,4 +1,9 @@
-= (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんのプロフィール")
+.row
+  .mx-auto
+    = (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんのプロフィール")
+  .new-post-button
+    = link_to new_post_path do
+      %i.fas.fa-plus
 // - if current_user.name == "ゲストユーザー"
 //   .text-center 
 //     ゲストユーザーなのでプロフィールはありません

@@ -21,7 +21,7 @@
     #activities.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
       %h3.mb-4 アクティビティ
       - if activities.present?
-        = render 'public/activities/my_activities', activities: activities
+        = render 'public/notifications/my_activities', activities: activities
       - else
         %p.text-center アクティビティはありません
         
