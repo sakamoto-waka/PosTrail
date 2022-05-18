@@ -24,6 +24,11 @@ body {
                sans-serif;
 }
 
+// validationがかかるとレイアウトが崩れるのを防ぐ
+.field_with_errors {
+  display: contents;
+}
+
 a:not(#search-text, .form-button-common,
       .nav-link, .fa-heart, .delete-button) {
   color: $text-color!important;

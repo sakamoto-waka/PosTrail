@@ -15,6 +15,7 @@ class Post < ApplicationRecord
 
   validates :trail_place, length: { maximum: 25 }
   validates :body, presence: true, length: { maximum: 200 }
+  validates :prefecture_id, presence: true
   
   paginates_per 30
 
