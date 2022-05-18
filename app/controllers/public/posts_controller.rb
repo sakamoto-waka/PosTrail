@@ -1,7 +1,8 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :no_post_when_user_deleted, only: [:show]
+  before_action :no_post_when_user_deleted, only: :show
+  before_action :no_guest_post, only: [:new, :post, :edit, :update, :destroy]
 
   def index
     # 投稿数が多い順に取得する
@@ -9,11 +10,13 @@ class Public::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.page(params[:page]).per(20)
+      @posts = @tag.posts.page(params[:page])
     elsif params[:trail_place]
-      @posts = Post.where("trail_place = ?", params[:trail_place])
+      @posts = Post.where("trail_place = ?", params[:trail_place]).page(params[:page])
+    elsif params[:prefecture_id]
+      @posts = Post.where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])
     else
-      @posts = Post.all.page(params[:page]).per(15)
+      @posts = Post.all.page(params[:page])
     end
   end
 
@@ -35,7 +38,10 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
+    @comments = @post.comments.page(params[:page])
+    if user_signed_in?
+      @comment = current_user.comments.new
+    end
   end
 
   def edit
@@ -57,6 +63,7 @@ class Public::PostsController < ApplicationController
 
 
   def destroy
+    @post.tags.destroy_all
     @post.destroy
     redirect_to request.referer
     flash[:info] = "投稿を削除しました"
@@ -72,6 +79,13 @@ class Public::PostsController < ApplicationController
 
     def ensure_correct_user
       @post = Post.find(params[:id])
-      redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in?
+      redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in? || current_user.name == "ゲストユーザー"
+    end
+
+    def no_guest_post
+      if current_user.email == "guest@example.com"
+        flash[:danger] = "この機能はユーザー登録後に使えます"
+        redirect_to request.referer 
+      end
     end
 end

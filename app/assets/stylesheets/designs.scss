@@ -1,8 +1,10 @@
 $main-color: desaturate(#DEB887, 0%);
 $accent-color: #c4a589;
 $button-color: #c7aeae;
-$button-accent-color: darken($button-color, 15%);
+$button-accent-color: darken($button-color, 5%);
+$button-text: #f5f2ee;
 $text-color: #4a2d08;
+$edit-button-color: #4b957a;
 
 /* ==================================================
 
@@ -35,6 +37,10 @@ $text-color: #4a2d08;
   }
 	textarea#post_body {
 	  height: 200px;
+	}
+	select {
+	  height: 35px;
+	  margin-top: 6px;
 	}
 }
 
@@ -151,10 +157,6 @@ $text-color: #4a2d08;
   }
 }
 
-.form-button-common {
-  border: 2px solid #555;
-}
-
 /* --fontawesome混ぜ込んだボタン-- */
 
 .devise-link {
@@ -209,7 +211,7 @@ $text-color: #4a2d08;
 
 /*-- 送信ボタン --*/
 
-.basic-button { 
+.basic-button {
   -webkit-appearance: none;
   padding: 11px;
   width: 100%;
@@ -224,30 +226,137 @@ $text-color: #4a2d08;
     color: #fff;
     background: $button-accent-color;
     transition: 0.3s;
-  }  
+  }
 }
 
 /*-- 新規登録ボタン用 --*/
 
 .new-post-button {
-  font-size: 45px;
   position: relative;
+  right: 20px;
   cursor: pointer;
   -webkit-user-select: none;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  // color: #212529;
-  align-items: normal;
-  margin-top: 23px;
+  margin-top: 37px;
   svg {
-    background-color: lighten($button-color, 7%);
-    font-size: 45px;
+    padding: 5px 3px;
+    background-color: #836034;
+    font-size: 50px;
+    width: 50px;
+    height: 43px;
+    color: #fff;
+    border-radius: 50%;
     &:hover {
-      background-color: $button-accent-color;
-      color: lighten($button-color, 18%);
+      background-color: darken(#836034, 7%);
+      // color: lighten($button-color, 18%);
     }
   }
 }
+
+/*-- 削除ボタン --*/
+
+.delete-button {
+  padding: 0.3em 1.0em;
+  display: inline-block;
+  border: double 4px #9b0846;
+  border-radius: 3px;
+  transition: .4s;
+  background-color: #e05d6f;
+  &:hover {
+    background-color: darken(#e05d6f, 10%);
+  }
+  svg {
+    color: #fff;
+  }
+}
+
+@mixin action-button {
+  display: inline-block;
+  padding: 0.3em 1.0em;
+  border-radius: 3px;
+  transition: .4s;
+  svg {
+    color: $button-text;;
+  }
+}
+/*-- 削除ボタン --*/
+.post-trash-button {
+  @include action-button;
+  background-color: #d66b7a;
+  border: double 4px #9b0846;
+  &:hover {
+    background-color: darken(#d66b7a, 10%);
+  }
+}
+/*-- 編集ボタン --*/
+.post-edit-button {
+  @include action-button;
+  background-color: $edit-button-color;
+  border: double 4px #32532d;
+  &:hover {
+    background-color: darken($edit-button-color, 7%);
+  }
+}
+
+/*-- ボタンの中身の文字色 --*/
+.button-text {
+  color: #fff;
+}
+
+.user-edit-button {
+  @include action-button;
+  padding: 0.3em 1em;
+  background-color: $edit-button-color;
+  border: double 4px #32532d;
+  &:hover {
+    background-color: darken($edit-button-color, 7%);
+  }
+  &.user-index-edit {
+    width: 80%;
+  }
+}
+
+.unfollow-button {
+  @include action-button;
+  width: 80%;
+  padding: 0.3em 1em;
+  background-color: #a4a19f;
+  border: double 4px #70665b;
+  &:hover {
+    background-color: darken(#a4a19f, 7%);
+  }
+}
+
+.follow-button {
+  @include action-button;
+  width: 80%;
+  padding: 0.3em 1em;
+  background-color: #608bc1;
+  border: double 4px #13488a;
+  &:hover {
+    background-color: darken(#608bc1, 7%);
+  }
+}
+
+/* ==================================================
+
+                文字に対する装飾
+
+===================================================== */
+
+.prefecture-text {
+  padding: 0.1em 0.5em;
+  font-size: 16px;
+  color: #fff;
+  background-color: #e8d3be;
+  border-radius: 4px;
+  &:hover {
+    background-color: darken(#e8d3be, 7%);
+  }
+}
+
+
 
 /* ==================================================
 
@@ -317,6 +426,40 @@ $text-color: #4a2d08;
     height: 0;
     width: 0;
     z-index: 10;
+  }
+}
+
+
+
+/* ==================================================
+
+                        テーブル
+
+===================================================== */
+
+/*-- ユーザー一覧で使用 --*/
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  tr{
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba($button-color, 0.1);
+    }
+  }
+  th, td{
+    text-align: center;
+    width: 10%;
+    padding: 15px 0;
+  }
+  .word-henshuu {
+    color: $button-text;
+  }
+  .user-profile-page:hover {
+    background-color: rgba($button-color, 0);
   }
 }
 

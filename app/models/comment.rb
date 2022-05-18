@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
   has_many :notifications, dependent: :destroy
   
   validates :comment, length: { minimum: 1, maximum: 100}
+  
+  paginates_per 10
 end

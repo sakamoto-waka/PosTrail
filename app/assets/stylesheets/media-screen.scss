@@ -7,31 +7,41 @@
       margin-left: 20px!important;
     }
   }
-  
+
   .no-text-phone {
     display: none;
   }
+
+  .post-tag-list {
+    justify-content: end;
+  }
   
+  .user-profile-table .button-text {
+    display: none;
+  }
   
+  .edit-and-delete-buttons {
+    text-align: right;
+  }
 
 }
 
 // タブレット
 @media screen and (max-width: 759px) {
-  
+
   h1 {
     padding-top: 0;
   }
-  
+
   .container {
     margin-top: 0px;
   }
-  
+
   button.navbar-toggler {
     display: inline;
     margin: -6px 0 0 260px;
   }
-  
+
   .top_page_image {
     width: auto;
     height: 200px;
@@ -40,7 +50,7 @@
     background-size: contain;
     background-position: center;
   }
-  
+
   .image-position {
     margin: 0 auto;
     width: 85%;
@@ -61,32 +71,39 @@
   .about-text {
     order: 2;
   }
-  
+
   .top-text {
     order: 0;
   }
-  
+
   .top-image-position {
     width: 150px!important;
     &.top-image2 {
       margin-left: 150px;
     }
   }
-  
+
   .divise-form {
     display: block;
   	.devise-label {
   	  margin-top: 12px
-  	} 
+  	}
 	}
-	
+
   .login_name_display {
     display: none;
   }
   
+  /*-- ボタンの中身の文字消す --*/
+  
+  .button-text {
+    display: none;
+  }
+  
+
 }
 
-  
+
 
 @media screen and (max-width: 1199px) {
   /*押し間違い防止でログアウトに要素をかける*/
@@ -116,7 +133,7 @@
   //   background: no-repeat image-url("horse_no_image.png") 5px center;
   //   background-size: 120px 80px;
   }
-  
+
   .tag-container {
     .tag-content {
       left: 130.8%;
@@ -124,8 +141,18 @@
     .tag-name-flow {
       // 変更加えてる↓
       left: 88%;
-    }  
+    }
   }
+
+  .user-edit-button {
+    padding: 0.3em 1em;
+  }
+  
+  .user-introduction {
+    display: none;
+  }
+
+
 
 
 }

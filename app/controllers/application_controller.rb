@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
   
     def post_params
-      params.require(:post).permit(:body, :trail_place, :trail_image)
+      params.require(:post).permit(:body, :trail_place, :trail_image, :prefecture_id)
     end
     
 end

@@ -1,7 +1,20 @@
-%h1 タグ一覧
+%h1 タグ一覧（降順）
 - if @tags.present? && admin_signed_in?
-  - @tags.each do |tag|
-    = tag.name
-    = "(#{tag.posts.count})"
-    = link_to '削除', tags_index_destroy_admin_post_path(tag.id),
-                      method: :delete, class: "btn btn-danger"
+  %table.table.col-lg-6.mx-auto
+    %thead
+      %tr
+        %th.col-9 タグ名
+        %th.col-2
+    %tbody
+      
+      - @tags.each do |tag|
+        %tr
+          %td.pt-4
+            = tag.name.truncate(20)
+            = "(#{tag.posts.count})"
+          %td
+            = link_to tags_index_destroy_admin_post_path(tag.id), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "delete-button tag-delete" do
+              %i.fas.fa-trash-alt
+
+
+ 

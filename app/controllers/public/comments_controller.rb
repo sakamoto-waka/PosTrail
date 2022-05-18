@@ -5,37 +5,43 @@ class Public::CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = current_user.comments.new(comment_params)
+    @comments = @post.comments.page(params[:page])
+    @comment = current_user.comments.build(comment_params)
     @comment.post_id = @post.id
     if @comment.save
       # 通知として保存
       @post.create_notification_comment(current_user, @comment.id)
-      redirect_to @post
-      flash[:success] = "コメントを送信しました"
+      flash.now[:success] = "コメントを送信しました"
+      # jsファイルをrender
+      render :post_comments
     else
-      # 非同期化時に変更
-      render "public/posts/show"
+      @post = Post.find(params[:post_id])
+      render :post_comments
     end
   end
 
   def destroy
     @comment.destroy
     @post = Post.find(params[:post_id])
-    redirect_to @post
-    admin_signed_in? ? flash[:danger] = "コメントを削除しました" : flash[:info] = "コメントを削除しました"
+    @comments = @post.comments.page(params[:page])
+    flash.now[:danger] = "コメントを削除しました"
+    render :post_comments
   end
 
   private
 
     def ensure_correct_user
+      @post = Post.find(params[:post_id])
       @comment = Comment.find(params[:id])
-      unless @comment.post.user == current_user || admin_signed_in?
-        redirect_to post_path("comment_id = ?", @comment.id)
+      unless admin_signed_in? 
+        unless (@comment.user_id == current_user.id)
+          redirect_to post_path(@post)
+        end
       end
     end
 
     def comment_params
-      params.require(:comment).permit(:comment)
+      params.require(:comment).permit(:comment, :post_id)
     end
 
 end

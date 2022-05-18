@@ -1,34 +1,31 @@
-.col-md-6.mx-auto
-  - notifications_except_me.each do |notification|
-    .form-inline
-      %span
-        = link_to user_path(notification.visitor) do
-          %strong
-            = notification.visitor.name
-        = 'さんが'
+- notifications_except_me.each do |notification|
+  .form-inline
+    %span
+      = link_to user_path(notification.visitor) do
+        %strong
+          = notification.visitor.name
+      = 'さんが'
 
-        - case notification.action
-        - when 'following' then
-          = 'あなたをフォローしました'
-        - when 'like' then
+      - case notification.action
+      - when 'following' then
+        = 'あなたをフォローしました'
+      - when 'like' then
+        = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
+        = 'にいいねしました'
+      - when 'comment' then
+        - if notification.post.user_id == notification.visited.id
           = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
-          = 'にいいねしました'
-        - when 'comment' then
-          - if notification.post.user_id == notification.visited.id
-            = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
-          - else
-            %span
-              = link_to post_path(notification.post) do
-                %strong
-                  = notification.post.user.name + 'さんの投稿'
-          = 'にコメントしました'
-          %p.text-muted.mb-0
-            // 最初の15文字のみ表示...&.は取得したcommentテーブルにcommentがなくてもエラー回避
-            = truncate(Comment.find_by(id: notification.comment_id)&.comment, length:15)
+        - else
+          %span
+            = link_to post_path(notification.post) do
+              %strong
+                = notification.post.user.name + 'さんの投稿'
+        = 'にコメントしました'
+        %p.text-muted.mb-0
+          // 最初の15文字のみ表示...&.は取得したcommentテーブルにcommentがなくてもエラー回避
+          = truncate(Comment.find_by(id: notification.comment_id)&.comment, length:15)
 
-    .small.text-muted.text-right
-      %i.fas.fa-history
-      = "#{time_ago_in_words(notification.created_at).upcase}前"
-    %hr
-  .d-flex.justify-content-center
-    = paginate notifications_except_me
+  .small.text-muted.text-right
+    %i.fas.fa-history
+    = "#{time_ago_in_words(notification.created_at).upcase}前"
+  %hr

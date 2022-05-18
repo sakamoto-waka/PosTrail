@@ -1,4 +1,9 @@
-%h1 ユーザー一覧
+.row
+  .mx-auto
+    %h1 ユーザー一覧
+  .new-post-button
+    = link_to new_post_path do
+      %i.fas.fa-plus
 
 = render 'public/users/user_index', users: @users
       

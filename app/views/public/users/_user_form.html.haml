@@ -1,12 +1,23 @@
 = form_with model: user do |f|
   = render 'layouts/errors', obj: user
-  .form_group
-    = f.label :アカウント画像
-    = f.file_field :account_image, accept: 'image/*'
-  .form_group
-    = f.label :ユーザー名
-    = f.text_field :name, class: "form_control"
-  .form_group
-    = f.label :プロフィール
-  .form_group
-    = f.submit '更新', class: "btn btn-success"
+  .col-md-9.col-lg-7.mx-auto
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-camera-retro
+        = f.label :アカウント画像
+      = f.file_field :trail_image, accept: 'image/*', class: "image-select-box mt-3"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-user
+        = f.label :ユーザー名
+      = f.text_field :name, placeholder: "20文字以内"
+    .divise-form
+      .devise-label.col-md-4
+        %i.fas.fa-edit
+        = f.label :プロフィール
+      = f.text_area :introduction, placeholder: "最大200文字"
+
+    .actions.text-center.mt-5
+      = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
+        = '更新する'
+  
