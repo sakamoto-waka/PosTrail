@@ -1,3 +1,5 @@
 %h1 オーナー用投稿一覧
 
 = render 'admin_posts_index', posts: @posts
+.col-4.mx-auto
+  = paginate @posts

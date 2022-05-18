@@ -14,6 +14,7 @@ ja:
       post:
         trail_image: ベストショット
         body: 投稿内容
+        prefecture_id: 都道府県名
 
   views:
     pagination:

@@ -3,6 +3,7 @@ $main-color: desaturate(#DEB887, 0%);
 $accent-color: #c4a589;
 $button-color: #c7aeae;
 $button-accent-color: darken($button-color, 15%);
+$button-text: #f5f2ee;
 $text-color: #4a2d08;
 $white: #fff;
 
@@ -23,11 +24,18 @@ body {
                sans-serif;
 }
 
-a:not(#search-text, .form-button-common, .nav-link, .fa-heart) {
+// validationがかかるとレイアウトが崩れるのを防ぐ
+.field_with_errors {
+  display: contents;
+}
+
+a:not(#search-text, .form-button-common,
+      .nav-link, .fa-heart, .delete-button) {
   color: $text-color!important;
   text-decoration: none!important;
-  &:hover:not(.devise-link) {
-    // color: darken(#4a2d08, 30%)!important;
+  &:hover:not(.devise-link, .post-trash-button, .post-edit-button,
+              #view_more, .user-edit-button, .basic-button,
+              .follow-button, .unfollow-button) {
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);
   }
@@ -113,15 +121,15 @@ h4 {
 
 /*-- kaminariのデザイン変更 --*/
 
-.pagination>li>a {          
-  border: none;    
+.pagination>li>a {
+  border: none;
   color: $text-color!important;
-  .pagination>li>a:hover {        
+  .pagination>li>a:hover {
     border-radius: 15px;
   }
 }
-.pagination>.active>a {     
-  background: lighten($button-color, 10%)!important;  
+.pagination>.active>a {
+  background: lighten($button-color, 10%)!important;
   border-radius: 15px;
 }
 
@@ -332,8 +340,7 @@ h4 {
   color:#000000;
 }
 
-/*--投稿フォーム---*/
-
+/*--投稿フォームはdesigns.scssにある --*/
 
 /*--投稿詳細＋コメント欄--*/
 
@@ -391,7 +398,7 @@ h4 {
 }
 .message-text {
   flex-grow: 1;
-  padding: 15px 30px;
+  padding: 0 30px;
   color: #454545;
   font-size: 0.875rem;
   line-height: 1.375rem;
@@ -434,5 +441,67 @@ h4 {
       border-right: solid 12px #ece9e3;
       left: -12px;
     }
+  }
+}
+
+/*-- コメントのもっと見るボタン --*/
+
+.more-comments {
+  text-align: center;
+}
+
+/* ==================================================
+
+                    adminのタグ一覧
+
+===================================================== */
+
+table {
+  background-color: rgba($button-color, 0.1);
+  thead {
+    background-color: lighten($button-color, 15);
+  }
+}
+
+/* ==================================================
+
+                    ユーザー関係
+
+===================================================== */
+
+
+/*-- プロフィール部分 --*/
+
+.profile-area {
+  padding: 0 0 64px;
+  .profile-content {
+    margin: 0 auto;
+    padding: 16px;
+  }
+  .profile-image {
+    margin-bottom: 30px;
+    text-align: center;
+    & img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: lighten($button-color, 20%);
+    }
+  }
+  .user-under-line {
+    padding: 1rem 2rem;
+    border-bottom: 0.5px solid #000;
+  }
+  /*-- ベルマークを小さく --*/
+  svg {
+    font-size: large;
+  }
+  
+  /*-- 通知の丸を小さく --*/
+  .fa-circle {
+    color: #ec8f51;
+    font-size: 12px;
+    bottom: 16px;
+    left: 24px;
   }
 }

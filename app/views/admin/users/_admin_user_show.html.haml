@@ -1,0 +1,35 @@
+.col-lg-8.mx-auto
+  .profile-area
+    .profile-content
+      .profile-image
+        = image_tag user.get_account_image(200, 200)
+      .h3.font-weight-bold.text-center
+        = user.name
+      .text-center
+        = simple_format(user.introduction)
+      %table.user-profile-table
+        %tbody
+          %tr.text-align-center.user-profile-page
+            %td.w-25
+              = link_to user_followings_path(user) do
+                .table-link
+                  = "フォロー(#{user.followings.count}人)"
+                .table-link
+                  = "フォロワー(#{user.followers.count}人)"
+            %td.w-25
+              = link_to likes_user_path(user) do
+                %i.fas.fa-heart
+                いいね一覧
+            %td.w-25
+              - if admin_signed_in?
+                = link_to edit_admin_user_path(user), class: "user-edit-button" do
+                  %i.fas.fa-user-cog
+                  %span.small.button-text 編集
+                  
+  // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
+  %h2.mb-4 投稿
+
+  - if user.posts.present?
+    = render 'admin/posts/admin_posts_index_vertical', posts: user.posts
+  - else
+    .text-center まだ投稿はありません

@@ -2,7 +2,6 @@
   .card-group
     - posts.each do |post|
       .mb-5.col-lg-4
-      
         // ユーザーが退会していないかチェック
         - if post.user.active_for_authentication?
           .card.post-card.h-auto
@@ -13,9 +12,9 @@
                     = image_tag post.user.get_account_image(50, 50), class: "mr-2"
                     = link_to post.user.name, user_path(post.user)
                 .inline-block.my-auto
-                  - if post.trail_place.present?
-                    %span クラブ名：
-                    = link_to post.trail_place, posts_path(trail_place: post.trail_place)
+                  %span.prefecture-text
+                    = link_to post.prefecture.name, admin_posts_path(prefecture_id: post.prefecture_id)
+                  = link_to "#{post.trail_place}", admin_posts_path(trail_place: post.trail_place) if post.trail_place.present?
             // 本文全体にadmin_post_pathへのリンクを貼る
             = link_to admin_post_path(post) do
               = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
@@ -29,7 +28,7 @@
             .card-footer
               %i.fas.fa-tag
               - post.tags.each do |tag|
-                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+                = link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)
               .flex
                 .row.justify-content-between.px-3
                   %span
@@ -40,4 +39,3 @@
                       = post.comments.count
                   %span
                     = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
-                    = link_to '詳細', admin_post_path(post)

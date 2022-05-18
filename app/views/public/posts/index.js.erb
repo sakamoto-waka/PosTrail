@@ -1,0 +1,7 @@
+<% if params[:tag_id].present? %>
+  $('#post_lists').html("<%= j(render 'posts_index', posts: @posts) %>");
+<% else %>
+  $('#post_lists').append("<%= j(render 'posts_index', posts: @posts) %>");
+  $('#more_posts').replaceWith("<%= j(link_to_next_page(@posts, 'もっと見る', remote: true, id: "more_posts")) %>")
+<% end %>
+

@@ -1,10 +1,10 @@
 - if user_signed_in?
   - if post.liked_by?(current_user)
-    = link_to post_likes_path(post), method: :delete, class: "text-danger" do
+    = link_to post_likes_path(post), method: :delete, remote: true, data: {'turbolinks' => false}, class: "text-danger" do
       %i.fas.fa-heart
       = post.likes.count
   - else
-    = link_to post_likes_path(post), method: :post, class: "text-danger" do
+    = link_to post_likes_path(post), method: :post, remote: true, data: {'turbolinks' => false}, class: "text-danger" do
       %i.far.fa-heart
       = post.likes.count
 - else
