@@ -6,9 +6,11 @@
         = admin_signed_in? ? (link_to post.user.name, admin_user_path(post.user)) : (link_to post.user.name, user_path(post.user))
       .inline-block.my-auto
         %span.prefecture-text
-          = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id)
+        - if admin_signed_in?
+          link_to "：#{post.trail_place}", admin_posts_path(trail_place: post.trail_place)
+          = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id) if post.trail_place.present?
         - if post.trail_place.present?
-          = admin_signed_in? ? (link_to "：#{post.trail_place}", admin_posts_path(trail_place: post.trail_place)) : (link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place))
+          = admin_signed_in? ? () : (link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place))
   = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
 
   .card-body
