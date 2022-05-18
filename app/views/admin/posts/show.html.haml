@@ -1,6 +1,6 @@
 %h1 オーナー用投稿詳細
 .col-10.mx-auto
-  = render 'public/posts/post_show', post: @post
+  = render 'admin/posts/admin_post_show', post: @post
   - unless current_page?(search_path)
     #comment_lists  
       = render 'public/comments/post_comment', comments: @comments

@@ -39,7 +39,9 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.page(params[:page])
-    @comment = current_user.comments.new
+    if user_signed_in?
+      @comment = current_user.comments.new
+    end
   end
 
   def edit

@@ -3,16 +3,13 @@
     .row.justify-content-between.px-3
       .inline-block
         = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-        = admin_signed_in? ? (link_to post.user.name, admin_user_path(post.user)) : (link_to post.user.name, user_path(post.user))
+        = link_to post.user.name, user_path(post.user)
       .inline-block.my-auto
         %span.prefecture-text
-        - if admin_signed_in?
-          link_to "：#{post.trail_place}", admin_posts_path(trail_place: post.trail_place)
           = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id) if post.trail_place.present?
-        - if post.trail_place.present?
-          = admin_signed_in? ? () : (link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place))
+        = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
+        
   = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-
   .card-body
     // 投稿内容の表示を改行ありにする
     = simple_format(post.body)
@@ -30,9 +27,9 @@
           %div
             %span{ :id => "like_button_#{ post.id }"}
               = render 'public/likes/like_btn', post: post
-            = link_to post_path(post) do
-              %i.far.fa-comment-dots
-              = post.comments.count
+            // = link_to post_path(post) do
+            %i.far.fa-comment-dots
+            = post.comments.count
         %div
           - if user_signed_in? && post.user.id == current_user.id
             // 編集ボタン

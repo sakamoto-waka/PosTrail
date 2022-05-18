@@ -6,7 +6,7 @@
       %i.fas.fa-plus
 .col-lg-9.mx-auto
   = render 'public/posts/post_show', post: @post, comment: @comment
-  - unless current_page?(search_path)
+  - if !current_page?(search_path) && user_signed_in?
     .comment-respond
       .comment-form
         = render 'public/comments/comment_form', post: @post, comment: @comment
@@ -14,3 +14,5 @@
         = render 'public/comments/post_comment', comments: @comments, comment: @comment
         .col-4.mx-auto.more-comments
           = paginate @comments
+  - else
+    %p.text-center コメントはログイン後に閲覧可能です
