@@ -2,9 +2,9 @@ class Post < ApplicationRecord
   # 都道府県用のアソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-  
+
   default_scope -> { order(created_at: :desc) }
-  
+
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   validates :trail_place, length: { maximum: 25 }
   validates :body, presence: true, length: { maximum: 200 }
   validates :prefecture_id, presence: true
-  
+
   paginates_per 30
 
   def get_trail_image(width, height)
@@ -69,7 +69,7 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
+
   # タグ用のメソッド
   def save_tag(sent_tags)
     # タグをスペース区切りで分割して配列にする＋連続した空白にも対応
@@ -77,7 +77,7 @@ class Post < ApplicationRecord
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
-    
+
     old_tags.each do |old_tag|
       self.tags.delete
       # tag_idを検索？
@@ -89,9 +89,10 @@ class Post < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-  
+
   def self.looks(content)
-    Post.where("trail_place LIKE ? OR body LIKE ?", "%#{content}%", "%#{content}%")
+    prefecture_id = Prefecture.find_by_name(content).id
+    Post.where("trail_place LIKE ? OR body LIKE ? OR prefecture_id LIKE ?", "%#{content}%", "%#{content}%", "#{prefecture_id}")
   end
 
 end
