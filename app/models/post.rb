@@ -91,7 +91,8 @@ class Post < ApplicationRecord
   end
 
   def self.looks(content)
-    prefecture_id = Prefecture.find_by_name(content).id
+    prefecture = Prefecture.find_by_name(content)
+    prefecture_id = prefecture.id if prefecture.present?
     Post.where("trail_place LIKE ? OR body LIKE ? OR prefecture_id LIKE ?", "%#{content}%", "%#{content}%", "#{prefecture_id}")
   end
 
