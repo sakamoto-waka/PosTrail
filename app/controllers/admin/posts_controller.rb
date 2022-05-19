@@ -7,13 +7,13 @@ class Admin::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.page(params[:page])
+      @posts = @tag.posts.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
     elsif params[:trail_place]
-      @posts = Post.where("trail_place = ?", params[:trail_place]).page(params[:page])
+      @posts = Post.where("trail_place = ?", params[:trail_place]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])
     elsif params[:prefecture_id]
-      @posts = Post.where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])  
+      @posts = Post.where("prefecture_id = ?", params[:prefecture_id]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])  
     else
-      @posts = Post.all.page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
     end
   end
 

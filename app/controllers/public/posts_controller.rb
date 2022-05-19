@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.with_attached_trail_image.includes([:user, :tags, :account_image_]).page(params[:page])
+      @posts = @tag.posts.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
     elsif params[:trail_place]
       @posts = Post.where("trail_place = ?", params[:trail_place]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])
     elsif params[:prefecture_id]
@@ -86,7 +86,7 @@ class Public::PostsController < ApplicationController
     def no_guest_post
       if current_user.email == "guest@example.com"
         flash[:danger] = "この機能はユーザー登録後に使えます"
-        redirect_to request.referer 
+        redirect_to request.referer
       end
     end
 end
