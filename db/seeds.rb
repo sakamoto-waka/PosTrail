@@ -7,7 +7,7 @@ Admin.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'])
 users = User.create!(
   [
     {email: 'saddle@test.com', name: 'さっとん', password: 'password', encrypted_password: 'password', introduction: "乗馬歴3年ですがまだまだ初心者です…。楽しく乗馬しています！", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
-    {email: 'whip@test.com', name: 'ウイ', password: 'password', encrypted_password: 'password', introduction: "初めての乗馬が外乗でした。今では馬の魅力にどっぷりハマってます", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")},
+    {email: 'whip@test.com', name: 'ウイ', password: 'password', encrypted_password: 'password', introduction: "初めての乗馬が外乗でした。今では馬の魅力にどっぷりハマってます", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.png"), filename:"sample-user2.png")},
     {email: 'hakusha@test.com', name: 'はく', password: 'password', encrypted_password: 'password', introduction: "外乗で駈歩を夢見て特訓中", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")},
     {email: 'bridle@test.com', name: 'ぶー', password: 'password', encrypted_password: 'password', introduction: "森での外乗が特に好きです", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user4.jpg"), filename:"sample-user4.jpg")},
     {email: 'shoe@test.com', name: 'しょう', password: 'password', encrypted_password: 'password', introduction: "旅行先で馬に乗るのが好きなんです", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user5.jpg"), filename:"sample-user5.jpg")},
@@ -46,29 +46,14 @@ Tag.create!(
   ]
 )
 
-PostTag.create!(
-  [
-    [0, 2],
-    [1, 2],
-    [1, 3],
-    [1, 1],
-    [2, 1],
-    [2, 3],
-    [2, 0],
-    [3, 1],
-    [3, 0],
-    [3, 4],
-    [3, 5],
-    [4, 2],
-    [4, 7],
-    [5, 2],
-    [5, 3],
-    [6, 8],
-    [7, 0],
-  ].each do |post_id, tag_id|
-    PostTag.create!(
-      { post_id: post_id, tag_id: tag_id }  
-    )
-  end
-  
-)
+# それぞれのpostに一つずつtagを付与、最終的に複数のタグを持つように
+post_tag_array = [  [0, 2], [1, 2], [1, 3], [1, 1], [2, 1], [2, 3], [3, 0], 
+                    [3, 1], [3, 4], [3, 5], [4, 2], [4, 7], [5, 2], [5, 3],
+                    [6, 8], [7, 0]
+                 ]  
+
+post_tag_array.each do |post_id, tag_id|
+  PostTag.create!(
+    { post_id: post_id, tag_id: tag_id }  
+  )
+end

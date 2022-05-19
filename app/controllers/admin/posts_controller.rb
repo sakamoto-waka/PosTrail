@@ -13,7 +13,7 @@ class Admin::PostsController < ApplicationController
     elsif params[:prefecture_id]
       @posts = Post.where("prefecture_id = ?", params[:prefecture_id]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])  
     else
-      @posts = Post.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).page(params[:page])
     end
   end
 

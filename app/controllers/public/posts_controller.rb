@@ -10,14 +10,14 @@ class Public::PostsController < ApplicationController
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
+      @posts = @tag.posts.with_attached_trail_image.includes([:user => {account_image_attachment: :blob}]).page(params[:page])
     elsif params[:trail_place]
-      @posts = Post.where("trail_place = ?", params[:trail_place]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).where("trail_place = ?", params[:trail_place]).page(params[:page])
     elsif params[:prefecture_id]
-      @posts = Post.where("prefecture_id = ?", params[:prefecture_id]).with_attached_trail_image.includes([:user, :tags]).page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])
     else
       # N+1問題対策with_attached_trail_imageはbolbをincludeする記述
-      @posts = Post.with_attached_trail_image.includes([:user, :tags]).page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).page(params[:page])
     end
   end
 

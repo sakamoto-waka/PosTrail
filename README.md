@@ -62,6 +62,8 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 環境→バージョンも
 機能一覧・非機能一覧（何でテスト？）
 
-## 使用素材
-- 馬画像 ICOOOON MONO https://icooon-mono.com/
-- 虫眼鏡アイコン IFN 1048 FREE ICONS https://illustration-free.net/
+## 使用素材(商用可)
+- 馬画像                 ICOOOON MONO:        https://icooon-mono.com/
+- 虫眼鏡アイコン         IFN 1048 FREE ICONS: https://illustration-free.net/
+- サンプルユーザーデータ vectorShelf:         https://vectorshelf.com/
+- 素敵な馬の写真         Unsplash:            https://unsplash.com/
