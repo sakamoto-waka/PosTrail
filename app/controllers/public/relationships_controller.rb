@@ -17,6 +17,8 @@ class Public::RelationshipsController < ApplicationController
   # フォロー/フォロワーの一覧
   def followings
     @user = User.find(params[:user_id])
+    @followings = @user.followings.with_attached_account_image
+    @followers = @user.followers.with_attached_account_image
   end
 
 end

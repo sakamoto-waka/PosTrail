@@ -2,11 +2,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.with_attached_account_image
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.with_attached_trail_image.includes([:tags]).page(params[:page]).per(30)
   end
 
   def edit
@@ -24,7 +25,7 @@ class Public::UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     likes = Like.where("user_id = ?", @user.id).pluck(:post_id)
-    @like_posts = Post.find(likes)
+    @like_posts = Post.with_attached_trail_image.includes([:user, :tags]).find(likes)
   end
 
   private
