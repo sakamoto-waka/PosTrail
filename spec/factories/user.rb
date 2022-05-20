@@ -2,13 +2,16 @@ FactoryBot.define do
   factory :user do
     name { "たろう" }
     email { "tarou@tarou.com" }
+    introduction { 'これはテストです' }
     password { "password" }
     encrypted_password { "password" }
-  end
-  factory :other_user do
-    name { "はなこ" }
-    password { "password" }
-    encrypted_password { "password" }
-    email { "hanako@hanako.com" }
+    
+    trait :other_user do
+      name { "はなこ" }
+      email { "hanako@hanako.com" }
+      introduction { 'これはテストです' }
+      password { "password" }
+      encrypted_password { "password" }
+    end
   end
 end
