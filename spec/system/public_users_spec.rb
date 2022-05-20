@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "PublicUsers", type: :system do
+RSpec.describe "ユーザー新規登録", type: :system do
   before do
-    driven_by(:rack_test)
+    let(:user) { build(:user) }
   end
 
   pending "add some scenarios (or delete) #{__FILE__}"
