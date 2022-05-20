@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
   describe 'モデルに関するテスト' do
     before do
-      @user = build(:user)
+      @user = create(:user)
       @other_user = build(:user, :other_user)
     end
 
@@ -27,12 +27,12 @@ RSpec.describe User, type: :model do
       @user.email = nil
       expect(@user).to be_invalid
     end
-    # it 'emailが重複してたら無効' do
-    #   @other_user.email = @user.email
-    #   expect(@other_user).to be_invalid
-    # end
+    it 'emailが重複してたら無効' do
+      @other_user.email = @user.email
+      expect(@other_user).to be_invalid
+    end
     it 'passwordがなければ無効になること' do
-      @user.password = nil
+      @user.password = ''
       expect(@user).to be_invalid
     end
     # it 'passwordが暗号化されてること' do
@@ -45,15 +45,20 @@ RSpec.describe User, type: :model do
   end
   describe 'メソッドに関するテスト' do
   #   it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
-  #     expect(@user.active_for_authentication?).to be_true
+  #     expect(@user.active_for_authentication?).to eq true
   #   end
-    context 'たろうでlooksで検索した場合' do
-      before do
-        @user = build(:user)
-      end
+    # ↓↓↓↓↓異常系はテストが通ってしまう→書き方など合っていないと思われる↓↓↓↓↓
+    context 'たろうでlooks(検索)した場合' do
       # it '@userを返すこと' do
-      #   expect(User.looks('たろう')).to include(@user)
+      #   expect(User.looks('たろう')).to be_empty
       # end
+      # it '@other_userは返さないこと' do
+      #   expect(User.looks('たろう')).to_not include(@other_user)
+      # end
+    # context 'じろうでlooks検索した場合' do
+    #   it 'じろうでlooks(検索)するとからを返すこと' do
+    #     expect(User.looks('じろう')).to be_empty
+    #   end
     end
   
   end
