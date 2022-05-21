@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe 'ユーザーモデル', type: :model do
 
   describe 'モデルに関するテスト' do
     let(:user) { create(:user) }
