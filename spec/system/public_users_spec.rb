@@ -36,7 +36,6 @@ RSpec.describe 'ユーザー新規登録', type: :system do
     let!(:post) { create(:post, user_id: user.id) }
     it 'ログイン後投稿一覧に移動すること' do
       sign_in user
-      visit user_path(user)
       # ユーザーの投稿のみが表示されている
       expect(page).to have_content(post.body)
 
