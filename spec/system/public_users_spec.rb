@@ -56,18 +56,28 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         expect(current_path).to eq users_path
         expect(page).to have_content 'メールアドレスは既に使用されています'
       end
-      
     end
     describe 'ユーザーはログインできること' do
       let!(:other_user) { create(:user, :other_user) }
       let!(:post) { create(:post, user_id: other_user.id) }
-      it 'ログイン後投稿一覧に移動すること' do
+      it '正しい情報を入力しるとログインが出来て投稿一覧に移動すること' do
         sign_in other_user
         visit posts_path
         expect(current_path).to eq posts_path
         # ユーザーの投稿が表示されている
         expect(page).to have_content(post.body)
       end
+      it 'メールアドレスが間違っていればログインが出来ないこと' do
+        # visit new_user_session_path
+        # fill_in 'user_email', with: other_user.email
+        # fill_in 'user_password', with: other_user.password
+        # click_button 'submit'
+      end
+      it 'パスワードが空であればログインが出来ないこと' do
+      end
     end
+  end
+
+  describe 'ログイン後' do
   end
 end
