@@ -25,7 +25,6 @@
                   = link_to edit_user_path(user), class: "user-edit-button" do
                     %i.fas.fa-user-cog
                     %span.small.button-text 編集
-                  // 通知用ベルマーク：adminには見えない
                   = render 'public/notifications/bell_mark'
                 - elsif user_signed_in?
                   %span{ :id => "follow_ajax_#{user.id}" }

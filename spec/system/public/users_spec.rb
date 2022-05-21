@@ -126,8 +126,14 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_selector '#flash-message', text: 'ユーザー情報を更新しました'
         end
       end
-      context 'メールアドレスが空のとき' do
+      context 'ユーザーネームが空のとき' do
         it 'ユーザーの編集が失敗すること' do
+          visit edit_user_path(user)
+          fill_in 'user_name', with: ''
+          fill_in 'user_introduction', with: 'aaa' * 20
+          click_button '更新する'
+          expect(current_path).to eq edit_user_path(user)
+          expect(page).to have_selector '#flash-message', text: 'ユーザー名は2文字以上で入力してください'
         end
       end
     end
