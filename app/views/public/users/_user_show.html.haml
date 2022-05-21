@@ -7,31 +7,29 @@
         = user.name
       .text-center
         = simple_format(user.introduction)
-      // ゲストユーザーは見られない
-      - unless current_user.email == "guest@example.com"
-        %table.user-profile-table
-          %tbody
-            %tr.text-align-center.user-profile-page
-              %td.w-25
-                = link_to user_followings_path(user) do
-                  .table-link
-                    = "フォロー(#{user.followings.count}人)"
-                  %div{ :id => "follow-count_#{user.id}", :class => "table-link" }
-                    = "フォロワー(#{user.followers.count}人)"
-              %td.w-25
-                = link_to likes_user_path(user) do
-                  %i.fas.fa-heart
-                  いいね一覧
-              %td.w-25
-                - if user == current_user
-                  = link_to edit_user_path(user), class: "user-edit-button" do
-                    %i.fas.fa-user-cog
-                    %span.small.button-text 編集
-                  // 通知用ベルマーク：adminには見えない
-                  = render 'public/notifications/bell_mark'
-                - elsif user_signed_in?
-                  %span{ :id => "follow_ajax_#{user.id}" }
-                    = render 'public/relationships/follow_btn', user: user
+      %table.user-profile-table
+        %tbody
+          %tr.text-align-center.user-profile-page
+            %td.w-25
+              = link_to user_followings_path(user) do
+                .table-link
+                  = "フォロー(#{user.followings.count}人)"
+                %div{ :id => "follow-count_#{user.id}", :class => "table-link" }
+                  = "フォロワー(#{user.followers.count}人)"
+            %td.w-25
+              = link_to likes_user_path(user) do
+                %i.fas.fa-heart
+                いいね一覧
+            %td.w-25
+              - if user == current_user
+                = link_to edit_user_path(user), class: "user-edit-button" do
+                  %i.fas.fa-user-cog
+                  %span.small.button-text 編集
+                // 通知用ベルマーク：adminには見えない
+                = render 'public/notifications/bell_mark'
+              - elsif user_signed_in?
+                %span{ :id => "follow_ajax_#{user.id}" }
+                  = render 'public/relationships/follow_btn', user: user
 
         %h2.my-4 投稿
         - if @posts.present?

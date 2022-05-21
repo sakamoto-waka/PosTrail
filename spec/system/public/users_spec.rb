@@ -49,7 +49,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
           expect(page).to have_content 'メールアドレスが入力されていません'
         end
       end
-      context '登録済みのメールアドレスを入れると' do
+      context '登録済みのメールアドレスを入れるとき' do
         it '新規登録に失敗すること' do
           visit root_path
           expect(page).to have_content('新規登録')
@@ -64,7 +64,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         end
       end
     end
-    describe 'ユーザーはログインできること' do
+    describe 'ログイン' do
       let!(:other_user) { create(:user, :other_user) }
       let!(:post) { create(:post, user_id: other_user.id) }
       context '正しい情報を入力するとき' do
@@ -94,6 +94,10 @@ RSpec.describe 'ユーザー新規登録', type: :system do
           click_button 'ログイン'
           expect(page).to have_content('メールアドレスまたはパスワードが違います。')
         end
+      end
+      it '編集画面にはいけない' do
+        visit edit_user_path(other_user)
+        expect(current_path).to eq user_path(other_user)
       end
     end
   end
