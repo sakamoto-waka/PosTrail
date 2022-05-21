@@ -132,8 +132,8 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           fill_in 'user_name', with: ''
           fill_in 'user_introduction', with: 'aaa' * 20
           click_button '更新する'
-          expect(current_path).to eq edit_user_path(user)
-          expect(page).to have_selector '#flash-message', text: 'ユーザー名は2文字以上で入力してください'
+          expect(current_path).to eq user_path(user)
+          expect(page).to have_content 'ユーザー名は2文字以上で入力してください'
         end
       end
     end
