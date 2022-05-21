@@ -120,10 +120,17 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
         it 'ユーザーの編集が成功すること' do
           visit edit_user_path(user)
           fill_in 'user_name', with: user.name
-          fill_in 'user_introduction', with: 'aaa' * 20
           click_button '更新する'
           expect(current_path).to eq user_path(user)
           expect(page).to have_selector '#flash-message', text: 'ユーザー情報を更新しました'
+        end
+        it 'マイページの紹介文が変更されていること' do
+          visit edit_user_path(user)
+          fill_in 'user_name', with: user.name
+          fill_in 'user_introduction', with: 'aaa'
+          click_button '更新する'
+          expect(current_path).to eq user_path(user)
+          expect(page).to have_content('aaa')
         end
       end
       context 'ユーザーネームが空のとき' do
@@ -138,10 +145,6 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
       end
     end
   end
-
-
-
-
 end
 
 
