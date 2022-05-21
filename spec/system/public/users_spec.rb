@@ -107,9 +107,12 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         before { login(user) }
         describe '編集権限に関するテスト' do
           it '自分の編集ページへ遷移できること' do
-            
+            visit edit_user_path(user)
+            expect(current_path).to eq edit_user_path(user)
           end
           it '他人の編集ページには遷移できないこと' do
+            visit edit_user_path(other_user)
+            expect(current_path).to eq user_path(other_user)
           end
         end
         context 'フォームの入力値が正常なとき' do
@@ -130,3 +133,5 @@ RSpec.describe 'ユーザー新規登録', type: :system do
 
 
 end
+
+
