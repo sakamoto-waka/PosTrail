@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
     # it 'passwordが暗号化されてること' do
-    #   expect(@user.password_digest).to_not eq @user.password
+    #   expect(user.password_digest).to_not eq user.password
     # end
     it 'introductionが201文字であれば無効になること' do
       user.introduction = 'あ' * 201
@@ -41,23 +41,25 @@ RSpec.describe User, type: :model do
     end
   end
   describe 'メソッドに関するテスト' do
-  #   it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
-  #     expect(@user.active_for_authentication?).to eq true
-  #   end
-    # ↓↓↓↓↓異常系はテストが通ってしまう→書き方など合っていないと思われる↓↓↓↓↓
-    context 'たろうでlooks(検索)した場合' do
-      # it '@userを返すこと' do
-      #   expect(User.looks('たろう')).to be_empty
-      # end
-      # it '@other_userは返さないこと' do
-      #   expect(User.looks('たろう')).to_not include(@other_user)
-      # end
-    # context 'じろうでlooks検索した場合' do
-    #   it 'じろうでlooks(検索)するとからを返すこと' do
-    #     expect(User.looks('じろう')).to be_empty
-    #   end
+    let(:user) { create(:user) }
+    let(:other_user) { build(:user, :other_user) }
+    it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
+      expect(user.active_for_authentication?).to eq true
     end
-  
+    context 'たろうでlooks(検索)した場合' do
+      it '@userを返すこと' do
+        expect(User.looks('たろう')).to be_empty
+      end
+      it '@other_userは返さないこと' do
+        expect(User.looks('たろう')).to_not include(other_user)
+      end
+    end
+    context 'じろうでlooks検索した場合' do
+      it 'じろうでlooks(検索)すると空を返すこと' do
+        expect(User.looks('じろう')).to be_empty
+      end
+    end
+
   end
 
 
