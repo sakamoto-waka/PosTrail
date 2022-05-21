@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ユーザー新規登録', type: :system do
+RSpec.describe 'ユーザーに関するテスト', type: :system do
   let(:user) { build(:user) }
   let(:other_user) { create(:user, :other_user) }
   let(:post) { build(:post, user_id: user.id) }
@@ -68,71 +68,71 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         expect(current_path).to eq user_path(other_user)
       end
     end
-    describe 'ログイン後' do
-      let!(:other_user) { create(:user, :other_user) }
-      let!(:post) { create(:post, user_id: other_user.id) }
-      describe 'ユーザーログインのテスト' do
-        context '入力値が正常なとき' do
-          it 'ログインが出来て投稿一覧に移動すること' do
-            visit new_user_session_path
-            fill_in 'user_email', with: other_user.email
-            fill_in 'user_password', with: 'password'
-            click_button 'ログイン'
-            expect(current_path).to eq posts_path
-            expect(page).to have_content(post.body)
-          end
-        end
-        context 'メールアドレスが間違っているとき' do
-          it 'ログインが出来ないこと' do
-            visit new_user_session_path
-            fill_in 'user_email', with: 'incorrect_email@email.com'
-            fill_in 'user_password', with: other_user.password
-            click_button 'ログイン'
-            expect(page).to have_content('メールアドレスまたはパスワードが違います。')
-          end
-        end
-        context 'パスワードが空であるとき' do
-          it 'ログインが出来ないこと' do
-            visit new_user_session_path
-            fill_in 'user_email', with: other_user.email
-            fill_in 'user_password', with: 'incorrect_password'
-            click_button 'ログイン'
-            expect(page).to have_content('メールアドレスまたはパスワードが違います。')
-          end
+  end
+  describe 'ログイン後' do
+    let!(:other_user) { create(:user, :other_user) }
+    let!(:post) { create(:post, user_id: other_user.id) }
+    describe 'ユーザーログインのテスト' do
+      context '入力値が正常なとき' do
+        it 'ログインが出来て投稿一覧に移動すること' do
+          visit new_user_session_path
+          fill_in 'user_email', with: other_user.email
+          fill_in 'user_password', with: 'password'
+          click_button 'ログイン'
+          expect(current_path).to eq posts_path
+          expect(page).to have_content(post.body)
         end
       end
-      describe 'ユーザー編集のテスト' do
-        let!(:user) { create(:user) }
-        let(:other_user) { create(:user, :other_user) }
-        before { login(user) }
-        describe '編集権限に関するテスト' do
-          it '自分の編集ページへ遷移できること' do
-            visit edit_user_path(user)
-            expect(current_path).to eq edit_user_path(user)
-          end
-          it '他人の編集ページには遷移できないこと' do
-            visit edit_user_path(other_user)
-            expect(current_path).to eq user_path(other_user)
-          end
+      context 'メールアドレスが間違っているとき' do
+        it 'ログインが出来ないこと' do
+          visit new_user_session_path
+          fill_in 'user_email', with: 'incorrect_email@email.com'
+          fill_in 'user_password', with: other_user.password
+          click_button 'ログイン'
+          expect(page).to have_content('メールアドレスまたはパスワードが違います。')
         end
-        context 'フォームの入力値が正常なとき' do
-          it 'ユーザーの編集が成功すること' do
-            visit edit_user_path(user)
-            fill_in 'user_name', with: user.name
-            fill_in 'user_introduction'
-            click_button '更新'
-          end
+      end
+      context 'パスワードが空であるとき' do
+        it 'ログインが出来ないこと' do
+          visit new_user_session_path
+          fill_in 'user_email', with: other_user.email
+          fill_in 'user_password', with: 'incorrect_password'
+          click_button 'ログイン'
+          expect(page).to have_content('メールアドレスまたはパスワードが違います。')
         end
-        context 'メールアドレスが空のとき' do
-          it 'ユーザーの編集が失敗すること' do
-          end
+      end
+    end
+    describe 'ユーザー編集のテスト' do
+      let!(:user) { create(:user) }
+      let(:other_user) { create(:user, :other_user) }
+      before { login(user) }
+      describe '編集権限に関するテスト' do
+        it '自分の編集ページへ遷移できること' do
+          visit edit_user_path(user)
+          expect(current_path).to eq edit_user_path(user)
+        end
+        it '他人の編集ページには遷移できないこと' do
+          visit edit_user_path(other_user)
+          expect(current_path).to eq user_path(other_user)
+        end
+      end
+      context 'フォームの入力値が正常なとき' do
+        it 'ユーザーの編集が成功すること' do
+          visit edit_user_path(user)
+          fill_in 'user_name', with: user.name
+          fill_in 'user_introduction', with: 'aaa' * 20
+          click_button '更新する'
+          expect(current_path).to eq user_path(user)
+          expect(page).to have_selector '#flash-message', text: 'ユーザー情報を更新しました'
+        end
+      end
+      context 'メールアドレスが空のとき' do
+        it 'ユーザーの編集が失敗すること' do
         end
       end
     end
   end
 
-  describe 'ログイン後' do
-  end
 
 
 
