@@ -27,7 +27,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
           user_me = User.find_by!(email: user.email)
           expect(page).to have_current_path user_path(user_me)
           # マイページの表示がある
-          expect(page).to have_content('マイページ')
+          expect(page).to have_text('マイページ')
           # ログアウトボタンが表示されている事を確認
           expect(page).to have_content('ログアウト')
           # 新規登録ボタンやログインボタンが無いことを確認する
@@ -77,7 +77,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
             visit new_user_session_path
             fill_in 'user_email', with: other_user.email
             fill_in 'user_password', with: 'password'
-            click_button('ログイン')
+            click_button 'ログイン'
             expect(current_path).to eq posts_path
             expect(page).to have_content(post.body)
           end
@@ -117,6 +117,10 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         end
         context 'フォームの入力値が正常なとき' do
           it 'ユーザーの編集が成功すること' do
+            visit edit_user_path(user)
+            fill_in 'user_name', with: user.name
+            fill_in 'user_introduction'
+            click_button '更新'
           end
         end
         context 'メールアドレスが空のとき' do
