@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       @post.save_tag(params[:post][:tag])
-      redirect_to post_path(@post)
+      redirect_to posts_path
       flash[:notice] = "投稿しました"
     else
       @posts = Post.all
