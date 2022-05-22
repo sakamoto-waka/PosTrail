@@ -4,9 +4,4 @@
   %span.new-post-button
     = link_to new_post_path do
       %i.fas.fa-plus
-// - if current_user.name == "ゲストユーザー"
-//   .text-center
-//     ゲストユーザーなのでプロフィールはありません
-// - else
 = render 'user_show', user: @user
-
