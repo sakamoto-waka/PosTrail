@@ -3,33 +3,33 @@
   %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
     %li.nav-item.col-6.p-0{role: "presentation"}
       %a#followings-tab.nav-link.link-text{"aria-controls" => "followings", "data-toggle" => "tab", href: "#followings", role: "tab"}
-        = "フォロー(#{user.followings.count}人)"
+        = "フォロー(#{followings.count}人)"
 
     %li.nav-item.col-6.p-0{role: "presentation"}
       %a#followers-tab.nav-link.link-text{"aria-controls" => "followers", "data-toggle" => "tab", href: "#followers", role: "tab"}
-        = "フォロワー(#{user.followers.count}人)"
+        = "フォロワー(#{followers.count}人)"
 
 // 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
 #myTabContent.tab-content
   #followings.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
     %h3.mb-4 フォロー
-    - if user.followings.present?
+    - if followings.present?
       - if admin_signed_in?
-        = render 'admin/homes/admin_users_index', users: user.followings
+        = render 'admin/homes/admin_users_index', users: followings
       - else
         .col-10.mx-auto
-          = render 'public/users/user_index', users: user.followings
+          = render 'public/users/user_index', users: followings
     - else
       %p.text-center まだ誰もフォローしていません
 
   #followers.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
     %h3.mb-4 フォロワー
     // 配列の中身が空じゃなかったら
-    - if user.followers.present?
+    - if followers.present?
       - if admin_signed_in?
-        = render 'admin/homes/admin_users_index', users: user.followings
+        = render 'admin/homes/admin_users_index', users: followings
       - else
         .col-10.mx-auto
-          = render 'public/users/user_index', users: user.followers
+          = render 'public/users/user_index', users: followers
     - else
       %p.text-center まだフォロワーはいません

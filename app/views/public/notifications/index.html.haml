@@ -1,5 +1,1 @@
-- if @notifications_except_me.present?
-  // = render 'notifications_index_except_me', notifications_except_me: @notifications_except_me
-  = render 'notifications_and_activities', notifications: @notifications_except_me, activities: @activities
-- else  
-  %p 通知はありません
+= render 'notifications_and_activities', notifications: @notifications_except_me, activities: @activities

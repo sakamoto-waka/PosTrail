@@ -29,7 +29,7 @@
   // ⚠いいねしたら投稿一覧に飛ぶ問題発生中
   %h2.mb-4 投稿
 
-  - if user.posts.present?
-    = render 'admin/posts/admin_posts_index_vertical', posts: user.posts
+  - if posts.present?
+    = render 'admin/posts/admin_posts_index_vertical', posts: posts
   - else
     .text-center まだ投稿はありません
