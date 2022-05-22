@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Postsに関するテスト', type: :system do
+RSpec.describe '投稿に関するテスト', type: :system do
   
   
   
