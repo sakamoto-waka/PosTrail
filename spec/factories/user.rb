@@ -11,5 +11,12 @@ FactoryBot.define do
       introduction { 'これはテストです' }
       password { "password" }
     end
+    
+    trait :like_user do
+      name { "aaaa" } 
+      email { "aaaa@aaaa.com" }
+      password { "password" }
+    end
+    
   end
 end

@@ -32,9 +32,9 @@ RSpec.describe 'ユーザーモデル', type: :model do
       user.password = ''
       expect(user).to be_invalid
     end
-    # it 'passwordが暗号化されてること' do
-    #   expect(user.password_digest).to_not eq user.password
-    # end
+    it 'passwordが暗号化されてること' do
+      expect(user.encrypted_password).to_not eq user.password
+    end
     it 'introductionが201文字であれば無効になること' do
       user.introduction = 'あ' * 201
       expect(user).to be_invalid
