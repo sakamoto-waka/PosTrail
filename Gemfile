@@ -42,9 +42,7 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/sprin
   gem 'bullet'
 end
 
@@ -70,3 +68,5 @@ gem 'erb2haml'
 gem 'kaminari'
 gem 'devise-i18n'
 gem 'active_hash'
+gem 'spring'
+gem 'spring-watcher-listen', '~> 2.0.0'
