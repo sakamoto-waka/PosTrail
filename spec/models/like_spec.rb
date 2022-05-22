@@ -29,7 +29,6 @@ RSpec.describe Like, type: :model do
       #   like = FactoryBot.create(:like)
       #   expect(FactoryBot.create(:like, psot_id: like.post_id)).to be_valid
       # end
-      
     end
   end
 end
