@@ -6,7 +6,7 @@
         = link_to post.user.name, user_path(post.user)
       .inline-block.my-auto
         %span.prefecture-text
-          = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id) if post.trail_place.present?
+          = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id)
         = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
         
   = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?

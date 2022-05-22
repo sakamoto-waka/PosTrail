@@ -1,12 +1,7 @@
 .row
   .mx-auto
-    = (user_signed_in? && current_user == @user) ? (content_tag :h1, 'マイページ') : (content_tag :h1, "#{@user.name}さんのプロフィール")
-  .new-post-button
+    %p.h1 
+  %span.new-post-button
     = link_to new_post_path do
       %i.fas.fa-plus
-// - if current_user.name == "ゲストユーザー"
-//   .text-center 
-//     ゲストユーザーなのでプロフィールはありません
-// - else
-= render 'user_show', user: @user, tags_list: @tags_list
-  
+= render 'user_show', user: @user

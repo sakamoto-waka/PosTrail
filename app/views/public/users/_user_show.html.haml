@@ -7,8 +7,6 @@
         = user.name
       .text-center
         = simple_format(user.introduction)
-      // ゲストユーザーは見られない  
-      - unless current_user.email == "guest@example.com"
         %table.user-profile-table
           %tbody
             %tr.text-align-center.user-profile-page
@@ -23,21 +21,17 @@
                   %i.fas.fa-heart
                   いいね一覧
               %td.w-25
-                - if user == current_user || admin_signed_in?
-                  - if admin_signed_in?
-                    link_to '管理者用編集', edit_admin_user_path(user)
-                  - else
-                    = link_to edit_user_path(user), class: "user-edit-button" do
-                      %i.fas.fa-user-cog
-                      %span.small.button-text 編集
-                    // 通知用ベルマーク：adminには見えない
-                    = render 'public/notifications/bell_mark'
+                - if user == current_user
+                  = link_to edit_user_path(user), class: "user-edit-button" do
+                    %i.fas.fa-user-cog
+                    %span.small.button-text 編集
+                  = render 'public/notifications/bell_mark'
                 - elsif user_signed_in?
                   %span{ :id => "follow_ajax_#{user.id}" }
                     = render 'public/relationships/follow_btn', user: user
-                    
-        %h2.my-4 投稿
-        - if user.posts.present? 
-          = render 'public/posts/posts_index', posts: user.posts
-        - else
-          .text-center まだ投稿はありません
+
+      %h2.my-4 投稿
+      - if @posts.present?
+        = render 'public/posts/posts_index', posts: @posts
+      - else
+        .text-center まだ投稿はありません
