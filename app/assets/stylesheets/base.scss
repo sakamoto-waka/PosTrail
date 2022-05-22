@@ -24,8 +24,14 @@ body {
                sans-serif;
 }
 
-.img_wrap {
-  
+.logo-image {
+  background-image: image-url('postrail_logo.png');
+  width: 172px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  filter: brightness(0.6);
 }
 
 // validationがかかるとレイアウトが崩れるのを防ぐ
@@ -333,15 +339,23 @@ h4 {
 
 /*--投稿一覧--*/
 
-.post-card:hover {
+
+.post-card {
+  &:hover {
   box-shadow: 5px 6px 6px 2px #e9ecef;
   taransform: (1.03);
-}
-
-.card_body {
-  pointer-events: none;
-  text-decoration:none;
-  color:#000000;
+  }
+  .card-header {
+    background-color: rgba($main-color, 0.05)!important;
+  }
+  .card_body {
+    pointer-events: none;
+    text-decoration:none;
+    color:#000000;
+  }
+  .card-footer {
+    background-color: rgba($main-color, 0.05)!important;
+  }
 }
 
 /*--投稿フォームはdesigns.scssにある --*/
@@ -500,7 +514,7 @@ table {
   svg {
     font-size: large;
   }
-  
+
   /*-- 通知の丸を小さく --*/
   .fa-circle {
     color: #ec8f51;

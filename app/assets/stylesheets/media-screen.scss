@@ -1,5 +1,9 @@
 // スマホ
 @media screen and (max-width: 507px) {
+  
+  .logo-image {
+    width: 140px;
+  }
 
   .top-image-position {
     width: 150px!important;
@@ -39,7 +43,7 @@
 
   button.navbar-toggler {
     display: inline;
-    margin: -6px 0 0 260px;
+    // margin: -6px 0 0 260px;
   }
 
   .top_page_image {

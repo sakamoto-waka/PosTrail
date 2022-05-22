@@ -1,13 +1,12 @@
 %a.navbar-brand{href: "/"}
-  .img_wrap
+  .logo-image
 
 - if user_signed_in?
-  .login_name_display
-    %i.fas.fa-door-open
+  .login_name_display.pl-lg-3
     %b
-      ～ようこそ、
+      ようこそ、
       \#{current_user.name}
-      さん！～
+      さん！
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbarNavDropdown.collapse.navbar-collapse.px-2
