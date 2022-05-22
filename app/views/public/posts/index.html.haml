@@ -16,3 +16,5 @@
     .col-4.mx-auto
       .more
         = link_to_next_page @posts, 'もっと見る', remote: true, id: "more_posts" unless params == params[:tag_id] || params[:trail_place]
+        // - unless params[:post] 
+        = link_to '投稿一覧に戻る', posts_path

@@ -30,8 +30,8 @@
                   %span{ :id => "follow_ajax_#{user.id}" }
                     = render 'public/relationships/follow_btn', user: user
 
-        %h2.my-4 投稿
-        - if @posts.present?
-          = render 'public/posts/posts_index', posts: @posts
-        - else
-          .text-center まだ投稿はありません
+      %h2.my-4 投稿
+      - if @posts.present?
+        = render 'public/posts/posts_index', posts: @posts
+      - else
+        .text-center まだ投稿はありません
