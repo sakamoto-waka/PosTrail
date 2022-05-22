@@ -24,6 +24,7 @@ body {
                sans-serif;
 }
 
+/*-- ロゴ --*/
 .logo-image {
   background-image: image-url('postrail_logo.png');
   width: 172px;
@@ -31,10 +32,10 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left;
-  filter: brightness(0.6);
+  filter: brightness(0.5);
 }
 
-// validationがかかるとレイアウトが崩れるのを防ぐ
+/*-- validationがかかるとレイアウトが崩れるのを防ぐ --*/
 .field_with_errors {
   display: contents;
 }
@@ -257,7 +258,7 @@ h4 {
   @include image-position;
   order: 1;
   &.image1 {
-  background: no-repeat image-url("horse_no_image.png") 5px center;
+  background: no-repeat image-url("postrail_logo.png") 5px center;
   background-size: 120px 80px;
   }
   &.image3 {
