@@ -33,6 +33,7 @@ body {
   background-size: contain;
   background-position: left;
   filter: brightness(0.5);
+  // filter: invert(11%) sepia(71%) saturate(5170%) hue-rotate(21deg) brightness(81%) contrast(111%);
 }
 
 /*-- validationがかかるとレイアウトが崩れるのを防ぐ --*/

@@ -88,28 +88,40 @@ RSpec.describe '投稿に関するテスト', type: :system do
           expect(page).to have_content('編集しました')
         end
       end
-      context '編集が失敗するとき' do
-        it 'prefecture_idがないとき' do
-          
-        end
-        it 'bodyがないとき' do
-          
+      # context '編集が失敗するとき' do
+      #   it 'prefecture_idがないとき' do
+      #     visit edit_post_path(post)
+      #     post.prefecture_id = nil
+      #     fill_in 'post_body', with: post.body
+      #     find('button[name="button"]').click
+      #     expect(post.errors.messages[:prefecture_id][1]).to eq('入力してください')
+      #   end
+      #   it 'bodyがないとき' do
+      #     visit edit_post_path(post)
+      #     find("option[value='1']").select_option
+      #     fill_in 'post_body', with: ''
+      #     find('button[name="button"]').click
+      #     expect(post.errors.messages[:body][0]).to eq('入力してください')
+      #   end
+      # end
+      context '他人の投稿を編集しようとしたとき' do
+        it '投稿詳細にリダイレクトされる' do
+          visit edit_post_path(other_post)
+          expect(current_path).to eq post_path(other_post)
         end
       end
     end
     context 'ログインをしていないとき' do
       it '編集画面に遷移が出来ないこと' do
-        
+        visit "/posts/#{post.id}/edit"
+        expect(current_path).to_not eq edit_post_path(post)
       end
       it 'ログイン画面に遷移すること' do
-        
+        visit "/posts/#{post.id}/edit"
+        expect(current_path).to eq new_user_session_path
       end
     end
-    context '他人の投稿を編集しようとしたとき' do
-      it '投稿詳細にリダイレクトされる' do
-        
-      end
-    end
+    
   end
   
 end
