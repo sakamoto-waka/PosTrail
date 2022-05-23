@@ -225,54 +225,60 @@ h4 {
   }
 }
 
-/* --アバウトページ写真左右に-- */
-
-@mixin image-position {
-  width: 170px;
-  height: 130px;
-}
-
-.top-image-position {
-  @include image-position;
-  order: 1;
-  &.top-image1 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
-  }
-}
-
-.top-image-position {
-  @include image-position;
-  &.top-image2 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
-  }
-}
-
 .top-last-text {
   background-color: lighten($accent-color, 25%);
   height: 30px;
 }
 
+/* --アバウトページ写真左右に-- */
 
-.image-position {
-  @include image-position;
+@mixin top-image-position {
+  width: 170px;
+  height: 130px;
+}
+
+.top-image-position {
+  @include top-image-position;
   order: 1;
-  &.image1 {
-  background: no-repeat image-url("postrail_logo.png") 5px center;
-  background-size: 120px 80px;
+  &.top-image1 {
+    background: no-repeat image-url("smartphone_man.png") center;
+    // background-size: 120px 80px;
+    background-size: contain;
   }
-  &.image3 {
-  background: no-repeat image-url("horse_no_image.png") 5px center;
-  background-size: 120px 80px;
+}
+
+.top-image-position {
+  @include top-image-position;
+  &.top-image2 {
+    background: no-repeat image-url("smartphone_woman.png") center;
+    // background-size: 120px 80px;
+    background-size: contain;
+  }
+}
+
+@mixin about-image-position {
+  width: 170px;
+  height: 160px;
+}
+
+.about-image-position {
+  @include about-image-position;
+  order: 1;
+  &.about-image1 {
+  background: no-repeat image-url("sunset-sea-ride.jpg") center;
+  background-size: contain;
+  }
+  &.about-image3 {
+  background: no-repeat image-url("ride-in-summer.jpg") center;
+  background-size: contain;
   }
 }
 // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
-.image-position {
-  @include image-position;
-  &.image2 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
+.about-image-position {
+  @include about-image-position;
+  &.about-image2 {
+    background: no-repeat image-url("horses-in-forest.jpg") center;
+    background-size: contain;
   }
 }
 
@@ -292,9 +298,9 @@ h4 {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
   right: 55px;
-  bottom: 6px;
+  bottom: 19px;
   width: 1px;
-  filter: brightness(0.5);
+  filter: brightness(98%);
   .search-submit {
     width: 50px;
     height: 50px;

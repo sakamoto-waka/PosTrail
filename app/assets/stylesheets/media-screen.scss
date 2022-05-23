@@ -1,15 +1,8 @@
 // スマホ
 @media screen and (max-width: 507px) {
-  
+
   .logo-image {
     width: 140px;
-  }
-
-  .top-image-position {
-    width: 150px!important;
-    &.top-image2 {
-      margin-left: 20px!important;
-    }
   }
 
   .no-text-phone {
@@ -19,11 +12,11 @@
   .post-tag-list {
     justify-content: end;
   }
-  
+
   .user-profile-table .button-text {
     display: none;
   }
-  
+
   .edit-and-delete-buttons {
     text-align: right;
   }
@@ -46,19 +39,17 @@
     // margin: -6px 0 0 260px;
   }
 
-  .top_page_image {
-    width: auto;
-    height: 200px;
-    background-image: image-url("top_page_image.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  .top-image-position {
+    width: 150px!important;
+    &.top-image2 {
+      margin-left: 170px;
+    }
   }
 
-  .image-position {
-    margin: 0 auto;
-    width: 85%;
-    height: 200px;
+  .about-image-position {
+    // margin: 0 auto;
+    // width: 150px;
+    // height: 137px;
   //   &.image1 {
   //   background: no-repeat image-url("horse_no_image.png") 5px center;
   //   background-size: 120px 80px;
@@ -80,13 +71,6 @@
     order: 0;
   }
 
-  .top-image-position {
-    width: 150px!important;
-    &.top-image2 {
-      margin-left: 150px;
-    }
-  }
-
   .divise-form {
     display: block;
   	.devise-label {
@@ -97,17 +81,31 @@
   .login_name_display {
     display: none;
   }
-  
+
   /*-- ボタンの中身の文字消す --*/
-  
+
   .button-text {
     display: none;
   }
-  
+
 
 }
 
+@media screen and (max-width: 991px) {
+  .about-image-position {
+    height: 330px;
+  }
+  
+  .about-text {
+    margin: 20px auto;
+    // text-align: center;
+  }
 
+  /*-- アバウトページの写真2枚目をテキストの上に --*/
+  .about-text-to-bottom {
+    order: 2;
+  }
+}
 
 @media screen and (max-width: 1199px) {
   /*押し間違い防止でログアウトに要素をかける*/
@@ -118,24 +116,6 @@
 
   .card-deck.card {
     min-width: 220px;
-  }
-
-  .image-position {
-    margin: 0 auto;
-    width: 150px;
-    height: 100px;
-  //   &.image1 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  //   &.image3 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  // }
-  // .image2 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
   }
 
   .tag-container {
@@ -151,7 +131,7 @@
   .user-edit-button {
     padding: 0.3em 1em;
   }
-  
+
   .user-introduction {
     display: none;
   }
