@@ -4,6 +4,12 @@
   .logo-image {
     width: 140px;
   }
+  
+  .top-image-position {
+    &.top-image2 {
+      margin-left: 20px!important;
+    }
+  }
 
   .no-text-phone {
     display: none;
@@ -42,7 +48,7 @@
   .top-image-position {
     width: 150px!important;
     &.top-image2 {
-      margin-left: 170px;
+      margin-left: 160px;
     }
   }
 
@@ -109,10 +115,6 @@
     right: 27px;
   }
 
-  .card-deck.card {
-    min-width: 220px;
-  }
-
   .tag-container {
     .tag-content {
       left: 130.8%;
@@ -123,6 +125,10 @@
     }
   }
 
+  .card-deck.card {
+    min-width: 220px;
+  }
+  
   .user-edit-button {
     padding: 0.3em 1em;
   }
