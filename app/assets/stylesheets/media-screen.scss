@@ -93,12 +93,25 @@
 
 @media screen and (max-width: 991px) {
   .about-image-position {
-    height: 330px;
+    margin: 0 auto;
+    width: 95%!important;
+    height: 355px;
+    &.about-image1 {
+    background-size: cover;
+    }
+    &.about-image3 {
+    background-size: cover;
+    }
   }
-  
+  // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+  .about-image-position {
+    &.about-image2 {
+      background-size: cover;
+    }
+  }
+
   .about-text {
     margin: 20px auto;
-    // text-align: center;
   }
 
   /*-- アバウトページの写真2枚目をテキストの上に --*/
