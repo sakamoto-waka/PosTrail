@@ -32,4 +32,4 @@
 
     .actions.text-center.mt-5
       = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
-        = post.present? ? '編集する' : '投稿する'
+        = post.body.present? ? '編集する' : '投稿する'
