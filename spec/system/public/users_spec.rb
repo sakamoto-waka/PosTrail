@@ -133,6 +133,15 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content('aaa')
         end
       end
+      describe 'account_image更新のテスト' do
+        it 'account_imageが正しく更新されること' do
+          visit edit_user_path(user)
+          user_old_account_image = nil
+          attach_file '.image-select-box', "#{Rails.root}/spec/fixtures/images/test1.png"
+          click_button '更新する'
+          expect(user.account_image).not_to eq user_old_account_image
+        end
+      end
       context 'ユーザーネームが空のとき' do
         it 'ユーザーの編集が失敗すること' do
           visit edit_user_path(user)
