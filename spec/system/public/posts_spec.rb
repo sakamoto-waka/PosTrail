@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe '投稿に関するテスト', type: :system do
+  let(:other_user) { create(:user, :other_user) }
   describe '新規投稿' do
-    let(:other_user) { create(:user, :other_user) }
     let(:post) { build(:post) }
     context 'ログインをしているとき' do
       before { login(other_user) }
@@ -59,14 +59,57 @@ RSpec.describe '投稿に関するテスト', type: :system do
   end
     
   describe '投稿の編集' do
-    context 'ログインしているとき'
-      context '編集が成功するとき'
-        it '編集画面に遷移できること'
-        it 'prefecture_idとbodyが入っていること'
-        it '編集した内容が存在していること'
-      context '新規投稿が失敗するとき'
-        it 'prefecture_idがないとき'
-        it 'bodyがないとき'
+    let(:user) { create(:user, :other_user) }
+    let(:other_user) { create(:user, :like_user) }
+    let(:post) { create(:post, user: user) }
+    let(:other_post) { create(:post, user: other_user) }
+    context 'ログインしているとき' do
+      before { login(user) }
+      context '編集が成功するとき' do
+        it '編集画面に遷移できること' do
+          visit edit_post_path(post)
+          expect(current_path).to eq edit_post_path(post)
+        end
+        it 'prefecture_idとbodyが入っていること' do
+          visit edit_post_path(post)
+          find("option[value='1']").select_option
+          fill_in 'post_body', with: post.body
+          expect{
+            find('button[name="button"]').click
+          }.to change { Post.count }.by(0)
+        end
+        it '編集した内容が存在していること' do
+          visit edit_post_path(post)
+          find("option[value='1']").select_option
+          fill_in 'post_body', with: '編集しました'
+          find('button[name="button"]').click
+          expect(current_path).to eq post_path(post)
+          expect(page).to have_selector '#flash-message', text: '投稿内容を更新しました'
+          expect(page).to have_content('編集しました')
+        end
+      end
+      context '編集が失敗するとき' do
+        it 'prefecture_idがないとき' do
+          
+        end
+        it 'bodyがないとき' do
+          
+        end
+      end
+    end
+    context 'ログインをしていないとき' do
+      it '編集画面に遷移が出来ないこと' do
+        
+      end
+      it 'ログイン画面に遷移すること' do
+        
+      end
+    end
+    context '他人の投稿を編集しようとしたとき' do
+      it '投稿詳細にリダイレクトされる' do
+        
+      end
+    end
   end
   
 end
