@@ -10,14 +10,21 @@
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .content
-      %header
-        = render 'layouts/header'
-      %main
-        #flash-message
-          = render "layouts/notice"
-        .container
-          = yield
-    %footer
-      = render 'layouts/footer'
-      
+    - if current_page?(root_path)
+      .top_page_content
+        %header
+          = render 'layouts/header'
+        = render 'public/homes/top'
+      %footer
+        = render 'layouts/footer'
+    - else
+      .content
+        %header
+          = render 'layouts/header'
+        %main
+          #flash-message
+            = render "layouts/notice"
+          .container
+            = yield
+      %footer
+        = render 'layouts/footer'

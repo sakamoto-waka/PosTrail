@@ -151,12 +151,16 @@ h4 {
 
 ===================================================== */
 
+.top_page_content {
+  min-height: 92.5vh;
+}
+
 .top_page_image {
-  width: auto;
-  height: 400px;
+  width: 100vw;
+  height: 50vh;
   background-image: image-url("standing_alone.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
 }
 
@@ -230,7 +234,6 @@ h4 {
   height: 30px;
 }
 
-/* --アバウトページ写真左右に-- */
 
 @mixin top-image-position {
   width: 170px;
@@ -255,6 +258,8 @@ h4 {
     background-size: contain;
   }
 }
+
+/* --アバウトページ写真左右に-- */
 
 @mixin about-image-position {
   width: 170px;
