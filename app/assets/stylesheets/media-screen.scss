@@ -60,6 +60,10 @@
     display: inline;
     // margin: -6px 0 0 260px;
   }
+  
+  .top_page_container {
+    padding: 0 20px;  
+  }
 
   .top-image-position {
     width: 150px!important;
@@ -100,16 +104,13 @@
     margin: 0 auto;
     width: 95%!important;
     height: 355px;
-    &.about-image1 {
-    background-size: cover;
-    }
-    &.about-image3 {
+    &.about-image1, &.about-image3, &.about-image5 {
     background-size: cover;
     }
   }
   // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
   .about-image-position {
-    &.about-image2 {
+    &.about-image2, &.about-image4 {
       background-size: cover;
     }
   }

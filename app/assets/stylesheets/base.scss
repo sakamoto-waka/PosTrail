@@ -147,7 +147,7 @@ h4 {
 
 /* ==================================================
 
-              トップページ＋アバウトページ
+                      トップページ
 
 ===================================================== */
 
@@ -158,7 +158,7 @@ h4 {
 .top_page_image {
   width: 100vw;
   height: 50vh;
-  background-image: image-url("standing_alone.jpg");
+  background-image: image-url("canter_in_seaside_alone.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -259,35 +259,54 @@ h4 {
   }
 }
 
-/* --アバウトページ写真左右に-- */
+/* ==================================================
+
+                    アバウトページ
+
+===================================================== */
+
+/*-- アバウトページ写真左右に --*/
 
 @mixin about-image-position {
   width: 170px;
   height: 160px;
 }
 
+/*-- アバウトページ：写真が左 --*/
+
 .about-image-position {
   @include about-image-position;
   order: 1;
   &.about-image1 {
-  background: no-repeat image-url("sunset-sea-ride.jpg") center;
-  background-size: contain;
+    background: no-repeat image-url("sunset-sea-ride.jpg") center;
+    background-size: contain;
   }
   &.about-image3 {
-  background: no-repeat image-url("ride-in-summer.jpg") center;
-  background-size: contain;
+    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background-size: contain;
+  }
+  &.about-image5 {
+    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background-size: contain;
   }
 }
-// ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+
+/*-- アバウトページ：写真が右 --*/
+
+/*-- ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある --*/
 .about-image-position {
   @include about-image-position;
   &.about-image2 {
+    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background-size: contain;
+  }
+  &.about-image4 {
     background: no-repeat image-url("horses-in-forest.jpg") center;
     background-size: contain;
   }
 }
 
-/* --画像をabout-textの左側に配置させる-- */
+/*-- 文字を画像の右側に配置させる --*/
 
 .about-text-right {
   order: 2;
