@@ -194,12 +194,12 @@ $edit-button-color: #4b957a;
     color: #fff;
     border-radius: 50%;
     background: $text-color;
-    &.fa-carrot {
-      padding: 8px 7px 11px 9px;
-      right: 10px;
-    }
     &.fa-horse {
       padding: 10px 6px 10px 4px;
+      right: 10px;
+    }
+    &.fa-carrot {
+      padding: 8px 7px 11px 9px;
       left: 10px;
     }
     &.fa-apple-alt {
