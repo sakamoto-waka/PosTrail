@@ -22,7 +22,7 @@
             %i.fas.fa-history
             = "#{time_ago_in_words(post.created_at)}前"
       .card-footer
-        .row.justify-content-between.px-3
+        .row.justify-content-between.px-3.moving_card_icons
           .col-sm-7.col-md-lg-9
             %div
               - post.tags.each do |tag|

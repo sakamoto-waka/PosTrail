@@ -4,22 +4,10 @@
   .logo-image {
     width: 140px;
   }
-  
-  // .top_page_image {
-  //   position: relative;
-  //   width: 100vw;
-  //   height: 67vw;
-  //   background: url(/assets/standing_alone-7f7a114….jpg);
-  //   background-repeat: no-repeat;
-  //   background-size: contain;
-  //   background-position: center;
-  //   top: -51px;
-  //   right: 15px;
-  // }
-  
-  // .top_page_image {
-  //   height: 257px;
-  // }
+
+  #search-wrap {
+    right: -150px!important;
+  }
   
   .top-image-position {
     &.top-image2 {
@@ -29,6 +17,10 @@
 
   .no-text-phone {
     display: none;
+  }
+
+  .moving_card_icons {
+    display: block!important;
   }
 
   .post-tag-list {
@@ -58,11 +50,15 @@
 
   button.navbar-toggler {
     display: inline;
-    // margin: -6px 0 0 260px;
   }
+
+  // .top_page_container {
+  //   padding: 0 20px;
+  // }
   
-  .top_page_container {
-    padding: 0 20px;  
+  .top_page_image::before {
+    top: 75%;
+    left: 60%;
   }
 
   .top-image-position {
@@ -89,6 +85,10 @@
 
   .login_name_display {
     display: none;
+  }
+
+  #search-wrap {
+    right: -200px!important;
   }
 
   /*-- ボタンの中身の文字消す --*/
@@ -123,13 +123,18 @@
   .about-text-to-bottom {
     order: 2;
   }
+
+  #search-wrap {
+    right: -300px;
+  }
+
 }
 
 @media screen and (max-width: 1199px) {
   /*押し間違い防止でログアウトに要素をかける*/
   #search-text{
-    width: 80px;
-    right: 27px;
+    width: 35px;
+    right: 0px;
   }
 
   .tag-container {
@@ -145,7 +150,7 @@
   .card-deck.card {
     min-width: 220px;
   }
-  
+
   .user-edit-button {
     padding: 0.3em 1em;
   }

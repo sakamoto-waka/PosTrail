@@ -227,6 +227,14 @@ $edit-button-color: #4b957a;
     background: $button-accent-color;
     transition: 0.3s;
   }
+  &.basic-button-top-page {
+    background-color: #392f14;
+    color: #fff;
+    border: 2px solid #392f14;
+    &:hover {
+      background-color: lighten(#392f14, 3%);
+    }
+  }
 }
 
 /*-- 新規登録ボタン用 --*/

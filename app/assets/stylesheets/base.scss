@@ -73,6 +73,7 @@ header, footer {
 }
 
 .alert {
+  margin-bottom: 0!important;
   text-align: center;
   font-weight: bold;
 }
@@ -145,33 +146,54 @@ h4 {
   border-radius: 15px;
 }
 
+.login_name_display {
+  color: $text-color;
+}
+
 /* ==================================================
 
                       トップページ
 
 ===================================================== */
 
+/*-- トップページのヘッダー変更 --*/
+
+.top-page-header {
+  background-color: #a4b094;
+}
+
 .top_page_content {
   min-height: 92.5vh;
+  position: relative;
 }
 
 .top_page_image {
   width: 100vw;
-  height: 50vh;
-  background-image: image-url("canter_in_seaside_alone.jpg");
+  height: 100vh;
+  background-image: image-url("standing_alone.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  position: absolute;
   &::before {
     content: 'Trail Riding';
     font-family: fantasy, cursive;
     font-size: 25px;
     color: #fff;
-    position: relative;
+    position: absolute;
     top: 80%;
     left: 80%;
   }
 }
+
+/*-- ログインボタンなどのdivタグ --*/
+.top_page_container {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  backdrop-filter: contrast(0.7);
+}
+
 
 /* --会話風-- */
 
@@ -328,11 +350,15 @@ h4 {
 
 ===================================================== */
 
+.search-form {
+  position: relative;
+}
+
 #search-wrap {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
-  right: 55px;
-  bottom: 19px;
+  right: 0px;
+  bottom: -10px;
   width: 1px;
   filter: brightness(98%);
   .search-submit {
@@ -342,6 +368,9 @@ h4 {
     border-style: none;
     background: no-repeat image-url("search_icon.png") 12px center;
     background-size: 20px 20px;
+    &:focus {
+
+    }
   }
 }
 
@@ -361,7 +390,7 @@ h4 {
   outline: none;
   cursor: pointer;/*カーソルを指マークに*/
   &:focus {
-    right: 245px;
+    right: 253px;
     z-index: -1;
     opacity: 1;
     background: #eee;

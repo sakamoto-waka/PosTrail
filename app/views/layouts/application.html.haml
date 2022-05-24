@@ -12,13 +12,14 @@
   %body
     - if current_page?(root_path)
       .top_page_content
-        %header
+        // %header
+        .top-page-header
           = render 'layouts/header'
+        #flash-message
+          = render "layouts/notice"  
         .top_page_image  
         .top_page_container  
           = render 'public/homes/top'
-      %footer
-        = render 'layouts/footer'
     - else
       .content
         %header
