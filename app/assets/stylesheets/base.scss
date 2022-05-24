@@ -162,6 +162,15 @@ h4 {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  &::before {
+    content: 'Trail Riding';
+    font-family: fantasy, cursive;
+    font-size: 25px;
+    color: #fff;
+    position: relative;
+    top: 80%;
+    left: 80%;
+  }
 }
 
 /* --会話風-- */
