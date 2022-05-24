@@ -276,13 +276,14 @@ h4 {
 
 .about-image-position {
   @include about-image-position;
+  margin: auto;
   order: 1;
   &.about-image1 {
     background: no-repeat image-url("sunset-sea-ride.jpg") center;
     background-size: contain;
   }
   &.about-image3 {
-    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background: no-repeat image-url("canter_in_seaside_alone.jpg") center;
     background-size: contain;
   }
   &.about-image5 {
@@ -297,7 +298,7 @@ h4 {
 .about-image-position {
   @include about-image-position;
   &.about-image2 {
-    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background: no-repeat image-url("rider_eye_on_horse.jpg") center;
     background-size: contain;
   }
   &.about-image4 {
