@@ -31,9 +31,9 @@ class Public::CommentsController < ApplicationController
   private
     
     def ensure_correct_user
-      unless admin_signed_in?
-        @post = Post.find(params[:post_id])
-        @comment = Comment.find(params[:id])
+      @post = Post.find(params[:post_id])
+      @comment = Comment.find(params[:id])
+      unless admin_signed_in? 
         unless (@comment.user_id == current_user.id)
           redirect_to post_path(@post)
         end

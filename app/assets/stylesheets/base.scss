@@ -1,7 +1,7 @@
-$main-color: #bcaaa4;
+$main-color: lighten(#bcaaa4, 5%);
 // $accent-color: adjust-hue($main-color, 200);
 $accent-color: #efdcd5;
-$button-color: #c7aeae;
+$button-color: darken($main-color, 10%);
 $button-accent-color: darken($button-color, 15%);
 $button-text: #f5f2ee;
 $text-color: #4a2d08;
@@ -159,7 +159,7 @@ h4 {
 /*-- トップページのヘッダー変更 --*/
 
 .top-page-header {
-  background-color: #a4b094;
+  background-color: rgba(#95a99d, 0.9);
 }
 
 .top_page_content {
@@ -426,6 +426,9 @@ h4 {
   }
   .card-footer {
     background-color: rgba($main-color, 0.05)!important;
+    svg.fa-heart {
+      color: crimson;
+    }
   }
 }
 

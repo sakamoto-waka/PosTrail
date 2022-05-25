@@ -3,10 +3,11 @@
 
 - if user_signed_in?
   .login_name_display.pl-lg-3
-    %b
-      ようこそ、
-      \#{current_user.name}
-      さん！
+    = link_to user_path(current_user) do
+      %b
+        ようこそ、
+        \#{current_user.name}
+        さん！
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbarNavDropdown.collapse.navbar-collapse.px-2

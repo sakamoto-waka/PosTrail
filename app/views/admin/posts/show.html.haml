@@ -5,4 +5,4 @@
     #comment_lists  
       = render 'public/comments/post_comment', comments: @comments
       .col-4.mx-auto.more-comments
-        = paginate @comments
+        = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more"

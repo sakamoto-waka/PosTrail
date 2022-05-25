@@ -1,26 +1,20 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title PosTrail
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    %meta{:name => "description", :content => "乗馬アクティビティ、野外に乗りに行く「外乗」の投稿サイトです。外乗で素敵な体験をしたら他の人にも共有してください！他にも行きたい外乗先があれば検索してみましょう。"
-    %meta{:name => "keywords", :content => "外乗, 投稿, 乗馬"
+    %meta{ :content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{ :name => "description", :content => "乗馬アクティビティ、野外に乗りに行く「外乗」の投稿サイトです。外乗で素敵な体験をしたら他の人にも共有してください！他にも行きたい外乗先があれば検索してみましょう。" }/
+    %meta{ :name => "keywords", :content => "外乗, 投稿, 乗馬" }/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{ :name => "google-site-verification", :content => "Ensp3VNf0BEIYcj8Fpwf97K7OOaWkijCqQegcWxeBkI" }/
   %body
     - if current_page?(root_path)
-      .top_page_content
-        .top-page-header
-          = render 'layouts/header'
-        #flash-message
-          = render "layouts/notice"  
-        .top_page_image  
-        .top_page_container  
-          = render 'public/homes/top'
+      = render 'layouts/top_page'
     - else
       .content
         %header
