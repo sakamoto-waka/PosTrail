@@ -1,4 +1,4 @@
-<% if params[:tag_id].present? %>
+<% if (params[:tag_id] || params[:trail_place] || params[:prefecture_id]).present? %>
   $('#post_lists').html("<%= j(render 'posts_index', posts: @posts) %>");
 <% else %>
   $('#post_lists').append("<%= j(render 'posts_index', posts: @posts) %>");

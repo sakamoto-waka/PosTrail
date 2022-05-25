@@ -13,6 +13,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      if @user.is_deleted == true
+        @user.update_attribute(:name, "#{@user.name}(退会済み)")
+      else
+        @user.update_attribute(:name, @user.name.delete('(退会済み)'))
+      end
       redirect_to admin_user_path(@user)
       flash[:success] = "#{@user.name}さんのユーザー情報を更新しました"
     else

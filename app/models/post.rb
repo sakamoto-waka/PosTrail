@@ -100,12 +100,8 @@ class Post < ApplicationRecord
     Post.where("trail_place LIKE ? OR body LIKE ? OR prefecture_id LIKE ?", "%#{content}%", "%#{content}%", "#{prefecture_id}")
   end
   
-  def self.including_all 
+  def self.includes_all 
     with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}])
-  end
-  
-  def aa
-    comments.includes(:user).order(created_at: :desc)
   end
   
 end

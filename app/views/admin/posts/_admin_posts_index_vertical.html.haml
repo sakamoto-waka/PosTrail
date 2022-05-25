@@ -5,10 +5,7 @@
         .inline-block
           = link_to admin_user_path(post.user) do
             = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-            - if post.user.active_for_authentication?
-              = "#{post.user.name}（退会中）"
-            - else  
-              = post.user.name
+            = link_to post.user.name, user_path(post.user)
         .inline-block.my-auto
           %span.prefecture-text
             = link_to post.prefecture.name, admin_posts_path(prefecture_id: post.prefecture_id)
