@@ -161,8 +161,16 @@
     justify-content: end;
   }
 
-  .user-profile-table .button-text {
-    display: none;
+  .user-profile-table {
+    margin: auto;
+    width: 80%;
+    &.button-text {
+      display: none;
+    }
+    td {
+      display: block;
+      width: 100%!important;
+    }
   }
 
   .edit-and-delete-buttons {

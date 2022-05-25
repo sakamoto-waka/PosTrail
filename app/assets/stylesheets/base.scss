@@ -1,6 +1,6 @@
 $main-color: #bcaaa4;
 // $accent-color: adjust-hue($main-color, 200);
-$accent-color: #c4a589;
+$accent-color: #efdcd5;
 $button-color: #c7aeae;
 $button-accent-color: darken($button-color, 15%);
 $button-text: #f5f2ee;
@@ -565,7 +565,7 @@ table {
   padding: 0 0 64px;
   .profile-content {
     margin: 0 auto;
-    padding: 16px;
+    // padding: 16px;
   }
   .profile-image {
     margin-bottom: 30px;
@@ -575,6 +575,12 @@ table {
       height: 200px;
       border-radius: 50%;
       background-color: lighten($button-color, 20%);
+    }
+  }
+  .user-profile-table {
+    background-color: rgba($main-color, 0.1);
+    td {
+      width: 25%;
     }
   }
   .user-under-line {
