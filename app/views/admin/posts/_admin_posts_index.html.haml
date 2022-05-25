@@ -38,4 +38,6 @@
                       %i.far.fa-comment-dots
                       = post.comments.count
                   %span
-                    = link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}
+                    = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
+                      %i.fas.fa-trash-alt
+
