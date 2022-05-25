@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-  
+
   devise_for :admin, skip: %w[registrations passwords], controllers: {
     sessions: 'admin/sessions'
   }
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     root 'homes#top' #usersのindex代わり
     resources :users, only: %w[show edit update destroy]
     resources :posts, only: %w[index show destroy] do
+      resources :comments, only: :destroy
       collection do
         get 'tags_index' => 'posts#tags_index'
       end

@@ -1,5 +1,6 @@
 - comments.each do |comment|
   .onebox
+    // 自分のコメントは右、相手は左にする分岐
     - if comment.user == current_user || admin_signed_in?
       .message-balloon.current-user-comment
         .user-image

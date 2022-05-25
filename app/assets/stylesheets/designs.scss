@@ -1,6 +1,6 @@
-$main-color: desaturate(#DEB887, 0%);
-$accent-color: #c4a589;
-$button-color: #c7aeae;
+$main-color: #bcaaa4;
+$accent-color: darken($main-color, 10%);
+$button-color: #bcaaa4;
 $button-accent-color: darken($button-color, 5%);
 $button-text: #f5f2ee;
 $text-color: #4a2d08;
@@ -194,12 +194,12 @@ $edit-button-color: #4b957a;
     color: #fff;
     border-radius: 50%;
     background: $text-color;
-    &.fa-carrot {
-      padding: 8px 7px 11px 9px;
-      right: 10px;
-    }
     &.fa-horse {
       padding: 10px 6px 10px 4px;
+      right: 10px;
+    }
+    &.fa-carrot {
+      padding: 8px 7px 11px 9px;
       left: 10px;
     }
     &.fa-apple-alt {
@@ -226,6 +226,14 @@ $edit-button-color: #4b957a;
     color: #fff;
     background: $button-accent-color;
     transition: 0.3s;
+  }
+  &.basic-button-top-page {
+    background-color: #392f14;
+    color: #fff;
+    border: 2px solid #392f14;
+    &:hover {
+      background-color: lighten(#392f14, 3%);
+    }
   }
 }
 
@@ -371,7 +379,7 @@ $edit-button-color: #4b957a;
   padding: 0.5em 0.5em 0.5em 0.5em;
   margin-bottom: 5px;
   line-height: 1.5;
-  background: lighten($accent-color, 25%);
+  background: lighten($main-color, 20%);
   vertical-align: middle;
   color: #505050;
   border-radius: 15px 0px 0px 15px;/*左側の角丸く*/

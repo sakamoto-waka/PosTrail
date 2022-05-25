@@ -29,7 +29,7 @@
               = render 'public/likes/like_btn', post: post
             %i.far.fa-comment-dots
             = post.comments.count
-        %div
+        .edit-and-delete-buttons
           - if admin_signed_in?
             // 削除ボタン
             = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do

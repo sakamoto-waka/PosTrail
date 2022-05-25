@@ -1,7 +1,7 @@
-$main-color: desaturate(#DEB887, 0%);
+$main-color: lighten(#bcaaa4, 5%);
 // $accent-color: adjust-hue($main-color, 200);
-$accent-color: #c4a589;
-$button-color: #c7aeae;
+$accent-color: #efdcd5;
+$button-color: darken($main-color, 10%);
 $button-accent-color: darken($button-color, 15%);
 $button-text: #f5f2ee;
 $text-color: #4a2d08;
@@ -24,11 +24,19 @@ body {
                sans-serif;
 }
 
-.img_wrap {
-  
+/*-- ロゴ --*/
+.logo-image {
+  background-image: image-url('postrail_logo.png');
+  width: 172px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  filter: brightness(0.5);
+  // filter: invert(11%) sepia(71%) saturate(5170%) hue-rotate(21deg) brightness(81%) contrast(111%);
 }
 
-// validationがかかるとレイアウトが崩れるのを防ぐ
+/*-- validationがかかるとレイアウトが崩れるのを防ぐ --*/
 .field_with_errors {
   display: contents;
 }
@@ -65,6 +73,7 @@ header, footer {
 }
 
 .alert {
+  margin-bottom: 0!important;
   text-align: center;
   font-weight: bold;
 }
@@ -137,20 +146,54 @@ h4 {
   border-radius: 15px;
 }
 
+.login_name_display {
+  color: $text-color;
+}
+
 /* ==================================================
 
-              トップページ＋アバウトページ
+                      トップページ
 
 ===================================================== */
 
-.top_page_image {
-  width: auto;
-  height: 400px;
-  background-image: image-url("top_page_image.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+/*-- トップページのヘッダー変更 --*/
+
+.top-page-header {
+  background-color: rgba(#95a99d, 0.9);
 }
+
+.top_page_content {
+  min-height: 92.5vh;
+  position: relative;
+}
+
+.top_page_image {
+  width: 100vw;
+  height: 90.5vh;
+  background-image: image-url("standing_alone.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  &::before {
+    content: 'Trail Riding';
+    font-family: fantasy, cursive;
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    top: 80%;
+    left: 80%;
+  }
+}
+
+/*-- ログインボタンなどのdivタグ --*/
+.top_page_container {
+  width: 100%;
+  margin: auto;
+  padding: 5px;
+  backdrop-filter: contrast(0.7);
+}
+
 
 /* --会話風-- */
 
@@ -217,58 +260,85 @@ h4 {
   }
 }
 
-/* --アバウトページ写真左右に-- */
-
-@mixin image-position {
-  width: 170px;
-  height: 130px;
-}
-
-.top-image-position {
-  @include image-position;
-  order: 1;
-  &.top-image1 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
-  }
-}
-
-.top-image-position {
-  @include image-position;
-  &.top-image2 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
-  }
-}
-
 .top-last-text {
   background-color: lighten($accent-color, 25%);
   height: 30px;
 }
 
 
-.image-position {
-  @include image-position;
-  order: 1;
-  &.image1 {
-  background: no-repeat image-url("horse_no_image.png") 5px center;
-  background-size: 120px 80px;
-  }
-  &.image3 {
-  background: no-repeat image-url("horse_no_image.png") 5px center;
-  background-size: 120px 80px;
-  }
+@mixin top-image-position {
+  width: 170px;
+  height: 130px;
 }
-// ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
-.image-position {
-  @include image-position;
-  &.image2 {
-    background: no-repeat image-url("horse_no_image.png") 5px center;
-    background-size: 120px 80px;
+
+.top-image-position {
+  @include top-image-position;
+  order: 1;
+  &.top-image1 {
+    background: no-repeat image-url("smartphone_man.png") center;
+    // background-size: 120px 80px;
+    background-size: contain;
   }
 }
 
-/* --画像をabout-textの左側に配置させる-- */
+.top-image-position {
+  @include top-image-position;
+  &.top-image2 {
+    background: no-repeat image-url("smartphone_woman.png") center;
+    // background-size: 120px 80px;
+    background-size: contain;
+  }
+}
+
+/* ==================================================
+
+                    アバウトページ
+
+===================================================== */
+
+/*-- アバウトページ写真左右に --*/
+
+@mixin about-image-position {
+  width: 170px;
+  height: 160px;
+}
+
+/*-- アバウトページ：写真が左 --*/
+
+.about-image-position {
+  @include about-image-position;
+  margin: auto;
+  order: 1;
+  &.about-image1 {
+    background: no-repeat image-url("sunset-sea-ride.jpg") center;
+    background-size: contain;
+  }
+  &.about-image3 {
+    background: no-repeat image-url("canter_in_seaside_alone.jpg") center;
+    background-size: contain;
+  }
+  &.about-image5 {
+    background: no-repeat image-url("ride-in-summer.jpg") center;
+    background-size: contain;
+  }
+}
+
+/*-- アバウトページ：写真が右 --*/
+
+/*-- ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある --*/
+.about-image-position {
+  @include about-image-position;
+  &.about-image2 {
+    background: no-repeat image-url("rider_eye_on_horse.jpg") center;
+    background-size: contain;
+  }
+  &.about-image4 {
+    background: no-repeat image-url("horses-in-forest.jpg") center;
+    background-size: contain;
+  }
+}
+
+/*-- 文字を画像の右側に配置させる --*/
 
 .about-text-right {
   order: 2;
@@ -280,30 +350,35 @@ h4 {
 
 ===================================================== */
 
+.search-form {
+  position: relative;
+}
+
 #search-wrap {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
-  right: 55px;
-  bottom: 6px;
+  bottom: -10px;
   width: 1px;
-  filter: brightness(0.5);
+  filter: brightness(98%);
   .search-submit {
     width: 50px;
     height: 50px;
-    right: 100px;
     border-style: none;
     background: no-repeat image-url("search_icon.png") 12px center;
     background-size: 20px 20px;
+    &:focus {
+
+    }
   }
 }
 
 /*テキスト入力input設定*/
  #search-text{
   position: relative;
-  right: 7px;
+  right: 0px;
   top: 47px;
   -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
-  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  width: 45px;/*テキスト入力エリアが伸びる前の横幅*/
   height: 45px;
   border: none;
   opacity: 0;
@@ -313,7 +388,7 @@ h4 {
   outline: none;
   cursor: pointer;/*カーソルを指マークに*/
   &:focus {
-    right: 245px;
+    right: 247px;
     z-index: -1;
     opacity: 1;
     background: #eee;
@@ -333,15 +408,26 @@ h4 {
 
 /*--投稿一覧--*/
 
-.post-card:hover {
+
+.post-card {
+  &:hover {
   box-shadow: 5px 6px 6px 2px #e9ecef;
   taransform: (1.03);
-}
-
-.card_body {
-  pointer-events: none;
-  text-decoration:none;
-  color:#000000;
+  }
+  .card-header {
+    background-color: rgba($main-color, 0.05)!important;
+  }
+  .card_body {
+    pointer-events: none;
+    text-decoration:none;
+    color:#000000;
+  }
+  .card-footer {
+    background-color: rgba($main-color, 0.05)!important;
+    svg.fa-heart {
+      color: crimson;
+    }
+  }
 }
 
 /*--投稿フォームはdesigns.scssにある --*/
@@ -480,7 +566,7 @@ table {
   padding: 0 0 64px;
   .profile-content {
     margin: 0 auto;
-    padding: 16px;
+    // padding: 16px;
   }
   .profile-image {
     margin-bottom: 30px;
@@ -492,6 +578,12 @@ table {
       background-color: lighten($button-color, 20%);
     }
   }
+  .user-profile-table {
+    background-color: rgba($main-color, 0.1);
+    td {
+      width: 25%;
+    }
+  }
   .user-under-line {
     padding: 1rem 2rem;
     border-bottom: 0.5px solid #000;
@@ -500,7 +592,7 @@ table {
   svg {
     font-size: large;
   }
-  
+
   /*-- 通知の丸を小さく --*/
   .fa-circle {
     color: #ec8f51;

@@ -11,8 +11,8 @@
           .inline-block.my-auto
             // 都道府県名+外乗場所
             %span.prefecture-text
-              = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id)
-            = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
+              = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id), remote: true
+            = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place), remote: true if post.trail_place.present?
       = link_to post_path(post) do
         = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
         .card-body
@@ -22,12 +22,12 @@
             %i.fas.fa-history
             = "#{time_ago_in_words(post.created_at)}前"
       .card-footer
-        .row.justify-content-between.px-3
+        .row.justify-content-between.px-3.moving_card_icons
           .col-sm-7.col-md-lg-9
             %div
               - post.tags.each do |tag|
                 %i.fas.fa-tag
-                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id)
+                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id), remote: true
             %div
               %span{ :id => "like_button_#{ post.id }"}
                 = render 'public/likes/like_btn', post: post

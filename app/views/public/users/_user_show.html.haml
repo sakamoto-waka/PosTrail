@@ -10,17 +10,17 @@
         %table.user-profile-table
           %tbody
             %tr.text-align-center.user-profile-page
-              %td.w-25
+              %td
                 = link_to user_followings_path(user) do
                   .table-link
                     = "フォロー(#{user.followings.count}人)"
                   %div{ :id => "follow-count_#{user.id}", :class => "table-link" }
                     = "フォロワー(#{user.followers.count}人)"
-              %td.w-25
+              %td
                 = link_to likes_user_path(user) do
                   %i.fas.fa-heart
                   いいね一覧
-              %td.w-25
+              %td
                 - if user == current_user
                   = link_to edit_user_path(user), class: "user-edit-button" do
                     %i.fas.fa-user-cog
@@ -29,6 +29,9 @@
                 - elsif user_signed_in?
                   %span{ :id => "follow_ajax_#{user.id}" }
                     = render 'public/relationships/follow_btn', user: user
+                - else
+                  = link_to "#", class: "unfollow-button" do
+                    %span.small.text-light フォロー不可
 
       %h2.my-4 投稿
       - if @posts.present?

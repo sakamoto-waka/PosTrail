@@ -1,13 +1,13 @@
 %a.navbar-brand{href: "/"}
-  .img_wrap
+  .logo-image
 
 - if user_signed_in?
-  .login_name_display
-    %i.fas.fa-door-open
-    %b
-      ～ようこそ、
-      \#{current_user.name}
-      さん！～
+  .login_name_display.pl-lg-3
+    = link_to user_path(current_user) do
+      %b
+        ようこそ、
+        \#{current_user.name}
+        さん！
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbarNavDropdown.collapse.navbar-collapse.px-2
@@ -48,8 +48,8 @@
           %b ログイン
     %ul.navbar-nav
       .h-100
-        .d-flex.justify-content-center.h-100
-          = form_with url: search_path, method: :get do |f|
+        .d-flex.justify-content-end.h-100
+          = form_with url: search_path, method: :get, class: 'search-form' do |f|
             #search-wrap
               = f.text_field :content, id: "search-text", placeholder: "キーワードで検索..."
               = f.submit '', class: "search-submit"

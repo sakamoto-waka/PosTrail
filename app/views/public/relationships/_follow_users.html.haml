@@ -17,7 +17,7 @@
       - if admin_signed_in?
         = render 'admin/homes/admin_users_index', users: followings
       - else
-        .col-10.mx-auto
+        .col-lg-10.mx-auto
           = render 'public/users/user_index', users: followings
     - else
       %p.text-center まだ誰もフォローしていません
