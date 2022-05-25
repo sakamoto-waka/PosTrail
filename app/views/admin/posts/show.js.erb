@@ -1,0 +1,2 @@
+  $('#comment_lists').append("<%= j(render 'admin/comments/admin_post_comment', comments: @comments) %>");
+  $('#view_more').replaceWith("<%= j(link_to_next_page(@comments, 'もっと見る', remote: true, id: 'view_more')) %>");

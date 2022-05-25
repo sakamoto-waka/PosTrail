@@ -48,7 +48,7 @@
           %b ログイン
     %ul.navbar-nav
       .h-100
-        .d-flex.justify-content-center.h-100
+        .d-flex.justify-content-end.h-100
           = form_with url: search_path, method: :get, class: 'search-form' do |f|
             #search-wrap
               = f.text_field :content, id: "search-text", placeholder: "キーワードで検索..."

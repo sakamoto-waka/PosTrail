@@ -1,16 +1,11 @@
 @media screen and (max-width: 1199px) {
   /*押し間違い防止でログアウトに要素をかける*/
-  #search-text{
-    width: 35px;
-    right: 0px;
-  }
 
   .tag-container {
     .tag-content {
       left: 130.8%;
     }
     .tag-name-flow {
-      // 変更加えてる↓
       left: 88%;
     }
   }
@@ -53,9 +48,17 @@
   .about-text-to-bottom {
     order: 2;
   }
-
+  
+  /*-- ハンバーガーメニュー時の位置調整+ログアウト押し間違い防止 --*/
   #search-wrap {
-    right: -300px;
+    right: 35px;
+    #search-text{
+      width: 80px;
+      right: 30px;
+      &:focus {
+        right: 250px;
+      }
+    }
   }
 
 }
@@ -75,10 +78,6 @@
   button.navbar-toggler {
     display: inline;
   }
-
-  // .top_page_container {
-  //   padding: 0 20px;
-  // }
 
   .top_page_image::before {
     top: 80%;
@@ -111,10 +110,6 @@
     display: none;
   }
 
-  #search-wrap {
-    right: -200px!important;
-  }
-
   /*-- ボタンの中身の文字消す --*/
 
   .button-text {
@@ -132,10 +127,6 @@
 
   .logo-image {
     width: 140px;
-  }
-
-  #search-wrap {
-    right: -150px!important;
   }
 
   .top_page_image::before {

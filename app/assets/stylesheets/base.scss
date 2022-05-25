@@ -357,14 +357,12 @@ h4 {
 #search-wrap {
   position: absolute;/*絶対配置にして*/
   z-index: 2;/*最前面に設定。数字は変更可*/
-  right: 0px;
   bottom: -10px;
   width: 1px;
   filter: brightness(98%);
   .search-submit {
     width: 50px;
     height: 50px;
-    right: 100px;
     border-style: none;
     background: no-repeat image-url("search_icon.png") 12px center;
     background-size: 20px 20px;
@@ -377,10 +375,10 @@ h4 {
 /*テキスト入力input設定*/
  #search-text{
   position: relative;
-  right: 7px;
+  right: 0px;
   top: 47px;
   -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
-  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  width: 45px;/*テキスト入力エリアが伸びる前の横幅*/
   height: 45px;
   border: none;
   opacity: 0;
@@ -390,7 +388,7 @@ h4 {
   outline: none;
   cursor: pointer;/*カーソルを指マークに*/
   &:focus {
-    right: 253px;
+    right: 247px;
     z-index: -1;
     opacity: 1;
     background: #eee;
