@@ -1,41 +1,41 @@
 - posts.each do |post|
-  // ユーザーが退会していないかチェック
-  - if post.user.active_for_authentication?
-    .card.post-card.mb-5
-      .card-header
-        .row.justify-content-between.px-3
-          .inline-block
-            // ユーザー詳細へのリンクをadminと分岐
-            = link_to admin_user_path(post.user) do
-              = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+  .card.post-card.mb-5
+    .card-header
+      .row.justify-content-between.px-3
+        .inline-block
+          = link_to admin_user_path(post.user) do
+            = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+            - if post.user.active_for_authentication?
+              = "#{post.user.name}（退会中）"
+            - else  
               = post.user.name
-          .inline-block.my-auto
-            %span.prefecture-text
-              = link_to post.prefecture.name, admin_posts_path(prefecture_id: post.prefecture_id)
-            = link_to "：#{post.trail_place}", admin_posts_path(trail_place: post.trail_place) if post.trail_place.present?
-      = link_to admin_post_path(post) do
-        = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-        .card-body
-          // 投稿内容の表示を改行ありにする
-          = simple_format(post.body)
-          .small.text-muted.text-right
-            %i.fas.fa-history
-            = "#{time_ago_in_words(post.created_at)}前"
-      .card-footer
-        .flex
-          .row.justify-content-between.px-3
-            .col-sm-7.col-md-lg-9
-              %div
-                - post.tags.each do |tag|
-                  %i.fas.fa-tag
-                  = link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)
-              %div
-                = render 'public/likes/like_btn', post: post
-                = link_to admin_post_path(post) do
-                  %i.far.fa-comment-dots
-                  = post.comments.count
+        .inline-block.my-auto
+          %span.prefecture-text
+            = link_to post.prefecture.name, admin_posts_path(prefecture_id: post.prefecture_id)
+          = link_to "：#{post.trail_place}", admin_posts_path(trail_place: post.trail_place) if post.trail_place.present?
+    = link_to admin_post_path(post) do
+      = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+      .card-body
+        // 投稿内容の表示を改行ありにする
+        = simple_format(post.body)
+        .small.text-muted.text-right
+          %i.fas.fa-history
+          = "#{time_ago_in_words(post.created_at)}前"
+    .card-footer
+      .flex
+        .row.justify-content-between.px-3
+          .col-sm-7.col-md-lg-9
             %div
-              - if admin_signed_in?
-                // 削除ボタン
-                = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
-                  %i.fas.fa-trash-alt
+              - post.tags.each do |tag|
+                %i.fas.fa-tag
+                = link_to tag.name.truncate(10), admin_posts_path(tag_id: tag.id)
+            %div
+              = render 'public/likes/like_btn', post: post
+              = link_to admin_post_path(post) do
+                %i.far.fa-comment-dots
+                = post.comments.count
+          %div
+            - if admin_signed_in?
+              // 削除ボタン
+              = link_to admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
+                %i.fas.fa-trash-alt
