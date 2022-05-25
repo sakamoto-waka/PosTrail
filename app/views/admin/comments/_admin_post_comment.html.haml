@@ -14,5 +14,8 @@
           %br
           = comment.comment
           .row.justify-content-end
-            = link_to admin_post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" }, remote: true, class: "post-delete-button" do
+            .small.text-muted
+              %i.fas.fa-history
+              = "#{time_ago_in_words(comment.created_at)}前"
+            = link_to admin_post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" }, remote: true, class: "post-delete-button ml-3" do
               %i.fas.fa-trash-alt

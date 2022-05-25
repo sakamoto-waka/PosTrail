@@ -156,6 +156,10 @@
   .moving_card_icons {
     display: block!important;
   }
+  
+  .edit-and-delete-buttons {
+    text-align: right;
+  }
 
   .post-tag-list {
     justify-content: end;
@@ -171,8 +175,5 @@
     }
   }
 
-  .edit-and-delete-buttons {
-    text-align: right;
-  }
 
 }
