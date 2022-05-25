@@ -1,41 +1,65 @@
-// スマホ
-@media screen and (max-width: 507px) {
-
-  .logo-image {
-    width: 140px;
+@media screen and (max-width: 1199px) {
+  /*押し間違い防止でログアウトに要素をかける*/
+  #search-text{
+    width: 35px;
+    right: 0px;
   }
 
-  #search-wrap {
-    right: -150px!important;
-  }
-  
-  .top-image-position {
-    &.top-image2 {
-      margin-left: 20px!important;
+  .tag-container {
+    .tag-content {
+      left: 130.8%;
+    }
+    .tag-name-flow {
+      // 変更加えてる↓
+      left: 88%;
     }
   }
 
-  .no-text-phone {
+  .card-deck.card {
+    min-width: 220px;
+  }
+
+  .user-edit-button {
+    padding: 0.3em 1em;
+  }
+
+  .user-introduction {
     display: none;
   }
+  
+}
 
-  .moving_card_icons {
-    display: block!important;
+@media screen and (max-width: 991px) {
+  .about-image-position {
+    margin: 0 auto;
+    width: 95%!important;
+    height: 355px;
+    &.about-image1, &.about-image3, &.about-image5 {
+    background-size: cover;
+    }
+  }
+  // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+  .about-image-position {
+    &.about-image2, &.about-image4 {
+      background-size: cover;
+    }
   }
 
-  .post-tag-list {
-    justify-content: end;
+  .about-text {
+    margin: 20px auto;
   }
 
-  .user-profile-table .button-text {
-    display: none;
+  /*-- アバウトページの写真2枚目をテキストの上に --*/
+  .about-text-to-bottom {
+    order: 2;
   }
 
-  .edit-and-delete-buttons {
-    text-align: right;
+  #search-wrap {
+    right: -300px;
   }
 
 }
+
 
 // タブレット
 @media screen and (max-width: 759px) {
@@ -55,10 +79,10 @@
   // .top_page_container {
   //   padding: 0 20px;
   // }
-  
+
   .top_page_image::before {
-    top: 75%;
-    left: 60%;
+    top: 80%;
+    left: 70%;
   }
 
   .top-image-position {
@@ -99,67 +123,50 @@
 
 }
 
-@media screen and (max-width: 991px) {
-  .about-image-position {
-    margin: 0 auto;
-    width: 95%!important;
-    height: 355px;
-    &.about-image1, &.about-image3, &.about-image5 {
-    background-size: cover;
-    }
-  }
-  // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
-  .about-image-position {
-    &.about-image2, &.about-image4 {
-      background-size: cover;
-    }
+// スマホ
+@media screen and (max-width: 507px) {
+  
+  .container {
+    padding: 0 3px;
   }
 
-  .about-text {
-    margin: 20px auto;
-  }
-
-  /*-- アバウトページの写真2枚目をテキストの上に --*/
-  .about-text-to-bottom {
-    order: 2;
+  .logo-image {
+    width: 140px;
   }
 
   #search-wrap {
-    right: -300px;
+    right: -150px!important;
   }
 
-}
-
-@media screen and (max-width: 1199px) {
-  /*押し間違い防止でログアウトに要素をかける*/
-  #search-text{
-    width: 35px;
-    right: 0px;
+  .top_page_image::before {
+    top: 85%;
+    left: 60%;
   }
 
-  .tag-container {
-    .tag-content {
-      left: 130.8%;
-    }
-    .tag-name-flow {
-      // 変更加えてる↓
-      left: 88%;
+  .top-image-position {
+    &.top-image2 {
+      margin-left: 20px!important;
     }
   }
 
-  .card-deck.card {
-    min-width: 220px;
-  }
-
-  .user-edit-button {
-    padding: 0.3em 1em;
-  }
-
-  .user-introduction {
+  .no-text-phone {
     display: none;
   }
 
+  .moving_card_icons {
+    display: block!important;
+  }
 
+  .post-tag-list {
+    justify-content: end;
+  }
 
+  .user-profile-table .button-text {
+    display: none;
+  }
+
+  .edit-and-delete-buttons {
+    text-align: right;
+  }
 
 }

@@ -1,4 +1,4 @@
-$main-color: desaturate(#DEB887, 0%);
+$main-color: #bcaaa4;
 // $accent-color: adjust-hue($main-color, 200);
 $accent-color: #c4a589;
 $button-color: #c7aeae;
@@ -169,7 +169,7 @@ h4 {
 
 .top_page_image {
   width: 100vw;
-  height: 100vh;
+  height: 90.5vh;
   background-image: image-url("standing_alone.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,7 +190,7 @@ h4 {
 .top_page_container {
   width: 100%;
   margin: auto;
-  padding: 10px;
+  padding: 5px;
   backdrop-filter: contrast(0.7);
 }
 

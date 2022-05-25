@@ -38,7 +38,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.includes(:user).order(created_at: :desc).page(params[:page])
     if user_signed_in?
       @comment = current_user.comments.new
     end

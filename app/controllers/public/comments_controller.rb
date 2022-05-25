@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.includes(:user).order(created_at: :desc).page(params[:page])
     @comment = current_user.comments.build(comment_params)
     @comment.post_id = @post.id
     if @comment.save

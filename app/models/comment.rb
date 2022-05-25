@@ -5,5 +5,5 @@ class Comment < ApplicationRecord
   
   validates :comment, length: { minimum: 1, maximum: 100}
   
-  paginates_per 3
+  paginates_per 5
 end
