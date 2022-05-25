@@ -2,7 +2,7 @@
   %table
     %tbody
       - users.each do |user|
-        - if user.is_deleted == false && user.email != "guest@example.com"
+        - if user.is_deleted == false
           %tr.text-align-center
             %td
               = link_to user_path(user) do
@@ -16,7 +16,7 @@
                 = link_to edit_user_path(user), class: "user-edit-button user-index-edit" do
                   %i.fas.fa-user-cog
                   %span.button-text.small 編集
-              - elsif user_signed_in? && current_user.email != "guest@example.com"
+              - elsif user_signed_in?
                 %span{ :id => "follow_ajax_#{user.id}" }
                   = render 'public/relationships/follow_btn', user: user
             %td

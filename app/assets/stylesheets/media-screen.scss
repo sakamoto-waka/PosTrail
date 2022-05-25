@@ -1,30 +1,68 @@
-// スマホ
-@media screen and (max-width: 507px) {
+@media screen and (max-width: 1199px) {
+  /*押し間違い防止でログアウトに要素をかける*/
 
-  .top-image-position {
-    width: 150px!important;
-    &.top-image2 {
-      margin-left: 20px!important;
+  .tag-container {
+    .tag-content {
+      left: 130.8%;
+    }
+    .tag-name-flow {
+      left: 88%;
     }
   }
 
-  .no-text-phone {
-    display: none;
+  .card-deck.card {
+    min-width: 220px;
   }
 
-  .post-tag-list {
-    justify-content: end;
+  .user-edit-button {
+    padding: 0.3em 1em;
   }
-  
-  .user-profile-table .button-text {
+
+  .user-introduction {
     display: none;
-  }
-  
-  .edit-and-delete-buttons {
-    text-align: right;
   }
 
 }
+
+@media screen and (max-width: 991px) {
+  .about-image-position {
+    margin: 0 auto;
+    width: 95%!important;
+    height: 355px;
+    &.about-image1, &.about-image3, &.about-image5 {
+    background-size: cover;
+    }
+  }
+  // ↓にorder:2が入るとスマホの時に画像が上に来ないため分けてある
+  .about-image-position {
+    &.about-image2, &.about-image4 {
+      background-size: cover;
+    }
+  }
+
+  .about-text {
+    margin: 20px auto;
+  }
+
+  /*-- アバウトページの写真2枚目をテキストの上に --*/
+  .about-text-to-bottom {
+    order: 2;
+  }
+  
+  /*-- ハンバーガーメニュー時の位置調整+ログアウト押し間違い防止 --*/
+  #search-wrap {
+    right: 35px;
+    #search-text{
+      width: 80px;
+      right: 30px;
+      &:focus {
+        right: 250px;
+      }
+    }
+  }
+
+}
+
 
 // タブレット
 @media screen and (max-width: 759px) {
@@ -39,48 +77,26 @@
 
   button.navbar-toggler {
     display: inline;
-    margin: -6px 0 0 260px;
   }
 
-  .top_page_image {
-    width: auto;
-    height: 200px;
-    background-image: image-url("top_page_image.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  .top_page_image::before {
+    top: 80%;
+    left: 70%;
   }
 
-  .image-position {
-    margin: 0 auto;
-    width: 85%;
-    height: 200px;
-  //   &.image1 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  //   &.image3 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  // }
-  // .image2 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
+  .top-image-position {
+    width: 150px!important;
+    &.top-image2 {
+      margin-left: 160px;
+    }
   }
+
   .about-text {
     order: 2;
   }
 
   .top-text {
     order: 0;
-  }
-
-  .top-image-position {
-    width: 150px!important;
-    &.top-image2 {
-      margin-left: 150px;
-    }
   }
 
   .divise-form {
@@ -93,66 +109,62 @@
   .login_name_display {
     display: none;
   }
-  
+
   /*-- ボタンの中身の文字消す --*/
-  
+
   .button-text {
     display: none;
   }
-  
 
 }
 
+// スマホ
+@media screen and (max-width: 575px) {
 
-
-@media screen and (max-width: 1199px) {
-  /*押し間違い防止でログアウトに要素をかける*/
-  #search-text{
-    width: 80px;
-    right: 27px;
+  .container {
+    padding: 0 3px;
   }
 
-  .card-deck.card {
-    min-width: 220px;
+  .logo-image {
+    width: 140px;
   }
 
-  .image-position {
-    margin: 0 auto;
-    width: 150px;
-    height: 100px;
-  //   &.image1 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  //   &.image3 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
-  //   }
-  // }
-  // .image2 {
-  //   background: no-repeat image-url("horse_no_image.png") 5px center;
-  //   background-size: 120px 80px;
+  .top_page_image::before {
+    top: 85%;
+    left: 60%;
   }
 
-  .tag-container {
-    .tag-content {
-      left: 130.8%;
-    }
-    .tag-name-flow {
-      // 変更加えてる↓
-      left: 88%;
+  .top-image-position {
+    &.top-image2 {
+      margin-left: 20px!important;
     }
   }
 
-  .user-edit-button {
-    padding: 0.3em 1em;
-  }
-  
-  .user-introduction {
+  .no-text-phone {
     display: none;
   }
 
+  .moving_card_icons {
+    display: block!important;
+  }
 
+  .edit-and-delete-buttons {
+    text-align: right;
+  }
+
+  .post-tag-list {
+    justify-content: end;
+  }
+
+  .user-profile-table {
+    &.button-text {
+      display: none;
+    }
+    td {
+      display: block;
+      width: 100%!important;
+    }
+  }
 
 
 }

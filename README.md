@@ -63,7 +63,9 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 機能一覧・非機能一覧（何でテスト？）
 
 ## 使用素材(商用可)
-- 馬画像                 ICOOOON MONO:        https://icooon-mono.com/
-- 虫眼鏡アイコン         IFN 1048 FREE ICONS: https://illustration-free.net/
-- サンプルユーザーデータ vectorShelf:         https://vectorshelf.com/
-- 素敵な馬の写真         Unsplash:            https://unsplash.com/
+- ロゴ作成                FLD FreeLogoDesign:   https://www.freelogodesign.org/
+- 馬画像                  ICOOOON MONO:         https://icooon-mono.com/
+- 虫眼鏡アイコン          IFN 1048 FREE ICONS:  https://illustration-free.net/
+- サンプルユーザーデータ  vectorShelf:          https://vectorshelf.com/
+- 素敵な馬の写真          Unsplash:             https://unsplash.com/
+- 人物のイラスト（Top）   ちょうどいいイラスト: https://tyoudoii-illust.com/

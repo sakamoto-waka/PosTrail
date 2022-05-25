@@ -1,5 +1,5 @@
 %a.navbar-brand{href: "/admin"}
-  .img
+  .logo-image
 
 .login_name_display
   %i.fas.fa-exclamation-triangle
@@ -45,8 +45,11 @@
         = link_to new_user_session_path, class: 'nav-link header-link' do
           %i.fas.fa-sign-in-alt
           %b ログイン
-  %ul.navbar-nav
-    = form_with url: search_path, method: :get do |f|
-      #search-wrap
-        = f.text_field :content, id: "search-text", placeholder: "キーワードで検索..."
-        = f.submit '', class: "search-submit"
+        %ul.navbar-nav
+    %ul.navbar-nav
+      .d-flex.justify-content-end.h-100
+        = form_with url: search_path, method: :get, class: 'search-form' do |f|
+          #search-wrap
+            = f.text_field :content, id: "search-text", placeholder: "キーワードで検索..."
+            = f.submit '', class: "search-submit"
+

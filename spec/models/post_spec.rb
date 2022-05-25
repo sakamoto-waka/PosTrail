@@ -6,6 +6,10 @@ RSpec.describe Post, type: :model do
     it 'body, prefecture_idがあれば有効であること' do
       expect(post).to be_valid
     end
+    it '画像が有効なこと' do
+      post.trail_image = Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/images/test1.png'))
+      expect(post).to be_valid
+    end
     it 'bodyがないと無効であること' do
       post.body = ''
       expect(post).to be_invalid

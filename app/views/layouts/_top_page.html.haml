@@ -1,0 +1,15 @@
+.top_page_content
+  .top-page-header
+    = render 'layouts/header'
+  #flash-message
+    = render "layouts/notice"
+  .top_page_image
+    .top_page_container  
+      - if user_signed_in?
+        .text-center.col-sm-10.mx-auto
+          = link_to about_path do
+            .basic-button.basic-button-top-page.col-md-8.col-lg-6.mx-auto.my-3.text-center
+              %b 何をするサイトか忘れてしまったら
+      - else
+        // サインインしてなければログインボタンなどを表示
+        = render 'public/homes/top'

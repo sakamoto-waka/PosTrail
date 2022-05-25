@@ -8,6 +8,10 @@ RSpec.describe 'ユーザーモデル', type: :model do
     it 'name, email, password, encrypted_passwordがあれば有効なこと' do
       expect(user).to be_valid
     end
+    it 'アカウント画像が有効なこと' do
+      user.account_image = Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/images/test1.png'))
+      expect(user).to be_valid
+    end
     it 'nameがないと無効になること' do
       user.name = nil
       expect(user).to be_invalid

@@ -12,7 +12,7 @@
         = render 'public/comments/comment_form', post: @post, comment: @comment
       #comment_lists
         = render 'public/comments/post_comment', comments: @comments, comment: @comment
-        .col-4.mx-auto.more-comments
-          = paginate @comments
+      .col-4.mx-auto.more-comments
+        = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more"
   - else
     %p.text-center コメントはログイン後に閲覧可能です

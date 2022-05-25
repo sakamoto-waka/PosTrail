@@ -17,13 +17,13 @@
       .devise-label.col-md-4
         %i.fas.fa-horse-head
         = f.label :クラブ名
-      = f.text_field :trail_place, placeholder: "任意"
+      = f.text_field :trail_place, placeholder: "なるべく正確に記入してください（任意）"
     .divise-form
       .devise-label.col-md-4
         %i.fas.fa-edit
         = f.label :投稿文
         %span.text-danger *
-      = f.text_area :body, placeholder: "どんな体験ができましたか？"
+      = f.text_area :body, placeholder: "素敵な体験を教えて下さい"
     .divise-form
       .devise-label.col-md-4
         %i.fas.fa-tags
@@ -32,4 +32,4 @@
 
     .actions.text-center.mt-5
       = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
-        = post.present? ? '編集する' : '投稿する'
+        = post.body.present? ? '編集する' : '投稿する'

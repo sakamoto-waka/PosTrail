@@ -72,6 +72,10 @@ class Post < ApplicationRecord
 
   # タグ用のメソッド
   def save_tag(sent_tags)
+    old_tags = PostTag.where("post_id = ?", self.id)
+    old_tags.each do |old_tag|
+      old_tag.delete
+    end
     # タグをスペース区切りで分割して配列にする＋連続した空白にも対応
     tag_list = sent_tags.split(/[[:blank:]]+/)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -95,5 +99,9 @@ class Post < ApplicationRecord
     prefecture_id = prefecture.id if prefecture.present?
     Post.where("trail_place LIKE ? OR body LIKE ? OR prefecture_id LIKE ?", "%#{content}%", "%#{content}%", "#{prefecture_id}")
   end
-
+  
+  def self.includes_all 
+    with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}])
+  end
+  
 end
