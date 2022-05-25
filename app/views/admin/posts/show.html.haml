@@ -1,8 +1,11 @@
 %h1 オーナー用投稿詳細
 .col-lg-10.mx-auto
   = render 'admin/posts/admin_post_show', post: @post
-  - unless current_page?(search_path)
-    #comment_lists
-      = render 'admin/comments/admin_post_comment', comments: @comments
-    .col-4.mx-auto.more-comments
-      = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more"
+  - if @comments.present?
+    .comment-respond
+      #comment_lists
+        = render 'admin/comments/admin_post_comment', comments: @comments
+      .col-4.mx-auto.more-comments
+        = link_to_next_page @comments, 'もっと見る', remote: true, id: "view_more"
+  - else
+    %p.text-center コメントはまだありません

@@ -23,7 +23,7 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.page(params[:page]).per(20)
+    @comments = @post.comments.includes(:user).page(params[:page])
   end
 
   def destroy
