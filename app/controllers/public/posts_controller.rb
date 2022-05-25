@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
       @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])
     else
       # N+1問題対策with_attached_trail_imageはbolbをincludeする記述
-      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).where.page(params[:page])
+      @posts = Post.with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}]).page(params[:page])
     end
   end
 
