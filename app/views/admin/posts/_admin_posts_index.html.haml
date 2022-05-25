@@ -1,7 +1,7 @@
 .row
   .card-group
     - posts.each do |post|
-      .mb-5.col-lg-4
+      .mb-5.col-lg-6
         // ユーザーが退会していないかチェック
         - if post.user.active_for_authentication?
           .card.post-card.h-auto

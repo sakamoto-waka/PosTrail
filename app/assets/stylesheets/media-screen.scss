@@ -26,7 +26,7 @@
   .user-introduction {
     display: none;
   }
-  
+
 }
 
 @media screen and (max-width: 991px) {
@@ -124,8 +124,8 @@
 }
 
 // スマホ
-@media screen and (max-width: 507px) {
-  
+@media screen and (max-width: 575px) {
+
   .container {
     padding: 0 3px;
   }
@@ -156,7 +156,7 @@
   .moving_card_icons {
     display: block!important;
   }
-  
+
   .edit-and-delete-buttons {
     text-align: right;
   }
