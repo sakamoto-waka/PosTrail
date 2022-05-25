@@ -29,6 +29,9 @@
                 - elsif user_signed_in?
                   %span{ :id => "follow_ajax_#{user.id}" }
                     = render 'public/relationships/follow_btn', user: user
+                - else
+                  = link_to "#", class: "unfollow-button" do
+                    %span.small.text-light フォロー不可
 
       %h2.my-4 投稿
       - if @posts.present?
