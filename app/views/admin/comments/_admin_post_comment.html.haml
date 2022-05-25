@@ -1,0 +1,18 @@
+#comment-flash
+  = render "layouts/notice", obj: @comments
+- comments.each do |comment|
+  .onebox
+    // 自分のコメントは右、相手は左にする分岐
+    - if admin_signed_in?
+      .message-balloon.other-user-comment
+        .user-image
+          = link_to admin_user_path(comment.user) do
+            = image_tag comment.user.get_account_image(50, 50)
+        .message-text
+          %span.text-muted.small
+            = comment.user.name
+          %br
+          = comment.comment
+          .row.justify-content-end
+            = link_to admin_post_comment_path(comment.post, comment), method: :delete, data: { :confirm => "コメントを削除しますか？" }, remote: true, class: "post-delete-button" do
+              %i.fas.fa-trash-alt

@@ -1,7 +1,8 @@
-<% if controller.action_name == 'create' %>
+<% if controller.action_name == 'create' || 'destroy' %>
   $('#comment_lists').html("<%= j(render 'public/comments/post_comment', comments: @comments) %>");
   $('textarea').val('');
 <% else %>
+  <% debugger %>
   $('#comment_lists').append("<%= j(render 'public/comments/post_comment', comments: @comments) %>");
   $('#view_more').replaceWith("<%= j(link_to_next_page(@comments, 'もっと見る', remote: true, id: "view_more")) %>");
 <% end %>

@@ -1,7 +1,6 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: :destroy
-
 
   def create
     @post = Post.find(params[:post_id])
@@ -23,7 +22,7 @@ class Public::CommentsController < ApplicationController
   def destroy
     @comment.destroy
     @post = Post.find(params[:post_id])
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.order(created_at: :desc).page(params[:page])
     flash.now[:danger] = "コメントを削除しました"
     render :post_comments
   end
@@ -33,10 +32,8 @@ class Public::CommentsController < ApplicationController
     def ensure_correct_user
       @post = Post.find(params[:post_id])
       @comment = Comment.find(params[:id])
-      unless admin_signed_in? 
-        unless (@comment.user_id == current_user.id)
-          redirect_to post_path(@post)
-        end
+      unless (@comment.user_id == current_user.id)
+        redirect_to post_path(@post)
       end
     end
 
