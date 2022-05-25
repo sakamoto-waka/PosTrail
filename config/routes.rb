@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     root 'homes#top' #usersのindex代わり
     resources :users, only: %w[show edit update destroy]
     resources :posts, only: %w[index show destroy] do
+      resources :comments, only: %w[create destroy]
       collection do
         get 'tags_index' => 'posts#tags_index'
       end
