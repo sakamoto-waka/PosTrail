@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-
+  before_action :no_user_show_when_user_deleted, only: :show
+  
   def index
-    @users = User.with_attached_account_image
+    @users = User.with_attached_account_image.where(is_deleted: false)
   end
 
   def show
@@ -37,5 +38,13 @@ class Public::UsersController < ApplicationController
         flash[:danger] = "編集権限がありません"
       end
     end
-
+    
+    def no_user_show_when_user_deleted
+      @user = User.find(params[:id])
+      if @user.is_deleted == true
+        redirect_to request.referer
+        flash[:danger] = "退会済みユーザーの詳細ページは見ることができません"
+      end
+    end
+    
 end

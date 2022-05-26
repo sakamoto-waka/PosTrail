@@ -4,12 +4,12 @@
       .inline-block
         = link_to user_path(post.user) do
           = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-          = post.user.name
+          = post.user.deleted_user_change_name
       .inline-block.my-auto
         %span.prefecture-text
           = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id)
         = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place) if post.trail_place.present?
-        
+
   = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
   .card-body
     // 投稿内容の表示を改行ありにする
