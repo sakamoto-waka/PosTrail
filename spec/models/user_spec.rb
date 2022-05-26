@@ -93,15 +93,34 @@ RSpec.describe 'ユーザーモデル', type: :model do
         context 'フォローするとき' do
           it 'userのrelationshipsが1増えること' do
             expect(user.relationships.count).to eq(0)
-            user.follow(other_user.id)
-            expect(user.relationships.count).to eq(1)
+            expect{
+              user.follow(other_user.id)
+            }.to change{ user.relationships.count }.by(1)
           end
         end
       end
       describe 'unfollowのテスト' do
         context 'フォローを外すとき' do
           it 'userのrelationshipsが1減ること' do
-            
+            expect{
+              user.follow(other_user.id)
+            }.to change{ user.relationships.count }.by(1)
+            expect{
+              user.unfollow(other_user.id)
+            }.to change{ user.relationships.count }.by(-1)  
+          end
+        end
+      end
+      describe 'following?のテスト' do
+        context 'other_userをフォローしているとき' do
+          it 'trueが返ること' do
+            user.follow(other_user.id)
+            expect(user.following?(other_user)).to be_truthy
+          end
+        end
+        context 'other_userをフォローしていないとき' do
+          it 'falseが返ること' do
+            expect(user.following?(other_user)).to be_falsey
           end
         end
       end
