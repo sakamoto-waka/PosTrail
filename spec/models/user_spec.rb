@@ -143,5 +143,15 @@ RSpec.describe 'ユーザーモデル', type: :model do
         end
       end
     end
+    describe 'create_notification_follow(current_user)のテスト' do
+      context '初めての通知のとき' do
+        it 'other_userのnotificationsが1増えること' do
+          expect(other_user.notifications.count).to eq 0
+          expect{
+            other_user.create_notification_follow(user)
+          }.to change{ other_user.notifications.count }.by 1  
+        end
+      end
+    end
   end
 end
