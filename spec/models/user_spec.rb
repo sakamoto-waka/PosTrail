@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザーモデル', type: :model do
-
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user, :other_user) }
   describe 'モデルに関するテスト' do
-    let(:user) { create(:user) }
-    let(:other_user) { build(:user, :other_user) }
     it 'name, email, password, encrypted_passwordがあれば有効なこと' do
       expect(user).to be_valid
     end
@@ -45,8 +44,6 @@ RSpec.describe 'ユーザーモデル', type: :model do
     end
   end
   describe 'メソッドに関するテスト' do
-    let(:user) { create(:user) }
-    let(:other_user) { build(:user, :other_user) }
     it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
       expect(user.active_for_authentication?).to eq true
     end
@@ -91,9 +88,23 @@ RSpec.describe 'ユーザーモデル', type: :model do
         end
       end
     end
-    
-
+    describe 'フォロー機能のテスト' do
+      describe 'followのテスト' do
+        context 'フォローするとき' do
+          it 'userのrelationshipsが1増えること' do
+            expect(user.relationships.count).to eq(0)
+            user.follow(other_user.id)
+            expect(user.relationships.count).to eq(1)
+          end
+        end
+      end
+      describe 'unfollowのテスト' do
+        context 'フォローを外すとき' do
+          it 'userのrelationshipsが1減ること' do
+            
+          end
+        end
+      end
+    end
   end
-
-
 end

@@ -34,10 +34,6 @@ class User < ApplicationRecord
     return name
   end
   
-  def deleted_user_redirect
-    redirect_to posts_path if is_deleted == true 
-  end
-
   def get_account_image(width, height)
     unless account_image.attached?
       file_path = Rails.root.join('app/assets/images/horse_no_image.png')

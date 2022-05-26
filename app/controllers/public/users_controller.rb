@@ -47,4 +47,9 @@ class Public::UsersController < ApplicationController
       end
     end
     
+    # 削除処理されたユーザーの詳細ページにはいけない
+    def deleted_user_redirect
+      redirect_to request.referer if is_deleted == true 
+    end
+    
 end
