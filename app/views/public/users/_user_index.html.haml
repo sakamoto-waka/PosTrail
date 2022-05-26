@@ -4,7 +4,7 @@
       %tr
         %th
         %th ユーザー名
-        %th 自己紹介
+        %th.user-introduction 自己紹介
         %th
         %th
     %tbody
@@ -17,7 +17,10 @@
             %td
               = link_to user.name, user_path(user)
             %td.w-25.user-introduction
-              = link_to user.introduction.truncate(30), user_path(user) if user.introduction.present?
+              - if user.introduction.present?
+                = link_to user.introduction.truncate(30), user_path(user)
+              - else
+                まだプロフィールが設定されていません
             %td
               - if user == current_user
                 = link_to edit_user_path(user), class: "user-edit-button user-index-edit" do
@@ -28,38 +31,3 @@
                   = render 'public/relationships/follow_btn', user: user
             %td
               = link_to '詳細', user_path(user), class: "basic-button my-4"
-
-
-  
-  
-  
-  // = paginate @users
-  
-  
-  
-
-
-// - users.each do |user|
-//   - if user.is_deleted == false
-//     %tr
-//       %td.py-4
-//         = user.id
-//       %td.py-4
-//         = image_tag user.get_account_image(100, 100)
-//       %td.py-4
-//         = link_to user.name, user_path(user), class:"text-dark"
-//       %td.py-4
-//         = user.email
-//       %td.py-4
-//         = user.introduction
-//       %td.py-4
-//         - if user == current_user
-//           = link_to '編集', edit_user_path(user)
-//         - elsif user_signed_in? && user.name != "ゲストユーザー"
-//           = render 'public/relationships/follow_btn', user: user
-
-//       %td.py-4
-//         - if user.active_for_authentication?
-//           %b.text-success 有効
-//         - else
-//           %b.text-muted 退会
