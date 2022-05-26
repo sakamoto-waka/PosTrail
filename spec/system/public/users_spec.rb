@@ -31,7 +31,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           # ログアウトボタンが表示されている事を確認
           expect(page).to have_content('ログアウト')
           # 新規登録ボタンやログインボタンが無いことを確認する
-          expect(page).to_not have_content('ログイン')
+          expect(page).to_not have_link('ログイン', href: '/users/sign_in')
           expect(page).to_not have_content('新規登録')
         end
       end
@@ -70,13 +70,13 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
     end
   end
   describe 'ログイン後' do
-    let!(:other_user) { create(:user, :other_user) }
+    let!(:user) { create(:user) }
     let!(:post) { create(:post, user_id: other_user.id) }
     describe 'ユーザーログインのテスト' do
       context '入力値が正常なとき' do
         it 'ログインが出来て投稿一覧に移動すること' do
           visit new_user_session_path
-          fill_in 'user_email', with: other_user.email
+          fill_in 'user_email', with: user.email
           fill_in 'user_password', with: 'password'
           click_button 'ログイン'
           expect(current_path).to eq posts_path
@@ -87,7 +87,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
         it 'ログインが出来ないこと' do
           visit new_user_session_path
           fill_in 'user_email', with: 'incorrect_email@email.com'
-          fill_in 'user_password', with: other_user.password
+          fill_in 'user_password', with: user.password
           click_button 'ログイン'
           expect(page).to have_content('メールアドレスまたはパスワードが違います。')
         end
@@ -95,7 +95,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
       context 'パスワードが空であるとき' do
         it 'ログインが出来ないこと' do
           visit new_user_session_path
-          fill_in 'user_email', with: other_user.email
+          fill_in 'user_email', with: user.email
           fill_in 'user_password', with: 'incorrect_password'
           click_button 'ログイン'
           expect(page).to have_content('メールアドレスまたはパスワードが違います。')

@@ -50,19 +50,48 @@ RSpec.describe 'ユーザーモデル', type: :model do
     it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
       expect(user.active_for_authentication?).to eq true
     end
-    context 'たろうでlooks(検索)した場合' do
-      it '@userを返すこと' do
-        expect(User.looks('たろう')).to be_empty
+    describe ' deleted_user_change_nameのテスト' do
+      context 'userのis_deleted == trueのとき' do
+        before { user.is_deleted = true }
+        it 'nameが退会済みユーザーになること' do
+          user.deleted_user_change_name
+          expect(user.name).to eq('退会済みユーザー')
+        end
+        it '元のnameと一致しないこと' do
+          user.name = '元の名前'
+          user.deleted_user_change_name
+          expect(user.name).to_not eq('元の名前')
+        end
       end
-      it '@other_userは返さないこと' do
-        expect(User.looks('たろう')).to_not include(other_user)
+      context 'userのis_deleted == falseのとき' do
+        before { user.is_deleted = false }
+        it 'nameが退会済みユーザーに変わらないこと' do
+          user.deleted_user_change_name
+          expect(user.name).to_not eq('退会済みユーザー')
+        end
+        it '元のnameと一致すること' do
+          user.name = '元の名前'
+          user.deleted_user_change_name
+          expect(user.name).to eq('元の名前')
+        end
       end
     end
-    context 'じろうでlooks検索した場合' do
-      it 'じろうでlooks(検索)すると空を返すこと' do
-        expect(User.looks('じろう')).to be_empty
+    describe 'looksのテスト' do
+      context 'たろうでlooks(検索)した場合' do
+        it 'userを返すこと' do
+          expect(User.looks('たろう')).to be_empty
+        end
+        it 'other_userは返さないこと' do
+          expect(User.looks('たろう')).to_not include(other_user)
+        end
+      end
+      context 'じろうでlooks検索した場合' do
+        it 'じろうでlooks(検索)すると空を返すこと' do
+          expect(User.looks('じろう')).to be_empty
+        end
       end
     end
+    
 
   end
 
