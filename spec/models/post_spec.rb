@@ -35,15 +35,16 @@ RSpec.describe Post, type: :model do
     end
     describe 'メソッドのテスト' do
       describe 'liked_by?(user)のテスト'
-      # let(:like) { create(:like) }
         context 'userがいいねをしているとき' do
+        let!(:like) { create(:like, post_id: post.id, user_id: user.id) }
           it 'trueが返ること' do
-            expect(user.liked_by?).to be_truthy
+            expect(post.liked_by?(user)).to be_truthy
           end
         end
         context 'userがいいねをしていないとき' do
+        let!(:like) { create(:like, post_id: post.id) }
           it 'flaseが返ること' do
-          
+            expect(post.liked_by?(user)).to be_falsey
         end
       end
     end
