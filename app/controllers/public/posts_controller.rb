@@ -1,7 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  # before_action :no_post_when_user_deleted, only: :show
 
   def index
     # 投稿数が多い順に取得する
@@ -61,17 +60,14 @@ class Public::PostsController < ApplicationController
   def destroy
     @post.tags.destroy_all
     @post.destroy
-    redirect_to posts_path
+    # 投稿詳細から削除した場合とマイページから削除した場合で分ける
+    path = Rails.application.routes.recognize_path(request.referer)
+    path[:controller] == 'public/posts' ? (redirect_to posts_path) : (redirect_to request.referer)
     flash[:info] = "投稿を削除しました"
   end
 
   private
     # post_paramsはapplication_controllerに記述
-    # url直打ち対策
-    # def no_post_when_user_deleted
-    #   @post = Post.find(params[:id])
-    #   redirect_to posts_path if @post.user.is_deleted == true
-    # end
 
     def ensure_correct_user
       @post = Post.find(params[:id])
