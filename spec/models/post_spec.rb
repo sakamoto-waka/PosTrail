@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   let(:post) { create(:post) }
   let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
   let(:other_user_post) { create(:post, user_id: other_user.id) }
+  let(:other_user) { create(:user) }
   describe 'モデルに関するテスト' do
     describe 'バリデーションのテスト' do
       context '成功するとき' do
@@ -113,19 +113,69 @@ RSpec.describe Post, type: :model do
               expect(user_notice.action).to eq 'comment'
             end
           end
-        end
-        context '通知が作成されないとき' do
-          context 'other_userからuserへの通知が初めてではないとき' do
-            it 'active_notificationsは1のまま増えないこと' do
-              other_user_post.create_notification_like(user)
-              other_user_post.create_notification_like(user)
-              expect(user.active_notifications.count).to eq 1
+          context 'other_userからuserへの通知が２回目のとき' do
+            it 'active_notificationsは2に増えること' do
+              other_user_post.create_notification_comment(user, comment.id)
+              other_user_post.create_notification_comment(user, comment.id)
+              expect(user.active_notifications.count).to eq 2
             end
           end
-          context '自分の投稿にいいねしたとき' do
-            it 'active_notificationsは1のまま増えないこと' do
-              other_user_post.create_notification_like(other_user)
-              expect(user.active_notifications.count).to eq 0
+          context '自分の投稿にコメントしたとき' do
+            it 'active_notificationsは1増えること' do
+              other_user_post.create_notification_comment(other_user, comment.id)
+              expect(other_user.active_notifications.count).to eq 1
+            end
+          end
+        end
+      end
+      describe 'save_tag(sent_tags)のテスト' do
+        context 'タグが保存されるとき' do
+          it 'タグが一つであること'  do
+            sent_tags = 'タグ'
+            expect{
+              post.save_tag(sent_tags)
+            }.to change{ Tag.count }.by 1
+          end
+          it 'タグが半角スペースで区切られていること' do
+            sent_tags = 'タグ1 タグ2'
+            expect{
+              post.save_tag(sent_tags)
+            }.to change{ Tag.count }.by 2
+          end
+          it 'タグが全角スペースで区切られていること' do
+            sent_tags = 'タグ1  タグ2'
+            expect{
+              post.save_tag(sent_tags)
+            }.to change{ Tag.count }.by 2
+          end
+          context 'タグが,で区切られているとき' do
+            it 'タグは１つとして保存されていること' do
+              sent_tags = 'タグ1,タグ2'
+            expect{
+              post.save_tag(sent_tags)
+            }.to change{ Tag.count }.by 1
+            end
+          end
+        end
+        context 'タグが保存されないとき' do
+          context '同じタグを保存するとき' do
+            it 'タグのカウントが増えないこと' do
+              sent_tags = 'タグ1'
+              post.save_tag(sent_tags)
+              expect(Tag.count).to eq 1
+              expect{
+                post.save_tag(sent_tags)
+              }.to change{ Tag.count }.by 0
+            end
+          end
+          context '1回目に2つのタグ、２回目に同じタグと違うタグの2つのタグがあるとき' do
+            it 'タグのカウントが3になること' do
+              sent_tags1 = 'タグ1 タグ2'
+              sent_tags2 = 'タグ2 タグ3'
+              post.save_tag(sent_tags1)
+              expect(Tag.count).to eq 2
+              post.save_tag(sent_tags2)
+              expect(Tag.count).to eq 3
             end
           end
         end
