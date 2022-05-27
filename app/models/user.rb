@@ -16,9 +16,9 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   # 通知用アソシエーション
-  # 自分からの通知
+  # 自分が作った通知（相手への通知）
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  # 相手からの通知
+  # 相手が作った通知（自分宛ての通知）
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 15 }
@@ -60,9 +60,9 @@ class User < ApplicationRecord
 
   # 通知用: 自分がフォローしたら相手の通知に登録される
   def create_notification_follow(current_user)
-    # 一旦既に作成された通知か検索する→なければレコードを作成
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
-    if temp.blank?
+    # 既に作成された通知か検索する→なければレコードを作成
+    notificated = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, 'following'])
+    if notificated.blank?
       notification = current_user.active_notifications.new(visited_id: id,
                                                            action: 'following')
       notification.save if notification.valid?
@@ -71,7 +71,7 @@ class User < ApplicationRecord
 
   # 検索用メソッド
   def self.looks(content)
-    User.where("name LIKE ?", "%#{content}%")
+    where("name LIKE ?", "%#{content}%")
   end
 
   def self.guest

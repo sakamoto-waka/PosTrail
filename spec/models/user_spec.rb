@@ -144,12 +144,33 @@ RSpec.describe 'ユーザーモデル', type: :model do
       end
     end
     describe 'create_notification_follow(current_user)のテスト' do
-      context '初めての通知のとき' do
-        it 'other_userのnotificationsが1増えること' do
-          expect(other_user.notifications.count).to eq 0
-          expect{
+      context '通知が作成されるとき' do
+        context 'other_userからuserへの通知が初めてのとき' do
+          it 'userのactive_notificationsが1増えること' do
+            expect(user.active_notifications.count).to eq 0
+            expect{
+              other_user.create_notification_follow(user)
+            }.to change{ user.active_notifications.count }.by 1  
+          end
+          it 'other_userのpassive_notificationsが1増えること' do
+            expect{
+              other_user.create_notification_follow(user)
+            }.to change{ other_user.passive_notifications.count }.by 1
+          end
+          it 'userへの通知のactionがfollowingなこと' do
             other_user.create_notification_follow(user)
-          }.to change{ other_user.notifications.count }.by 1  
+            user_notice = Notification.find_by(visitor_id: user.id)
+            expect(user_notice.action).to eq 'following'
+          end
+        end
+      end
+      context '通知が作成されないとき' do
+        context 'other_userからuserへの通知が初めてではないとき' do
+          it 'active_notificationsは1のまま増えないこと' do
+            other_user.create_notification_follow(user)
+            other_user.create_notification_follow(user)
+            expect(user.active_notifications.count).to eq 1
+          end
         end
       end
     end
