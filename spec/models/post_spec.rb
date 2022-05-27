@@ -59,18 +59,18 @@ RSpec.describe Post, type: :model do
               }.to change{ user.active_notifications.count }.by 1
             end
           end
-          context 'other_userいいねしたとき' do
+          context 'other_user_postを自分がいいねしたとき' do
             it 'postのuserのpassive_notificationsが1増えること' do
               expect{
                 other_user_post.create_notification_like(user)
               }.to change{ other_user.passive_notifications.count }.by 1
             end
-          end
-          it 'userへの通知のactionがlikeなこと' do
-            other_user_post.create_notification_like(user)
-            # いいねしているのは自分なのでvisited_idが自分のid
-            user_notice = Notification.find_by(visitor_id: user.id)
-            expect(user_notice.action).to eq 'like'
+            it 'userへの通知のactionがlikeなこと' do
+              other_user_post.create_notification_like(user)
+              # いいねしているのは自分なのでvisited_idが自分のid
+              user_notice = Notification.find_by(visitor_id: user.id)
+              expect(user_notice.action).to eq 'like'
+            end
           end
         end
         context '通知が作成されないとき' do
@@ -94,8 +94,38 @@ RSpec.describe Post, type: :model do
         context '通知が作成されるとき' do
           context 'userへの通知が初めてのとき' do
             it 'userのactive_notificationsが1増えること' do
+              expect(user.active_notifications.count).to eq 0
+              expect{
+                other_user_post.create_notification_comment(user, comment.id)
+              }.to change{ user.active_notifications.count }.by 1
+            end
+          end
+          context 'other_user_postに自分がコメントしたとき' do
+            it 'postのuserのpassive_notificationsが1増えること' do
+              expect(other_user.passive_notifications.count).to eq 0
+              expect{
+                other_user_post.create_notification_comment(user, comment.id)
+              }.to change{ other_user.passive_notifications.count }.by 1
+            end
+            it 'userへの通知のactionがcommentなこと' do
               other_user_post.create_notification_comment(user, comment.id)
+              user_notice = Notification.find_by(visitor_id: user.id)
+              expect(user_notice.action).to eq 'comment'
+            end
+          end
+        end
+        context '通知が作成されないとき' do
+          context 'other_userからuserへの通知が初めてではないとき' do
+            it 'active_notificationsは1のまま増えないこと' do
+              other_user_post.create_notification_like(user)
+              other_user_post.create_notification_like(user)
               expect(user.active_notifications.count).to eq 1
+            end
+          end
+          context '自分の投稿にいいねしたとき' do
+            it 'active_notificationsは1のまま増えないこと' do
+              other_user_post.create_notification_like(other_user)
+              expect(user.active_notifications.count).to eq 0
             end
           end
         end
