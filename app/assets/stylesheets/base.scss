@@ -42,7 +42,8 @@ body {
 }
 
 a:not(#search-text, .form-button-common,
-      .nav-link, .fa-heart, .delete-button) {
+      .nav-link, .fa-heart, .delete-button,
+      .login_name_display) {
   color: $text-color!important;
   text-decoration: none!important;
   &:hover:not(.devise-link, .post-trash-button, .post-edit-button,
@@ -144,10 +145,6 @@ h4 {
 .pagination>.active>a {
   background: lighten($button-color, 10%)!important;
   border-radius: 15px;
-}
-
-.login_name_display {
-  color: $text-color;
 }
 
 /* ==================================================

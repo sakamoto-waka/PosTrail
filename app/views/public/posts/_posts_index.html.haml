@@ -1,46 +1,46 @@
 - posts.each do |post|
   // ユーザーが退会していないかチェック
-  - if post.user.active_for_authentication?
-    .card.post-card.mb-5
-      .card-header
-        .row.justify-content-between.px-3
-          .inline-block
-            = link_to user_path(post.user) do
-              = image_tag post.user.get_account_image(50, 50), class: "mr-2"
-              = link_to post.user.name, user_path(post.user)
-          .inline-block.my-auto
-            // 都道府県名+外乗場所
-            %span.prefecture-text
-              = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id), remote: true
-            = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place), remote: true if post.trail_place.present?
-      = link_to post_path(post) do
-        = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
-        .card-body
-          // 投稿内容の表示を改行ありにする
-          = simple_format(post.body)
-          .small.text-muted.text-right
-            %i.fas.fa-history
-            = "#{time_ago_in_words(post.created_at)}前"
-      .card-footer
-        .row.justify-content-between.px-3.moving_card_icons
-          .col-sm-7.col-md-lg-9
-            %div
-              - post.tags.each do |tag|
-                %i.fas.fa-tag
-                = link_to tag.name.truncate(10), posts_path(tag_id: tag.id), remote: true
-            %div
-              %span{ :id => "like_button_#{ post.id }"}
-                = render 'public/likes/like_btn', post: post
-              = link_to post_path(post) do
-                %i.far.fa-comment-dots
-                = post.comments.count
-          .edit-and-delete-buttons
-            - if user_signed_in? && post.user.id == current_user.id
-              // 編集ボタン
-              = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
-                %i.fas.fa-pen
-                %span.button-text.small 編集
-              // 削除ボタン
-              = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
-                %i.fas.fa-trash-alt
-                %span.button-text.small 削除
+  // - if post.user.active_for_authentication?
+  .card.post-card.mb-5
+    .card-header
+      .row.justify-content-between.px-3
+        .inline-block
+          = link_to user_path(post.user) do
+            = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+            = link_to post.user.deleted_user_change_name, user_path(post.user)
+        .inline-block.my-auto
+          // 都道府県名+外乗場所
+          %span.prefecture-text
+            = link_to post.prefecture.name, posts_path(prefecture_id: post.prefecture_id), remote: true
+          = link_to "：#{post.trail_place}", posts_path(trail_place: post.trail_place), remote: true if post.trail_place.present?
+    = link_to post_path(post) do
+      = image_tag post.trail_image, class: "card-img-top p-3" if post.trail_image.attached?
+      .card-body
+        // 投稿内容の表示を改行ありにする
+        = simple_format(post.body)
+        .small.text-muted.text-right
+          %i.fas.fa-history
+          = "#{time_ago_in_words(post.created_at)}前"
+    .card-footer
+      .row.justify-content-between.px-3.moving_card_icons
+        .col-sm-7.col-md-lg-9
+          %div
+            - post.tags.each do |tag|
+              %i.fas.fa-tag
+              = link_to tag.name.truncate(10), posts_path(tag_id: tag.id), remote: true
+          %div
+            %span{ :id => "like_button_#{ post.id }"}
+              = render 'public/likes/like_btn', post: post
+            = link_to post_path(post) do
+              %i.far.fa-comment-dots
+              = post.comments.count
+        .edit-and-delete-buttons
+          - if user_signed_in? && post.user.id == current_user.id
+            // 編集ボタン
+            = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do
+              %i.fas.fa-pen
+              %span.button-text.small 編集
+            // 削除ボタン
+            = link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button" do
+              %i.fas.fa-trash-alt
+              %span.button-text.small 削除
