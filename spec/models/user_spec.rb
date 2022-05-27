@@ -44,8 +44,12 @@ RSpec.describe 'ユーザーモデル', type: :model do
     end
   end
   describe 'メソッドに関するテスト' do
-    it 'userのis_deleted == falseならactive_for_authentication?メソッドはtrueが返ってくること' do
-      expect(user.active_for_authentication?).to eq true
+    describe 'active_for_authentication?のテスト' do
+      context 'userのis_deleted == falseのとき' do
+        it 'trueが返ってくること' do
+          expect(user.active_for_authentication?).to eq true
+        end
+      end
     end
     describe ' deleted_user_change_nameのテスト' do
       context 'userのis_deleted == trueのとき' do
