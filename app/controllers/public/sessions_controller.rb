@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-
-  # before_action :customer_state, only:
-
+  before_action :user_state, only: :create
 
   def after_sign_in_path_for(resource)
     posts_path
@@ -22,11 +20,12 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
-    # def customer_state
-    #   @customer = Customer.find_by(email: params[:customer][:email])
-    #   return if !@customer
-    #   if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
-    #     redirect_to new_customer_registration_path
-    #   end
-    # end
+    def user_state
+      @user = User.find_by(email: params[:user][:email])
+      return if !@user
+      if @user.valid_password?(params[:user][:password]) && @user.is_deleted
+        flash[:danger] = "問題があったためアカウントは削除されました"
+        redirect_to new_user_registration_path
+      end
+    end
 end

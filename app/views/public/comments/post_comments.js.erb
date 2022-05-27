@@ -1,4 +1,3 @@
 $('#comment_lists').html("<%= j(render 'public/comments/post_comment', comments: @comments) %>");
 $('textarea').val('');
-$('#comment-flash').html("<%= j(render 'layouts/notice') %>");
 $('#error-message').html("<%= j(render "layouts/errors", obj: @comment) %>");

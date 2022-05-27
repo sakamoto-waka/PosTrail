@@ -5,9 +5,7 @@
   .login_name_display.pl-lg-3
     = link_to user_path(current_user) do
       %b
-        ようこそ、
-        \#{current_user.name}
-        さん！
+        #{current_user.name}でログイン中
 %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbarNavDropdown.collapse.navbar-collapse.px-2
