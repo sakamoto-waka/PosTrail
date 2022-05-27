@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   let(:post) { create(:post) }
   let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:other_user_post) { create(:post, user_id: other_user.id) }
   describe 'モデルに関するテスト' do
     describe 'バリデーションのテスト' do
       context '成功するとき' do
@@ -48,26 +50,24 @@ RSpec.describe Post, type: :model do
         end
       end
       describe 'create_notification_like(current_user)のテスト' do
-        let(:other_user) { create(:user) }
-        let(:my_post) { create(:post, user_id: other_user.id) }
         context '通知が作成されるとき' do
           context 'userへの通知が初めてのとき' do
             it 'userのactive_notificationsが1増えること' do
               expect(user.active_notifications.count).to eq 0
               expect{
-                my_post.create_notification_like(user)
+                other_user_post.create_notification_like(user)
               }.to change{ user.active_notifications.count }.by 1
             end
           end
           context 'other_userいいねしたとき' do
             it 'postのuserのpassive_notificationsが1増えること' do
               expect{
-                my_post.create_notification_like(user)
+                other_user_post.create_notification_like(user)
               }.to change{ other_user.passive_notifications.count }.by 1
             end
           end
           it 'userへの通知のactionがlikeなこと' do
-            my_post.create_notification_like(user)
+            other_user_post.create_notification_like(user)
             # いいねしているのは自分なのでvisited_idが自分のid
             user_notice = Notification.find_by(visitor_id: user.id)
             expect(user_notice.action).to eq 'like'
@@ -76,8 +76,25 @@ RSpec.describe Post, type: :model do
         context '通知が作成されないとき' do
           context 'other_userからuserへの通知が初めてではないとき' do
             it 'active_notificationsは1のまま増えないこと' do
-              my_post.create_notification_like(user)
-              my_post.create_notification_like(user)
+              other_user_post.create_notification_like(user)
+              other_user_post.create_notification_like(user)
+              expect(user.active_notifications.count).to eq 1
+            end
+          end
+          context '自分の投稿にいいねしたとき' do
+            it 'active_notificationsは1のまま増えないこと' do
+              other_user_post.create_notification_like(other_user)
+              expect(user.active_notifications.count).to eq 0
+            end
+          end
+        end
+      end
+      describe 'create_notification_comment(current_user, comment_id)のテスト' do
+        let(:comment) { create(:comment, post_id: post.id, user_id: other_user.id) }
+        context '通知が作成されるとき' do
+          context 'userへの通知が初めてのとき' do
+            it 'userのactive_notificationsが1増えること' do
+              other_user_post.create_notification_comment(user, comment.id)
               expect(user.active_notifications.count).to eq 1
             end
           end
