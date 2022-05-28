@@ -4,5 +4,4 @@ class Admin::HomesController < ApplicationController
   def top
     @users = User.with_attached_account_image.page(params[:page]).per(20)
   end
-
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
   let(:tag) { Tag.create(name: 'テスト用タグ') }
+
   describe 'モデルに関するテスト' do
     describe 'バリデーションに関するテスト' do
       it 'nameがあれば有効であること' do
@@ -19,7 +20,7 @@ RSpec.describe Tag, type: :model do
     # describe 'メソッドに関するテスト' do
     #   describe 'self.looks(content)のテスト' do
     #     context '「タグ1」でlooksしたとき' do
-    #       let(:tag) { create(:tag) } 
+    #       let(:tag) { create(:tag) }
     #       it 'tag.postsを返すこと' do
     #         expect(Tag.looks('タグ1')).to include('タグ1')
     #       end

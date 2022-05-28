@@ -31,9 +31,9 @@ class User < ApplicationRecord
 
   def deleted_user_change_name
     (self.name = '退会済みユーザー') if is_deleted == true
-    return name
+    name
   end
-  
+
   def get_account_image(width, height)
     unless account_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
@@ -75,10 +75,9 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
   end
-
 end

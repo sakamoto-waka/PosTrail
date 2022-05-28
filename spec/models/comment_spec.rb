@@ -5,6 +5,7 @@ RSpec.describe Comment, type: :model do
     before do
       @comment = build(:comment)
     end
+
     it 'commentが2文字であれば有効であること' do
       expect(@comment).to be_valid
     end

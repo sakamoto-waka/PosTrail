@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'いいね機能に関するテスト', type: :system do
   let!(:other_user) { create(:user, :other_user) }
   let!(:post) { create(:post) }
+
   context 'ユーザーがログインをしているとき' do
     it '他人の投稿にいいねができること' do
       login(other_user)
@@ -15,9 +16,6 @@ RSpec.describe 'いいね機能に関するテスト', type: :system do
       # postのいいねが1になる
       # visit post_path(post)
       # expect(post.likes.count).to eq(1)
-      
     end
   end
-  
 end
-

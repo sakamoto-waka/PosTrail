@@ -10,7 +10,7 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
-  
+
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -20,12 +20,12 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
-    def user_state
-      @user = User.find_by(email: params[:user][:email])
-      return if !@user
-      if @user.valid_password?(params[:user][:password]) && @user.is_deleted
-        flash[:danger] = "問題があったためアカウントは削除されました"
-        redirect_to new_user_registration_path
-      end
+  def user_state
+    @user = User.find_by(email: params[:user][:email])
+    return if !@user
+    if @user.valid_password?(params[:user][:password]) && @user.is_deleted
+      flash[:danger] = "問題があったためアカウントは削除されました"
+      redirect_to new_user_registration_path
     end
+  end
 end
