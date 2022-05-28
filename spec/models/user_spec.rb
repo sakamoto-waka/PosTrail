@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'ユーザーモデル', type: :model do
   let(:user) { create(:user) }
   let(:other_user) { create(:user, :other_user) }
+
   describe 'モデルに関するテスト' do
     it 'name, email, password, encrypted_passwordがあれば有効なこと' do
       expect(user).to be_valid
@@ -36,13 +37,14 @@ RSpec.describe 'ユーザーモデル', type: :model do
       expect(user).to be_invalid
     end
     it 'passwordが暗号化されてること' do
-      expect(user.encrypted_password).to_not eq user.password
+      expect(user.encrypted_password).not_to eq user.password
     end
     it 'introductionが201文字であれば無効になること' do
       user.introduction = 'あ' * 201
       expect(user).to be_invalid
     end
   end
+
   describe 'メソッドに関するテスト' do
     describe 'active_for_authentication?のテスト' do
       context 'userのis_deleted == falseのとき' do
@@ -51,9 +53,11 @@ RSpec.describe 'ユーザーモデル', type: :model do
         end
       end
     end
+
     describe ' deleted_user_change_nameのテスト' do
       context 'userのis_deleted == trueのとき' do
         before { user.is_deleted = true }
+
         it 'nameが退会済みユーザーになること' do
           user.deleted_user_change_name
           expect(user.name).to eq('退会済みユーザー')
@@ -61,14 +65,16 @@ RSpec.describe 'ユーザーモデル', type: :model do
         it '元のnameと一致しないこと' do
           user.name = '元の名前'
           user.deleted_user_change_name
-          expect(user.name).to_not eq('元の名前')
+          expect(user.name).not_to eq('元の名前')
         end
       end
+
       context 'userのis_deleted == falseのとき' do
         before { user.is_deleted = false }
+
         it 'nameが退会済みユーザーに変わらないこと' do
           user.deleted_user_change_name
-          expect(user.name).to_not eq('退会済みユーザー')
+          expect(user.name).not_to eq('退会済みユーザー')
         end
         it '元のnameと一致すること' do
           user.name = '元の名前'
@@ -77,49 +83,54 @@ RSpec.describe 'ユーザーモデル', type: :model do
         end
       end
     end
+
     describe 'looksのテスト' do
       context 'たろうでlooks(検索)した場合' do
         it 'userを返すこと' do
           expect(User.looks('たろう')).to include(user)
         end
         it 'other_userは返さないこと' do
-          expect(User.looks('たろう')).to_not include(other_user)
+          expect(User.looks('たろう')).not_to include(other_user)
         end
       end
+
       context 'じろうでlooks検索した場合' do
         it 'じろうでlooks(検索)すると空を返すこと' do
           expect(User.looks('じろう')).to be_empty
         end
       end
     end
+
     describe 'フォロー機能のテスト' do
       describe 'followのテスト' do
         context 'フォローするとき' do
           it 'userのrelationshipsが1増えること' do
             expect(user.relationships.count).to eq(0)
-            expect{
+            expect do
               user.follow(other_user.id)
-            }.to change{ user.relationships.count }.by(1)
+            end.to change { user.relationships.count }.by(1)
           end
           it 'other_userのrelationshipsは増えないこと' do
-            expect{
+            expect do
               user.follow(other_user.id)
-            }.to change{ other_user.relationships.count }.by(0)
+            end.to change { other_user.relationships.count }.by(0)
           end
         end
       end
+
       describe 'unfollowのテスト' do
         context 'フォローを外すとき' do
           it 'userのrelationshipsが1減ること' do
-            expect{
+            expect do
               user.follow(other_user.id)
-            }.to change{ user.relationships.count }.by(1)
-            expect{
+            end.to change { user.relationships.count }.by(1)
+            expect do
               user.unfollow(other_user.id)
-            }.to change{ user.relationships.count }.by(-1)  
+            end.to change { user.relationships.count }.by(-1)
           end
         end
       end
+
       describe 'following?のテスト' do
         context 'other_userをフォローしているとき' do
           it 'trueが返ること' do
@@ -127,12 +138,14 @@ RSpec.describe 'ユーザーモデル', type: :model do
             expect(user.following?(other_user)).to be_truthy
           end
         end
+
         context 'other_userをフォローしていないとき' do
           it 'falseが返ること' do
             expect(user.following?(other_user)).to be_falsey
           end
         end
       end
+
       describe 'follower?のテスト' do
         context 'other_userがuserをフォローしているとき' do
           it 'trueが返ること' do
@@ -140,6 +153,7 @@ RSpec.describe 'ユーザーモデル', type: :model do
             expect(user.follower?(other_user)).to be_truthy
           end
         end
+
         context 'other_userがuserをフォローしていないとき' do
           it 'falseが返ること' do
             expect(user.follower?(other_user)).to be_falsey
@@ -147,19 +161,20 @@ RSpec.describe 'ユーザーモデル', type: :model do
         end
       end
     end
+
     describe 'create_notification_follow(current_user)のテスト' do
       context '通知が作成されるとき' do
         context 'other_userからuserへの通知が初めてのとき' do
           it 'userのactive_notificationsが1増えること' do
             expect(user.active_notifications.count).to eq 0
-            expect{
+            expect do
               other_user.create_notification_follow(user)
-            }.to change{ user.active_notifications.count }.by 1  
+            end.to change { user.active_notifications.count }.by 1
           end
           it 'other_userのpassive_notificationsが1増えること' do
-            expect{
+            expect do
               other_user.create_notification_follow(user)
-            }.to change{ other_user.passive_notifications.count }.by 1
+            end.to change { other_user.passive_notifications.count }.by 1
           end
           it 'userへの通知のactionがfollowingなこと' do
             other_user.create_notification_follow(user)
@@ -168,6 +183,7 @@ RSpec.describe 'ユーザーモデル', type: :model do
           end
         end
       end
+
       context '通知が作成されないとき' do
         context 'other_userからuserへの通知が初めてではないとき' do
           it 'active_notificationsは1のまま増えないこと' do

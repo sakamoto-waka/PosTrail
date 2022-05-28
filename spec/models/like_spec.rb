@@ -4,6 +4,7 @@ RSpec.describe Like, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
   let(:like) { build(:like) }
+
   describe 'likeモデルに関するテスト' do
     describe 'likeモデルのバリデーション' do
       it 'user_idとpost_idがあれば保存ができること' do
@@ -24,4 +25,3 @@ RSpec.describe Like, type: :model do
     end
   end
 end
-

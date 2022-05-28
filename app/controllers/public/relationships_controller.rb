@@ -18,5 +18,4 @@ class Public::RelationshipsController < ApplicationController
     @followings = @user.followings.with_attached_account_image
     @followers = @user.followers.with_attached_account_image
   end
-
 end

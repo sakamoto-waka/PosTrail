@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
-  default_scope -> { order(created_at: :desc) }
+  scope :latest, -> { order(created_at: :desc) }
 
   belongs_to :user
   has_many :likes, dependent: :destroy
@@ -46,10 +46,10 @@ class Post < ApplicationRecord
     end
   end
 
-    # 自分以外のコメントしている人をすべて取得→全員に通知を送る(saveはまだ)
+  # 自分以外のコメントしている人をすべて取得→全員に通知を送る(saveはまだ)
   def create_notification_comment(current_user, comment_id)
-    temp_ids = Comment.select(:user_id).where(post_id: id)
-                                       .where.not(user_id: current_user.id).distinct #←自分と重複を排除
+    temp_ids = Comment.select(:user_id).where(post_id: id).
+      where.not(user_id: current_user.id).distinct # ←自分と重複を排除
     temp_ids.each do |temp_id|
       save_notification_comment(current_user, comment_id, temp_id[('user_id')])
     end
@@ -72,25 +72,25 @@ class Post < ApplicationRecord
 
   # タグ用のメソッド
   def save_tag(sent_tags)
-    old_tags = PostTag.where("post_id = ?", self.id)
+    old_tags = PostTag.where("post_id = ?", id)
     old_tags.each do |old_tag|
       old_tag.delete
     end
     # タグをスペース区切りで分割して配列にする＋連続した空白にも対応
     tag_list = sent_tags.split(/[[:blank:]]+/)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
 
     old_tags.each do |old_tag|
-      self.tags.delete
+      tags.delete
       # tag_idを検索？
       Tag.find_by(name: old_tag)
     end
     # 重複していないタグをtagsの中に代入（保存）
     new_tags.each do |new_tag|
       new_post_tag = Tag.find_or_create_by(name: new_tag)
-      self.tags << new_post_tag
+      tags << new_post_tag
     end
   end
 
@@ -99,9 +99,8 @@ class Post < ApplicationRecord
     prefecture_id = prefecture.id if prefecture.present?
     Post.where("trail_place LIKE ? OR body LIKE ? OR prefecture_id LIKE ?", "%#{content}%", "%#{content}%", "#{prefecture_id}")
   end
-  
-  def self.includes_all 
-    with_attached_trail_image.includes([:tags, :user => {account_image_attachment: :blob}])
+
+  def self.includes_all
+    with_attached_trail_image.includes([:tags, :user => { account_image_attachment: :blob }])
   end
-  
 end

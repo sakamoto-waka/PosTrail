@@ -5,6 +5,7 @@ module LoginModule
     fill_in 'user_password', with: user.password
     click_button('ログイン')
   end
+
   def admin_login(admin)
     visit new_admin_session_path
     fill_in 'admin_email', with: admin.email
