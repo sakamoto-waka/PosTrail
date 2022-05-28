@@ -49,7 +49,7 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 
 ## 設計書
 ##### ER図
-https://user-images.githubusercontent.com/98644622/170824118-d0ef316b-6300-4dad-b952-9cf77d3f5ebf.png
+<img width="415" alt="ER図" src="https://user-images.githubusercontent.com/98644622/170824118-d0ef316b-6300-4dad-b952-9cf77d3f5ebf.png">
 
 ## 開発環境
 - OS：Linux(CentOS)
