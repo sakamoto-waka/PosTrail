@@ -48,7 +48,7 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 - 外乗がどんなものなのか知りたい時
 
 ## 設計書
-作成中
+[ER図](https://user-images.githubusercontent.com/98644622/170824118-d0ef316b-6300-4dad-b952-9cf77d3f5ebf.png)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -63,9 +63,10 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 機能一覧・非機能一覧（何でテスト？）
 
 ## 使用素材(商用可)
-- ロゴ作成                FLD FreeLogoDesign:   https://www.freelogodesign.org/
-- 馬画像                  ICOOOON MONO:         https://icooon-mono.com/
-- 虫眼鏡アイコン          IFN 1048 FREE ICONS:  https://illustration-free.net/
-- サンプルユーザーデータ  vectorShelf:          https://vectorshelf.com/
-- 素敵な馬の写真          Unsplash:             https://unsplash.com/
-- 人物のイラスト（Top）   ちょうどいいイラスト: https://tyoudoii-illust.com/
+- アイコン　　　　　　　　  Font Awesome           https://fontawesome.com/
+- ロゴ + No Image作成    　 FLD FreeLogoDesign:    https://www.freelogodesign.org/
+- 虫眼鏡アイコン            IFN 1048 FREE ICONS:   https://illustration-free.net/
+- ユーザーアイコン（馬）    ICOOOON MONO:          https://icooon-mono.com/
+- ユーザーアイコン(動物)    vectorShelf:           https://vectorshelf.com/
+- 素敵な写真集              Unsplash:              https://unsplash.com/
+- 人物のイラスト(about)     ちょうどいいイラスト:  https://tyoudoii-illust.com/
