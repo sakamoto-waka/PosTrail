@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let(:like) { build(:like) }
-  let(:like_user) { create(:user, :like_user) }
+  let(:user) { create(:user) }
   let(:post) { create(:post) }
+  let(:like) { build(:like) }
   describe 'likeモデルに関するテスト' do
     describe 'likeモデルのバリデーション' do
       it 'user_idとpost_idがあれば保存ができること' do
-        like.user_id = like_user.id
+        like.user_id = user.id
         like.post_id = post.id
         expect(like).to be_valid
       end
@@ -21,14 +21,6 @@ RSpec.describe Like, type: :model do
         expect(like).to be_invalid
         expect(like.errors[:post_id]).to include('を入力してください')
       end
-      # it 'user_idが同じでもpost_idが違うと保存できること' do
-      #   like = FactoryBot.create(:like)
-      #   expect(FactoryBot.create(:like, post_id: like.post_id)).to be_valid
-      # end
-      # it "post_idが同じでもuser_idが違うと保存できること" do
-      #   like = FactoryBot.create(:like)
-      #   expect(FactoryBot.create(:like, psot_id: like.post_id)).to be_valid
-      # end
     end
   end
 end
