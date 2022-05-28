@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :no_user_show_when_user_deleted, only: :show
-  
+
   def index
     @users = User.with_attached_account_image.where(is_deleted: false)
   end
@@ -30,26 +30,26 @@ class Public::UsersController < ApplicationController
   end
 
   private
-    # user_paramsはapplication_controllerにあり
-    def ensure_correct_user
-      @user = User.find(params[:id])
-      if @user != current_user
-        redirect_to user_path(@user)
-        flash[:danger] = "編集権限がありません"
-      end
+
+  # user_paramsはapplication_controllerにあり
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to user_path(@user)
+      flash[:danger] = "編集権限がありません"
     end
-    
-    def no_user_show_when_user_deleted
-      @user = User.find(params[:id])
-      if @user.is_deleted == true
-        redirect_to request.referer
-        flash[:danger] = "退会済みユーザーの詳細ページは見ることができません"
-      end
+  end
+
+  def no_user_show_when_user_deleted
+    @user = User.find(params[:id])
+    if @user.is_deleted == true
+      redirect_to request.referer
+      flash[:danger] = "退会済みユーザーの詳細ページは見ることができません"
     end
-    
-    # 削除処理されたユーザーの詳細ページにはいけない
-    def deleted_user_redirect
-      redirect_to request.referer if is_deleted == true 
-    end
-    
+  end
+
+  # 削除処理されたユーザーの詳細ページにはいけない
+  def deleted_user_redirect
+    redirect_to request.referer if is_deleted == true
+  end
 end

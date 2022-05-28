@@ -15,5 +15,4 @@ class Public::LikesController < ApplicationController
     current_user.likes.find_by(post_id: @post.id).destroy
     # redirect_to posts_path
   end
-
 end

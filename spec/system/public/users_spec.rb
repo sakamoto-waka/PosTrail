@@ -4,6 +4,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
   let(:user) { build(:user) }
   let(:other_user) { create(:user, :other_user) }
   let(:post) { build(:post, user_id: user.id) }
+
   describe 'ログイン前' do
     describe '新規登録のテスト' do
       context '入力値が正常なとき' do
@@ -20,9 +21,9 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           fill_in 'user_password', with: user.password
           fill_in 'user_password_confirmation', with: user.password
           # 新規登録ボタンを押すとユーザーモデルのカウントが1上がることを確認する
-          expect{
+          expect  do
             click_button('新規登録')
-          }.to change { User.count }.by(1)
+          end.to change { User.count }.by(1)
           # user_pathへ遷移する
           user_me = User.find_by!(email: user.email)
           expect(page).to have_current_path user_path(user_me)
@@ -31,10 +32,11 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           # ログアウトボタンが表示されている事を確認
           expect(page).to have_content('ログアウト')
           # 新規登録ボタンやログインボタンが無いことを確認する
-          expect(page).to_not have_link('ログイン', href: '/users/sign_in')
-          expect(page).to_not have_content('新規登録')
+          expect(page).not_to have_link('ログイン', href: '/users/sign_in')
+          expect(page).not_to have_content('新規登録')
         end
       end
+
       context 'メールアドレスがないとき' do
         it '新規登録に失敗すること' do
           visit root_path
@@ -49,6 +51,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content 'メールアドレスが入力されていません'
         end
       end
+
       context '登録済みのメールアドレスを入れるとき' do
         it '新規登録に失敗すること' do
           visit root_path
@@ -63,15 +66,18 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content 'メールアドレスは既に使用されています'
         end
       end
+
       it 'どの編集画面にもいけないこと' do
         visit edit_user_path(other_user)
         expect(current_path).to eq user_path(other_user)
       end
     end
   end
+
   describe 'ログイン後' do
     let!(:user) { create(:user) }
     let!(:post) { create(:post, user_id: other_user.id) }
+
     describe 'ユーザーログインのテスト' do
       context '入力値が正常なとき' do
         it 'ログインが出来て投稿一覧に移動すること' do
@@ -83,6 +89,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content(post.body)
         end
       end
+
       context 'メールアドレスが間違っているとき' do
         it 'ログインが出来ないこと' do
           visit new_user_session_path
@@ -92,6 +99,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content('メールアドレスまたはパスワードが違います。')
         end
       end
+
       context 'パスワードが空であるとき' do
         it 'ログインが出来ないこと' do
           visit new_user_session_path
@@ -102,10 +110,13 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
         end
       end
     end
+
     describe 'ユーザー編集のテスト' do
       let!(:user) { create(:user) }
       let(:other_user) { create(:user, :other_user) }
+
       before { login(user) }
+
       describe '編集権限に関するテスト' do
         it '自分の編集ページへ遷移できること' do
           visit edit_user_path(user)
@@ -116,6 +127,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(current_path).to eq user_path(other_user)
         end
       end
+
       context 'フォームの入力値が正常なとき' do
         it 'ユーザーの編集が成功すること' do
           visit edit_user_path(user)
@@ -133,6 +145,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content('aaa')
         end
       end
+
       describe 'account_image更新のテスト' do
         it 'account_imageが正しく更新されること' do
           visit edit_user_path(user)
@@ -142,6 +155,7 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(user.account_image).not_to eq user_old_account_image
         end
       end
+
       context 'ユーザーネームが空のとき' do
         it 'ユーザーの編集が失敗すること' do
           visit edit_user_path(user)
@@ -153,12 +167,14 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
         end
       end
     end
+
     describe 'ユーザーの名前' do
       context 'is_deleted == trueのとき' do
         let(:deleted_user) { create(:user, name: 'いないはず', is_deleted: true) }
+
         it 'ユーザー一覧に削除済みユーザーが表示されないこと' do
           visit users_path
-          expect(page).to_not have_content(deleted_user.name)
+          expect(page).not_to have_content(deleted_user.name)
         end
       end
     end
