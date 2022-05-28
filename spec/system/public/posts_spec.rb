@@ -114,7 +114,15 @@ RSpec.describe '投稿に関するテスト', type: :system do
         expect(current_path).to eq new_user_session_path
       end
     end
-
   end
-
+  describe '投稿の一覧' do
+    context 'userのis_deleted = trueだったとき' do
+      let!(:deleted_user) { create(:user, name: 'いないはず', is_deleted: true) }
+      let!(:deleted_user_post) { create(:post, user_id: deleted_user.id) }
+      it 'user.nameが削除済みユーザーであること' do
+        visit posts_path
+        expect(page).to have_content("退会済みユーザー")
+      end
+    end
+  end
 end

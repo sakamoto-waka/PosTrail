@@ -1,7 +1,7 @@
 .row
   .mx-auto
     %h1 投稿一覧
-  .new-post-button
+  .new-post-button.text-right
     = link_to new_post_path do
       %i.fas.fa-plus
 .row
@@ -10,11 +10,11 @@
       = render 'tags_list', tags_list: @tags_list
     .w-75.mx-auto
       = paginate @tags_list
-  .col-xs-sm-md-11.col-lg-8.ml-lg-4.ml-xl-5
+  .col-sm-md-11.col-lg-8.ml-lg-4.ml-xl-5
     #post_lists.posts-index
       = render 'public/posts/posts_index', posts: @posts
     .col-4.mx-auto
       .more
         = link_to_next_page @posts, 'もっと見る', remote: true, id: "more_posts" unless params == params[:tag_id] || params[:trail_place]
     .text-center
-      = link_to '投稿一覧に戻る', posts_path
+      = link_to '最新の投稿に戻る', posts_path, class: 'back-button'

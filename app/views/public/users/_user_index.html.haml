@@ -17,7 +17,7 @@
             = link_to user.name, user_path(user)
           %td.w-25.user-introduction
             - if user.introduction.present?
-              = link_to user.introduction.truncate(30), user_path(user)
+              = link_to user.introduction.truncate(25), user_path(user)
             - else
               まだプロフィールが設定されていません
           %td

@@ -3,7 +3,7 @@
     .row.justify-content-between.px-3
       .inline-block
         = link_to user_path(post.user) do
-          = image_tag post.user.get_account_image(50, 50), class: "mr-2"
+          = image_tag post.user.get_account_image(50, 50), class: "mr-2 my-2"
           = post.user.deleted_user_change_name
       .inline-block.my-auto
         %span.prefecture-text
@@ -19,7 +19,7 @@
       = "#{time_ago_in_words(post.created_at)}前"
   .card-footer
     .flex
-      .row.justify-content-between.px-3
+      .row.justify-content-between.px-3.moving_card_icons
         .col-sm-7.col-md-lg-9
           %div
             - post.tags.each do |tag|
@@ -31,7 +31,7 @@
             // = link_to post_path(post) do
             %i.far.fa-comment-dots
             = post.comments.count
-        %div
+        .edit-and-delete-buttons
           - if user_signed_in? && post.user.id == current_user.id
             // 編集ボタン
             = link_to edit_post_path(post), class: "action-button post-edit-button mr-3" do

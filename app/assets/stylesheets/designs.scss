@@ -347,6 +347,14 @@ $edit-button-color: #4b957a;
   }
 }
 
+.back-button {
+  background-color: #fff;
+  border: 1px solid #bcaba5;
+  border-radius: 4px;
+  justify-content: center;
+  padding: calc(0.5em - 1px) 1em;
+}
+
 /* ==================================================
 
                 文字に対する装飾
