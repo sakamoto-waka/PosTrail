@@ -153,7 +153,14 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
         end
       end
     end
+    describe 'ユーザーの名前' do
+      context 'is_deleted == trueのとき' do
+        let(:deleted_user) { create(:user, name: 'いないはず', is_deleted: true) }
+        it 'ユーザー一覧に削除済みユーザーが表示されないこと' do
+          visit users_path
+          expect(page).to_not have_content(deleted_user.name)
+        end
+      end
+    end
   end
 end
-
-
