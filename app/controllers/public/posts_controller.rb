@@ -71,6 +71,6 @@ class Public::PostsController < ApplicationController
 
   def ensure_correct_user
     @post = Post.find(params[:id])
-    redirect_to post_path(@post) unless (@post.user == current_user) || admin_signed_in?
+    redirect_to post_path(@post) unless @post.user == current_user
   end
 end

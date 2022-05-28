@@ -23,7 +23,6 @@ RSpec.describe 'admin側のユーザーに関するテスト', type: :system do
     describe 'ユーザーの編集' do
       before do
         visit edit_admin_user_path(user)
-        expect(current_path).to eq edit_admin_user_path(user)
         choose 'user_is_deleted_true'
         find('button[name="button"]').click
       end
