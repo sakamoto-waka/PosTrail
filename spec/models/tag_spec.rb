@@ -16,14 +16,15 @@ RSpec.describe Tag, type: :model do
         expect(tag2).to be_invalid
       end
     end
-    describe 'メソッドに関するテスト' do
-      # describe 'self.looks(content)のテスト' do
-      #   context '「テスト用タグ」でlooksしたとき' do
-      #     it 'tag.postsを返すこと' do
-      #       expect(Tag.looks('テスト用タグ')).to include(tag.posts)
-      #     end
-      #   end
-      # end
-    end
+    # describe 'メソッドに関するテスト' do
+    #   describe 'self.looks(content)のテスト' do
+    #     context '「タグ1」でlooksしたとき' do
+    #       let(:tag) { create(:tag) } 
+    #       it 'tag.postsを返すこと' do
+    #         expect(Tag.looks('タグ1')).to include('タグ1')
+    #       end
+    #     end
+    #   end
+    # end
   end
 end

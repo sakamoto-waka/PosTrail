@@ -180,6 +180,28 @@ RSpec.describe Post, type: :model do
           end
         end
       end
+      describe 'looksのテスト' do
+        let(:search_post) { create(:post, body: '検索中') }
+        context '検索中でlooks(検索)した場合' do
+          it 'postを返すこと' do
+            expect(Post.looks('検索中')).to include(search_post)
+          end
+          it 'other_user_postは返さないこと' do
+            expect(Post.looks('検索中')).to_not include(other_user_post)
+          end
+        end
+        context 'テストでlooks(検索)した場合' do
+          it 'post(bodyがテストの投稿です)を返すこと' do
+            expect(Post.looks('テストの投稿です')).to include(post)
+            expect(Post.looks('テスト')).to include(post)
+          end
+        end
+        context '「空を期待」でlooks検索した場合' do
+          it '「空を期待」でlooks(検索)すると空を返すこと' do
+            expect(Post.looks('空を期待')).to be_empty
+          end
+        end
+      end
     end
   end
 end
