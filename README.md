@@ -64,10 +64,10 @@ SNSであればレビューサイトよりも気軽に投稿してもらえる�
 機能一覧・非機能一覧（何でテスト？）
 
 ## 使用素材(商用可)
-- アイコン: Font Awesome: https://fontawesome.com/
-- ロゴ + No Image作成: FLD FreeLogoDesign: https://www.freelogodesign.org/
-- 虫眼鏡アイコン: IFN 1048 FREE ICONS: https://illustration-free.net/
-- ユーザーアイコン（馬）: ICOOOON MONO: https://icooon-mono.com/
-- ユーザーアイコン(動物): vectorShelf: https://vectorshelf.com/
-- 素敵な写真集: Unsplash: https://unsplash.com/
-- 人物のイラスト(about): ちょうどいいイラスト: https://tyoudoii-illust.com/
+- アイコン → Font Awesome: https://fontawesome.com/
+- ロゴ + No Image作成 → FLD FreeLogoDesign: https://www.freelogodesign.org/
+- 虫眼鏡アイコン → IFN 1048 FREE ICONS: https://illustration-free.net/
+- ユーザーアイコン（馬） → ICOOOON MONO: https://icooon-mono.com/
+- ユーザーアイコン(動物) → vectorShelf: https://vectorshelf.com/
+- 素敵な写真集 → Unsplash: https://unsplash.com/
+- 人物のイラスト(about) → ちょうどいいイラスト: https://tyoudoii-illust.com/
