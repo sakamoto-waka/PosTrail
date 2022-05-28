@@ -7,7 +7,7 @@ Admin.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'])
 users = User.create!(
   [
     {email: 'saddle@test.com', name: 'さっとん', password: 'password', encrypted_password: 'password', introduction: "乗馬歴3年ですがまだまだ初心者です…。楽しく乗馬しています！", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
-    {email: 'whip@test.com', name: 'ウイ', password: 'password', encrypted_password: 'password', introduction: "初めての乗馬が外乗でした。今では馬の魅力にどっぷりハマってます", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.png"), filename:"sample-user2.png")},
+    {email: 'whip@test.com', name: 'ウイ', password: 'password', encrypted_password: 'password', introduction: "初めての乗馬が外乗でした。今では馬の魅力にどっぷりハマってます", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.png")},
     {email: 'hakusha@test.com', name: 'はく', password: 'password', encrypted_password: 'password', introduction: "外乗で駈歩を夢見て特訓中", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")},
     {email: 'bridle@test.com', name: 'ぶー', password: 'password', encrypted_password: 'password', introduction: "森での外乗が特に好きです", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user4.jpg"), filename:"sample-user4.jpg")},
     {email: 'shoe@test.com', name: 'しょう', password: 'password', encrypted_password: 'password', introduction: "旅行先で馬に乗るのが好きなんです", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user5.jpg"), filename:"sample-user5.jpg")},
@@ -34,10 +34,10 @@ Post.create!(
 
 Tag.create!(
   [
-    {name: "外乗"},
+    {name: "夏"},
     {name: "秋"},
     {name: "紅葉"},
-    {name: "最高"},
+    {name: "初心者"},
     {name: "楽しい"},
     {name: "爽快"},
     {name: "思い出"},
