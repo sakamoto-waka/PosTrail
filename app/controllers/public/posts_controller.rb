@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
     elsif params[:prefecture_id]
       @posts = Post.includes_all.where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])
     else
-      # N+1問題対策with_attached_trail_imageはbolbをincludeする記述
+      # includes_allはN+1問題対策
       @posts = Post.includes_all.page(params[:page])
     end
   end

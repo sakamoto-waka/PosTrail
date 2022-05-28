@@ -80,7 +80,7 @@ RSpec.describe 'ユーザーモデル', type: :model do
     describe 'looksのテスト' do
       context 'たろうでlooks(検索)した場合' do
         it 'userを返すこと' do
-          expect(User.looks('たろう')).to be_empty
+          expect(User.looks('たろう')).to include(user)
         end
         it 'other_userは返さないこと' do
           expect(User.looks('たろう')).to_not include(other_user)

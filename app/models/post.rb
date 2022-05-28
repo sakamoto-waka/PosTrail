@@ -36,8 +36,8 @@ class Post < ApplicationRecord
     if temp.blank?
       # postに付くメソッドなのでここのidはpostが持つidとなる
       notification = current_user.active_notifications.new(post_id: id,
-                                                             visited_id: user_id,
-                                                             action: "like")
+                                                           visited_id: user_id,
+                                                           action: "like")
       # 自分がした自分へのいいねは通知済みにする
       if notification.visitor_id == notification.visited_id
         notification.checked = true
