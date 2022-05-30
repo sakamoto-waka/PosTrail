@@ -80,20 +80,19 @@ https://postrail.net
 
 ## 🐴できること
 一般的な投稿機能を持ったサイトです。  
-「クラブ名」には行った外乗施設名を入れます。(空欄可)
 
-![投稿デモ](https://user-images.githubusercontent.com/98644622/170908275-6cb020bf-2be3-4390-8e4a-2841dbd273ab.gif)
+![投稿デモ](https://user-images.githubusercontent.com/98644622/170912005-441e4ce7-2f44-460e-9bc0-3481b0e380b6.gif)
 
 #### 検索機能を充実させています
 「都道府県」「外乗施設」「タグ」で検索できます。
 <p>
-  <img width="52%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
-  <img width="38.5%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
+  <img width="42%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
+  <img width="31.1%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
 </p>
 
 右上の虫眼鏡アイコンではフリーワード検索も可能です
 
-<img width="90%" alt="検索" src="https://user-images.githubusercontent.com/98644622/170902644-ed987a18-ae8b-463e-a183-49dbaea28ed1.png">
+<img width="70%" alt="検索" src="https://user-images.githubusercontent.com/98644622/170912056-8c713d6f-34b0-4ccc-8e8f-82aac82f8a7d.png">
   
 #### 管理者機能を取り入れています
 
@@ -101,8 +100,8 @@ https://postrail.net
 また、ユーザーの削除後も投稿が残るように論理削除を実装しました。
 管理者側では「名前+(削除済みユーザー)」へと自動で切り替わり、ユーザー側では「退会済みユーザー」として表示されます。
 
-<img width="70%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170901799-3be1dc42-5c77-4f2c-8846-191c18928fac.png">
-<img width="70%" alt="ユーザー側退会ユーザー" src="https://user-images.githubusercontent.com/98644622/170902216-82fdaccb-4d4a-426f-a2f4-48ea23447aaa.png">
+<img width="70%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170912016-73c3bc69-3d07-409b-b6c6-0cc0392ccaf2.png">
+<img width="70%" alt="ユーザー側退会ユーザー" src="https://user-images.githubusercontent.com/98644622/170912015-1d735b7b-d709-4ac4-a9ec-0459adfcde4f.png">
 
 ### 🌿工夫した点
 - ユーザビリティを意識（例：タグは全角空白でも登録が可能）
@@ -141,23 +140,25 @@ https://postrail.net
 - フレームワーク： Ruby on Rails(6.1.6)
 - JSライブラリ： jQuery
 - IDE： Cloud9
-- DB: mysql
-
-どういうサイトか・何ができる・アピールポイント
-画像も載せる
-環境→バージョンも
-機能一覧・非機能一覧（何でテスト？）
+- DB: sqlite3
 
 ## 🐴使用素材(商用可)
 |使用用途             |サイト名       |アドレス                                  |
 |-------------------|---------------------|--------------------------------|
-|アイコン              |Font Awesome         | https://fontawesome.com/
-|ロゴ + No Image作成  　|FLD FreeLogoDesign   | https://www.freelogodesign.org/
-|虫眼鏡アイコン        　　|IFN 1048 FREE ICONS  | https://illustration-free.net/
-|ユーザーアイコン（馬）    　|ICOOOON MONO         | https://icooon-mono.com/
-|ユーザーアイコン(動物)  　|vectorShelf          | https://vectorshelf.com/
-|素敵な写真集        　　　|Unsplash             | https://unsplash.com/
-|人物のイラスト(about)  |ちょうどいいイラスト       | https://tyoudoii-illust.com/
+|アイコン              |Font Awesome         | https://fontawesome.com
+|ロゴ + No Image作成  　|FLD FreeLogoDesign   | https://www.freelogodesign.org
+|虫眼鏡アイコン        　　|IFN 1048 FREE ICONS  | https://illustration-free.net
+|ユーザーアイコン（馬）    　|ICOOOON MONO         | https://icooon-mono.com
+|ユーザーアイコン(動物)  　|vectorShelf          | https://vectorshelf.com
+|素敵な写真集        　　　|Unsplash             | https://unsplash.com
+|人物のイラスト(about)  |ちょうどいいイラスト       | https://tyoudoii-illust.com
 
-|-------------------|---------------------|--------------------------------|
-|ボタン               |See-SS               | https://see-ss.com/            
+#### cssボタン等
+|使用用途             |サイト名       |アドレス                                   |
+|-------------------|---------------------|---------------------------------|
+|ボタン               |See-SS               | https://see-ss.com            
+|ボタン               |JAJAAAN!             | https://jajaaan.co.jp
+|見出しやボタンなど     　|サルワカ               | https://saruwakakun.com
+|検索バー            　|Coco-Factory         | https://coco-factory.jp/
+
+
