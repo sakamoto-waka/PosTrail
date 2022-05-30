@@ -79,44 +79,54 @@ https://postrail.net
 - GitHub Actions
 
 ## 🐴できること
-一般的な投稿機能を持ったサイトです。
+一般的な投稿機能を持ったサイトです。  
 「クラブ名」には行った外乗施設名を入れます。(空欄可)
-<p>
-<img width="48%" alt="サイトイメージ4" src="https://user-images.githubusercontent.com/98644622/170831922-6c2651ec-67fc-4a3e-ac4b-61f7b67b462d.png">
-<img width="44.3%" alt="サイトイメージ5" src="https://user-images.githubusercontent.com/98644622/170831770-d39bdeb2-6b49-4cba-8972-a7f670275013.png">
-</p>
+
+![投稿デモ](https://user-images.githubusercontent.com/98644622/170908275-6cb020bf-2be3-4390-8e4a-2841dbd273ab.gif)
 
 #### 検索機能を充実させています
 「都道府県」「外乗施設」「タグ」で検索できます。
 <p>
-  <img width="45%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
-  <img width="33.3%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
+  <img width="52%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
+  <img width="38.5%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
 </p>
 
 右上の虫眼鏡アイコンではフリーワード検索も可能です
 
-  <img width="60%" alt="サイトイメージ3" src="https://user-images.githubusercontent.com/98644622/170830706-01683c13-629a-4c93-89b6-40aa2307d67d.png">
+<img width="90%" alt="検索" src="https://user-images.githubusercontent.com/98644622/170902644-ed987a18-ae8b-463e-a183-49dbaea28ed1.png">
+  
+#### 管理者機能を取り入れています
+
+本番運用を意識し、投稿・コメント・タグを削除できる権限を与えました。
+また、ユーザーの削除後も投稿が残るように論理削除を実装しました。
+管理者側では「名前+(削除済みユーザー)」へと自動で切り替わり、ユーザー側では「退会済みユーザー」として表示されます。
+
+<img width="70%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170901799-3be1dc42-5c77-4f2c-8846-191c18928fac.png">
+<img width="70%" alt="ユーザー側退会ユーザー" src="https://user-images.githubusercontent.com/98644622/170902216-82fdaccb-4d4a-426f-a2f4-48ea23447aaa.png">
 
 ### 🌿工夫した点
-- ユーザビリティを意識（例：タグは全角空白・半角空白で登録が可能）
+- ユーザビリティを意識（例：タグは全角空白でも登録が可能）
 - 外乗の普及に重きをおいた（アバウトページに外乗の魅力を書いた）
 - コメント機能・いいね機能・フォロー機能・タグ検索機能は非同期通信化
-- テスト仕様書を開発と並行してある程度書き進めることでテスト項目の漏れを最小限にした
+- テスト仕様書を開発と並行してある程度書き進めることでテスト項目の漏れが無い様に努めた
 
 ### 🌿大変だった点
 - 設計書作成：　チーム開発時の設計書を参考に作成
-- EC２構築・デプロイ・HTTPS化の際に発生したエラー：
-  何をしているのか分からないままコマンドを実行していたため、エラーの発生原因が全く理解できなかった。
-  インフラ周りを復習することで何をしているコマンドなのかが少し理解できた。
-  HTTPS化時には必要な記述を１文抜かしてしまったためにエラーが発生した。おかげでnginxのconfigファイルで何をしているのか理解が少しだけ進んだ。
-- デザイン面・css：　色使いに悩んだが、sassの変数でメインカラーを決めることで統一感を出した
+- EC２構築・デプロイ・HTTPS化への理解と発生したエラー  
+エラー① MySQLでDBを作成する際に小文字のみで作成してしまい、アプリケーションとDBを繋げられずエラー  
+エラー② HTTPS化時に必要な記述を１文書き忘れたためエラー  
+エラー③ ドメイン取得後もipアドレスでサイトへアクセスしようとしていたため404エラー  
+特に②と③は同じタイミングで発生したためシンプルなエラーだったが解決に時間がかかった  
+しかしエラーが発生したおかげで何のための記述なのかを意識するようになったため、インフラ周りの理解が少し進んだ
+- デザイン面：　特に色使いに悩んだが、sassの変数でメインカラーを決めることで統一感を出した
+- css: 理解が乏しく一番苦労した。様々なサイトからコピー可能な雛形をいただきアレンジすることで時間を節約した
 
 ### 🌿完成までの工数
 後日記入予定
 
 ## 🐴設計書
 ### 🌿ER図
-<img width="95%" alt="ER図" src="https://user-images.githubusercontent.com/98644622/170824118-d0ef316b-6300-4dad-b952-9cf77d3f5ebf.png">
+<img width="70%" alt="ER図" src="https://user-images.githubusercontent.com/98644622/170900657-9a6f9eeb-b0c2-451c-a4c0-d3d2f5b3ac7b.png">
 
 ### 🌿フローチャート
 ユーザー側
@@ -126,24 +136,28 @@ https://postrail.net
 ＊admin側、追加予定です
 
 ## 🐴開発環境
-- OS：Linux(CentOS)　Amazon Linux release 2 (Karoo)
-- 言語：HTML,CSS,JavaScript,Ruby(2.6.3p62),SQL
-- フレームワーク：Ruby on Rails(6.1.6)
-- JSライブラリ：jQuery
-- IDE：Cloud9
--
+- OS： Linux(CentOS)　Amazon Linux release 2 (Karoo)
+- 言語： HTML,CSS,JavaScript,Ruby(2.6.3p62),SQL
+- フレームワーク： Ruby on Rails(6.1.6)
+- JSライブラリ： jQuery
+- IDE： Cloud9
+- DB: mysql
+
 どういうサイトか・何ができる・アピールポイント
 画像も載せる
 環境→バージョンも
 機能一覧・非機能一覧（何でテスト？）
 
 ## 🐴使用素材(商用可)
-|使用用途             |サイト名       |アドレス                                |
-|-------------------|---------------------|------------------------------|
+|使用用途             |サイト名       |アドレス                                  |
+|-------------------|---------------------|--------------------------------|
 |アイコン              |Font Awesome         | https://fontawesome.com/
-|ロゴ + No Image作成  |FLD FreeLogoDesign   | https://www.freelogodesign.org/
-虫眼鏡アイコン          |IFN 1048 FREE ICONS  | https://illustration-free.net/
-ユーザーアイコン（馬）     |ICOOOON MONO         | https://icooon-mono.com/
-ユーザーアイコン(動物)   |vectorShelf          | https://vectorshelf.com/
-素敵な写真集          |Unsplash             | https://unsplash.com/
-人物のイラスト(about)   |ちょうどいいイラスト       | https://tyoudoii-illust.com/
+|ロゴ + No Image作成  　|FLD FreeLogoDesign   | https://www.freelogodesign.org/
+|虫眼鏡アイコン        　　|IFN 1048 FREE ICONS  | https://illustration-free.net/
+|ユーザーアイコン（馬）    　|ICOOOON MONO         | https://icooon-mono.com/
+|ユーザーアイコン(動物)  　|vectorShelf          | https://vectorshelf.com/
+|素敵な写真集        　　　|Unsplash             | https://unsplash.com/
+|人物のイラスト(about)  |ちょうどいいイラスト       | https://tyoudoii-illust.com/
+
+|-------------------|---------------------|--------------------------------|
+|ボタン               |See-SS               | https://see-ss.com/            
