@@ -428,7 +428,12 @@ h4 {
   }
 }
 
-/*--投稿フォームはdesigns.scssにある --*/
+/*--投稿フォーム --*/
+.post-preview {
+  width: 100%;
+  oject-fit: cover;
+}
+
 
 /*--投稿詳細＋コメント欄--*/
 

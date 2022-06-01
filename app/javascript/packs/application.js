@@ -14,7 +14,7 @@ import "bootstrap";
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/js/all"
 import "../base.js"
-import "./post_image_preview.js"
+import "./preview.js"
 
 Rails.start()
 Turbolinks.start()
