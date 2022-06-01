@@ -17,8 +17,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
-  # パスワード入力無しでdevise用のeditでuser update
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
+  # # パスワード入力無しでdevise用のeditでuser update
+  # def update_resource(resource, params)
+  #   resource.update_without_password(params)
+  # end
 end
