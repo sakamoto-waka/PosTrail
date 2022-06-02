@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_000951) do
+ActiveRecord::Schema.define(version: 2022_06_02_150535) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,17 @@ ActiveRecord::Schema.define(version: 2022_05_18_000951) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "riding_experience"
+    t.text "content", null: false
+    t.text "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -142,4 +153,5 @@ ActiveRecord::Schema.define(version: 2022_05_18_000951) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "questions", "users"
 end
