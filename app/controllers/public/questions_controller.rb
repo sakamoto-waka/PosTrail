@@ -1,5 +1,6 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_user! || :authenticate_admin!, only: %w(create edit update)
+  before_action :ensure_correct_user, only: %w(edit update)
   
   def index
     @questions = Question.all
@@ -14,7 +15,7 @@ class Public::QuestionsController < ApplicationController
     else
       @questions = Question.all
       render :new
-      flash[:danger] = "質問を送信できませんでした"
+      flash[:danger] = "質問が送信できませんでした"
     end
   end
 
@@ -25,12 +26,20 @@ class Public::QuestionsController < ApplicationController
   def edit
   end
   
+  def update
+    if @question.update(question_params)
+      redirect_to request.referer
+    else
+      render question_edit_path(@question)
+    end
+  end
+  
   private
     
     def ensure_correct_user
       @qusetion = Question.find(params[:id])
       user = User.find(params[:user_id])
-      unless @question.user == user || admin_signed_in?
+      unless (@question.user == user) || admin_signed_in?
         redirect_to new_user_session_path
         flash[:danger] = "ログインをすると質問できます"
       end

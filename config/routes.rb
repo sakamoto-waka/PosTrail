@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'questions/index'
-    get 'questions/new'
-    get 'questions/show'
-    get 'questions/edit'
-  end
   devise_for :users, skip: :passwords, controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions',
@@ -36,6 +30,7 @@ Rails.application.routes.draw do
     resources :notifications, only: :index
     resources :activities, only: :index
     get 'search' => 'searches#search'
+    resources :questions, except: :new
   end
 
   namespace :admin do
