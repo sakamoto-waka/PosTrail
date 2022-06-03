@@ -52,6 +52,6 @@ class Public::QuestionsController < ApplicationController
     end
     
     def question_params
-      params.require(:question).permit(:content, :answer, :riding_experience)
+      params.require(:question).permit(:content, :answer, :riding_experience, :category)
     end
 end
