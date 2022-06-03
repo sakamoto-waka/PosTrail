@@ -1,6 +1,6 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_user! || :authenticate_admin!, only: %w(create edit update)
-  before_action :ensure_correct_user, only: %w(edit update)
+  before_action :ensure_correct_user, only: %w(edit update destroy)
   
   def index
     @questions = Question.all
@@ -32,6 +32,12 @@ class Public::QuestionsController < ApplicationController
     else
       render question_edit_path(@question)
     end
+  end
+  
+  def destroy
+    @question.destroy
+    @questions = Question.all
+    redirect_to questions_path
   end
   
   private
