@@ -1,9 +1,14 @@
 %h1 質問一覧
+.col-lg-10.mx-auto
+  %p 外乗をするにあたって不安に思っていることや聞いてみたいことがあればこちらのボタンから質問を送ってください！
+  %p ※全てに回答できるわけではありませんので予めご了承くださいませ。
+  = link_to new_question_path, class: "basic-button" do
+    質問はこちらから
 
 %dl.accordion
-  %dt.accordion-parent メニュー
-  %dd.accordion-child メニューの中身
-  %dt.accordion-parent メニュー
-  %dd.accordion-child メニューの中身
-  %dt.accordion-parent メニュー
-  %dd.accordion-child メニューの中身
+  - @questions.each do |question|
+    - if question.answer.present?
+      %dt.accordion-parent
+        = question.title
+      %dd.accordion-child
+        = question.answer

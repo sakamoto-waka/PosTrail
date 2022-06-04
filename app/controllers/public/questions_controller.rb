@@ -1,17 +1,17 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_user! || :authenticate_admin!, only: %w(create edit update)
   before_action :ensure_correct_user, only: %w(edit update destroy)
-  
+
   def index
     @questions = Question.all
   end
-  
+
   def new
     @question = Question.new
   end
 
   def create
-    @question = current_user.questions(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       redirect_to questions_path
       flash[:success] = "質問を送信しました"
@@ -28,7 +28,7 @@ class Public::QuestionsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @question.update(question_params)
       redirect_to request.referer
@@ -36,15 +36,15 @@ class Public::QuestionsController < ApplicationController
       render question_edit_path(@question)
     end
   end
-  
+
   def destroy
     @question.destroy
     @questions = Question.all
     redirect_to questions_path
   end
-  
+
   private
-    
+
     def ensure_correct_user
       @qusetion = Question.find(params[:id])
       user = User.find(params[:user_id])
@@ -53,8 +53,8 @@ class Public::QuestionsController < ApplicationController
         flash[:danger] = "ログインをすると質問できます"
       end
     end
-    
+
     def question_params
-      params.require(:question).permit(:content, :answer, :riding_experience, :category)
+      params.require(:question).permit(:content,:title, :answer, :riding_experience, :category)
     end
 end
