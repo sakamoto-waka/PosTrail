@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'questions/index'
+    get 'questions/show'
+    get 'questions/edit'
+  end
   devise_for :users, skip: :passwords, controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions',
