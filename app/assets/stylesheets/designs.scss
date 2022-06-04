@@ -488,59 +488,27 @@ table{
 /*-- 質問一覧: アコーディオン --*/
 
 /*アコーディオン全体*/
-.accordion-area{
-  list-style: none;
-  width: 96%;
-  max-width: 900px;
-  margin:0 auto;
-  & li{
-    margin: 10px 0;
-  }
-  & section {
-    border: 1px solid #ccc;
-  }
-  /*アコーディオンタイトル*/
-  .title {
-    position: relative;/*+マークの位置基準とするためrelative指定*/
+/* アコーディオンメニュー全体のサイズ・位置 */
+.accordion {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  /* クリック領域 */
+  .accordion-parent {
+    height: 50px;
+    border-bottom: 1px solid #fff;
+    background-color: darken($main-color, 7%);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
     cursor: pointer;
-    font-size:1rem;
-    font-weight: normal;
-    padding: 3% 3% 3% 50px;
-    transition: all .5s ease;
-    /*アイコンの＋と×*/
-    &::before,
-    &::after{
-      position: absolute;
-      content:'';
-      width: 15px;
-      height: 2px;
-      background-color: #333;
-    }
-    &::before{
-      top:48%;
-      left: 15px;
-      transform: rotate(0deg);
-    }
-    &::after{    
-      top:48%;
-      left: 15px;
-      transform: rotate(90deg);
-    }
-    /*closeというクラスがついたら形状変化*/
-    &.close::before{
-      transform: rotate(45deg);
-    }
-    
-    &.close::after{
-      transform: rotate(-45deg);
-    }
   }
-  /*アコーディオンで現れるエリア*/
-  .box {
+  /* クリックしたら表示される領域 */
+  .accordion-child {
     display: none;
-    background: #f3f3f3;
-    margin:0 3% 3% 3%;
-    padding: 3%;
+    padding: 2em 1em;
+    background-color: lighten($main-color, 20%);
+    text-align: center;
   }
 }
 
