@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'questions/index'
-    get 'questions/show'
-    get 'questions/edit'
-  end
   devise_for :users, skip: :passwords, controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions',
@@ -50,6 +45,7 @@ Rails.application.routes.draw do
         delete 'tags_index_destroy' => 'posts#tags_index_destroy'
       end
     end
+    resources :questions, except: %w(new create)
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
