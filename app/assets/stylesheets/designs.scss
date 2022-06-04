@@ -496,19 +496,20 @@ table{
   /* クリック領域 */
   .accordion-parent {
     height: 50px;
+    margin-top: 30px;
     border-bottom: 1px solid #fff;
     background-color: darken($main-color, 7%);
     color: #fff;
-    text-align: center;
+    // text-align: center;
     line-height: 50px;
     cursor: pointer;
+    padding-left: 20px;
   }
   /* クリックしたら表示される領域 */
   .accordion-child {
     display: none;
-    padding: 2em 1em;
+    padding: 20px;
     background-color: lighten($main-color, 20%);
-    text-align: center;
   }
 }
 
