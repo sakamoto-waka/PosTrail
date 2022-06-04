@@ -404,7 +404,7 @@ h4 {
 ===================================================== */
 
 
-/*--投稿一覧--*/
+/*-- 投稿一覧 --*/
 
 
 .post-card {
@@ -428,14 +428,14 @@ h4 {
   }
 }
 
-/*--投稿フォーム --*/
+/*-- 投稿フォーム --*/
 .post-preview {
   width: 100%;
   oject-fit: cover;
 }
 
 
-/*--投稿詳細＋コメント欄--*/
+/*-- 投稿詳細＋コメント欄 --*/
 
 .comment-respond { /*入力欄全体の枠*/
   // border: 2px solid $button-accent-color;
@@ -510,7 +510,7 @@ h4 {
   }
 }
 
-/* アイコン右 */
+/*-- アイコン右 --*/
 .current-user-comment {
   margin-top: 20px;
   flex-direction: row-reverse;
@@ -526,7 +526,7 @@ h4 {
   }
 }
 
-/* アイコン左 */
+/*-- アイコン左 --*/
 .other-user-comment {
   .message-text {
     background: #ece9e3;
@@ -604,3 +604,72 @@ table {
     left: 24px;
   }
 }
+
+/* ==================================================
+
+                      質問関係
+
+===================================================== */
+
+/*-- 質問一覧: アコーディオン --*/
+
+/*アコーディオン全体*/
+.accordion-area{
+  list-style: none;
+  width: 96%;
+  max-width: 900px;
+  margin:0 auto;
+  & li{
+    margin: 10px 0;
+  }
+  & section {
+    border: 1px solid #ccc;
+  }
+  /*アコーディオンタイトル*/
+  .title {
+    position: relative;/*+マークの位置基準とするためrelative指定*/
+    cursor: pointer;
+    font-size:1rem;
+    font-weight: normal;
+    padding: 3% 3% 3% 50px;
+    transition: all .5s ease;
+    /*アイコンの＋と×*/
+    &::before,
+    &::after{
+      position: absolute;
+      content:'';
+      width: 15px;
+      height: 2px;
+      background-color: #333;
+    }
+    &::before{
+      top:48%;
+      left: 15px;
+      transform: rotate(0deg);
+    }
+    &::after{    
+      top:48%;
+      left: 15px;
+      transform: rotate(90deg);
+    }
+    /*　closeというクラスがついたら形状変化　*/
+    &.close::before{
+      transform: rotate(45deg);
+    }
+    
+    &.close::after{
+      transform: rotate(-45deg);
+    }
+  }
+    /*アコーディオンで現れるエリア*/
+    .box {
+      display: none;/*はじめは非表示*/
+      background: #f3f3f3;
+      margin:0 3% 3% 3%;
+      padding: 3%;
+    }
+}
+
+
+
+
