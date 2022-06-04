@@ -1,2 +1,11 @@
-%h1 Admin::Questions#index
-%p Find me in app/views/admin/questions/index.html.haml
+%h1 質問一覧
+.col-lg-10.mx-auto
+
+%dl.accordion
+  - @questions.each do |question|
+    %dt.accordion-parent
+      = question.title
+      = link_to '回答する', edit_admin_question_path(question)
+    %dd.accordion-child
+      = question.answer
+      

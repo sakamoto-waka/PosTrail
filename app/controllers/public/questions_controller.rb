@@ -1,5 +1,5 @@
 class Public::QuestionsController < ApplicationController
-  before_action :authenticate_user! || :authenticate_admin!, only: %w(create edit update)
+  before_action :authenticate_user!, only: %w(new create edit update)
   before_action :ensure_correct_user, only: %w(edit update destroy)
 
   def index
@@ -23,7 +23,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def show
-    @qusetion = Question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def edit
@@ -46,7 +46,7 @@ class Public::QuestionsController < ApplicationController
   private
 
     def ensure_correct_user
-      @qusetion = Question.find(params[:id])
+      @question = Question.find(params[:id])
       user = User.find(params[:user_id])
       unless (@question.user == user) || admin_signed_in?
         redirect_to new_user_session_path
@@ -55,6 +55,6 @@ class Public::QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:content,:title, :answer, :riding_experience, :category)
+      params.require(:question).permit(:content,:title, :riding_experience)
     end
 end
