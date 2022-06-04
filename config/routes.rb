@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :notifications, only: :index
     resources :activities, only: :index
     get 'search' => 'searches#search'
-    resources :questions, except: :new
+    resources :questions
   end
 
   namespace :admin do

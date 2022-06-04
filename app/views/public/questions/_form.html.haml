@@ -1,0 +1,18 @@
+= form_with model: question do |f|
+  = render 'layouts/errors', obj: question
+  .col-md-9.col-lg-7.mx-auto
+    .divise-form
+      .devise-label.col-md-4
+        = f.label :乗馬経験（年数）
+      = f.text_field :riding_experience, placeholder: '大体で構いません'
+    .divise-form
+      .devise-label.col-md-4
+        = f.label :質問タイトル
+      = f.text_field :title, placeholder: '例：夏の服装について'
+    .divise-form
+      .devise-label.col-md-4
+        = f.label :質問内容
+      = f.text_area :content, placeholder: '例：夏はどんな格好で行くべきでしょうか?'
+    .actions.text-center.mt-2
+      = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
+        = '質問する'
