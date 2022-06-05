@@ -35,7 +35,8 @@ $edit-button-color: #4b957a;
     	border-color: darken($button-color, 25%);
     }
   }
-	textarea#post_body, textarea#user_introduction {
+	textarea#post_body, textarea#user_introduction,
+	textarea#question_content, textarea#question_answer {
 	  height: 200px;
 	}
 	select {
