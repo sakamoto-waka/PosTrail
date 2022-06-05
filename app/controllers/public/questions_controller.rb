@@ -3,7 +3,15 @@ class Public::QuestionsController < ApplicationController
   before_action :ensure_correct_user, only: %w(edit update destroy)
 
   def index
-    @questions = Question.all
+    if params[:category] == "0"
+      @questions = Question.where("category = ?", 0)
+    elsif params[:category] == "1"
+      @questions = Question.where("category = ?", 1)
+    elsif params[:category] == "2"
+      @questions = Question.where("category = ?", 2)
+    else
+      @questions = Question.all
+    end
   end
 
   def new

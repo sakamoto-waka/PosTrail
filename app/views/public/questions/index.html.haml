@@ -1,14 +1,25 @@
 %h1 質問一覧
 .col-lg-10.mx-auto
   %p 外乗をするにあたって不安に思っていることや聞いてみたいことがあればこちらのボタンから質問を送ってください！
+  %p 質問例：<br>どんな格好で行けばいいの？<br>乗ってる馬がなかなか思い通りに動いてくれない！　など
   %p ※全てに回答できるわけではありませんので予めご了承くださいませ。
   = link_to new_question_path, class: "basic-button" do
     質問はこちらから
+
+.col-sm-10.col-md-8.col-lg-6.side-scroll-parent
+  .side-scroll-child
+    = link_to '質問一覧', questions_path
+  // カテゴリー別に検索
+  - Question.categories.map do |category, key|
+    .side-scroll-child
+      = link_to category, questions_path(category: key)
 
 %dl.accordion
   - @questions.each do |question|
     - if question.answer.present?
       %dt.accordion-parent
         = question.title
+        %p.category-text
+          = "カテゴリー：#{question.category_i18n}"
       %dd.accordion-child
         = question.answer
