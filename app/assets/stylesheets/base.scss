@@ -349,7 +349,7 @@ h4 {
 ===================================================== */
 
 /* =================================
-              投稿一覧 
+              投稿一覧
 ================================== */
 
 .post-card {
@@ -380,7 +380,7 @@ h4 {
 }
 
 /* =================================
-              タグ 
+              タグ
 ================================== */
 
 .tags_list ul li {
@@ -637,8 +637,7 @@ table {
   .accordion-parent {
     height: 65px;
     margin-top: 30px;
-    border-bottom: 1px solid #fff;
-    background-color: rgba($main-color, 0.6);
+    border-bottom: 1px solid #ddba4d;
     color: $text-color;
     cursor: pointer;
     padding: 10px 20px;
@@ -651,7 +650,6 @@ table {
   .accordion-child {
     display: none;
     padding: 20px;
-    background-color: lighten($main-color, 20%);
   }
 }
 
@@ -663,12 +661,13 @@ table {
   width: 400px;
   display: flex;
   overflow-x: scroll;
-  background-color:cornflowerblue;
+  background-color: #dad0c7a6;
   .side-scroll-child {
     padding: 7px;
-    margin: 10px;
-    min-width: 110px;
+    margin: auto;
+    min-width: 100px;
     text-align: center;
-    background-color: aquamarine;
+    background-color: #ffffff66;
+    border: 1px solid #5437155e;
   }
 }

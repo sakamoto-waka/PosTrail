@@ -34,7 +34,7 @@
                     %span.small.text-light フォロー不可
       - if current_page?("/users/#{current_user.id}")
         .mt-5.text-center
-          = link_to 'みんなの質問一覧', questions_path, class: "basic-button"
+          = link_to 'みんなの質問一覧', questions_path, class: "basic-button dashed-button"
           .mt-4
             = link_to new_question_path do
               %u 外乗に対する疑問やこのサイトに関する要望がある方はこちら
