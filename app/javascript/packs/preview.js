@@ -1,5 +1,6 @@
 if (document.URL.match(/new/) || document.URL.match(/edit/)) {
   document.addEventListener('DOMContentLoaded', () => {
+    
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('post-image-preview');
       // HTML要素の<img>を作成する
