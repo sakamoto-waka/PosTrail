@@ -14,11 +14,11 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def update
-    question = Question.find(params[:id])
-    if question.update(question_params)
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
       redirect_to admin_questions_path
     else
-      render admin_question_edit_path(@question)
+      render template: "admin/questions/edit"
     end
   end
 

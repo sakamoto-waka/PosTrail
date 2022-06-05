@@ -4,8 +4,13 @@
 %dl.accordion
   - @questions.each do |question|
     %dt.accordion-parent
-      = question.title
-      = link_to '回答する', edit_admin_question_path(question)
+      .d-flex.justify-content-between
+        .question-title
+          = question.title
+        %div
+          = link_to '回答する', edit_admin_question_path(question)
     %dd.accordion-child
-      = question.answer
+      = question.content
+      .mt-4.question-answer
+        = question.answer
       

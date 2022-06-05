@@ -645,11 +645,18 @@ table {
       font-size: 14px;
       font-weight: 100;
     }
+    .question-title {
+      width: 450px;
+    }
   }
   /* クリックしたら表示される領域 */
   .accordion-child {
     display: none;
-    padding: 20px;
+    padding: 10px;
+    .question-answer {
+      background-color: #efeeed;
+      padding: 20px;
+    }
   }
 }
 
