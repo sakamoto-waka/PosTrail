@@ -631,22 +631,18 @@ table {
 /* アコーディオンメニュー全体のサイズ・位置 */
 .accordion {
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
   margin: 0 auto;
   /* クリック領域 */
   .accordion-parent {
-    height: 65px;
-    margin-top: 30px;
-    border-bottom: 1px solid #ddba4d;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddba4d;
     color: $text-color;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 10px 20px 0;
     .category-text {
       font-size: 14px;
       font-weight: 100;
-    }
-    .question-title {
-      width: 450px;
     }
   }
   /* クリックしたら表示される領域 */

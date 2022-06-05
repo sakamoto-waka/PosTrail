@@ -2,7 +2,7 @@ class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!, only: %w(edit update)
 
   def index
-    @questions = Question.all
+    @questions = Question.question_latest
   end
 
   def show

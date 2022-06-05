@@ -5,9 +5,9 @@
   - @questions.each do |question|
     %dt.accordion-parent
       .d-flex.justify-content-between
-        .question-title
+        .question-title.col-lg-10.col-8
           = question.title
-        %div
+        .col-lg-2.col-4
           = link_to '回答する', edit_admin_question_path(question)
     %dd.accordion-child
       = question.content

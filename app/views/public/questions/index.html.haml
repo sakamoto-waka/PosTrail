@@ -3,8 +3,9 @@
   %p 外乗に対する不安や聞いてみたいことを<br>下記ボタンから書いてみてください<br>（このサイトに関する要望でもOK）
   %p ー　質問例　ー<br>どんな格好で行けばいいの？<br>乗ってる馬がなかなか思い通りに動いてくれない！　など
   %p ※ 全てに回答できるわけではありません ※
-  = link_to new_question_path, class: "basic-button dashed-button" do
-    質問はこちらから
+  .basic-button.dashed-button.col-8.mx-auto.mt-4
+    = link_to new_question_path do
+      質問はこちらから
 
 .col-12.col-lg-7.side-scroll-parent
   .side-scroll-child
@@ -22,4 +23,6 @@
         %p.category-text
           = "カテゴリー：#{question.category_i18n}"
       %dd.accordion-child
-        = question.answer
+        = question.content
+        .mt-4.question-answer
+          = question.answer
