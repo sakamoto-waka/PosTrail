@@ -7,6 +7,9 @@ class Question < ApplicationRecord
   validates :answer, length: { maximum: 250 }
 
   enum category: { beginner: 0, intermediate: 1, advanced: 2 }
-  
+
   scope :question_latest, -> { order(created_at: :desc) }
+
+  paginates_per 25
+
 end
