@@ -29,27 +29,6 @@ class Public::QuestionsController < ApplicationController
     end
   end
 
-  def show
-    @question = Question.find(params[:id])
-  end
-
-  def edit
-  end
-
-  def update
-    if @question.update(question_params)
-      redirect_to request.referer
-    else
-      render question_edit_path(@question)
-    end
-  end
-
-  def destroy
-    @question.destroy
-    @questions = Question.all
-    redirect_to questions_path
-  end
-
   private
 
     def ensure_correct_user
