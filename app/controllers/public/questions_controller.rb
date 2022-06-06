@@ -26,7 +26,6 @@ class Public::QuestionsController < ApplicationController
     else
       @questions = Question.all
       render :new
-      flash[:danger] = "質問が送信できませんでした"
     end
   end
 

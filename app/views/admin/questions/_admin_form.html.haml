@@ -22,6 +22,10 @@
       .devise-label.col-md-4
         = f.label :回答
       = f.text_area :answer
+    .divise-form
+      .devise-label.col-md-4
+        = f.label :is_answered, '公開／非公開'
+      = f.select :is_answered, [['公開', true], ['非公開', false]], { selected: question.is_answered }  
     .actions.text-center.mt-5
       = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
         = '回答'

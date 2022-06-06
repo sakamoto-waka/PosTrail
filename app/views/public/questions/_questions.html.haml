@@ -1,5 +1,5 @@
 - questions.each do |question|
-  - if question.answer.present?
+  - if question.is_answered == true
     %dt.accordion-parent
       = question.title
       %p.category-text

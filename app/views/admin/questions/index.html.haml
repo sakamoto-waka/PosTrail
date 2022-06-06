@@ -3,19 +3,11 @@
 
 .col-12.col-lg-7.side-scroll-parent
   .side-scroll-child
-    
+    = link_to '一覧', admin_questions_path
+  .side-scroll-child
+    = link_to '公開中', admin_questions_path(is_answered: true)
+  .side-scroll-child
+    = link_to '非公開中', admin_questions_path(is_answered: false)
 
 %dl.accordion
-  - @questions.each do |question|
-    %dt.accordion-parent
-      .d-flex.justify-content-between
-        .question-title.col-lg-10.col-8
-          = question.title
-          %p.category-text
-            = "カテゴリー：#{question.category_i18n}"
-        .col-lg-2.col-4
-          = link_to '回答する', edit_admin_question_path(question)
-    %dd.accordion-child
-      = simple_format(question.content)
-      .mt-4.question-answer
-        = simple_format(question.answer)
+  = render 'admin_questions', questions: @questions
