@@ -1,8 +1,9 @@
 %h1 質問一覧
 .col-lg-10.mx-auto.text-center
   %p 外乗に対する不安や聞いてみたいことを<br>下記ボタンから書いてみてください<br>（このサイトに関する要望でもOK）
-  %p ー　質問例　ー<br>どんな格好で行けばいいの？<br>乗ってる馬がなかなか思い通りに動いてくれない！　など
+  %p ー　質問例　ー<br>どんな格好で行けばいいの？<br>馬がなかなか思い通りに動いてくれない！　など
   %p ※ 全てに回答できるわけではありません ※
+  = '質問はログインするとできます' unless user_signed_in?
   = link_to new_question_path do
     .basic-button.dashed-button.col-8.mx-auto.mt-4
       質問はこちらから

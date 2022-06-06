@@ -22,7 +22,7 @@ class Public::QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
     if @question.save
       redirect_to questions_path
-      flash[:success] = "質問を送信しました"
+      flash[:success] = "質問を送信しました　回答された場合に一覧に記載されます"
     else
       @questions = Question.all
       render :new
@@ -57,7 +57,6 @@ class Public::QuestionsController < ApplicationController
       user = User.find(params[:user_id])
       unless (@question.user == user) || admin_signed_in?
         redirect_to new_user_session_path
-        flash[:danger] = "ログインをすると質問できます"
       end
     end
 
