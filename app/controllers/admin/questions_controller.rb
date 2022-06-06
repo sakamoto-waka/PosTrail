@@ -3,11 +3,11 @@ class Admin::QuestionsController < ApplicationController
 
   def index
     if params[:is_answered] == 'true'
-      @questions = Question.question_latest.where(is_answered: true)
+      @questions = Question.question_latest.where(is_answered: true).page(params[:page])
     elsif params[:is_answered] == 'false'
-      @questions = Question.question_latest.where(is_answered: false)
+      @questions = Question.question_latest.where(is_answered: false).page(params[:page])
     else
-      @questions = Question.question_latest
+      @questions = Question.question_latest.page(params[:page])
     end
   end
 
