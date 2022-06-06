@@ -170,6 +170,14 @@
       width: 100%!important;
     }
   }
-
-
+  .category-text {
+    display: grid;
+    .category-infomation, .category-answer-infomation {
+      margin-left: 0!important;
+      text-align: center;
+    }
+    .category-answer-infomation {
+      margin-top: 5px;
+    }
+  }
 }

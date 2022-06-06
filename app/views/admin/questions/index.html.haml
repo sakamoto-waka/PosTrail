@@ -1,0 +1,13 @@
+%h1 質問一覧
+.col-lg-10.mx-auto
+
+.col-12.col-lg-7.side-scroll-parent
+  .side-scroll-child
+    = link_to '一覧', admin_questions_path
+  .side-scroll-child
+    = link_to '公開中', admin_questions_path(is_answered: true)
+  .side-scroll-child
+    = link_to '非公開中', admin_questions_path(is_answered: false)
+
+%dl.accordion
+  = render 'admin_questions', questions: @questions

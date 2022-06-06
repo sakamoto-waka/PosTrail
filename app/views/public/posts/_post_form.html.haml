@@ -2,11 +2,14 @@
   = render 'layouts/errors', obj: post
   .col-md-9.col-lg-7.mx-auto
     %p.text-danger.text-right.mb-0 * 必須項目
-    .divise-form
+    - if post.trail_image.present?
+      %p.text-muted.small.mb-0 　画像を変更する場合は選択してください
+    .divise-form.mt-0
       .devise-label.col-md-4
         %i.fas.fa-camera-retro
         = f.label :ベストショット
       = f.file_field :trail_image, accept: 'image/*', class: "image-select-box mt-3"
+    #post-image-preview
     .divise-form
       .devise-label.col-md-4
         %i.fas.fa-map-marked-alt
@@ -33,4 +36,3 @@
     .actions.text-center.mt-5
       = button_tag type: 'submit', class: "basic-button font-weight-bold my-4" do
         = post.body.present? ? '編集する' : '投稿する'
-        

@@ -14,15 +14,19 @@
       %li
         = link_to admin_root_path, class: 'nav-link header-link' do
           %i.fas.fa-users
-          %b ユーザー一覧
+          %b ユーザー
       %li
         = link_to admin_posts_path, class: 'nav-link header-link' do
-          %i.fas.fa-user-friends
-          %b 投稿一覧
+          %i.fas.fa-horse-head
+          %b 投稿
       %li
         = link_to tags_index_admin_posts_path, class: 'nav-link header-link' do
           %i.fas.fa-clipboard-check
-          %b タグ一覧
+          %b タグ
+      %li
+        = link_to admin_questions_path, class: 'nav-link header-link' do
+          %i.fab.fa-quora
+          %b 質問
       %li
         = link_to destroy_admin_session_path, method: :delete, class: 'nav-link header-link' do
           %i.fas.fa-sign-in-alt
