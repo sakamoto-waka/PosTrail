@@ -649,6 +649,9 @@ table {
   .accordion-child {
     display: none;
     padding: 10px;
+    .admin_question_child {
+      border: 1px solid rgb(201, 195, 195);
+    }  
     .question-answer {
       background-color: #efeeed;
       padding: 20px;
