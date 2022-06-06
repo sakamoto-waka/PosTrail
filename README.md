@@ -21,6 +21,8 @@
 
 他にも乗馬を習っている方であればスキルに応じて森の中をくねくね駆け回ったり、草原や海沿いを爆走したりと、他では絶対に経験出来ないことを叶えてくれるのも外乗の大きな魅力の一つです。
 
+![投稿デモ](https://user-images.githubusercontent.com/98644622/170912005-441e4ce7-2f44-460e-9bc0-3481b0e380b6.gif)
+
 ## 🐴テーマを選んだ理由
 #### きっかけ
 前職が乗馬業界だったため、お客様からは「外乗に行くにはもっと乗馬スキルを上げないと…」といった意見をよく耳にしていました。
@@ -81,19 +83,18 @@ https://postrail.net
 ## 🐴できること
 一般的な投稿機能を持ったサイトです。  
 
-![投稿デモ](https://user-images.githubusercontent.com/98644622/170912005-441e4ce7-2f44-460e-9bc0-3481b0e380b6.gif)
-
 #### 検索機能を充実させています
-「都道府県」「外乗施設」「タグ」で検索できます。
+
+右上の虫眼鏡アイコンでフリーワード検索が可能です
+
+<img width="100%" alt="検索" src="https://user-images.githubusercontent.com/98644622/170912056-8c713d6f-34b0-4ccc-8e8f-82aac82f8a7d.png">
+
+他にも「都道府県」「外乗施設」「タグ」で検索できます。
 <p>
-  <img width="42%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
-  <img width="31.1%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
+  <img width="56.9%" alt="サイトイメージ1" src="https://user-images.githubusercontent.com/98644622/170830274-5e9fcd7e-7c50-4fcf-b90c-e7fd7ac7f2a2.png">
+  <img width="42.1%" alt="サイトイメージ2" src="https://user-images.githubusercontent.com/98644622/170830267-0bc2bf21-f8ce-480e-a919-3b2c2578e39d.png">
 </p>
 
-右上の虫眼鏡アイコンではフリーワード検索も可能です
-
-<img width="70%" alt="検索" src="https://user-images.githubusercontent.com/98644622/170912056-8c713d6f-34b0-4ccc-8e8f-82aac82f8a7d.png">
-  
 #### 管理者機能を取り入れています
 
 本番運用を意識し、投稿・コメント・タグを削除できる権限を与えました。
