@@ -32,7 +32,7 @@ class Admin::QuestionsController < ApplicationController
   def destroy
     question = Question.find(params[:id])
     question.destroy
-    @questions = Question.all
+    @questions = Question.question_latest.page(params[:page])
     flash.now[:danger] = "質問を削除しました"
   end
 
