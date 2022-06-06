@@ -9,20 +9,11 @@
 
 .col-12.col-lg-7.side-scroll-parent
   .side-scroll-child
-    = link_to '質問一覧', questions_path
+    = link_to '質問一覧', questions_path, remote: true
   // カテゴリー別に検索
   - Question.categories.keys.map do |key|
     .side-scroll-child
-      = link_to I18n.t("enums.question.category.#{key}"), questions_path(category: key)
+      = link_to I18n.t("enums.question.category.#{key}"), questions_path(category: key), remote: true
 
 %dl.accordion
-  - @questions.each do |question|
-    - if question.answer.present?
-      %dt.accordion-parent
-        = question.title
-        %p.category-text
-          = "カテゴリー：#{question.category_i18n}"
-      %dd.accordion-child
-        = question.content
-        .mt-4.question-answer
-          = question.answer
+  = render 'questions', questions: @questions

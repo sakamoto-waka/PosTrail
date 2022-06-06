@@ -4,13 +4,13 @@ class Public::QuestionsController < ApplicationController
 
   def index
     if params[:category] == "beginner"
-      @questions = Question.where("category = ?", 0)
+      @questions = Question.question_latest.where("category = ?", 0)
     elsif params[:category] == "intermediate"
-      @questions = Question.where("category = ?", 1)
+      @questions = Question.question_latest.where("category = ?", 1)
     elsif params[:category] == "advanced"
-      @questions = Question.where("category = ?", 2)
+      @questions = Question.question_latest.where("category = ?", 2)
     else
-      @questions = Question.all
+      @questions = Question.question_latest
     end
   end
 

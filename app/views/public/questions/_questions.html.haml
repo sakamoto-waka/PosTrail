@@ -1,0 +1,10 @@
+- questions.each do |question|
+  - if question.answer.present?
+    %dt.accordion-parent
+      = question.title
+      %p.category-text
+        = "カテゴリー：#{question.category_i18n}"
+    %dd.accordion-child
+      = simple_format(question.content)
+      .mt-4.question-answer
+        = simple_format(question.answer)

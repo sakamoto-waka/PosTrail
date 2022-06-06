@@ -8,6 +8,10 @@
         = question.riding_experience
     .divise-form
       .devise-label.col-md-4
+        = f.label :カテゴリー
+      = f.select :category, Question.categories.keys.map{ |k| [I18n.t("enums.question.category.#{k}"), k] }
+    .divise-form
+      .devise-label.col-md-4
         = f.label :title, '質問タイトル'
       = f.text_field :title
     .divise-form
@@ -15,7 +19,7 @@
         = f.label :質問内容
       = f.text_area :content
     .divise-form
-      .devise-label.col-md-4  
+      .devise-label.col-md-4
         = f.label :回答
       = f.text_area :answer
     .actions.text-center.mt-5

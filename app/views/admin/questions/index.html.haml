@@ -7,10 +7,11 @@
       .d-flex.justify-content-between
         .question-title.col-lg-10.col-8
           = question.title
+          %p.category-text
+            = "カテゴリー：#{question.category_i18n}"
         .col-lg-2.col-4
           = link_to '回答する', edit_admin_question_path(question)
     %dd.accordion-child
-      = question.content
+      = simple_format(question.content)
       .mt-4.question-answer
-        = question.answer
-      
+        = simple_format(question.answer)
