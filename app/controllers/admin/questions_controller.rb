@@ -33,7 +33,7 @@ class Admin::QuestionsController < ApplicationController
     question = Question.find(params[:id])
     question.destroy
     @questions = Question.all
-    redirect_to admin_questions_path
+    # redirect_to admin_questions_path
     flash[:danger] = "質問を削除しました"
   end
 
