@@ -25,3 +25,5 @@
     .d-flex.justify-content-end
       = link_to admin_question_path(question), method: :delete, remote: true, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button mt-2 mr-5" do
         %i.fas.fa-trash-alt
+.d-flex.justify-content-center.mt-4
+  = paginate questions    
