@@ -1,0 +1,27 @@
+- @questions.each do |question|
+  %dt.accordion-parent
+    .d-flex.justify-content-between
+      .question-title.col-lg-10.col-9
+        = question.title
+        %p.category-text.mt-1
+          = "カテゴリー：#{question.category_i18n}"
+          - if question.is_answered == true
+            %span.border.border-info.text-info.font-weight-bold.ml-4.py-1.px-3.category-infomation
+              公開中
+          - else
+            %span.border.border-dark.text-muted.font-weight-bold.ml-4.py-1.px-2.category-infomation
+              非公開中
+          - if question.answer.blank?
+            %span.border.border-danger.text-danger.font-weight-bold.ml-4.py-1.px-3.category-answer-infomation
+              未回答
+
+      .col-lg-2.col-md-2.col-4.pt-3
+        = link_to '回答', edit_admin_question_path(question), class: "border border-secondary rounded p-3"
+
+  %dd.accordion-child.admin_question_child
+    = simple_format(question.content)
+    .mt-4.question-answer
+      = simple_format(question.answer)
+    .d-flex.justify-content-end
+      = link_to admin_question_path(question), method: :delete, remote: true, data: { confirm: "本当に削除しますか？"}, class: "action-button post-trash-button mt-2 mr-5" do
+        %i.fas.fa-trash-alt

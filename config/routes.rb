@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :notifications, only: :index
     resources :activities, only: :index
     get 'search' => 'searches#search'
+    resources :questions, only: %w(index new create)
   end
 
   namespace :admin do
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
         delete 'tags_index_destroy' => 'posts#tags_index_destroy'
       end
     end
+    resources :questions, except: %w(new create )
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

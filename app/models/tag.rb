@@ -7,6 +7,6 @@ class Tag < ApplicationRecord
   def self.looks(content)
     tags = Tag.where("name LIKE ?", "%#{content}%")
     # 一つずつ取得し、後ろの計算をしてまた一つ取得、計算を繰り返す
-    tags.inject(init = []) { |result, tag| result + tag.posts }
+    tags.inject(init = []) { |result, tag| result + tag.posts.latest.distinct }.uniq
   end
 end
