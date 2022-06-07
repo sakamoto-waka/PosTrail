@@ -1,2 +1,27 @@
-%h1 Public::Chats#show
-%p Find me in app/views/public/chats/show.html.haml
+= "#{@user.name}さんとのチャット"
+- @chats.each do |chat|
+  - if chat.user_id == current_user.id
+    .one-box
+      .message-balloon.current-user-comment
+        .user-image
+          = link_to user_path(message.user) do
+            = image_tag message.user.get_account_image(50, 50)
+        .message-text  
+          %span.text-muted.small
+            自分
+          %br
+          = chat.message
+          .row.justify-content-end
+            .small.text-muted
+              %i.fas.fa-history
+              = "#{time_ago_in_words(comment.created_at)}前"
+  - else
+    .message-balloon.other-user-comment
+      .user-image            
+        = link_to user_path(message.user) do
+          = image_tag message.user.get_account_image(50, 50)
+      .message-text  
+        %span.text-muted.small
+          chat.user.name
+        %br
+        = chat.message    
