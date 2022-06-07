@@ -25,12 +25,12 @@ Rails.application.routes.draw do
       resources :comments, only: %w(create destroy)
       resource :likes, only: %w(create destroy)
     end
-
     resources :tags, only: %w(index destroy)
     resources :notifications, only: :index
     resources :activities, only: :index
     get 'search' => 'searches#search'
     resources :questions, only: %w(index new create)
+    resources :chats, only: %w(show create)
   end
 
   namespace :admin do
