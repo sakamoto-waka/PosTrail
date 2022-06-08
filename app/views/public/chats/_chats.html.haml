@@ -16,6 +16,7 @@
             .small.text-muted
               %i.fas.fa-history
               = "#{time_ago_in_words(chat.created_at)}前"
+
   - else
     .message-balloon.other-user-comment
       .user-image
