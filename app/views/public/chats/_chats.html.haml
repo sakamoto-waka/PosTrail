@@ -1,0 +1,28 @@
+- chats.each do |chat|
+  = render 'layouts/errors', obj: chat
+  - if chat.user_id == current_user.id
+    .one-box
+      .message-balloon.current-user-comment
+        .user-image
+          = link_to user_path(chat.user) do
+            = image_tag chat.user.get_account_image(50, 50)
+        .message-text
+          %span.text-muted.small
+            自分
+          %br
+          %p.my-message
+            = chat.message
+          .row.justify-content-end
+            .small.text-muted
+              %i.fas.fa-history
+              = "#{time_ago_in_words(chat.created_at)}前"
+  - else
+    .message-balloon.other-user-comment
+      .user-image
+        = link_to user_path(chat.user) do
+          = image_tag chat.user.get_account_image(50, 50)
+      .message-text
+        %span.text-muted.small
+          = chat.user.name
+        %br
+        = chat.message
