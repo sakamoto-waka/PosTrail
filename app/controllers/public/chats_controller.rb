@@ -7,7 +7,7 @@ class Public::ChatsController < ApplicationController
     # ↑配列で取得されたものに↓最初にマッチしたUserRoomを取得
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: room_ids)
 
-    if user_room.blank?
+    if user_rooms.blank?
       @room = Room.new
       @room.save
       UserRoom.create(user_id: @user.id, room_id: @room.id)

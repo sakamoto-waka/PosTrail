@@ -19,9 +19,11 @@
     .message-balloon.other-user-comment
       .user-image            
         = link_to user_path(message.user) do
-          = image_tag message.user.get_account_image(50, 50)
+          = image_tag chat.message.user.get_account_image(50, 50)
       .message-text  
         %span.text-muted.small
           chat.user.name
         %br
-        = chat.message    
+        = chat.message
+        
+= render 'message_form', chat: @chat        
