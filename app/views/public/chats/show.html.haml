@@ -1,0 +1,8 @@
+%h4.text-center.mt-0
+  = "#{@user.name}さんとのDM"
+.chat_send.col-10
+  = render 'message_form', chat: @chat  
+#message
+  = render 'chats', chats: @chats
+.d-flex.justify-content-center.mt-4
+  = paginate @chats

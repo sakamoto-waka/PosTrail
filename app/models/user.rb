@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :rooms, through: :user_rooms
+  has_many :chats, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
   has_one_attached :account_image
 
   # フォロー機能用のアソシエーション
@@ -24,6 +27,9 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 15 }
   validates :introduction, length: { maximum: 100 }
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX }
 
   def active_for_authentication?
     # is_deletedがfalseならtrueを返すようにする
@@ -81,4 +87,9 @@ class User < ApplicationRecord
       user.name = "ゲストユーザー"
     end
   end
+
+  def  same?(current_user)
+    self == current_user
+  end
+
 end

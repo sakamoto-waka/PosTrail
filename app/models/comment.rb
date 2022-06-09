@@ -5,5 +5,10 @@ class Comment < ApplicationRecord
 
   validates :comment, length: { minimum: 1, maximum: 100 }
 
-  paginates_per 3
+  paginates_per 25
+  
+  def includes_user(page)
+    includes([:user => { account_image_attachment: :blob }]).page(page)
+  end
+  
 end

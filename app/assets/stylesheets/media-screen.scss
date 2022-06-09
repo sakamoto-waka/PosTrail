@@ -64,9 +64,8 @@
 
 }
 
-
 // タブレット
-@media screen and (max-width: 759px) {
+@media screen and (max-width: 767px) {
 
   h1 {
     padding-top: 0;
@@ -115,6 +114,11 @@
 
   .button-text {
     display: none;
+  }
+  
+  /*-- チャットへのボタン　フォローボタンときれいに横並び --*/
+  .chat-button {
+    width: 40%;
   }
 
 }
