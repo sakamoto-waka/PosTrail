@@ -1,6 +1,7 @@
 %h4.text-center
   = "#{@user.name}さんとのチャット"
-#message.scroll-list.jscroll
-= render 'message_form', chat: @chat
+#message
+  = render 'message_form', chat: @chat
 = render 'chats', chats: @chats
-= paginate @chats
+.d-flex.justify-content-center.mt-4
+  = paginate @chats
