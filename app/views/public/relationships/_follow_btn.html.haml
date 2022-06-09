@@ -2,9 +2,9 @@
   = link_to user_relationships_path(user), method: :delete, remote: true, class: "unfollow-button" do
     %i.fas.fa-user
     %span.small.button-text フォロー中
-  // - if current_user.follower?(user)
-  = link_to chat_path(user) do
-    %i.fas.fa-envelope-open-text
+  - if current_user.follower?(user)
+    = link_to chat_path(user) , class: "chat-button" do
+      %i.fas.fa-envelope-open-text
 - else
   = link_to user_relationships_path(user), method: :post, remote: true, class: "follow-button" do
     %i.fas.fa-user-plus

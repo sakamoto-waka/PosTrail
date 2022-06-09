@@ -1,8 +1,9 @@
 class Public::ChatsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_mutual_follow, only: :show
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     room_ids = current_user.user_rooms.pluck(:room_id)
     # ↑配列で取得されたものに↓最初にマッチしたUserRoomを取得
     user_room = UserRoom.find_by(user_id: @user.id, room_id: room_ids)
@@ -26,6 +27,14 @@ class Public::ChatsController < ApplicationController
   end
 
   private
+  
+    def ensure_mutual_follow
+      @user = User.find(params[:id])
+      unless @user.following?(current_user)
+        redirect_to users_path
+        flash[:danger] = "相互フォローの方のみとDMできます"
+      end
+    end
 
     def chat_params
       params.require(:chat).permit(:message, :room_id)

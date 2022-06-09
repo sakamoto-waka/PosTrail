@@ -48,7 +48,7 @@ a:not(#search-text, .form-button-common,
   text-decoration: none!important;
   &:hover:not(.devise-link, .post-trash-button, .post-edit-button,
               #view_more, .user-edit-button, .basic-button,
-              .follow-button, .unfollow-button) {
+              .follow-button, .unfollow-button, .chat-button) {
     transition: 0.3s!important;
     background-color: rgba($main-color, 0.1);
   }
@@ -453,7 +453,6 @@ h4 {
 /*-- 投稿詳細＋コメント欄 ＋ チャット --*/
 
 .comment-respond { /*入力欄全体の枠*/
-  // border: 2px solid $button-accent-color;
   margin-top: -2px;
   padding: 10px 0;
   background-color: rgba($button-color, 0.1);
@@ -498,7 +497,7 @@ h4 {
   display: flex;
   align-items: flex-start;
   max-width: 90%;
-  margin: 20px auto;
+  margin: auto;
   img {
     margin: 5px 10px 0 0;
     padding: 5px;
@@ -506,6 +505,7 @@ h4 {
 }
 .message-text {
   flex-grow: 1;
+  margin-top: 15px;
   padding: 0 30px;
   color: #454545;
   font-size: 0.875rem;
@@ -527,7 +527,6 @@ h4 {
 
 /*-- アイコン右 --*/
 .current-user-comment {
-  margin-top: 20px;
   flex-direction: row-reverse;
   img {
     margin: 5px 0 0 10px;
@@ -552,14 +551,58 @@ h4 {
   }
 }
 
-.other-user-chat {
-  margin: initial;
-}
-
 /*-- コメントのもっと見るボタン --*/
 
 .more-comments {
   text-align: center;
+}
+
+/* ==================================================
+
+                    adminのタグ一覧
+
+===================================================== */
+
+/*-- チャットの位置調整 --*/
+
+.my-message {
+  margin-bottom: 0;
+}
+
+.other-user-chat {
+  margin: initial;
+}
+
+/*-- チャットの送信フォーム --*/
+.chat_send {
+  margin: 15px auto;
+  background-color:#eee;/*タイムラインの色と同じにする*/
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 4px;
+  .chat_send_message{
+    width: calc(100% - 75px);/*常に送信ボタンの横幅を引いたサイズに動的に計算*/
+    height: 48px;
+    padding-left: 6px;/*文字がテキストエリアの中心になる様に隙間調整*/
+    border: 1px solid #ccc;
+    border-radius: 4px;/*角丸*/
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしく*/
+  }
+  .chat_send_button {
+    width: 72px;
+    line-height: 3em;
+    float: right;/*bms_sendに対して右寄せ*/
+    color: #fff;
+    font-weight: bold;
+    background: $button-accent-color;
+    text-align: center;/*文字をボタン中央に表示*/
+    border: 1px solid #bbb;
+    border-radius: 4px;/*角丸*/
+    &:hover {
+        background: darken($button-accent-color, 7%);
+    }
+  }
 }
 
 /* ==================================================

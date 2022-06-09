@@ -336,7 +336,7 @@ $edit-button-color: #4b957a;
 
 .unfollow-button {
   @include action-button;
-  width: 80%;
+  // width: 80%;
   padding: 0.3em 1em;
   background-color: #a4a19f;
   border: double 4px #70665b;
@@ -353,6 +353,17 @@ $edit-button-color: #4b957a;
   border: double 4px #13488a;
   &:hover {
     background-color: darken(#608bc1, 7%);
+  }
+}
+
+.chat-button {
+  @include action-button;
+  width: 25%;
+  padding: 5px 0;
+  background-color: #ed9563;
+  border: double 4px #6e400e;
+  &:hover {
+    background-color: darken(#ed9563, 7%);
   }
 }
 
