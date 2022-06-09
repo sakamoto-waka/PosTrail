@@ -22,6 +22,7 @@ class Public::ChatsController < ApplicationController
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save
+    @chat.create_notification_chat()
     user_room = UserRoom.find_by(user_id: @chat.user_id, room_id: @chat.room_id)
     @chats = user_room.room.chats.includes(:user).order(created_at: :desc).page(params[:page])
   end

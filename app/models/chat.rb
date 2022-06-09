@@ -6,4 +6,8 @@ class Chat < ApplicationRecord
   
   paginates_per 30
   
+  def create_notification_chat()
+    
+  end
+  
 end
