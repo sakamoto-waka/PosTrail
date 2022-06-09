@@ -3,15 +3,7 @@ class Public::QuestionsController < ApplicationController
   before_action :ensure_correct_user, only: %w(edit update destroy)
 
   def index
-    if params[:category] == "beginner"
-      @questions = Question.question_latest.where("category = ?", 0).page(params[:page])
-    elsif params[:category] == "intermediate"
-      @questions = Question.question_latest.where("category = ?", 1).page(params[:page])
-    elsif params[:category] == "advanced"
-      @questions = Question.question_latest.where("category = ?", 2).page(params[:page])
-    else
-      @questions = Question.question_latest.page(params[:page])
-    end
+    @questions = Question.search_by_category(params[:category], params[:page])
   end
 
   def new

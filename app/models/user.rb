@@ -27,6 +27,8 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 15 }
   validates :introduction, length: { maximum: 100 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, { present: true, format: { with: VALID_EMAIL_REGEX } }
 
   def active_for_authentication?
     # is_deletedがfalseならtrueを返すようにする
@@ -84,4 +86,9 @@ class User < ApplicationRecord
       user.name = "ゲストユーザー"
     end
   end
+  
+  def  same?(current_user)
+    self == current_user
+  end
+  
 end

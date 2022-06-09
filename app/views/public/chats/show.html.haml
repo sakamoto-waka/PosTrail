@@ -1,5 +1,6 @@
-= "#{@user.name}さんとのチャット"
-#message
-  = render 'chats', chats: @chats
-        
+%h4.text-center
+  = "#{@user.name}さんとのチャット"
+#message.scroll-list.jscroll
 = render 'message_form', chat: @chat
+= render 'chats', chats: @chats
+= paginate @chats

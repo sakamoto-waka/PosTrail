@@ -12,4 +12,16 @@ class Question < ApplicationRecord
 
   paginates_per 25
 
+  def self.search_by_category(category, page)
+    if category == "beginner"
+      question_latest.where("category = ?", 0).page(page)
+    elsif category == "intermediate"
+      question_latest.where("category = ?", 1).page(page)
+    elsif category == "advanced"
+      question_latest.where("category = ?", 2).page(page)
+    else
+      question_latest.page(page)
+    end
+  end
+    
 end

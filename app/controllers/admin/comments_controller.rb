@@ -4,7 +4,7 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    @comments = @post.comments.includes([:user]).page(params[:page])
+    @comments = @post.comments.includes_user(params[:page])
     flash.now[:danger] = "コメントを削除しました"
   end
 

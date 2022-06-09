@@ -10,12 +10,11 @@ class Public::ChatsController < ApplicationController
     if user_room.blank?
       @room = Room.new
       @room.save
-      UserRoom.create(user_id: @user.id, room_id: @room.id)
-      UserRoom.create(user_id: current_user.id, room_id: @room.id)
+      @room.create_room_users(@user, current_user)
     else
       @room = user_room.room
     end
-    @chats = @room.chats.includes(:user)
+    @chats = @room.chats.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     @chat = Chat.new(room_id: @room.id, user_id: @user.id)
   end
 
@@ -23,7 +22,7 @@ class Public::ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     @chat.save
     user_room = UserRoom.find_by(user_id: @chat.user_id, room_id: @chat.room_id)
-    @chats = user_room.room.chats.includes(:user)
+    @chats = user_room.room.chats.includes(:user).order(created_at: :desc)
   end
 
   private

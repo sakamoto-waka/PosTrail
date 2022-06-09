@@ -31,7 +31,7 @@ class Post < ApplicationRecord
   # 通知用メソッド
   def create_notification_like(current_user)
     # 既にいいねされてるか検索(何度も同じ人から通知が来ないようにするため)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, self.user_id, id, 'like'])
     # いいねされてない時のみ通知レコード作成
     if temp.blank?
       # postに付くメソッドなのでここのidはpostが持つidとなる
@@ -103,4 +103,10 @@ class Post < ApplicationRecord
   def self.includes_all
     with_attached_trail_image.includes([:tags, :user => { account_image_attachment: :blob }])
   end
+  
+  def written_by?(current_user)
+    user == current_user
+  end
+  
+  
 end

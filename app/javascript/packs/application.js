@@ -8,13 +8,14 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "jquery";
+import "../jquery.jscroll.min.js"
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/js/all"
-import "../base.js"
 import "./preview"
 import "./accordion"
+import "./scroll"
 
 Rails.start()
 ActiveStorage.start()
