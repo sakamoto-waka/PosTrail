@@ -101,8 +101,8 @@ https://postrail.net
 また、ユーザーの削除後も投稿が残るように論理削除を実装しました。
 管理者側では「名前+(削除済みユーザー)」へと自動で切り替わり、ユーザー側では「退会済みユーザー」として表示されます。
 
-<img width="70%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170912016-73c3bc69-3d07-409b-b6c6-0cc0392ccaf2.png">
-<img width="70%" alt="ユーザー側退会ユーザー" src="https://user-images.githubusercontent.com/98644622/170912015-1d735b7b-d709-4ac4-a9ec-0459adfcde4f.png">
+<img width="100%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170912016-73c3bc69-3d07-409b-b6c6-0cc0392ccaf2.png">
+<img width="100%" alt="ユーザー側退会ユーザー" src="https://user-images.githubusercontent.com/98644622/170912015-1d735b7b-d709-4ac4-a9ec-0459adfcde4f.png">
 
 ### 🌿工夫した点
 - ユーザビリティを意識（例：タグは全角空白でも登録が可能）
@@ -126,12 +126,12 @@ https://postrail.net
 
 ## 🐴設計書
 ### 🌿ER図
-<img width="70%" alt="ER図" src="https://user-images.githubusercontent.com/98644622/170900657-9a6f9eeb-b0c2-451c-a4c0-d3d2f5b3ac7b.png">
+<img width="100%" alt="ER図" src="https://user-images.githubusercontent.com/98644622/170900657-9a6f9eeb-b0c2-451c-a4c0-d3d2f5b3ac7b.png">
 
 ### 🌿フローチャート
 ユーザー側
 
-<img width="95%" alt="フローチャート" src="https://user-images.githubusercontent.com/98644622/170832517-cb8487ac-6d39-4fa0-b712-724934957e9a.png">
+<img width="100%" alt="フローチャート" src="https://user-images.githubusercontent.com/98644622/170832517-cb8487ac-6d39-4fa0-b712-724934957e9a.png">
 
 ＊admin側、追加予定です
 
