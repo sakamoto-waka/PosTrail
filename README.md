@@ -143,6 +143,8 @@ https://postrail.net
 - IDE： Cloud9
 - DB: sqlite3
 
+## 🐴デプロイ環境
+
 ## 🐴使用素材(商用可)
 |使用用途             |サイト名       |アドレス                                  |
 |-------------------|---------------------|--------------------------------|
@@ -152,14 +154,14 @@ https://postrail.net
 |ユーザーアイコン（馬）    　|ICOOOON MONO         | https://icooon-mono.com
 |ユーザーアイコン(動物)  　|vectorShelf          | https://vectorshelf.com
 |素敵な写真集        　　　|Unsplash             | https://unsplash.com
-|人物のイラスト(about)  |ちょうどいいイラスト       | https://tyoudoii-illust.com
+|人物のイラスト(about)  |ちょうどいいイラスト      　 | https://tyoudoii-illust.com
 
-#### cssボタン等
+#### フロントで使用した雛形等
 |使用用途             |サイト名       |アドレス                                   |
 |-------------------|---------------------|---------------------------------|
 |ボタン               |See-SS               | https://see-ss.com            
 |ボタン               |JAJAAAN!             | https://jajaaan.co.jp
 |見出しやボタンなど     　|サルワカ               | https://saruwakakun.com
 |検索バー            　|Coco-Factory         | https://coco-factory.jp/
-
+|アコーディオンメニュー　　　　　　　|PENGIN BLOG　　　　　　　　　　　　　　　　　　　　| https://pengi-n.co.jp/
 
