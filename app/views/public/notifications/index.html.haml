@@ -1,1 +1,27 @@
-= render 'notifications_and_activities', notifications: @notifications_except_me, activities: @activities
+.col-md-10.col-lg-8.mx-auto
+  // フォロワーとフォロしてる人をタブ表示
+  %ul#myTab.text-center.nav.nav-tabs{role: "tablist"}
+    %li.nav-item.col-6.p-0{role: "presentation"}
+      %a#notifications-tab.nav-link.link-text{"aria-controls" => "notifications", "data-toggle" => "tab", href: "#notifications", role: "tab"}
+        通知
+  
+    %li.nav-item.col-6.p-0{role: "presentation"}
+      %a#activities-tab.nav-link.link-text{"aria-controls" => "activities", "data-toggle" => "tab", href: "#activities", role: "tab"}
+        アクティビティ
+  
+  // 上で定義したidを使ってそれぞれのタブの中で検索結果を表示
+  #myTabContent.tab-content
+    #notifications.tab-pane.fade.show.active{"aria-labelledby" => "post-tab", role: "tabpanel"}
+      %h3 通知
+      - if @notifications_except_me.present?
+        = render 'notifications_index_except_me', notifications_except_me: @notifications_except_me
+      - else
+        %p.text-center 通知はありません
+  
+    #activities.tab-pane.fade{"aria-labelledby" => "tag-tab", role: "tabpanel"}
+      %h3.mb-4 アクティビティ
+      - if @activities.present?
+        = render 'public/notifications/my_activities', activities: @activities
+      - else
+        %p.text-center アクティビティはありません
+        

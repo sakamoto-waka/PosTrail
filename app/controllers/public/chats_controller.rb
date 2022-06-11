@@ -23,6 +23,7 @@ class Public::ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     @chat.save
     user_room = UserRoom.find_by(user_id: @chat.user_id, room_id: @chat.room_id)
+    @chat.create_notification_chat(current_user)
     @chats = user_room.room.chats.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
@@ -37,7 +38,7 @@ class Public::ChatsController < ApplicationController
     end
 
     def chat_params
-      params.require(:chat).permit(:message, :room_id)
+      params.require(:chat).permit(:message, :room_id, :user_id)
     end
 
 end

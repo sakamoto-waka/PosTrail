@@ -49,7 +49,7 @@ class Post < ApplicationRecord
   # 自分以外のコメントしている人をすべて取得→全員に通知を送る(saveはまだ)
   def create_notification_comment(current_user, comment_id)
     temp_ids = Comment.select(:user_id).where(post_id: id).
-      where.not(user_id: current_user.id).distinct # ←自分と重複を排除
+               where.not(user_id: current_user.id).distinct # ←自分と重複を排除
     temp_ids.each do |temp_id|
       save_notification_comment(current_user, comment_id, temp_id[('user_id')])
     end

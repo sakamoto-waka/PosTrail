@@ -1,6 +1,6 @@
 .form_inline
   - activities.each do |activity|
-    %span      
+    %span
       - case activity.action
       - when 'following' then
         = link_to user_path(activity.visited) do
@@ -10,23 +10,29 @@
       - when 'like' then
         %span
           - if activity.post.user_id == activity.visitor.id
-            = link_to "あなたの投稿", activity.post, style: "font-weight: bold;"
-          - else  
+            = link_to "あなたの投稿", activity.post, class: "font-wight-bold"
+          - else
             = link_to post_path(activity.post) do
               %strong
                 = "#{activity.post.user.name}さんの投稿"
           = "にいいねしました"
       - when 'comment' then
         - if activity.post.user_id == activity.visitor.id
-          = link_to "あなたの投稿", activity.post, style: "font-weight: bold;"
+          = link_to "あなたの投稿", activity.post, class: "font-wight-bold"
         - else
           %span
             = link_to post_path(activity.post) do
               %strong
-                = activity.post.user.name + 'さんの投稿'
+                = "#{activity.post.user.name}さんの投稿"
         = "にコメントしました"
         %p.text-muted.mb-0
           = truncate(Comment.find_by(id: activity.comment_id)&.comment, length:15)
+      - when 'chat' then
+        = link_to chat_path(activity.room_id) do
+          = "#{activity.visited.name}さんへDMをしました"
+        // 最初の15文字のみ表示
+      %p.text-muted.mb-0
+        = truncate(Chat.find_by(id: activity.chat)&.message, length:15)
 
     .small.text-muted.text-right
       = "#{time_ago_in_words(activity.created_at).upcase}前"
