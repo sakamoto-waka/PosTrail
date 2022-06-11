@@ -60,3 +60,4 @@ post_tag_array.each do |post_id, tag_id|
     tag_id: tag_id
   )
 end
+

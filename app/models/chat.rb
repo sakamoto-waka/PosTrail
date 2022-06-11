@@ -19,7 +19,6 @@ class Chat < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
-    debugger
   end
 
 

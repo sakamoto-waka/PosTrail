@@ -4,38 +4,31 @@
       = link_to user_path(notification.visitor) do
         %strong
           = notification.visitor.name
-      = 'さんが'
+      = 'さん'
 
       - case notification.action
       - when 'following' then
-        = 'あなたをフォローしました'
+        = 'があなたをフォローしました'
       - when 'like' then
-        = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
+        = link_to 'があなたの投稿', notification.post, class: "font-wight-bold"
         = 'にいいねしました'
       - when 'comment' then
         - if notification.post.user_id == notification.visited.id
-          = link_to 'あなたの投稿', notification.post, style: "font-weight: bold;"
+          = link_to 'があなたの投稿', notification.post, class: "font-wight-bold"
         - else
           %span
             = link_to post_path(notification.post) do
               %strong
-                = notification.post.user.name + 'さんの投稿'
+                = "#{notification.post.user.name}さんの投稿"
         = 'にコメントしました'
         %p.text-muted.mb-0
           // 最初の15文字のみ表示...&.は取得したcommentテーブルにcommentがなくてもエラー回避
           = truncate(Comment.find_by(id: notification.comment_id)&.comment, length:15)
       - when 'chat' then
-        - if notification.chat.user_id == notification.visited.id
-          = link_to 'あなた', notification.chat, style: "font-weight: bold;"
-        - else
-          %span
-            = link_to chat_path(notification.chat) do
-              %strong
-                = notification.chat.user.name + 'さん'
-        = 'がDMしました'
+        = link_to 'からDMがきました', chat_path(notification.room_id), class: "font-wight-bold"
         %p.text-muted.mb-0
           // 最初の15文字のみ表示
-          = truncate(Chat.find_by(id: notification.room_id)&.chat, length:15)    
+          = truncate(Chat.find_by(id: notification.room_id)&.message, length:15)    
 
   .small.text-muted.text-right
     %i.fas.fa-history
