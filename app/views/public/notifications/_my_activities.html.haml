@@ -32,7 +32,7 @@
           = "#{activity.visited.name}さんへDMをしました"
         // 最初の15文字のみ表示
       %p.text-muted.mb-0
-        = truncate(Chat.find_by(id: activity.room_id)&.message, length:15)
+        = truncate(Chat.find_by(id: activity.chat)&.message, length:15)
 
     .small.text-muted.text-right
       = "#{time_ago_in_words(activity.created_at).upcase}前"

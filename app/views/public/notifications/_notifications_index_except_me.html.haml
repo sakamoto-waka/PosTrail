@@ -28,7 +28,7 @@
         = link_to 'からDMがきました', chat_path(notification.room_id), class: "font-wight-bold"
         %p.text-muted.mb-0
           // 最初の15文字のみ表示
-          = truncate(Chat.find_by(id: notification.room_id)&.message, length:15)    
+          = truncate(Chat.find_by(id: notification.chat)&.message, length:15)    
 
   .small.text-muted.text-right
     %i.fas.fa-history
