@@ -137,7 +137,7 @@ https://postrail.net
 
 ## 🐴開発環境
 - OS： Linux(CentOS)　Amazon Linux release 2 (Karoo)
-- 言語： HTML,CSS,JavaScript,Ruby(2.6.3p62),SQL
+- 言語： HTML,CSS,JavaScript,Ruby(2.6.3),SQL
 - フレームワーク： Ruby on Rails(6.1.6)
 - JSライブラリ： jQuery
 - IDE： Cloud9
