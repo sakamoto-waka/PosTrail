@@ -24,6 +24,18 @@
         %p.text-muted.mb-0
           // 最初の15文字のみ表示...&.は取得したcommentテーブルにcommentがなくてもエラー回避
           = truncate(Comment.find_by(id: notification.comment_id)&.comment, length:15)
+      - when 'chat' then
+        - if notification.chat.user_id == notification.visited.id
+          = link_to 'あなた', notification.chat, style: "font-weight: bold;"
+        - else
+          %span
+            = link_to chat_path(notification.chat) do
+              %strong
+                = notification.chat.user.name + 'さん'
+        = 'がDMしました'
+        %p.text-muted.mb-0
+          // 最初の15文字のみ表示
+          = truncate(Chat.find_by(id: notification.room_id)&.chat, length:15)    
 
   .small.text-muted.text-right
     %i.fas.fa-history

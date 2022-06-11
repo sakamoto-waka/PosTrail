@@ -8,6 +8,6 @@ class Public::NotificationsController < ApplicationController
       notification.update_attribute(:checked, true)
     end
     @notifications_except_me = notifications.latest.where.not("visitor_id = ?", current_user.id).limit(25)
-    @activities = current_user.active_notifications.latest.includes([:visitor, :post]).limit(20)
+    @activities = current_user.active_notifications.latest.includes([:visited, :visitor, :post, :chat]).limit(20)
   end
 end
