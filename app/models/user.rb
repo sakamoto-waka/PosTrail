@@ -102,5 +102,13 @@ class User < ApplicationRecord
   def deleted_user?
     is_deleted == true
   end
+  
+  def change_name_when_deleted
+    if deleted_user?
+      update_attribute(:name, "#{name}(退会済み)")
+    else
+      update_attribute(:name, name.delete('(退会済み)'))
+    end
+  end
 
 end
