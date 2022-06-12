@@ -21,7 +21,7 @@
                   %i.fas.fa-heart
                   いいね一覧
               %td
-                - if user == current_user
+                - if user.same?(current_user)
                   = link_to edit_user_path(user), class: "user-edit-button" do
                     %i.fas.fa-user-cog
                     %span.small.button-text 編集
