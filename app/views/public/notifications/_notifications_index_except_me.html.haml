@@ -22,7 +22,7 @@
                 = "#{notification.post.user.name}さんの投稿"
         = 'にコメントしました'
         %p.text-muted.mb-0
-          // 最初の15文字のみ表示...&.は取得したcommentテーブルにcommentがなくてもエラー回避
+          // 最初の15文字のみ表示 &.は取得したcommentテーブルにcommentがなくてもエラー回避
           = truncate(Comment.find_by(id: notification.comment_id)&.comment, length:15)
       - when 'chat' then
         = link_to 'からDMがきました', chat_path(notification.room_id), class: "font-wight-bold"

@@ -41,7 +41,10 @@ class User < ApplicationRecord
     name
   end
 
-  def get_account_image(width, height)
+  # user.get_account_image(thumbnail: ture)にしたらS3を参照
+  def get_account_image(width = nil, height = nil, thumbnail: false)
+    return "https://#{ENV['AWS_RESIZE_BUCKET']}.s3-ap-northeast-1.amazonaws.com/store/" + account_image.key + "-thumbnail." if thumbnail
+
     unless account_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
       account_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
