@@ -21,7 +21,7 @@
             - else
               まだプロフィールが設定されていません
           %td
-            - if user == current_user
+            - if user.same?(current_user)
               = link_to edit_user_path(user), class: "user-edit-button user-index-edit" do
                 %i.fas.fa-user-cog
                 %span.button-text.small 編集
