@@ -94,5 +94,13 @@ class User < ApplicationRecord
   def  same?(current_user)
     self == current_user
   end
+  
+  def includes_all
+    posts.with_attached_trail_image.includes([:tags])
+  end
+  
+  def deleted_user?
+    is_deleted == true
+  end
 
 end
