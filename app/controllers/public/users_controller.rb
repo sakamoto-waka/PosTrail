@@ -16,6 +16,7 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      sleep(3)
       redirect_to user_path(@user)
       flash[:success] = "ユーザー情報を更新しました"
     else
