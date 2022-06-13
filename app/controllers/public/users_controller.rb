@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.with_attached_trail_image.includes([:tags]).page(params[:page]).per(30)
+    @posts = @user.includes_all.page(params[:page]).per(30)
   end
 
   def edit
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     likes = Like.where("user_id = ?", @user.id).pluck(:post_id)
-    @like_posts = Post.with_attached_trail_image.includes([:user, :tags]).find(likes)
+    @like_posts = Post.includes_all.find(likes)
   end
 
   private
@@ -43,14 +43,10 @@ class Public::UsersController < ApplicationController
 
   def no_user_show_when_user_deleted
     @user = User.find(params[:id])
-    if @user.is_deleted == true
+    if @user.deleted_user?
       redirect_to request.referer
       flash[:danger] = "退会済みユーザーの詳細ページは見ることができません"
     end
   end
 
-  # 削除処理されたユーザーの詳細ページにはいけない
-  def deleted_user_redirect
-    redirect_to request.referer if is_deleted == true
-  end
 end

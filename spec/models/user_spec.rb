@@ -183,7 +183,6 @@ RSpec.describe 'ユーザーモデル', type: :model do
           end
         end
       end
-
       context '通知が作成されないとき' do
         context 'other_userからuserへの通知が初めてではないとき' do
           it 'active_notificationsは1のまま増えないこと' do
@@ -191,6 +190,16 @@ RSpec.describe 'ユーザーモデル', type: :model do
             other_user.create_notification_follow(user)
             expect(user.active_notifications.count).to eq 1
           end
+        end
+      end
+    end
+    describe 'self.guestのテスト' do
+      context 'ゲストユーザーが未作成のとき' do
+        # let(:new_user) { build(User.new) }
+        it 'ゲストユーザーが作られること' do
+          expect do
+            User.guest
+          end.to change { User.count }.by(1)
         end
       end
     end

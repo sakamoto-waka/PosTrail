@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   belongs_to_active_hash :prefecture
 
   scope :latest, -> { order(created_at: :desc) }
+  scope :search_prefecture, ->(prefecture_id) { where("prefecture_id = ?", prefecture_id) }
+  scope :search_trail_place, ->(trail_place) { where("trail_place = ?", trail_place) }
 
   belongs_to :user
   has_many :likes, dependent: :destroy
@@ -101,7 +103,7 @@ class Post < ApplicationRecord
   end
 
   def self.includes_all
-    with_attached_trail_image.includes([:tags, :user => { account_image_attachment: :blob }])
+    with_attached_trail_image.includes([:tags, :user => { account_image_attachment: :blob }]).latest
   end
   
   def written_by?(current_user)
