@@ -11,9 +11,9 @@ class Public::PostsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.includes_all.page(params[:page])
     elsif params[:trail_place]
-      @posts = Post.includes_all.where("trail_place = ?", params[:trail_place]).page(params[:page])
+      @posts = Post.includes_all.search_trail_place(params[:trail_place]).page(params[:page])
     elsif params[:prefecture_id]
-      @posts = Post.includes_all.where("prefecture_id = ?", params[:prefecture_id]).page(params[:page])
+      @posts = Post.includes_all.search_prefecture(params[:prefecture_id]).page(params[:page])
     else
       # includes_allはN+1問題対策
       @posts = Post.includes_all.page(params[:page])
