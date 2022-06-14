@@ -202,6 +202,39 @@ RSpec.describe 'ユーザーモデル', type: :model do
           end.to change { User.count }.by(1)
         end
       end
+      context 'ゲストユーザーが作成済みのとき' do
+        it 'ゲストユーザーが作られないこと' do
+          User.guest
+          expect do
+            User.guest
+          end.to change { User.count }.by(0)
+        end
+      end
+    end
+    describe 'same?(current_user)のテスト' do
+      context '同一人物であるとき' do
+        it 'trueが返ること' do
+          expect(user.same?(user)).to be_truthy
+        end
+      end
+      context '他人のとき'  do
+        it 'falseが返ること' do
+          expect(other_user.same?(user)).to be_falsey
+        end
+      end
+    end
+    describe 'deleted_user?のテスト' do
+      context 'userの論理削除がされていないとき' do
+        it 'falseが返ること' do
+          expect(user.deleted_user?).to be_falsey
+        end
+      end
+      context 'userの論理削除がされているとき' do
+        it 'trueが返ること' do
+          user.is_deleted = true
+          expect(user.deleted_user?).to be_truthy
+        end
+      end
     end
   end
 end
