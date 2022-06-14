@@ -559,7 +559,7 @@ h4 {
 
 /* ==================================================
 
-                    adminのタグ一覧
+                    DM関係
 
 ===================================================== */
 
@@ -639,8 +639,7 @@ table {
     & img {
       width: 200px;
       height: 200px;
-      border-radius: 50%;
-      background-color: lighten($button-color, 20%);
+      // background-color: lighten($button-color, 20%);
     }
   }
   .user-profile-table {

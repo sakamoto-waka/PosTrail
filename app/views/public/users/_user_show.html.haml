@@ -2,7 +2,6 @@
   .profile-area
     .profile-content
       .profile-image
-        
         = user.same?(current_user) ? (image_tag user.get_account_image(100, 100)) : (image_tag user.get_account_image(thumbnail: true))
       .h3.font-weight-bold.text-center
         = user.name

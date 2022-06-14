@@ -7,17 +7,7 @@ class Public::PostsController < ApplicationController
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     # @posts = この先が分からず
-    if params[:tag_id]
-      @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.includes_all.page(params[:page])
-    elsif params[:trail_place]
-      @posts = Post.includes_all.search_trail_place(params[:trail_place]).page(params[:page])
-    elsif params[:prefecture_id]
-      @posts = Post.includes_all.search_prefecture(params[:prefecture_id]).page(params[:page])
-    else
-      # includes_allはN+1問題対策
-      @posts = Post.includes_all.page(params[:page])
-    end
+    @posts = Post.search_posts(params).page(params[:page])
   end
 
   def new

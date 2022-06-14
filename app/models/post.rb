@@ -110,5 +110,18 @@ class Post < ApplicationRecord
     user == current_user
   end
   
+  def self.search_posts(params)
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      tag.posts.includes_all
+    elsif params[:trail_place]
+      includes_all.search_trail_place(params[:trail_place])
+    elsif params[:prefecture_id]
+      includes_all.search_prefecture(params[:prefecture_id])
+    else
+      # includes_allはN+1問題対策
+      includes_all
+    end
+  end
   
 end
