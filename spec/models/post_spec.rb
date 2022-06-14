@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { create(:post) }
+  let!(:post) { create(:post) }
   let(:user) { create(:user) }
-  let(:other_user_post) { create(:post, user_id: other_user.id) }
+  let!(:other_user_post) { create(:post, user_id: other_user.id, prefecture_id: 2) }
   let(:other_user) { create(:user) }
 
   describe 'モデルに関するテスト' do
@@ -237,8 +237,52 @@ RSpec.describe Post, type: :model do
         end
       end
       describe 'search_prefectureのテスト' do
-        context '1を渡したとき' do
-          it '北海道を持つpostsの配列が取れること' do
+        context '成功するとき' do
+          context '1を渡したとき' do
+            it 'prefecture_id: 1の北海道を持つpostsの配列が取れること' do
+              expect(Post.search_prefecture(1)).to include(have_attributes(prefecture_id: 1))
+            end
+            it 'Postが1つ取得できること' do
+              prefecture_post = Post.search_prefecture(1)
+              expect(prefecture_post.count).to eq 1
+            end
+          end
+        end
+        context '失敗するとき' do
+          context '3を渡したとき' do
+            it 'prefecture_id: 1の北海道を持つpostsの配列が取れないこと' do
+              expect(Post.search_prefecture(3)).to_not include(have_attributes(prefecture_id: 1))
+            end
+            it 'Postは取得できないこと' do
+              prefecture_post = Post.search_prefecture(3)
+              expect(prefecture_post.count).to eq 0
+            end
+          end
+        end
+      end
+      describe 'search_trail_placeのテスト' do
+        let!(:trail_place_post) { create(:post, trail_place: 'テスト場所') }
+        let!(:other_trail_place_post) { create(:post, trail_place: 'テスト場所') }
+        context '成功するとき' do
+          context 'テスト場所を渡したとき' do
+            it 'テスト場所を持つpostsの配列が取れること' do
+              expect(Post.search_trail_place('テスト場所')).to include(have_attributes(trail_place: 'テスト場所'))
+            end
+            it 'Postが2つ取得できること' do
+              trail_place = Post.search_trail_place('テスト場所')
+              expect(trail_place.count).to eq 2
+            end
+          end
+        end
+        context '失敗するとき' do
+          context 'テスト場所3を渡したとき' do
+            it 'テスト場所を持つpostsの配列が取れないこと' do
+              expect(Post.search_trail_place('テスト場所3')).to_not include(have_attributes(trail_place: 'テスト場所'))
+            end
+            it 'Postは取得できないこと' do
+              prefecture_post = Post.search_trail_place('テスト場所3')
+              expect(prefecture_post.count).to eq 0
+            end
           end
         end
       end
