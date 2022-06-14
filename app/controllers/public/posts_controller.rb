@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
     # @posts = この先が分からず
-    @posts = Post.search_posts(params)
+    @posts = Post.search_posts(params).page(params[:page])
   end
 
   def new
