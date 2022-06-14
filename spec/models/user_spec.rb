@@ -234,7 +234,7 @@ RSpec.describe 'ユーザーモデル', type: :model do
           expect(user.deleted_user?).to be_truthy
         end
       end
-      context '一度論理削除してからfalseに戻したとき' do
+      context '一度論理削除してからis_deletedをfalseに戻したとき' do
         it 'falseが返ること' do
           user.is_deleted = true
           user.is_deleted = false

@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   belongs_to_active_hash :prefecture
 
   scope :latest, -> { order(created_at: :desc) }
-  scope :search_prefecture, ->(prefecture_id) { where("prefecture_id = ?", prefecture_id) }
-  scope :search_trail_place, ->(trail_place) { where("trail_place = ?", trail_place) }
+  scope :search_prefecture, -> (prefecture_id) { where("prefecture_id = ?", prefecture_id) }
+  scope :search_trail_place, -> (trail_place) { where("trail_place = ?", trail_place) }
 
   belongs_to :user
   has_many :likes, dependent: :destroy

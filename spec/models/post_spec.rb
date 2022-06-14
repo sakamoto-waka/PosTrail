@@ -224,6 +224,24 @@ RSpec.describe Post, type: :model do
           end
         end
       end
+      describe 'written_by?(current_user)のテスト' do
+        context 'other_user_post.userがother_userと同じとき' do
+          it 'trueが返ること' do
+            expect(other_user_post.written_by?(other_user)).to be_truthy
+          end
+        end
+        context 'other_user_post.userがother_userと違うとき' do
+          it 'falseが返ること' do
+            expect(other_user_post.written_by?(user)).to be_falsey
+          end
+        end
+      end
+      describe 'search_prefectureのテスト' do
+        context '1を渡したとき' do
+          it '北海道を持つpostsの配列が取れること' do
+          end
+        end
+      end
     end
   end
 end
