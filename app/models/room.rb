@@ -8,5 +8,4 @@ class Room < ApplicationRecord
     UserRoom.create(user_id: user.id, room_id: id)
     UserRoom.create(user_id: current_user.id, room_id: id)
   end
-
 end

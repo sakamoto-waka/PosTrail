@@ -33,7 +33,8 @@ class Admin::QuestionsController < ApplicationController
   end
 
   private
-    def question_params
-      params.require(:question).permit(:content,:title, :answer, :riding_experience, :category, :is_answered)
-    end
+
+  def question_params
+    params.require(:question).permit(:content, :title, :answer, :riding_experience, :category, :is_answered)
+  end
 end

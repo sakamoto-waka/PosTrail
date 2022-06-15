@@ -28,17 +28,16 @@ class Public::ChatsController < ApplicationController
   end
 
   private
-  
-    def ensure_mutual_follow
-      @user = User.find(params[:id])
-      unless @user.following?(current_user)
-        redirect_to users_path
-        flash[:danger] = "相互フォローの方のみとDMできます"
-      end
-    end
 
-    def chat_params
-      params.require(:chat).permit(:message, :room_id, :user_id)
+  def ensure_mutual_follow
+    @user = User.find(params[:id])
+    unless @user.following?(current_user)
+      redirect_to users_path
+      flash[:danger] = "相互フォローの方のみとDMできます"
     end
+  end
 
+  def chat_params
+    params.require(:chat).permit(:message, :room_id, :user_id)
+  end
 end

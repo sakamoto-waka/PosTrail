@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   belongs_to_active_hash :prefecture
 
   scope :latest, -> { order(created_at: :desc) }
-  scope :search_prefecture, ->(prefecture_id) { where("prefecture_id = ?", prefecture_id) }
-  scope :search_trail_place, ->(trail_place) { where("trail_place = ?", trail_place) }
+  scope :search_prefecture, -> (prefecture_id) { where("prefecture_id = ?", prefecture_id) }
+  scope :search_trail_place, -> (trail_place) { where("trail_place = ?", trail_place) }
 
   belongs_to :user
   has_many :likes, dependent: :destroy
@@ -33,7 +33,7 @@ class Post < ApplicationRecord
   # 通知用メソッド
   def create_notification_like(current_user)
     # 既にいいねされてるか検索(何度も同じ人から通知が来ないようにするため)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, self.user_id, id, 'like'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user_id, id, 'like'])
     # いいねされてない時のみ通知レコード作成
     if temp.blank?
       # postに付くメソッドなのでここのidはpostが持つidとなる
@@ -51,7 +51,7 @@ class Post < ApplicationRecord
   # 自分以外のコメントしている人をすべて取得→全員に通知を送る(saveはまだ)
   def create_notification_comment(current_user, comment_id)
     temp_ids = Comment.select(:user_id).where(post_id: id).
-               where.not(user_id: current_user.id).distinct # ←自分と重複を排除
+      where.not(user_id: current_user.id).distinct # ←自分と重複を排除
     temp_ids.each do |temp_id|
       save_notification_comment(current_user, comment_id, temp_id[('user_id')])
     end
@@ -105,11 +105,11 @@ class Post < ApplicationRecord
   def self.includes_all
     with_attached_trail_image.includes([:tags, :user => { account_image_attachment: :blob }]).latest
   end
-  
+
   def written_by?(current_user)
     user == current_user
   end
-  
+
   def self.search_posts(params)
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
@@ -123,5 +123,4 @@ class Post < ApplicationRecord
       includes_all
     end
   end
-  
 end

@@ -45,7 +45,7 @@ Rails.application.routes.draw do
         delete 'tags_index_destroy' => 'posts#tags_index_destroy'
       end
     end
-    resources :questions, except: %w(new create )
+    resources :questions, except: %w(new create)
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

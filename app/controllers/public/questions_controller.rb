@@ -23,15 +23,15 @@ class Public::QuestionsController < ApplicationController
 
   private
 
-    def ensure_correct_user
-      @question = Question.find(params[:id])
-      user = User.find(params[:user_id])
-      unless (@question.user == user) || admin_signed_in?
-        redirect_to new_user_session_path
-      end
+  def ensure_correct_user
+    @question = Question.find(params[:id])
+    user = User.find(params[:user_id])
+    unless (@question.user == user) || admin_signed_in?
+      redirect_to new_user_session_path
     end
+  end
 
-    def question_params
-      params.require(:question).permit(:content,:title, :riding_experience)
-    end
+  def question_params
+    params.require(:question).permit(:content, :title, :riding_experience)
+  end
 end
