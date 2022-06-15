@@ -48,5 +48,4 @@ class Public::UsersController < ApplicationController
       flash[:danger] = "退会済みユーザーの詳細ページは見ることができません"
     end
   end
-
 end

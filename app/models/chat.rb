@@ -20,7 +20,4 @@ class Chat < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-
-
 end

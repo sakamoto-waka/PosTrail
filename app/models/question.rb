@@ -23,5 +23,4 @@ class Question < ApplicationRecord
       question_latest.page(page)
     end
   end
-    
 end

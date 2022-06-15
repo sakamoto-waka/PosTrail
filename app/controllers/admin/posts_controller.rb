@@ -5,16 +5,7 @@ class Admin::PostsController < ApplicationController
     # 投稿数が多い順に取得する
     tags_list = Tag.find(PostTag.group(:tag_id).order('count(post_id) desc').limit(25).pluck(:tag_id))
     @tags_list = Kaminari.paginate_array(tags_list).page(params[:page]).per(30)
-    if params[:tag_id]
-      @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.includes_all.page(params[:page])
-    elsif params[:trail_place]
-      @posts = Post.includes_all.search_trail_place(params[:trail_place]).page(params[:page])
-    elsif params[:prefecture_id]
-      @posts = Post.includes_all.search_prefecture(params[:prefecture_id]).page(params[:page])
-    else
-      @posts = Post.includes_all.page(params[:page])
-    end
+    @posts = Post.search_posts(params).page(params[:page])
   end
 
   def tags_index

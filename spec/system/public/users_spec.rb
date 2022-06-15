@@ -66,11 +66,6 @@ RSpec.describe 'ユーザーに関するテスト', type: :system do
           expect(page).to have_content 'メールアドレスは既に使用されています'
         end
       end
-
-      it 'どの編集画面にもいけないこと' do
-        visit edit_user_path(other_user)
-        expect(current_path).to eq user_path(other_user)
-      end
     end
   end
 
