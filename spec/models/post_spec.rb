@@ -224,18 +224,21 @@ RSpec.describe Post, type: :model do
           end
         end
       end
+
       describe 'written_by?(current_user)のテスト' do
         context 'other_user_post.userがother_userと同じとき' do
           it 'trueが返ること' do
             expect(other_user_post.written_by?(other_user)).to be_truthy
           end
         end
+
         context 'other_user_post.userがother_userと違うとき' do
           it 'falseが返ること' do
             expect(other_user_post.written_by?(user)).to be_falsey
           end
         end
       end
+
       describe 'search_prefectureのテスト' do
         context '成功するとき' do
           context '1を渡したとき' do
@@ -248,10 +251,11 @@ RSpec.describe Post, type: :model do
             end
           end
         end
+
         context '失敗するとき' do
           context '3を渡したとき' do
             it 'prefecture_id: 1の北海道を持つpostsの配列が取れないこと' do
-              expect(Post.search_prefecture(3)).to_not include(have_attributes(prefecture_id: 1))
+              expect(Post.search_prefecture(3)).not_to include(have_attributes(prefecture_id: 1))
             end
             it 'Postは取得できないこと' do
               prefecture_post = Post.search_prefecture(3)
@@ -260,9 +264,11 @@ RSpec.describe Post, type: :model do
           end
         end
       end
+
       describe 'search_trail_placeのテスト' do
         let!(:trail_place_post) { create(:post, trail_place: 'テスト場所') }
         let!(:other_trail_place_post) { create(:post, trail_place: 'テスト場所') }
+
         context '成功するとき' do
           context 'テスト場所を渡したとき' do
             it 'テスト場所を持つpostsの配列が取れること' do
@@ -274,10 +280,11 @@ RSpec.describe Post, type: :model do
             end
           end
         end
+
         context '失敗するとき' do
           context 'テスト場所3を渡したとき' do
             it 'テスト場所を持つpostsの配列が取れないこと' do
-              expect(Post.search_trail_place('テスト場所3')).to_not include(have_attributes(trail_place: 'テスト場所'))
+              expect(Post.search_trail_place('テスト場所3')).not_to include(have_attributes(trail_place: 'テスト場所'))
             end
             it 'Postは取得できないこと' do
               prefecture_post = Post.search_trail_place('テスト場所3')

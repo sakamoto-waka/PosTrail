@@ -56,10 +56,10 @@ class Public::PostsController < ApplicationController
 
   private
 
-    # post_paramsはapplication_controllerに記述
-    
-    def ensure_correct_user
-      @post = Post.find(params[:id])
-      redirect_to post_path(@post) unless @post.user == current_user
-    end
+  # post_paramsはapplication_controllerに記述
+
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    redirect_to post_path(@post) unless @post.user == current_user
+  end
 end

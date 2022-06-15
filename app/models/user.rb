@@ -28,7 +28,7 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 15 }
   validates :introduction, length: { maximum: 100 }
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, format: { with: VALID_EMAIL_REGEX }
 
   def active_for_authentication?
@@ -91,7 +91,7 @@ class User < ApplicationRecord
     end
   end
 
-  def  same?(current_user)
+  def same?(current_user)
     self == current_user
   end
 
@@ -110,5 +110,4 @@ class User < ApplicationRecord
       update_attribute(:name, name.delete('(退会済み)'))
     end
   end
-
 end
