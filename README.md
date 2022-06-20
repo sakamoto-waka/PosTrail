@@ -103,7 +103,7 @@ https://postrail.net
 また、ユーザーの削除後も投稿が残るように論理削除を実装しました。
 管理者側では「名前+(削除済みユーザー)」へと自動で切り替わります。
 
-<img width="100%" alt="管理者用ユーザー詳細" src="https://user-images.githubusercontent.com/98644622/170912016-73c3bc69-3d07-409b-b6c6-0cc0392ccaf2.png">
+<img width="100%" alt="admin退会処理" src="https://user-images.githubusercontent.com/98644622/174517393-9dde5b8c-c6db-4e4f-a8ed-2b353f793900.png">
 
 ユーザー側では「退会済みユーザー」として表示されます。
 
@@ -137,8 +137,7 @@ https://postrail.net
 
 管理者側
 
-<img width="100%" alt="adminフローチャート" src="https://user-images.githubusercontent.com/98644622/173814988-083deaa2-3f4a-4311-829b-1ffba4f890fc.png">
-
+<img width="100%" alt="adminフローチャート" src="https://user-images.githubusercontent.com/98644622/174517155-287358c3-e66a-404a-85bd-2cd9dcb7f0b3.png">
 
 ## 🐴開発環境
 - OS： Linux(CentOS)　Amazon Linux release 2 (Karoo)
