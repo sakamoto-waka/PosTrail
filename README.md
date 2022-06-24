@@ -162,8 +162,6 @@ https://docs.google.com/spreadsheets/d/18lojfy8jh-F9g1E4aIktUnQUyRkEagTdxXOXW7He
 
 <img width="100%" alt="インフラ設計図" src="https://user-images.githubusercontent.com/98644622/175302889-84f5282f-6bae-4ada-a517-38cfecb74e71.png">
 
-
-
 ## 使用素材(商用可)
 |使用用途             |サイト名       |アドレス                                  |
 |-------------------|---------------------|--------------------------------|
