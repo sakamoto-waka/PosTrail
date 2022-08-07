@@ -180,4 +180,4 @@ https://docs.google.com/spreadsheets/d/18lojfy8jh-F9g1E4aIktUnQUyRkEagTdxXOXW7He
 |ボタン               |JAJAAAN!             | https://jajaaan.co.jp
 |見出しやボタンなど     　|サルワカ               | https://saruwakakun.com
 |検索バー            　|Coco-Factory         | https://coco-factory.jp/
-|アコーディオンメニュー　　　　　　　|PENGIN BLOG　　　　　　　　　　　　　　　　　　　　| https://pengi-n.co.jp/
+|アコーディオンメニュー　　　　　　　|PENGIN BLOG　　　　　　　　　　　　　　　　　　　　| https://pengi-n.co.jp/ 
